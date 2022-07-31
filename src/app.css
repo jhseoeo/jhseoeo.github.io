@@ -95,3 +95,7 @@ summary:hover {
 .post img {
     max-width: 800px;
 }
+
+.post blockquote img {
+    max-width: 749px;
+}
