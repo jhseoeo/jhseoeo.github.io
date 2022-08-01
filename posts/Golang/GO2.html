@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="content-security-policy" content=""><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" data-svelte="svelte-1h5702y"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass" data-svelte="svelte-1h5702y"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono" data-svelte="svelte-1h5702y"><link rel="preconnect" href="https://fonts.gstatic.com" data-svelte="svelte-1h5702y"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" data-svelte="svelte-1h5702y">
+	<link rel="stylesheet" href="/_app/immutable/assets/pages/__layout.svelte-d40aee20.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/IconBase-05c40767.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/pages/posts/_category_/_slug_.svelte-8b778566.css">
+	<link rel="modulepreload" href="/_app/immutable/start-d7d5f3e6.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-e357d5e8.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/paths-396f020f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/preload-helper-60cab3ee.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout.svelte-176e3f0c.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/IconBase-e3f0a12a.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/posts/_category_/_slug_.svelte-7389c871.js">
+    </head>
+    <body>
+        <div id="svelte">
+
+
+
+
+<nav class="topbar svelte-thyte7"><div class="menu svelte-thyte7"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svelte-c8tyih"><path d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"></path></svg></div>
+	<div><a class="title svelte-thyte7" href="/">리턴강의실임</a></div></nav>
+<div class="ghcorner svelte-thyte7">
+<a href="https://github.com/junhyuk0801" class="github-corner svelte-1t9vm59" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#444; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm svelte-1t9vm59"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+</a></div>
+
+
+<div class="g-app-wrapper svelte-1qh1xd2"><div class="contents svelte-1qh1xd2"><span class="svelte-1v7uiop"><h1 class="title svelte-1v7uiop">변수와 원시 타입</h1>
+	<a class="backto svelte-1v7uiop" href="/posts/Golang">Golang
+		<div class="ico svelte-1v7uiop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="svelte-c8tyih"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg></div></a></span>
+
+<p class="info"><a href="https://github.com/junhyuk0801">JHSeo</a> JUL 21, 2022</p>
+
+<div class="post"><!-- HTML_TAG_START --><br>
+<p>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 20.04 LTS 기준으로 작성되었습니다.</p>
+<p><br><br></p>
+<h2>Variables and Constants</h2>
+<hr>
+<br>
+<h3>Variables</h3>
+<p>Go에서 변수는 아래와 같이 선언 및 초기화할 수 있다. 특이사항은 다음과 같다.</p>
+<ol>
+<li>C/C++과는 달리, 타입이 변수명 뒤에 옴</li>
+<li>변수를 생성하고 값을 할당하지 않는 C나 C++와는 달리, 변수를 생성하면 기본적으로 할당되는 값인 <span style="background-color: #FFF5B1">zero value</span>가 존재함</li>
+<li>변수가 선언만 되고 사용되지 않으면 에러가 발생함</li>
+<li>권장되지는 않지만 전역변수도 됨</li>
+</ol>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+	<span class="hljs-keyword">var</span> a <span class="hljs-keyword">int</span> = <span class="hljs-number">1</span>         <span class="hljs-comment">// variable declaration</span>
+	<span class="hljs-keyword">var</span> b <span class="hljs-keyword">string</span>          <span class="hljs-comment">// declare string variable. it's value would be zero value of string ("")</span>
+	<span class="hljs-keyword">var</span> c, d = <span class="hljs-number">123</span>, <span class="hljs-string">"456"</span> <span class="hljs-comment">// multiple declaration. their type would be int, string</span>
+	<span class="hljs-keyword">var</span> (                 <span class="hljs-comment">// inside parentheses, variables can be declared line by line</span>
+		e    <span class="hljs-keyword">int</span>            <span class="hljs-comment">//</span>
+		f    = <span class="hljs-number">20</span>           <span class="hljs-comment">// it's type would be int</span>
+		g, h = <span class="hljs-number">1.23</span>, <span class="hljs-string">"4.56"</span> <span class="hljs-comment">// multiple declaration, only specified their values</span>
+		i, j <span class="hljs-keyword">string</span>         <span class="hljs-comment">// only specified their types</span>
+	)
+	<span class="hljs-keyword">var</span> 한글개꿀ㅋㅋ = <span class="hljs-number">1</span> <span class="hljs-comment">// 한글도 되긴 하는데 이러지 맙시다</span>
+</code></pre>
+<br>
+<p><code>:=</code> 연산자를 활용하여 변수를 선언할 수도 있다. 변수의 타입은 초기화되는 값에 따라 결정된다. c++의 <code>auto</code> 키워드와 비슷한 듯 하다.</p>
+<pre><code class="hljs language-go">	k := <span class="hljs-number">10</span>        <span class="hljs-comment">// variable declaration by := operator</span>
+	k, l := <span class="hljs-number">20</span>, <span class="hljs-number">20</span> <span class="hljs-comment">// multiple declaration</span>
+</code></pre>
+<p><code>:=</code> 연산자는 편리하지만 주의해서 사용해야 한다. <span style="background-color: #FFF5B1">Shadowing</span>이 발생할 수도 있기 때문이다.</p>
+<blockquote>
+<h3>Shadowing이란?</h3>
+<p><code>var</code> 키워드는 동일한 이름을 가진 변수를 선언할 때 에러가 발생하는데 반해,
+위 예제에서는 <code>k</code>가 선언되고, 그 아래 줄에서 <code>l</code>과 함께 <code>k</code>가 다시 선언된 것을 확인할 수 있다(<code>k</code>만 다시 선언하면 에러가 발생한다).
+이 경우 해당 Block이 끝날 때까지, 앞서 선언한 <code>k</code>의 값인 10에 접근할 수 없게 된다.</p>
+<p>이런 현상을 Shadowing이라고 하며, <code>:=</code> 연산자를 사용할 때 주의해야 하는 이유이다.
+특히 함수의 파라미터나, <code>fmt</code>같은 패키지 이름이나, 심지어는 <code>nil</code> 또는 <code>false</code> 같은 리터럴들도 Shadowing할 수 있다.
+<code>var</code> 키워드는 함수의 타입을 명시해주는 효과도 있고 Shadowing의 염려가 없으므로 <code>var</code>가 조금 더 안전한 선택지이다.
+반면 <code>if</code>, <code>switch</code>, <code>for</code>문이나 에러 핸들링 등에서는 <code>:=</code>을 주로 사용한다.</p>
+</blockquote>
+<br>
+<p>변수가 선언만 되고 사용되지 않으면 에러가 발생하니, <code>fmt.Println()</code> 함수를 활용하여 모두 출력해주자.</p>
+<pre><code class="hljs language-go">	fmt.Println(a, b, c, d, e, f, g, h, i, j, k, l)
+	fmt.Println(asd)
+	fmt.Println(한글개꿀ㅋㅋ)
+}
+</code></pre>
+<p><br><br></p>
+<h3>Constants</h3>
+<p>상수의 선언은 변수와 유사하다. <code>const</code> 키워드를 사용한다</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+	<span class="hljs-keyword">const</span> a <span class="hljs-keyword">int</span> = <span class="hljs-number">1</span>         <span class="hljs-comment">// typed</span>
+	<span class="hljs-keyword">const</span> b, c = <span class="hljs-number">123</span>, <span class="hljs-string">"456"</span> <span class="hljs-comment">// untyped, multiple declaration</span>
+	<span class="hljs-keyword">const</span> (                 <span class="hljs-comment">// decalaration constants using parentheses</span>
+		d    = <span class="hljs-number">20</span>           <span class="hljs-comment">// inside parentheses, constants can be declared line by line</span>
+		e, f = <span class="hljs-number">1.23</span>, <span class="hljs-string">"4.56"</span> <span class="hljs-comment">// multiple decalaration</span>
+	)
+
+	fmt.Println(a, b, c, d, e, f)
+</code></pre>
+<br>
+<p>상수로 선언된 값을 변수에 할당할 때, 타입이 다르면 에러가 발생한다.</p>
+<pre><code class="hljs language-go">	<span class="hljs-keyword">var</span> i <span class="hljs-keyword">int</span> = a <span class="hljs-comment">// constants can be value of variables when their types are same</span>
+	<span class="hljs-comment">// var f float64 = a // if types are different, it occurs error</span>
+	fmt.Println(i)
+}
+</code></pre>
+<p><br><br></p>
+<h2>Primitive Types</h2>
+<hr>
+<p>Go의 타입들에는 아래와 같은 특징이 존재한다.</p>
+<p><br><br></p>
+<h3>bool</h3>
+<p>bool은 다른 언어와 크게 다르지 않다. Zero value는 <code>false</code>이다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">var</span> flag <span class="hljs-keyword">bool</span> <span class="hljs-comment">// initial value is false</span>
+<span class="hljs-keyword">var</span> isAwesome = <span class="hljs-literal">true</span>
+fmt.Println(flag, isAwesome)
+</code></pre>
+<p><br><br></p>
+<h3>int</h3>
+<p>int는 C/C++와 유사하다. Zero value는 0이며, signed와 unsigned로 구분된다.
+또한 8bit, 16bit, 32bit, 64bit중 변수의 크기를 결정할 수 있으며, (u)int 뒤에 크기를 붙임으로써 나타낸다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">var</span> i8 <span class="hljs-keyword">int8</span> = <span class="hljs-number">-128</span>                  <span class="hljs-comment">// 8-bit signed integer</span>
+<span class="hljs-keyword">var</span> i64 <span class="hljs-keyword">int64</span> = <span class="hljs-number">9223372036854775807</span> <span class="hljs-comment">// 64-bit signed integer</span>
+<span class="hljs-keyword">var</span> u32 <span class="hljs-keyword">uint32</span> = <span class="hljs-number">4294967295</span>         <span class="hljs-comment">// 32-bit unsigned integer</span>
+fmt.Println(i8, i64, u32)
+</code></pre>
+<br>
+<p>이 중 <code>byte</code>라는 자료형은 <code>uint8</code>과 동일한 것으로 처리된다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">var</span> b <span class="hljs-keyword">byte</span> = <span class="hljs-number">123</span> <span class="hljs-comment">// byte: 8-bit unsigned integer</span>
+<span class="hljs-keyword">var</span> uint8_ <span class="hljs-keyword">uint8</span> = <span class="hljs-number">234</span>
+fmt.Println(b == uint8_) <span class="hljs-comment">// doesn't occur error</span>
+</code></pre>
+<br>
+<p>크기를 붙이지 않은 <code>int</code>라는 자료형도 존재하는데, 32bit와 64bit중에서 정해진다. 이는 어떤 하드웨어를 사용하는지에 따라, 실행할때 결정된다.<br>
+다만 컴퓨터가 64bit를 사용하는 경우라고 해도, int와 int64끼리의 연산은 에러가 발생한다. int는 플랫폼마다, 하드웨어마다 실행시 크기가 다르기 때문이다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">var</span> i <span class="hljs-keyword">int</span> = <span class="hljs-number">9223372036854775807</span> <span class="hljs-comment">// signed int. its size(32 or 64bits) is decided at compile time, determined by its hardware</span>
+<span class="hljs-keyword">var</span> ui <span class="hljs-keyword">uint</span> = <span class="hljs-number">0</span>                 <span class="hljs-comment">// unsigned int</span>
+<span class="hljs-comment">// fmt.Println(i == i64) occurs error</span>
+fmt.Println(i, ui)
+</code></pre>
+<br>
+<p>일반적인 경우 <code>(u)int</code> 타입을 선택하는 것이 권장되지만,
+바이너리 파일 처리나 네트워크 통신 등, 정수 자료형의 특정한 크기를 사용해야 하는 경우라면 <code>(u)int8</code>~<code>(u)int64</code> 에서 타입을 선택한다.
+또는 라이브러리 함수를 작성하는 경우, 함수의 파라미터나 변수로 <code>(u)int64</code>를 선택하는 것이 좋다고 한다.</p>
+<br>
+<p>정수를 표기할 때 언더바(_)로 구분할 수 있다. 또한 앞에 <code>0x</code>, <code>0o</code>, <code>0b</code>를 붙여 각각 16, 8, 2진수로 표현할 수 있다.</p>
+<pre><code class="hljs language-go">fmt.Println(<span class="hljs-number">1</span>_2_3_4, <span class="hljs-number">123</span>_456_789_123123_456) <span class="hljs-comment">// numbers can distinguished by underbar(_)</span>
+fmt.Println(<span class="hljs-number">0x1234</span>, <span class="hljs-number">0</span>o1234, <span class="hljs-number">0</span>b1101)          <span class="hljs-comment">// hexadecimal, octal, binary representation</span>
+</code></pre>
+<p><br><br></p>
+<h3>float</h3>
+<p>실수를 표현하는 타입은 32bit인 <code>float32</code>와 64bit인 <code>float64</code> 두 가지로 구분된다. C/C++와 유사하게 부동소숫점(Floating point) 방식을 사용한다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">var</span> f32 <span class="hljs-keyword">float32</span> = <span class="hljs-number">0.5</span>   <span class="hljs-comment">// f32 : 32-bits floating point number</span>
+<span class="hljs-keyword">var</span> f64 <span class="hljs-keyword">float32</span> = <span class="hljs-number">0.524</span> <span class="hljs-comment">// f64 : 64-bits floating point number</span>
+fmt.Println(f32, f64)
+</code></pre>
+<br>
+<p>또한 복소수를 표현하는 <code>complex</code> 타입도 존재한다. 다만 복소수가 필요한 수학, 물리 관련된 코드를 굳이 Go를..?</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">var</span> c64 <span class="hljs-keyword">complex64</span> = <span class="hljs-built_in">complex</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// c64 : 복소수(float32 + float32)</span>
+c128 := <span class="hljs-built_in">complex</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)             <span class="hljs-comment">// c128 : 복소수(float64 + float64)</span>
+fmt.Println(c64, c128)
+fmt.Println(<span class="hljs-built_in">real</span>(c128))      <span class="hljs-comment">// 실수부</span>
+fmt.Println(<span class="hljs-built_in">imag</span>(c128))      <span class="hljs-comment">// 허수부</span>
+fmt.Println(cmplx.Abs(c128)) <span class="hljs-comment">// 절댓값..?</span>
+</code></pre>
+<p><br><br></p>
+<h3>string</h3>
+<p>문자열을 표현하는 <code>string</code> 타입이 존재한다. 아래 코드는 기본적인 선언과 연산자들이다. Zero value는 <code>""</code>이다. 또한 Go의 기본 문자열 인코딩은 UTF-8이다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">var</span> s1 <span class="hljs-keyword">string</span> = <span class="hljs-string">"qwe"</span>
+<span class="hljs-keyword">var</span> s2 <span class="hljs-keyword">string</span> = <span class="hljs-string">"asd"</span>
+
+fmt.Println(s1 == s2) <span class="hljs-comment">// comparison operators between string</span>
+fmt.Println(s1 > s2)
+fmt.Println(s1 + s2)
+</code></pre>
+<br>
+<p><code>string</code>을 구성하는 각 문자들은 <code>rune</code> 타입이다. <code>byte</code>가 <code>uint8</code>과 동의어인 것처럼, <code>rune</code>은 <code>int32</code>와 동의어이다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">var</span> character <span class="hljs-keyword">rune</span> = <span class="hljs-string">'\u0061'</span> <span class="hljs-comment">// rune represents a single character</span>
+fmt.Println(character)
+</code></pre>
+<p><br><br></p>
+<h3>Type Conversion</h3>
+<p>Go에서는 서로 다른 타입들간의 변환이 가능하다. 함수처럼 타입명에 괄호를 붙이면 된다. 이를테면 <code>int16</code>에서 <code>int32</code>로의 변환부터, <code>int</code>와 <code>float64</code> 사이의 변환 등도 가능하다</p>
+<pre><code class="hljs language-go"><span class="hljs-comment">// type conversion between int and float</span>
+<span class="hljs-keyword">var</span> x <span class="hljs-keyword">int</span> = <span class="hljs-number">10</span>
+<span class="hljs-keyword">var</span> y <span class="hljs-keyword">float64</span> = <span class="hljs-number">30.2</span>
+<span class="hljs-keyword">var</span> z <span class="hljs-keyword">float64</span> = <span class="hljs-keyword">float64</span>(x) + y
+<span class="hljs-keyword">var</span> d <span class="hljs-keyword">int</span> = x + <span class="hljs-keyword">int</span>(y)
+fmt.Println(z, d)
+</code></pre>
+<p><br><br></p>
+<h2>참고 자료</h2>
+<hr>
+<center>
+<p><a href="https://learning.oreilly.com/library/view/learning-go/9781492077206/"><img src="https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/" alt=""></a> <br>
+<a href="https://learning.oreilly.com/library/view/learning-go/9781492077206/">Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.</a></p>
+</center><!-- HTML_TAG_END --></div>
+
+</div>
+	<footer class="site-footer svelte-1qh1xd2">© 2022 JHSeo. All rights reserved. <br><br></footer></div>
+
+
+		<script type="module" data-sveltekit-hydrate="14kifrr">
+		import { start } from "/_app/immutable/start-d7d5f3e6.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="14kifrr"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [0, 6],
+				params: {category:"Golang",slug:"GO2"},
+				routeId: "posts/[category]/[slug]"
+			}
+		});
+	</script><script type="application/json" sveltekit:data-type="data" sveltekit:data-url="/posts/Golang/GO2_json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"metadata\":{\"title\":\"변수와 원시 타입\",\"date\":\"Jul 21, 2022\",\"excerpt\":\"Primitive Types and Variable Declaration\"},\"content\":\"\u003Cbr>\\n\u003Cp>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 20.04 LTS 기준으로 작성되었습니다.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>Variables and Constants\u003C/h2>\\n\u003Chr>\\n\u003Cbr>\\n\u003Ch3>Variables\u003C/h3>\\n\u003Cp>Go에서 변수는 아래와 같이 선언 및 초기화할 수 있다. 특이사항은 다음과 같다.\u003C/p>\\n\u003Col>\\n\u003Cli>C/C++과는 달리, 타입이 변수명 뒤에 옴\u003C/li>\\n\u003Cli>변수를 생성하고 값을 할당하지 않는 C나 C++와는 달리, 변수를 생성하면 기본적으로 할당되는 값인 \u003Cspan style=\\\"background-color: #FFF5B1\\\">zero value\u003C/span>가 존재함\u003C/li>\\n\u003Cli>변수가 선언만 되고 사용되지 않으면 에러가 발생함\u003C/li>\\n\u003Cli>권장되지는 않지만 전역변수도 됨\u003C/li>\\n\u003C/ol>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">package\u003C/span> main\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">import\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"fmt\\\"\u003C/span>\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">main\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> a \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">1\u003C/span>         \u003Cspan class=\\\"hljs-comment\\\">// variable declaration\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> b \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>          \u003Cspan class=\\\"hljs-comment\\\">// declare string variable. it's value would be zero value of string (\\\"\\\")\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> c, d = \u003Cspan class=\\\"hljs-number\\\">123\u003C/span>, \u003Cspan class=\\\"hljs-string\\\">\\\"456\\\"\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// multiple declaration. their type would be int, string\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> (                 \u003Cspan class=\\\"hljs-comment\\\">// inside parentheses, variables can be declared line by line\u003C/span>\\n\\t\\te    \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>            \u003Cspan class=\\\"hljs-comment\\\">//\u003C/span>\\n\\t\\tf    = \u003Cspan class=\\\"hljs-number\\\">20\u003C/span>           \u003Cspan class=\\\"hljs-comment\\\">// it's type would be int\u003C/span>\\n\\t\\tg, h = \u003Cspan class=\\\"hljs-number\\\">1.23\u003C/span>, \u003Cspan class=\\\"hljs-string\\\">\\\"4.56\\\"\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// multiple declaration, only specified their values\u003C/span>\\n\\t\\ti, j \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>         \u003Cspan class=\\\"hljs-comment\\\">// only specified their types\u003C/span>\\n\\t)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> 한글개꿀ㅋㅋ = \u003Cspan class=\\\"hljs-number\\\">1\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// 한글도 되긴 하는데 이러지 맙시다\u003C/span>\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>\u003Ccode>:=\u003C/code> 연산자를 활용하여 변수를 선언할 수도 있다. 변수의 타입은 초기화되는 값에 따라 결정된다. c++의 \u003Ccode>auto\u003C/code> 키워드와 비슷한 듯 하다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\\tk := \u003Cspan class=\\\"hljs-number\\\">10\u003C/span>        \u003Cspan class=\\\"hljs-comment\\\">// variable declaration by := operator\u003C/span>\\n\\tk, l := \u003Cspan class=\\\"hljs-number\\\">20\u003C/span>, \u003Cspan class=\\\"hljs-number\\\">20\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// multiple declaration\u003C/span>\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Ccode>:=\u003C/code> 연산자는 편리하지만 주의해서 사용해야 한다. \u003Cspan style=\\\"background-color: #FFF5B1\\\">Shadowing\u003C/span>이 발생할 수도 있기 때문이다.\u003C/p>\\n\u003Cblockquote>\\n\u003Ch3>Shadowing이란?\u003C/h3>\\n\u003Cp>\u003Ccode>var\u003C/code> 키워드는 동일한 이름을 가진 변수를 선언할 때 에러가 발생하는데 반해,\\n위 예제에서는 \u003Ccode>k\u003C/code>가 선언되고, 그 아래 줄에서 \u003Ccode>l\u003C/code>과 함께 \u003Ccode>k\u003C/code>가 다시 선언된 것을 확인할 수 있다(\u003Ccode>k\u003C/code>만 다시 선언하면 에러가 발생한다).\\n이 경우 해당 Block이 끝날 때까지, 앞서 선언한 \u003Ccode>k\u003C/code>의 값인 10에 접근할 수 없게 된다.\u003C/p>\\n\u003Cp>이런 현상을 Shadowing이라고 하며, \u003Ccode>:=\u003C/code> 연산자를 사용할 때 주의해야 하는 이유이다.\\n특히 함수의 파라미터나, \u003Ccode>fmt\u003C/code>같은 패키지 이름이나, 심지어는 \u003Ccode>nil\u003C/code> 또는 \u003Ccode>false\u003C/code> 같은 리터럴들도 Shadowing할 수 있다.\\n\u003Ccode>var\u003C/code> 키워드는 함수의 타입을 명시해주는 효과도 있고 Shadowing의 염려가 없으므로 \u003Ccode>var\u003C/code>가 조금 더 안전한 선택지이다.\\n반면 \u003Ccode>if\u003C/code>, \u003Ccode>switch\u003C/code>, \u003Ccode>for\u003C/code>문이나 에러 핸들링 등에서는 \u003Ccode>:=\u003C/code>을 주로 사용한다.\u003C/p>\\n\u003C/blockquote>\\n\u003Cbr>\\n\u003Cp>변수가 선언만 되고 사용되지 않으면 에러가 발생하니, \u003Ccode>fmt.Println()\u003C/code> 함수를 활용하여 모두 출력해주자.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\\tfmt.Println(a, b, c, d, e, f, g, h, i, j, k, l)\\n\\tfmt.Println(asd)\\n\\tfmt.Println(한글개꿀ㅋㅋ)\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch3>Constants\u003C/h3>\\n\u003Cp>상수의 선언은 변수와 유사하다. \u003Ccode>const\u003C/code> 키워드를 사용한다\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">package\u003C/span> main\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">import\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"fmt\\\"\u003C/span>\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">main\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">const\u003C/span> a \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">1\u003C/span>         \u003Cspan class=\\\"hljs-comment\\\">// typed\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">const\u003C/span> b, c = \u003Cspan class=\\\"hljs-number\\\">123\u003C/span>, \u003Cspan class=\\\"hljs-string\\\">\\\"456\\\"\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// untyped, multiple declaration\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">const\u003C/span> (                 \u003Cspan class=\\\"hljs-comment\\\">// decalaration constants using parentheses\u003C/span>\\n\\t\\td    = \u003Cspan class=\\\"hljs-number\\\">20\u003C/span>           \u003Cspan class=\\\"hljs-comment\\\">// inside parentheses, constants can be declared line by line\u003C/span>\\n\\t\\te, f = \u003Cspan class=\\\"hljs-number\\\">1.23\u003C/span>, \u003Cspan class=\\\"hljs-string\\\">\\\"4.56\\\"\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// multiple decalaration\u003C/span>\\n\\t)\\n\\n\\tfmt.Println(a, b, c, d, e, f)\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>상수로 선언된 값을 변수에 할당할 때, 타입이 다르면 에러가 발생한다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\\t\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> i \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span> = a \u003Cspan class=\\\"hljs-comment\\\">// constants can be value of variables when their types are same\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-comment\\\">// var f float64 = a // if types are different, it occurs error\u003C/span>\\n\\tfmt.Println(i)\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>Primitive Types\u003C/h2>\\n\u003Chr>\\n\u003Cp>Go의 타입들에는 아래와 같은 특징이 존재한다.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch3>bool\u003C/h3>\\n\u003Cp>bool은 다른 언어와 크게 다르지 않다. Zero value는 \u003Ccode>false\u003C/code>이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> flag \u003Cspan class=\\\"hljs-keyword\\\">bool\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// initial value is false\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> isAwesome = \u003Cspan class=\\\"hljs-literal\\\">true\u003C/span>\\nfmt.Println(flag, isAwesome)\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch3>int\u003C/h3>\\n\u003Cp>int는 C/C++와 유사하다. Zero value는 0이며, signed와 unsigned로 구분된다.\\n또한 8bit, 16bit, 32bit, 64bit중 변수의 크기를 결정할 수 있으며, (u)int 뒤에 크기를 붙임으로써 나타낸다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> i8 \u003Cspan class=\\\"hljs-keyword\\\">int8\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">-128\u003C/span>                  \u003Cspan class=\\\"hljs-comment\\\">// 8-bit signed integer\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> i64 \u003Cspan class=\\\"hljs-keyword\\\">int64\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">9223372036854775807\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// 64-bit signed integer\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> u32 \u003Cspan class=\\\"hljs-keyword\\\">uint32\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">4294967295\u003C/span>         \u003Cspan class=\\\"hljs-comment\\\">// 32-bit unsigned integer\u003C/span>\\nfmt.Println(i8, i64, u32)\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>이 중 \u003Ccode>byte\u003C/code>라는 자료형은 \u003Ccode>uint8\u003C/code>과 동일한 것으로 처리된다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> b \u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">123\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// byte: 8-bit unsigned integer\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> uint8_ \u003Cspan class=\\\"hljs-keyword\\\">uint8\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">234\u003C/span>\\nfmt.Println(b == uint8_) \u003Cspan class=\\\"hljs-comment\\\">// doesn't occur error\u003C/span>\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>크기를 붙이지 않은 \u003Ccode>int\u003C/code>라는 자료형도 존재하는데, 32bit와 64bit중에서 정해진다. 이는 어떤 하드웨어를 사용하는지에 따라, 실행할때 결정된다.\u003Cbr>\\n다만 컴퓨터가 64bit를 사용하는 경우라고 해도, int와 int64끼리의 연산은 에러가 발생한다. int는 플랫폼마다, 하드웨어마다 실행시 크기가 다르기 때문이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> i \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">9223372036854775807\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// signed int. its size(32 or 64bits) is decided at compile time, determined by its hardware\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> ui \u003Cspan class=\\\"hljs-keyword\\\">uint\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">0\u003C/span>                 \u003Cspan class=\\\"hljs-comment\\\">// unsigned int\u003C/span>\\n\u003Cspan class=\\\"hljs-comment\\\">// fmt.Println(i == i64) occurs error\u003C/span>\\nfmt.Println(i, ui)\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>일반적인 경우 \u003Ccode>(u)int\u003C/code> 타입을 선택하는 것이 권장되지만,\\n바이너리 파일 처리나 네트워크 통신 등, 정수 자료형의 특정한 크기를 사용해야 하는 경우라면 \u003Ccode>(u)int8\u003C/code>~\u003Ccode>(u)int64\u003C/code> 에서 타입을 선택한다.\\n또는 라이브러리 함수를 작성하는 경우, 함수의 파라미터나 변수로 \u003Ccode>(u)int64\u003C/code>를 선택하는 것이 좋다고 한다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>정수를 표기할 때 언더바(_)로 구분할 수 있다. 또한 앞에 \u003Ccode>0x\u003C/code>, \u003Ccode>0o\u003C/code>, \u003Ccode>0b\u003C/code>를 붙여 각각 16, 8, 2진수로 표현할 수 있다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">fmt.Println(\u003Cspan class=\\\"hljs-number\\\">1\u003C/span>_2_3_4, \u003Cspan class=\\\"hljs-number\\\">123\u003C/span>_456_789_123123_456) \u003Cspan class=\\\"hljs-comment\\\">// numbers can distinguished by underbar(_)\u003C/span>\\nfmt.Println(\u003Cspan class=\\\"hljs-number\\\">0x1234\u003C/span>, \u003Cspan class=\\\"hljs-number\\\">0\u003C/span>o1234, \u003Cspan class=\\\"hljs-number\\\">0\u003C/span>b1101)          \u003Cspan class=\\\"hljs-comment\\\">// hexadecimal, octal, binary representation\u003C/span>\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch3>float\u003C/h3>\\n\u003Cp>실수를 표현하는 타입은 32bit인 \u003Ccode>float32\u003C/code>와 64bit인 \u003Ccode>float64\u003C/code> 두 가지로 구분된다. C/C++와 유사하게 부동소숫점(Floating point) 방식을 사용한다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> f32 \u003Cspan class=\\\"hljs-keyword\\\">float32\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">0.5\u003C/span>   \u003Cspan class=\\\"hljs-comment\\\">// f32 : 32-bits floating point number\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> f64 \u003Cspan class=\\\"hljs-keyword\\\">float32\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">0.524\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// f64 : 64-bits floating point number\u003C/span>\\nfmt.Println(f32, f64)\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>또한 복소수를 표현하는 \u003Ccode>complex\u003C/code> 타입도 존재한다. 다만 복소수가 필요한 수학, 물리 관련된 코드를 굳이 Go를..?\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> c64 \u003Cspan class=\\\"hljs-keyword\\\">complex64\u003C/span> = \u003Cspan class=\\\"hljs-built_in\\\">complex\u003C/span>(\u003Cspan class=\\\"hljs-number\\\">2\u003C/span>, \u003Cspan class=\\\"hljs-number\\\">3\u003C/span>) \u003Cspan class=\\\"hljs-comment\\\">// c64 : 복소수(float32 + float32)\u003C/span>\\nc128 := \u003Cspan class=\\\"hljs-built_in\\\">complex\u003C/span>(\u003Cspan class=\\\"hljs-number\\\">3\u003C/span>, \u003Cspan class=\\\"hljs-number\\\">4\u003C/span>)             \u003Cspan class=\\\"hljs-comment\\\">// c128 : 복소수(float64 + float64)\u003C/span>\\nfmt.Println(c64, c128)\\nfmt.Println(\u003Cspan class=\\\"hljs-built_in\\\">real\u003C/span>(c128))      \u003Cspan class=\\\"hljs-comment\\\">// 실수부\u003C/span>\\nfmt.Println(\u003Cspan class=\\\"hljs-built_in\\\">imag\u003C/span>(c128))      \u003Cspan class=\\\"hljs-comment\\\">// 허수부\u003C/span>\\nfmt.Println(cmplx.Abs(c128)) \u003Cspan class=\\\"hljs-comment\\\">// 절댓값..?\u003C/span>\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch3>string\u003C/h3>\\n\u003Cp>문자열을 표현하는 \u003Ccode>string\u003C/code> 타입이 존재한다. 아래 코드는 기본적인 선언과 연산자들이다. Zero value는 \u003Ccode>\\\"\\\"\u003C/code>이다. 또한 Go의 기본 문자열 인코딩은 UTF-8이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> s1 \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span> = \u003Cspan class=\\\"hljs-string\\\">\\\"qwe\\\"\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> s2 \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span> = \u003Cspan class=\\\"hljs-string\\\">\\\"asd\\\"\u003C/span>\\n\\nfmt.Println(s1 == s2) \u003Cspan class=\\\"hljs-comment\\\">// comparison operators between string\u003C/span>\\nfmt.Println(s1 > s2)\\nfmt.Println(s1 + s2)\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>\u003Ccode>string\u003C/code>을 구성하는 각 문자들은 \u003Ccode>rune\u003C/code> 타입이다. \u003Ccode>byte\u003C/code>가 \u003Ccode>uint8\u003C/code>과 동의어인 것처럼, \u003Ccode>rune\u003C/code>은 \u003Ccode>int32\u003C/code>와 동의어이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> character \u003Cspan class=\\\"hljs-keyword\\\">rune\u003C/span> = \u003Cspan class=\\\"hljs-string\\\">'\\\\u0061'\u003C/span> \u003Cspan class=\\\"hljs-comment\\\">// rune represents a single character\u003C/span>\\nfmt.Println(character)\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch3>Type Conversion\u003C/h3>\\n\u003Cp>Go에서는 서로 다른 타입들간의 변환이 가능하다. 함수처럼 타입명에 괄호를 붙이면 된다. 이를테면 \u003Ccode>int16\u003C/code>에서 \u003Ccode>int32\u003C/code>로의 변환부터, \u003Ccode>int\u003C/code>와 \u003Ccode>float64\u003C/code> 사이의 변환 등도 가능하다\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-comment\\\">// type conversion between int and float\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> x \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">10\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> y \u003Cspan class=\\\"hljs-keyword\\\">float64\u003C/span> = \u003Cspan class=\\\"hljs-number\\\">30.2\u003C/span>\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> z \u003Cspan class=\\\"hljs-keyword\\\">float64\u003C/span> = \u003Cspan class=\\\"hljs-keyword\\\">float64\u003C/span>(x) + y\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> d \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span> = x + \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>(y)\\nfmt.Println(z, d)\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>참고 자료\u003C/h2>\\n\u003Chr>\\n\u003Ccenter>\\n\u003Cp>\u003Ca href=\\\"https://learning.oreilly.com/library/view/learning-go/9781492077206/\\\">\u003Cimg src=\\\"https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/\\\" alt=\\\"\\\">\u003C/a> \u003Cbr>\\n\u003Ca href=\\\"https://learning.oreilly.com/library/view/learning-go/9781492077206/\\\">Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.\u003C/a>\u003C/p>\\n\u003C/center>\",\"category\":\"Golang\"}"}</script></div>
+    </body>
+</html>
