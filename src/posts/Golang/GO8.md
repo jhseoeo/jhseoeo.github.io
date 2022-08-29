@@ -6,7 +6,7 @@ excerpt: Errors
 
 <br>
 
-본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 20.04 LTS 기준으로 작성되었습니다.
+본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 22.04 LTS 기준으로 작성되었습니다.
 
 <br><br>
 
@@ -824,7 +824,7 @@ Go에서는 모든 것을 처리할 수 있는 짧은 코드보다는, 가능한
 
 <br><br>
 
-### Getting a Stack TRace from an Error
+### Getting a Stack Trace from an Error
 
 `panic`과 `recover`는 Stack Trace를 제공하지 않는다.
 기본적으로는 Error Wrapping을 통해 직접 Error Stack을 쌓아나가는 방식을 택할 수 있지만,
