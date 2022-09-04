@@ -1,25 +1,33 @@
 <script>
 	import '../app.css';
 	import Nav from '$lib/Nav.svelte';
+	import Toc from '$lib/TableOfContents.svelte'
 </script>
 <style>
+	.app {
+		background-color: #f1f2f3;
+		display: grid;
+		grid-template-rows: 51px auto;
+		grid-template-columns: 1fr 2fr 1fr;
+		width: 100%;
+		align-items: start;
+    	justify-items: center;
+	}
 	.g-app-wrapper {
+		grid-column: 2;
+		grid-row: 2;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		max-width: 800px;
-		min-height: calc(100vh - 3em - 10px);
+		width: 800px;
 		margin: 0 auto;
 		padding: 10px;
-		padding-top: 3em;
 	}
-
 	.contents {
 		position: relative;
 		min-height: 100%;
-		padding-bottom: 80px;
+		margin-bottom: 80px;
 	}
-
 	.site-footer {
 		display: flex;
 		justify-content: center;
@@ -40,12 +48,15 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap">
 </svelte:head>
 
-<Nav/>
-<div class="g-app-wrapper">
-	<div class="contents">
-		<slot></slot>
+<div class="app">
+	<Nav/>
+	<Toc/>
+	<div class="g-app-wrapper">
+		<div class="contents">
+			<slot></slot>
+		</div>
+		<footer class="site-footer">
+			© 2022 JHSeo. All rights reserved. <br><br>
+		</footer>
 	</div>
-	<footer class="site-footer">
-		© 2022 JHSeo. All rights reserved. <br><br>
-	</footer>
 </div>

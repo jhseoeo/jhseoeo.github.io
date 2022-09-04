@@ -10,13 +10,17 @@
 </script>
 <style>
 	.topbar {
-		position: absolute;
+		grid-column: 1 / 4;
+		position: sticky;
+		top: 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		height: 3em;
-		border-bottom: 1px solid #DDD;
+		height: 50px;
+		background-color: #f1f2f3;
+		border-bottom: 1px solid #CCC;
+		z-index: 999;
 	}
 	
 	.title {		
@@ -35,7 +39,7 @@
 		height: 32px;
 		left: 0.5em;
 		margin: 0.2em;
-		border: #DDD solid 1px;
+		border: #CCC solid 1px;
 		border-radius: 0.7em;
 		cursor: pointer;
 	}
@@ -46,19 +50,23 @@
 
 	.ghcorner {
 		position: absolute;
+		top: 0;
 		right: 0;
 		transform: scale(0.8);
 	}
 
 	.sidebar {
-		position: fixed;
+		grid-row: 2;
+		justify-self: start;
+		position: sticky;
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-		background-color: #444;
-		border-right: #999 2px solid;
+		background-color: #eaeaea;
+		border-right: #CCC 1px solid;
 		width: 250px;
-		height: 100%;
+		height: calc(100vh - 51px);
+		top: 51px;
 		z-index: 999;
 	}
 
@@ -89,13 +97,12 @@
 	}
 	
 	.logo {
-		border: 3px #FFF solid;
 		border-radius: 99em;
 	}
 
 	.name {
 		font-family: "Lucida Handwriting", cursive;
-		color: #fff;
+		color: #000;
 		font-size: 1.8em;
 		margin: 0.5em;
 		margin-bottom: 1em;
@@ -107,27 +114,27 @@
 	}
 	
 	li {
-		color: #BBB;
+		color: #333;
 		transition: color .2s;
 		-webkit-transition: color .2s;
 	}
 
 	li:hover {
-		color: #FFF;
+		color: #777;
 		transition: color .2s;
 		-webkit-transition: color .2s;
 	}
 
 	.link {
 		width: fit-content;
-		color: #BBB;
+		color: #333;
 		position: relative;
 		transition: color .2s;
 		-webkit-transition: color .2s;
 	}
 
 	.link:hover {
-		color: #FFF;
+		color: #777;
 		transition: color .2s;
 		-webkit-transition: color .2s;
 	}
@@ -140,7 +147,7 @@
 		display: block;
 		margin-top: 0px;
 		right: 0;
-		background: #FFF;
+		background: #777;
 		transition: width .2s ease;
 		-webkit-transition: width .2s ease;
 	}
@@ -148,7 +155,7 @@
 	.link:hover:after{
 		width: 100%;
 		left: 0;
-		background: #FFF;
+		background: #777;
 	}
 
 </style>
@@ -158,13 +165,13 @@
 		<IoIosMenu/>
 	</div>
 	<div><a class="title" href="{base}/">리턴강의실임</a></div>
+	<div class="ghcorner">
+		<GHCorner/>
+	</div>
 </nav>
-<div class="ghcorner">
-	<GHCorner/>
-</div>
 
 {#if opened}
-	<nav class="sidebar" transition:fly={{ x: -300, duration: 500, opacity: 1}}>
+	<aside class="sidebar" transition:fly={{ x: -300, duration: 500, opacity: 1}}>
 		<div class="close" on:click={() => {opened = false;}}>
 			<GoChevronLeft/>
 		</div>
@@ -180,5 +187,5 @@
 				<li><a href="{base}/about"><h3 class="link">ABOUT</h3></a></li>
 			</ul>
 		</div>
-	</nav>
+	</aside>
 {/if}

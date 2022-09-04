@@ -34,7 +34,7 @@
 
 <p class="info"><a href="https://github.com/junhyuk0801">JHSeo</a> {date}</p>
 
-<div class="post">
+<div class="postContents">
 {@html post.content}
 </div>
 

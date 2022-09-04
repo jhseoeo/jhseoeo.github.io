@@ -92,10 +92,47 @@ summary:hover {
     color: #27a9e3;
 }
 
-.post img {
+.postContents img {
     max-width: 800px;
 }
 
-.post blockquote img {
+.postContents blockquote img {
     max-width: 749px;
+}
+
+table {
+    width: 800px;
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    overflow: hidden;
+}
+table caption {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+table tr {
+    border-bottom: 1px solid #eee;
+}
+table tr:last-child {
+    border: none;
+}
+table tr:nth-child(odd) {
+    background-color: #ddd;
+}
+table th,
+table td {
+    padding: 12px;
+    text-align: center;
+}
+table tr th {
+    background-color: royalblue;
+    color: #fff;
+}
+table tr th:first-child {
+    border-radius: 5px 0 0 0;
+}
+table tr th:last-child {
+    border-radius: 0 5px 0 0;
 }

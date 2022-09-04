@@ -45,7 +45,7 @@
     h1 {
 		font-size: 2em;
 		color: #38F;
-		background-color: #EEE;
+		background-color: #E5E5E5;
 		padding: 0.2em;
 		padding-left: 0.4em;
 		border-radius: 0.2em;
@@ -56,7 +56,7 @@
         margin: 1em;
         padding: 1em;
         border-radius: 1em;
-        background-color: #EEE;
+        background-color: #E5E5E5;
         font-family: 'Noto Sans KR', sans-serif;
     }
 

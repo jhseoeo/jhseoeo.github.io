@@ -39,7 +39,7 @@
     h1 {
         font-size: 2em;
         color: #38F;
-        background-color: #EEE;
+        background-color: #E5E5E5;
         padding: 0.2em;
         padding-left: 0.4em;
         border-radius: 0.2em;

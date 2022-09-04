@@ -1,14 +1,14 @@
 <script context="module">
-import { base } from '$app/paths';
+	import { base } from '$app/paths';
 
-export async function load({ fetch }) {
-	const posts = await fetch(`${base}/index_json`)
-		.then((r) => r.json());
-	
-	return {
-		props: posts
+	export async function load({ fetch }) {
+		const posts = await fetch(`${base}/index_json`)
+			.then((r) => r.json());
+		
+		return {
+			props: posts
+		}
 	}
-}
 </script>
 <script>
 	export let posts;
@@ -41,7 +41,7 @@ export async function load({ fetch }) {
 	h1 {
 		font-size: 2em;
 		color: #38F;
-		background-color: #EEE;
+		background-color: #E5E5E5;
 		padding: 0.2em;
 		padding-left: 0.4em;
 		border-radius: 0.2em;
