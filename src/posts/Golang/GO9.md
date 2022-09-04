@@ -1126,4 +1126,3 @@ GOPRIVATE=*.example.com,company.com/repo
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)
 
 </center>
-```
