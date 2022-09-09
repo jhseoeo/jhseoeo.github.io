@@ -24,8 +24,8 @@
 	}
 	
 	.title {		
-		font-size: 1.5em;
-		font-family: 'Do Hyeon', sans-serif;
+		font-size: 2em;
+		font-family: 'Jua', sans-serif;
 		color: #000;
 	}
 
@@ -64,7 +64,7 @@
 		align-items: stretch;
 		background-color: #eaeaea;
 		border-right: #CCC 1px solid;
-		width: 250px;
+		width: 55%;
 		height: calc(100vh - 51px);
 		top: 51px;
 		z-index: 999;
@@ -164,7 +164,7 @@
 	<div class="menu" on:click={() => {opened = true;}}>
 		<IoIosMenu/>
 	</div>
-	<div><a class="title" href="{base}/">리턴강의실임</a></div>
+	<div><a class="title" href="{base}/">집밥서선생</a></div>
 	<div class="ghcorner">
 		<GHCorner/>
 	</div>
