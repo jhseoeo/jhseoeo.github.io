@@ -834,7 +834,7 @@ Go에서는 모든 것을 처리할 수 있는 짧은 코드보다는, 가능한
 
 <br><br>
 
-## 참고 자료
+## References
 
 ---
 
@@ -844,3 +844,5 @@ Go에서는 모든 것을 처리할 수 있는 짧은 코드보다는, 가능한
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)
 
 </center>
+
+<br><br>

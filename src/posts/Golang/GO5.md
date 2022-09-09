@@ -358,7 +358,7 @@ func DoSomeInserts(ctx context.Context, db *sql.DB, value1, value2 string)
 
 <br><br>
 
-## 참고 자료
+## References
 
 ---
 
@@ -368,4 +368,5 @@ func DoSomeInserts(ctx context.Context, db *sql.DB, value1, value2 string)
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)
 
 </center>
-```
+
+<br><br>

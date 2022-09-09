@@ -246,7 +246,7 @@ fmt.Println(z, d)
 
 <br><br>
 
-## 참고 자료
+## References
 
 ---
 
@@ -256,3 +256,5 @@ fmt.Println(z, d)
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)
 
 </center>
+
+<br><br>
