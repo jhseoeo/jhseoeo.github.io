@@ -3,39 +3,32 @@ import fs from "fs";
 import dayjs from "dayjs";
 
 export function get() {
-  let mdList = fs.readdirSync(`src/posts`).reduce((allPosts, mainCategory) => {
+  let posts = fs.readdirSync(`src/posts`).reduce((allPosts, mainCategory) => {
     let mdDirList = fs
       .readdirSync(`src/posts/${mainCategory}`)
-      .reduce((postsInMainCategories, subCategory) => {
+      .reduce((allMainCategories, subCategory) => {
         let mdFiles = fs
           .readdirSync(`src/posts/${mainCategory}/${subCategory}`)
+          .filter((fileName) => /.+\.md$/.test(fileName))
           .map((fileName) => {
+            const { metadata } = process(
+              `src/posts/${mainCategory}/${subCategory}/${fileName}`
+            );
+
             return {
+              metadata,
               mainCategory,
               subCategory,
-              fileName,
+              slug: fileName.slice(0, -3),
             };
           });
 
-        return [...postsInMainCategories, ...mdFiles];
-      });
+        return [...allMainCategories, ...mdFiles];
+      }, []);
 
     return [...allPosts, ...mdDirList];
-  });
+  }, []);
 
-  let posts = mdList
-    .filter((v) => /.+\.md$/.test(v.fileName))
-    .map((v) => {
-      const { metadata } = process(
-        `src/posts/${v.mainCategory}/${v.subCategory}/${v.fileName}`
-      );
-      return {
-        metadata,
-        slug: v.fileName.slice(0, -3),
-        mainCategory: v.mainCategory,
-        subCategory: v.subCategory,
-      };
-    });
   // sort the posts by create date.
   posts.sort(
     (a, b) =>
