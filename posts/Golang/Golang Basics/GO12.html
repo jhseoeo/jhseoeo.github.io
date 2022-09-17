@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="content-security-policy" content=""><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" data-svelte="svelte-1pt6jb2"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass" data-svelte="svelte-1pt6jb2"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono" data-svelte="svelte-1pt6jb2"><link rel="preconnect" href="https://fonts.gstatic.com" data-svelte="svelte-1pt6jb2"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" data-svelte="svelte-1pt6jb2">
+	<link rel="stylesheet" href="/_app/immutable/assets/pages/__layout.svelte-866c92ea.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/IconBase-05c40767.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/pages/posts/_mainCategory_/_subCategory_/_slug_.svelte-1e6f5432.css">
+	<link rel="modulepreload" href="/_app/immutable/start-7c0cc2ad.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-f3b79873.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/paths-396f020f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/preload-helper-60cab3ee.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/singletons-d1fb5791.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout.svelte-b969548a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/IconBase-0ff4bf3c.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/posts/_mainCategory_/_subCategory_/_slug_.svelte-0c17fdf6.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/FaAngleRight-57d996e3.js">
+    </head>
+    <body>
+        <div id="svelte">
+
+
+
+
+<div class="app svelte-174pa0l"><nav class="topbar svelte-1jxcbio"><div class="menu svelte-1jxcbio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svelte-c8tyih"><path d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"></path></svg></div>
+	<div><a class="title svelte-1jxcbio" href="/">집밥서선생</a></div>
+	<div class="ghcorner svelte-1jxcbio">
+<a href="https://github.com/junhyuk0801" class="github-corner svelte-1t9vm59" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#444; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm svelte-1t9vm59"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+</a></div></nav>
+
+
+  
+  <div class="g-app-wrapper svelte-174pa0l"><div class="contents svelte-174pa0l"><span class="svelte-166a0qx"><h1 class="title svelte-166a0qx">컨텍스트</h1>
+  <a class="backto svelte-166a0qx" href="/posts/Golang/Golang Basics">Golang Basics
+    <div class="ico svelte-166a0qx"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="svelte-c8tyih"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg></div></a></span>
+
+<p class="info"><a href="https://github.com/junhyuk0801">JHSeo</a> SEP 9, 2022</p>
+
+<div class="postContents"><!-- HTML_TAG_START --><br>
+<p>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 22.04 LTS 기준으로 작성되었습니다.</p>
+<p><br><br></p>
+<h2>Introduction</h2>
+<hr>
+<p>서버는 각각의 요청에 대해 메타데이터를 핸들링해야 할 필요가 있다.
+이 메타데이터는 넓게 보면 두 종류로 분류할 수 있다.
+바로 요청을 올바르게 처리하기 위해 필요한 메타데이터와, 요청 처리를 언제 중지해야 할지를 나타내는 메타데이터다.</p>
+<p>예를 들면 어느 HTTP 서버에서는 추적 ID를 사용하여, 마이크로서비스를 통해 request chain을 식별하려고 할 수 있다.
+또한 시간이 너무 오래 걸릴 수도 있으니, 다른 마이크로서비스의 종료를 요청하는 타이머를 설정할 수도 있다.</p>
+<p>대부분의 언어는 <em>threadlocal</em> 변수를 사용하여 이러한 정보들을 저장하고, 특정한 쓰레드에 데이터를 연결한다.
+다만 Go의 고루틴은 값을 조회하는데 사용할 수 있는 고유한 ID가 없기 때문에, Go에서는 할 수 없는 방식이다.</p>
+<p>Go는 <strong>context</strong>라는 구성을 통해 이러한 요청 메타데이터 문제를 해결한다. 컨텍스트를 사용하는 방법을 살펴보도록 하자.</p>
+<p><br><br></p>
+<h2>What Is the Context?</h2>
+<hr>
+<p>컨텍스트는 <code>context</code> 패키지에 정의된 <code>Context</code> 인터페이스를 충족시키는 인스턴스일 뿐이다. 달리 추가적인 기능이 아니다.
+Go의 이상적인 코드는 함수의 파라미터를 통해 데이터를 명시적으로 전달하는 것을 지향한다.
+컨텍스트도 마찬가지로, 함수에 대한 또다른 파라미터일 뿐이다.
+Go에서 함수의 마지막 리턴 값을 <code>error</code>로 하는 것이 국룰인 것처럼,
+첫 번째 파라미터를 컨텍스트로 하여 명시적으로 전달하는 것이 또다른 국룰이다.
+보통 컨텍스트 파라미터의 변수명은 대개 <code>ctx</code>로 한다.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">logic</span><span class="hljs-params">(ctx context.Context, info <span class="hljs-keyword">string</span>)</span> <span class="hljs-params">(<span class="hljs-keyword">string</span>, error)</span></span> {
+	<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>, <span class="hljs-literal">nil</span>
+}
+</code></pre>
+<br>
+<p><code>context</code> 패키지는 <code>Context</code> 인터페이스를 정의하는것 외에도,
+컨텍스트를 만들고 래핑하기 위한 몇 가지 factory function을 포함한다.</p>
+<p>CLI 프로그램의 시작 지점처럼 기존 context가 없는 경우, <code>context.Background()</code> 함수를 통해 비어 있는 컨텍스트를 생성한다.
+일반적으로 함수에서 concrete type을 반환하는 것과는 달리, 이 함수는 <code>context.Context</code> 타입을 반환한다.</p>
+<p>비어 있는 컨텍스트는 시작점이라 할 수 있다.
+컨텍스트에 메타데이터를 추가할 때마다, <code>context</code> 패키지의 factory function 중 하나를 사용하여 기존 컨텍스트를 <em>감싸주면</em> 된다.</p>
+<pre><code class="hljs language-go">ctx := context.Background()
+result, err := logic(ctx, <span class="hljs-string">"a string"</span>)
+</code></pre>
+<br>
+<blockquote>
+<p><code>context.TODO()</code>도 비어 있는 <code>context.Context()</code> 인스턴스를 만드는 함수로, 개발 도중 임시적으로 필요한 경우 사용하게끔 의도되었다.
+컨텍스트를 어디서 가져와서 어떻게 사용할지 확실하지 않은 경우, <code>context.TODO()</code>를 사용하면 좋다.
+다만 릴리즈할 코드에서는 <code>context.TODO()</code>를 포함하면 안된다.</p>
+</blockquote>
+<br>
+<p>HTTP 서버를 작성할 때는, 컨텍스트를 획득하고 미들웨어 레이어를 거쳐 <code>http.Handler</code>까지 전달하는 데 다소 다른 패턴을 사용한다.
+컨텍스트는 <code>net/http</code> 패키지가 생긴 지 한참 뒤에 생긴 개념이기에,
+호환성 문제로 인해 <code>http.Handler</code> 인터페이스에 <code>context.Context</code>를 파라미터로 추가하지 못했다.</p>
+<p>대신 기존 타입에 새로운 메소드를 추가하였다.
+<code>http.Request</code>에는 컨텍스트에 관련된 두 개의 메소드가 존재한다.</p>
+<ul>
+<li><code>Context()</code> 메소드는 해당 요청과 관련된 <code>context.Context</code> 인스턴스를 리턴한다.</li>
+<li><code>WithContext()</code> 메소드는 <code>context.Context</code> 인스턴스를 파라미터로 받아서,
+해당 컨텍스트와 기존의 상태가 결합된 새로운 <code>http.Request</code> 인스턴스를 반환한다.</li>
+</ul>
+<br>
+<p>아래 코드는 일반적인 패턴이다.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Middleware</span><span class="hljs-params">(handler http.Handler)</span> <span class="hljs-title">http</span>.<span class="hljs-title">Handler</span></span> {
+	<span class="hljs-keyword">return</span> http.HandlerFunc(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+		ctx := r.Context()
+		<span class="hljs-comment">// wrap the context with stuff</span>
+		r = r.WithContext(ctx)
+		handler.ServeHTTP(w, r)
+	})
+}
+</code></pre>
+<p>미들웨어에서 첫 번째로 하는 일은 <code>Context()</code> 메소드를 사용해, 요청으로부터 기존 컨텍스트를 추출해내는 것이다.
+컨텍스트에 값을 추가하고 나면, <code>WithContext()</code> 메소드를 사용해 기존 요청과 값이 추가된 컨텍스트를 기반으로 새로운 컨텍스트를 만들어낸다.
+마지막으로 <code>handler</code>를 호출하여 기존의 <code>http.ResponseWriter</code>와 새로운 <code>*http.Request</code>를 보낸다.</p>
+<br>
+<p>handler도 마찬가지로, <code>Context</code> 메소드를 사용하여 요청으로부터 컨텍스트를 추출하고,
+앞서 본 것처럼 컨텍스트를 첫 번째 파라미터로 보내면서 비즈니스 로직을 호출한다.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+	ctx := r.Context()
+	err := r.ParseForm()
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]<span class="hljs-keyword">byte</span>(err.Error()))
+		<span class="hljs-keyword">return</span>
+	}
+
+	data := r.FormValue(<span class="hljs-string">"data"</span>)
+	result, err := logic(ctx, data)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]<span class="hljs-keyword">byte</span>(err.Error()))
+		<span class="hljs-keyword">return</span>
+	}
+
+	w.Write([]<span class="hljs-keyword">byte</span>(result))
+}
+</code></pre>
+<br>
+<p><code>WithContext()</code> 메소드를 사용하는 경우가 한 가지 더 있다.
+바로 어플리케이션에서 다른 HTTP 서비스로 HTTP 호출을 하는 경우이다.
+컨텍스트를 미들웨어로 보낼 때처럼, <code>WithContext()</code>를 사용해 나가는 요청의 컨텍스트를 설정해야 한다.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(sc ServiceCaller)</span> <span class="hljs-title">callAnotherService</span><span class="hljs-params">(ctx context.Context, data <span class="hljs-keyword">string</span>)</span> <span class="hljs-params">(<span class="hljs-keyword">string</span>, error)</span></span> {
+	req, err := http.NewRequest(http.MethodGet, <span class="hljs-string">"http://example.com?data="</span>+data, <span class="hljs-literal">nil</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>, err
+	}
+	req = req.WithContext(ctx)
+
+	resp, err := sc.client.Do(req)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>, err
+	}
+	<span class="hljs-keyword">defer</span> resp.Body.Close()
+	<span class="hljs-keyword">if</span> resp.StatusCode != http.StatusOK {
+		<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>, fmt.Errorf(<span class="hljs-string">"unexpected status code %d"</span>, resp.StatusCode)
+	}
+
+	<span class="hljs-comment">// processing response</span>
+	id, err := processResponse(resp.Body)
+	<span class="hljs-keyword">return</span> id, err
+}
+</code></pre>
+<p>자동완성에 뜨길래 본건데, <code>http.NewRequest()</code>를 이렇게 쓸 바에는
+<code>http.NewRequestWithContext()</code>를 쓰면 일반적인 패턴대로 컨텍스트를 첫 번째 파라미터로 넘길 수 있는 것 같다.</p>
+<p>아무튼 이제 컨텍스트를 획득하고 보내는 방법을 알게 되었으니, Cancellation을 통해 더 유용하게 사용하는 방법을 알아보자.</p>
+<p><br><br></p>
+<h2>Cancellation</h2>
+<hr>
+<p>여러 개의 고루틴을 생성하여, 서로 다른 HTTP 서비스를 호출하는 요청이 있다고 가정해보자.
+만약 서비스 하나에서 에러가 발생하여 더 이상 유효한 값을 얻을 수 없다고 한다면, 다른 고루틴을 계속 돌릴 이유가 없어진다.
+이러한 맥락에서 <strong>Cancellation</strong>을 사용하며, 컨텍스트에서 이를 사용하는 방법에 대해 알아볼 것이다.</p>
+<p>cancellable한 컨텍스트를 만들기 위해서는 <code>context.WithCancel()</code> 함수를 사용한다.
+이 함수는 <code>context.Context</code>를 파라미터로 받아서, <code>context.Context</code>와 <code>context.CancelFunc()</code>를 리턴한다.
+이 때 반환받은 <code>context.Context</code>는 파라미터로 보낸 것과는 다른 컨텍스트이다.
+파라미터로 보낸 <code>context.Context</code>는 <em>parent</em> 컨텍스트가 되며, 반환받은 <code>context.Context</code>는 <em>child</em> 컨텍스트이다.
+또한 child 컨텍스트는 parent 컨텍스트를 감싼(wrap)다.
+<code>context.CancelFunc()</code> 함수는 말 그대로 컨텍스트를 취소(cancel)하며, 취소 여부를 확인하고 있는 모든 코드에 처리를 중단하라는 신호를 보낸다.</p>
+<p>기본적으로 컨텍스트는 immutable한 인스턴스로 처리되기 때문에,
+정보를 추가하기 위해 컨텍스트 안의 값을 변경하기보단 이를 감싸는 child 컨텍스트를 생성한다.
+이런 방식을 통해, 컨텍스트를 코드의 가장 깊은 레이어까지 전달할 수 있다.
+반대로, 코드의 깊은 레이어에서 표면적인 레이어쪽으로 정보를 전달하는데 사용되지는 않는다.</p>
+<br>
+<p>실제로 동작하는 예제를 살펴보자.
+먼저, <code>go mod init [MODULE_NAME]</code>으로 모듈을 선언해준다.
+그리고 <em>servers.go</em> 파일을 생성하여 아래와 같이 작성한다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">"net/http"</span>
+	<span class="hljs-string">"net/http/httptest"</span>
+	<span class="hljs-string">"time"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">slowServer</span><span class="hljs-params">()</span> *<span class="hljs-title">httptest</span>.<span class="hljs-title">Server</span></span> {
+	s := httptest.NewServer(http.HandlerFunc(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+		time.Sleep(<span class="hljs-number">2</span> * time.Second)
+		w.Write([]<span class="hljs-keyword">byte</span>(<span class="hljs-string">"Slow response"</span>))
+	}))
+	<span class="hljs-keyword">return</span> s
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">fastServer</span><span class="hljs-params">()</span> *<span class="hljs-title">httptest</span>.<span class="hljs-title">Server</span></span> {
+	s := httptest.NewServer(http.HandlerFunc(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+		<span class="hljs-keyword">if</span> r.URL.Query().Get(<span class="hljs-string">"error"</span>) == <span class="hljs-string">"true"</span> {
+			w.Write([]<span class="hljs-keyword">byte</span>(<span class="hljs-string">"error"</span>))
+			<span class="hljs-keyword">return</span>
+		}
+		w.Write([]<span class="hljs-keyword">byte</span>(<span class="hljs-string">"ok"</span>))
+	}))
+	<span class="hljs-keyword">return</span> s
+}
+</code></pre>
+<p><code>httptest.Server</code>는 원격 서버와 통신하는 코드에 대해 unit test를 하기에 보다 용이하게 설계된 타입이다.
+특히 동일한 프로그램 안에 서버와 클라이언트가 존재할 경우 매우 유용하다.</p>
+<p>위 예제에는 서로 다른 각각의 서버를 여는 두 개의 함수가 정의되었다.
+하나는 요청이 오면 2초동안 기다렸다가 메시지를 리턴하는 서버이며,
+하나는 <code>error</code>라는 쿼리스트링이 <code>true</code>로 설정되어 있다면 <code>error</code>라는 메시지를, 아니면 <code>ok</code>라는 메시지를 보낸다.</p>
+<br>
+<p>이제 코드의 클라이언트 부분인, <em>client.go</em> 파일을 작성해보자.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">"context"</span>
+	<span class="hljs-string">"errors"</span>
+	<span class="hljs-string">"fmt"</span>
+	<span class="hljs-string">"io/ioutil"</span>
+	<span class="hljs-string">"net/http"</span>
+	<span class="hljs-string">"sync"</span>
+)
+
+<span class="hljs-keyword">var</span> client = http.Client{}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">callBoth</span><span class="hljs-params">(ctx context.Context, errVal <span class="hljs-keyword">string</span>, slowURL <span class="hljs-keyword">string</span>, fastURL <span class="hljs-keyword">string</span>)</span></span> {
+	ctx, cancel := context.WithCancel(ctx)
+	<span class="hljs-keyword">defer</span> cancel()
+
+	<span class="hljs-keyword">var</span> wg sync.WaitGroup
+	wg.Add(<span class="hljs-number">2</span>)
+
+	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {
+		<span class="hljs-keyword">defer</span> wg.Done()
+		err := callServer(ctx, <span class="hljs-string">"slow"</span>, slowURL)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+			cancel()
+		}
+	}()
+	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {
+		<span class="hljs-keyword">defer</span> wg.Done()
+		err := callServer(ctx, <span class="hljs-string">"fast"</span>, fastURL+<span class="hljs-string">"?error="</span>+errVal)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+			cancel()
+		}
+	}()
+	wg.Wait()
+
+	fmt.Println(<span class="hljs-string">"done with both"</span>)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">callServer</span><span class="hljs-params">(ctx context.Context, label <span class="hljs-keyword">string</span>, url <span class="hljs-keyword">string</span>)</span> <span class="hljs-title">error</span></span> {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, <span class="hljs-literal">nil</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		fmt.Println(label, <span class="hljs-string">"request err:"</span>, err)
+		<span class="hljs-keyword">return</span> err
+	}
+
+	res, err := client.Do(req)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		fmt.Println(label, <span class="hljs-string">"response err:"</span>, err)
+		<span class="hljs-keyword">return</span> err
+	}
+
+	data, err := ioutil.ReadAll(res.Body)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		fmt.Println(label, <span class="hljs-string">"read err:"</span>, err)
+		<span class="hljs-keyword">return</span> err
+	}
+
+	result := <span class="hljs-keyword">string</span>(data)
+	<span class="hljs-keyword">if</span> result != <span class="hljs-string">""</span> {
+		fmt.Println(label, <span class="hljs-string">"result:"</span>, result)
+	}
+	<span class="hljs-keyword">if</span> result == <span class="hljs-string">"error"</span> {
+		fmt.Println(<span class="hljs-string">"cancelling from"</span>, label)
+		<span class="hljs-keyword">return</span> errors.New(<span class="hljs-string">"error happened"</span>)
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+}
+</code></pre>
+<p>위 예제의 <code>callBoth()</code> 함수에서는 <code>context.WithCancel()</code>에 파라미터로 넘어온 컨텍스트를 넘김으로써, cancellable한 컨텍스트와 취소 함수를 생성하며,
+이 취소 함수의 이름은 <code>cancel</code>로 짓는 게 국룰이라고 한다.</p>
+<p>기억해야 할 점 중 하나는 cancellable한 컨텍스트를 생성하면 취소 함수를 <em>반드시</em> 호출해주어야 한다는 것이다.
+만약 그렇게 하지 않으면 고루틴 또는 메모리에서 리소스 낭비가 발생할 것이다.
+취소 함수는 한 번 호출하면 두 번째부터의 호출은 무시되므로, 여러번 호출해도 상관없다.
+위 예제에서는 <code>defer</code>를 사용하여 결과적으로 반드시 호출되게 해주었다.</p>
+<p>또한 cancellable한 컨텍스트, 라벨, URL 등을 캡쳐하여 두 개의 고루틴을 설정 및 실행해주었고,
+<code>sync.WaitGroup</code>의 <code>sync()</code> 메소드를 사용하여 고루틴들이 끝날 때까지 대기해주었다.</p>
+<p><code>callServer()</code> 함수는 간단한 클라이언트로, 취소 가능한 컨텍스트를 통해 요청을 생성하여 전송한다.
+만약 에러가 발생하거나 서버로부터 받은 문자열 결과값이 <code>error</code>라면, 에러를 리턴한다.</p>
+<br>
+<p>이제 메인함수를 살펴보자. <em>main.go</em> 파일을 아래와 같이 작성한다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">"context"</span>
+	<span class="hljs-string">"os"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+	ss := slowServer()
+	<span class="hljs-keyword">defer</span> ss.Close()
+	fs := fastServer()
+	<span class="hljs-keyword">defer</span> fs.Close()
+
+	ctx := context.Background()
+	callBoth(ctx, os.Args[<span class="hljs-number">1</span>], ss.URL, fs.URL)
+}
+
+</code></pre>
+<p><code>main()</code> 함수에서는 서버를 열고, 생성된 컨텍스트로 클라이언트를 돌려 서버에 요청을 보낸다.</p>
+<br>
+<p>작성된 코드를 빌드하여 실행해보자.</p>
+<pre><code class="hljs language-bash">$ go build ./...
+</code></pre>
+<p>위 명령어를 치면 모듈이 빌드되어 실행 파일이 생성된다. 나의 경우 생성된 실행 파일은 <em>context-cancel</em>이었다.
+두 가지 경우에 대해, 해당 파일을 실행해보자. 아래 경우는 에러가 발생하지 않았을 때이다.</p>
+<pre><code class="hljs language-bash">$ ./context-cancel <span class="hljs-literal">false</span>
+fast result: ok
+slow result: Slow response
+<span class="hljs-keyword">done</span> with both
+</code></pre>
+<br>
+<p>아래 경우는 에러가 발생하였을 때이다.</p>
+<pre><code class="hljs language-bash">$ ./context-cancel <span class="hljs-literal">true</span>
+fast result: error
+cancelling from fast
+slow response err: Get <span class="hljs-string">"http://127.0.0.1:39207"</span>: context canceled
+<span class="hljs-keyword">done</span> with both
+</code></pre>
+<p><code>fastServer</code>에 대한 요청에서 에러가 발생하였으므로 컨텍스트가 취소된다.
+이 때 <code>NewRequestWithContext()</code>가 실행 중이므로, 컨텍스트의 취소를 감지하여, 고루틴이 멈추게 된 것이다.</p>
+<blockquote>
+<p>만약 위 프로그램을 실행해보았다면, 에러가 발생했음에도 프로그램이 즉각 종료되지 않았다는 점을 알 수 있을 것이다.
+이는 <code>slowServer()</code>가 종료되는 것을 기다리기 때문이다.
+만약 <code>slowServer()</code>의 타임아웃을 2초에서 6초로 늘린다면,
+<code>httptest.Server blocked in Close after 5 seconds, waiting for connections</code>와 같이 신기한 에러 메세지가 출력되는 것을 확인할 수 있을 것이다.</p>
+<p><code>slowServer()</code>를 아래와 재작성해주면 컨텍스트의 취소를 제대로 처리하여, 즉시 서버가 종료될 것이다.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">slowServer_rewrite</span><span class="hljs-params">()</span> *<span class="hljs-title">httptest</span>.<span class="hljs-title">Server</span></span> {
+	s := httptest.NewServer(http.HandlerFunc(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+		ctx := r.Context()
+		<span class="hljs-keyword">select</span> {
+		<span class="hljs-keyword">case</span> &#x3C;-ctx.Done():
+			fmt.Println(<span class="hljs-string">"server shut down"</span>)
+			<span class="hljs-keyword">return</span>
+		<span class="hljs-keyword">case</span> &#x3C;-time.After(<span class="hljs-number">6</span> * time.Second):
+			w.Write([]<span class="hljs-keyword">byte</span>(<span class="hljs-string">"Slow response"</span>))
+		}
+	}))
+	<span class="hljs-keyword">return</span> s
+}
+</code></pre>
+<p>아마 클라이언트 단의 컨텍스트가 취소되면, 요청에 있는 컨텍스트의 <code>Done</code> 신호가 들어오는 것 같다.</p>
+</blockquote>
+<p>위 예제들의 소스코드는 <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/cancellation">여기</a>에서 확인해볼 수 있다.</p>
+<br>
+<p>이렇게, 수동으로 컨텍스트를 취소하는 방법에 대해 살펴보았다.
+이러한 방식도 유용하지만, 다음 섹선에서는 타임아웃을 통해 취소를 자동화하는 방법에 대해 살펴볼 것이다.</p>
+<p><br><br></p>
+<h2>Timers</h2>
+<hr>
+<p>서버가 하는 일 중 가장 중요한 것 중 하나는 요청들을 관리하는 것이다.
+아기 개발자들은 가끔 서버가 가능한 한 많은 요청을 받고, 각 클라이언트에 결과를 반환할 수 있을 때까지 작업을 해야 한다고 생각한다.
+하지만 이는 아기 개발자들의 잘못된 생각이다. 응애!</p>
+<p>서버는 공유 리소스와 비슷한 성격을 가진다.
+각 사용자들은 서버에 가능한 많은 요청을 보내고 결과를 얻고 싶어하며, 이 때 다른 사용자의 요청에 대해서는 별 관심이 없다.
+자고로 공유 리소스는 모든 사용자에게 동일한 시간만큼 제공할 수 있도록 관리할 필요성이 있다.</p>
+<br>
+<p>서버는 로드(작업량)를 관리하기 위해, 보통 네 가지 방법을 사용한다.</p>
+<ol>
+<li>동시에 처리하는 요청의 수 제한</li>
+<li>대기 큐에서 기다리고 있는 요청의 수 제한</li>
+<li>요청이 처리되는 시간 제한</li>
+<li>요청이 사용할 수 있는 리소스의 양 제한(메모리, 디스크 등)</li>
+</ol>
+<p>Go에서는 앞의 세 개의 제한을 처리하는 도구를 제공한다.
+특히 1번과 2번의 경우 이미 우리가 본 것이다.
+1번의 경우 고루틴의 수를 제한하면 서버가 동시에 처리하는 요청의 수가 관리되는 것이며,
+2번은 buffered channel의 크기를 조절하면 해결된다.</p>
+<p>그리고, 컨텍스트를 통해 요청이 얼마나 오래동안 처리될 수 있는지를 제한할 수 있다.
+어플리케이션을 만들 때, 사용자가 불만족스러운 경험을 하기 전에 요청을 완료하려면 얼마나 시간이 걸릴 지에 대해 알고 있어야 한다.
+만약 요청을 실행할 수 있는 최대 시간을 알고 있다면, 요청에 컨텍스트를 적용할 수 있다.</p>
+<br>
+<p>시간이 제한된 컨텍스트를 생성하는 방법은 두 가지가 있다.
+하나는 <code>context.WithTimeout()</code> 함수를 사용하는 것이다. 이 함수는 기존의 컨텍스트와 타임아웃을 나타내는 <code>time.Duration</code> 인스턴스를 파라미터로 받는다.
+그리고 명시된 만큼의 시간이 지나면 자동으로 취소되는 컨텍스트와, 컨텍스트를 바로 취소할 수 있는 취소 함수가 함께 리턴된다.</p>
+<p>두 번째 방법은 <code>context.WithDeadline()</code> 함수를 사용하는 것이다.
+이 함수도 마찬가지로 기존의 컨텍스트를 받으며, <code>time.Duration</code> 인스턴스 대신 <code>time.Time</code> 인스턴스를 파라미터로 받는다.
+<code>context.WithTimeout()</code> 함수처럼 해당 시각이 지나면 컨텍스트는 자동으로 취소되는 컨텍스트와 컨텍스트를 바로 취소할 수 있는 취소 함수가 리턴된다.
+만약 <code>context.WithDeadline()</code>에 과거의 <code>time.Time</code> 시각을 보내면, 이미 취소된 컨텍스트를 리턴한다.</p>
+<p>만약 컨텍스트가 자동으로 닫히는 시각을 알아내고 싶다면, <code>context.Context</code> 인스턴스의 <code>Deadline()</code> 메소드를 사용한다.
+해당 메소드는 컨텍스트가 닫히는 시각을 나타내는 <code>time.Time</code> 인스턴스와, 타임아웃이 설정되어 있는지 여부를 <code>true</code>나 <code>false</code>로 리턴한다.
+따라서 <em>comma ok idiom</em>을 적용하면 된다.</p>
+<p>적용된 예제가 길어져서, <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/context_timeout.go">여기</a>에서 확인하면 될 듯 하다.</p>
+<br>
+<p>요청에 대한 전반적인 타임아웃을 설정할 때, 이 타임아웃을 세분화할 수도 있다.
+이를테면 한 서비스에서 다른 서비스를 호출하는 구조가 있을 수 있는데,
+네트워크 호출을 실행할 수 있는 시간을 제한하여 나머지 처리 시간이나 다른 네트워크 호출에 사용할 시간을 예약할 수 있다.
+앞서 보았던 <code>context.WithTimeout()</code>이나 <code>context.WithDeadline()</code>으로 parent 컨텍스트를 감싸는 child 컨텍스트를 생성하여,
+각각에 호출에 소요되는 시간을 제어할 수 있는 것이다.</p>
+<p>특히 child 컨텍스트의 타임아웃은 parent 컨텍스트의 타임아웃에 종속된다.
+이를테면 parent 컨텍스트의 타임아웃이 2초이고 child 컨텍스트의 타임아웃이 3초라고 하면,
+parent 컨텍스트의 타임아웃인 2초가 지나면 child 컨텍스트도 자동으로 취소된다.</p>
+<p>마찬가지로 예제가 좀 길어져서, <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/parent_child_timeout.go">여기</a>서 확인하면 된다.
+이 코드를 실행해보면 parent 컨텍스트의 타임아웃이 먼저 찾아올 것이고, 그와 동시에 child 컨텍스트도 취소된다.</p>
+<p><br><br></p>
+<h2>Handling Context Cancellation in Your Own Code</h2>
+<hr>
+<p>대부분의 경우 코드 내에서 타임아웃이나 취소에 대해 걱절할 필요는 없다.
+일반적인 코드들은 기란이 그렇게 오래 걸리지 않는다.
+다만 다른 HTTP 서비스를 호출하거나, 데이터베이스를 호출할 때에는 컨텍스트를 파라미터로 잘 넘겨주어야 한다.
+얘네들은 보통 타임아웃이 발생하거나 오류가 발생하여 취소를 할만한 상황이 종종 나오는 편이므로, 컨텍스트를 넘김으로써 취소를 처리해주기 용이하다.</p>
+<p>만약 컨텍스트가 취소되면 중단되어야 하는 코드를 작성하는 경우, 동시성을 통해 취소 체크를 할 수 있다(10장에서 이미 살펴보았다).
+<code>context.Context</code> 타입은 취소를 관리하는 두 가지 메소드를 포함하고 있다.
+<code>Done()</code> 메소드는 <code>struct{}</code> 타입의 채널을 리턴한다. 해당 채널은 취소 함수나 타임아웃이 발생할 때 close된다.
+이 때 closed channel에 읽기를 시도하면 반드시 zero value를 리턴한다.</p>
+<blockquote>
+<p>이 때 취소할 수 없는 컨텍스트에서 <code>Done()</code> 메소드를 호출하면 <code>nil</code>을 반환한다.
+게다가 <code>nil</code> 채널에서 읽기를 시도하면 프로그램이 끝날 때까지 읽기를 시도할 것이기 때문에 멈출 것이다.</p>
+</blockquote>
+<br>
+<p><code>context.Context</code>의 <code>Err()</code> 메소드는 만약 컨텍스트가 아직 활성화되어 있다면 <code>nil</code>을 반환한다.
+반면 만약 컨텍스트가 취소되어 있다면, <code>context.Cancelled</code> 또는 <code>context.DeadlineExceeded</code> 둘 중 하나의 sentinel error를 반환한다.
+<code>context.Cancelled</code>는 컨텍스트를 명시적으로 취소했을 때, <code>context.DeadlineExceeded</code>는 타임아웃이 발생했을 때 리턴된다.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">longRunningThing</span><span class="hljs-params">(ctx context.Context, data <span class="hljs-keyword">int</span>)</span> <span class="hljs-params">(<span class="hljs-keyword">int</span>, error)</span></span> {
+	ticker := time.NewTicker(time.Second * <span class="hljs-number">1</span>)
+	<span class="hljs-keyword">defer</span> ticker.Stop()
+
+	ctx, cancel := context.WithTimeout(ctx, time.Duration(data)*time.Second)
+	<span class="hljs-keyword">defer</span> cancel()
+
+	<span class="hljs-keyword">var</span> result <span class="hljs-keyword">int</span>
+	<span class="hljs-keyword">for</span> {
+		<span class="hljs-keyword">select</span> {
+		<span class="hljs-keyword">case</span> &#x3C;-ticker.C:
+			result += <span class="hljs-number">1</span>
+		<span class="hljs-keyword">case</span> &#x3C;-ctx.Done():
+			<span class="hljs-keyword">return</span> result, ctx.Err()
+		}
+	}
+
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">longRunningThingManager</span><span class="hljs-params">(ctx context.Context, data <span class="hljs-keyword">int</span>)</span> <span class="hljs-params">(<span class="hljs-keyword">int</span>, error)</span></span> {
+	<span class="hljs-keyword">type</span> wrapper <span class="hljs-keyword">struct</span> {
+		result <span class="hljs-keyword">int</span>
+		err    error
+	}
+
+	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> wrapper, <span class="hljs-number">1</span>)
+	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {
+		result, err := longRunningThing(ctx, data)
+		ch &#x3C;- wrapper{result, err}
+	}()
+
+	<span class="hljs-keyword">select</span> {
+	<span class="hljs-keyword">case</span> data := &#x3C;-ch:
+		<span class="hljs-keyword">return</span> data.result, data.err
+	<span class="hljs-keyword">case</span> &#x3C;-ctx.Done():
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>, ctx.Err()
+	}
+}
+</code></pre>
+<p><code>longRunningThing()</code> 함수는 타임아웃이 발생할 때까지 <code>result</code>의 값을 누적하는 함수이다.
+(원래 타임아웃 자체가 에러 상황을 상정하기 때문에, 실제로 이런 함수를 작성하면 안된다!)
+<code>case &#x3C;-ctx.Done():</code>로 타임아웃이 발생할 시 함수가 리턴된다.</p>
+<p><code>longRunningThingManager()</code> 함수는 <code>select</code>문을 통해 <code>longRunningThing()</code> 함수의 값이 반환되기까지 기다리거나,
+혹은 컨텍스트가 취소될 때까지 기다린다. 취소된다면 에러와 함께 함수가 리턴된다.</p>
+<p>이 때 각각의 <code>select</code>문의 <code>case &#x3C;-ctx.Done():</code> 안에, <code>ctx.Err()</code>가 있음을 확인할 수 있다.
+이 메소드가 어떤 출력 결과를 반환하는지에 집중하여 확인해볼 것이다.</p>
+<br>
+<p>이어서 <code>main()</code> 함수를 작성해보자.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+	ctx := context.Background()
+	ctx, cancel := context.WithCancel(ctx)
+
+	time.AfterFunc(time.Second*<span class="hljs-number">3</span>, cancel)
+	num, err := longRunningThingManager(ctx, <span class="hljs-number">5</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		fmt.Println(err)
+	}
+	fmt.Println(num)
+}
+</code></pre>
+<p><code>time.AfterFunc(time.Second*3, cancel)</code> 라인의 유무에 따라 출력이 달라지는 것을 확인할 수 있다.
+이 라인을 지운다면 컨텍스트가 타임아웃에 의해 취소되며, 지우지 않는다면 컨텍스트가 <code>cancel</code> 함수에 의헤 취소되기 때문이다.</p>
+<br>
+<p>본 절에서는 컨텍스트를 통한 타임아웃의 명시 및 취소 방법에 대해 알아보았다.
+물론 이전에 보았던 <code>time.After()</code> 함수를 통해서도 취소가 가능하지만, 개인적으로는 컨텍스트를 통한 방식이 더 좋아보이는 것 같다.</p>
+<p><br><br></p>
+<h2>Values</h2>
+<hr>
+<p>컨텏트의 또 다른 용도라고 할 수 있다. 컨텍스트는 프로그램의 다른 컴포넌트에 요청에 대한 메타데이터를 전달하는 방법을 제공한다.</p>
+<p>물론 파라미터를 통해 명시적으로 데이터를 전달하는 방식을 최우선적으로 고려하는 것이 좋다.
+Go에서는 명시적인 데이터 전달을 이상적으로 여긴다.
+특히 함수가 특정 데이터를 반드시 필요로 한다면, 해당 데이터가 어디서 오는지(보내는지) 명확하게 정의되어야 한다.</p>
+<p>하지만 데이터를 명시적으로 전달하지 못할 만한 상황이 존재할 수밖에 없다.
+그런 경우는 대부분 HTTP 요청 핸들러와 관련 미들웨어에서 발생한다.</p>
+<p>앞서 보았듯 모든 요청 핸들러는 각각 request, response를 파라미터로 받는다.
+그런데 미들웨어의 핸들러가 해당 값을 사용할 수 있게 만들려면, context에 값을 저장해주어야 한다.
+이러한 경우는 유저의 JWT(JSON Web Token)을 추출하거나, 미들웨어 레이어를 거쳐 핸들러나 비즈니스 로직으로 전달되는 요청별 GUID를 생성하고자 하는 경우 발생할 수 있다.</p>
+<p>이러한 경우에 대응하여, <code>context</code> 패키지의 다양한 팩토리 함수 중 값을 저장할 수 있는 컨텍스트를 만드는 함수인 <code>context.WithValue()</code>가 존재한다.
+이 함수는 세 개의 파라미터를 받는다. 파라미터는 각각 parent 컨텍스트와, 값을 저장할 key와, 값이다.
+그리고 parent 컨텍스트를 감싸며 key-value 페어가 존재하는 child 파라미터를 리턴한다.
+이 때 각각 key와 value의 타입은 <code>interface{}</code>로 선언되어 있다.</p>
+<br>
+<p>만약 어떤 컨텍스트나 해당 컨텍스트의 아무 parent 컨텍스트 중 값이 저장되어 있는지 확인하려면,
+<code>context.Context</code>의 <code>Value()</code> 메소드를 사용하면 된다.
+이 메소드는 Key를 파라미터로 받아서 해당 Key에 대한 값을 리턴한다.
+만약 해당 Key에 대한 값이 존재하지 않는다면 <code>nil</code>이 리턴된다.
+타입이 <code>interface{}</code>이기 때문에, 반환받은 값이 유효한지 확인하려면 comma ok idiom을 사용해주어야 한다.</p>
+<blockquote>
+<p>기본적으로 context chain에 저장된 값을 검색하려면 <em>linear search</em>를 사용할 수밖에 없다.
+만약 컨텍스트에 저장된 값이 많지 않다면 성능상의 문제가 크진 않겠지만, 컨텍스트에 값을 너무 많이 저장하게 되면 성능이 뚝뚝 떨어질 것이다.
+요청을 처리하기 위해 context chain에 값을 필요 이상으로 많이 집어넣어야 한다면, 리팩토링을 한번 해보는 게 좋을 것이다.</p>
+</blockquote>
+<br>
+<p>컨텍스트에 저장할 key든 value든 타입이 <code>interface{}</code>이기 때문에 아무거나 다 넣을 수 있긴 하지만,
+<code>map</code>처럼 key나 value의 타입을 고정해주는 것이 좋다(특히 key는 더더욱! 비교가 가능한 타입으로 고정해주는 것이 좋다).</p>
+<p>아래 예제에서는 <code>int</code>를 기반으로, export되지 않은 타입을 생성해주었다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">type</span> userKey <span class="hljs-keyword">int</span>
+</code></pre>
+<p>만약 key의 타입으로 string이나 다른 public type을 사용한다면, 다른 패키지에서 동일한 키값이 생성될 수 있고, 이는 충돌로 이어질 수 있다.
+그렇게 되면 컨텍스트에서 다른 패키지에서 쓴 데이터를 읽는 등, 요상한 문제가 발생하여 디버그가 힘들어지기도 한다.</p>
+<br>
+<p>이렇게 export되지 않는 key의 타입을 선언해주고 나면, export되지 않는 상수를 하나 선언해준다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">const</span> key userKey = <span class="hljs-number">1</span>
+</code></pre>
+<p>위 상수와 타입 모두 export되지 않았기 때문에, 패키지 바깥에서 이 데이터를 확인할 방법이 없다.
+따라서 컨텍스트에 겹치는 key에 덮어쓰거나 접근할 방법이 없을 것이며, 충돌도 발생하지 않을 것이다.
+또한 만약 컨텍스트에 여러 개의 값을 저장해야 한다면 <code>iota</code>를 사용할 수도 있을 것이다.
+기본적으로 상수의 값이 의미있는 것이 아니라 단지 구분을 하기 위해서만 사용되기 때문에, <code>iota</code>를 사용하기 매우 적절한 경우라고 할 수 있다.</p>
+<br>
+<p>다음으로는 컨텍스트에 값을 집어넣거나, 값을 읽어오는 API를 작성해줄 것이다.
+패키지 외부의 코드에서 컨텍스트의 값을 읽고 써야 할 필요가 있는 경우, 이 함수들을 export한다.
+값을 저장하는 컨텍스트를 생성하는 함수의 이름은 <code>ContextWith</code>로 시작해야 한다.
+또한 컨텍스트로부터 값을 읽어와서 리턴하는 함수의 이름은 <code>FromContext</code>로 끝나야 한다.</p>
+<p>컨텍스트에 값을 읽고 쓰는 함수들의 예제를 살펴보도록 하자.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ContextWithUser</span><span class="hljs-params">(ctx context.Context, user <span class="hljs-keyword">string</span>)</span> <span class="hljs-title">context</span>.<span class="hljs-title">Context</span></span> {
+	<span class="hljs-keyword">return</span> context.WithValue(ctx, key, user)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">UserFromContext</span><span class="hljs-params">(ctx context.Context)</span> <span class="hljs-params">(<span class="hljs-keyword">string</span>, <span class="hljs-keyword">bool</span>)</span></span> {
+	user, ok := ctx.Value(key).(<span class="hljs-keyword">string</span>)
+	<span class="hljs-keyword">return</span> user, ok
+}
+</code></pre>
+<br>
+<p>사용자 정보를 관리하는 코드를 작성했으니, 사용하는 방법을 알아볼 것이다.
+먼저, 아래 예제는 쿠키에서 유저 ID를 추출하는 미들웨어이다.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">extractUser</span><span class="hljs-params">(req *http.Request)</span> <span class="hljs-params">(<span class="hljs-keyword">string</span>, error)</span></span> {
+	userCookie, err := req.Cookie(<span class="hljs-string">"user"</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>, err
+	}
+	<span class="hljs-keyword">return</span> userCookie.Value, <span class="hljs-literal">nil</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Middleware</span><span class="hljs-params">(h http.Handler)</span> <span class="hljs-title">http</span>.<span class="hljs-title">Handler</span></span> {
+	<span class="hljs-keyword">return</span> http.HandlerFunc(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+		user, err := extractUser(r)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+			w.WriteHeader(http.StatusUnauthorized)
+			<span class="hljs-keyword">return</span>
+		}
+
+		ctx := r.Context()
+		ctx = ContextWithUser(ctx, user)
+		r = r.WithContext(ctx)
+		h.ServeHTTP(w, r)
+	})
+}
+</code></pre>
+<p>해당 미들웨어 내에서는 <code>user</code>의 쿠키 값을 추출한 후, <code>Context()</code> 메소드를 사용해 요청의 컨텍스트를 얻는다.
+그리고 앞서 정의한 <code>ContextWithUser()</code> 함수를 통해 유저 정보가 포함된 컨텍스트를 생성한다.
+그리고 기존 <code>*http.Request</code>에서 <code>WithContext()</code> 메소드를 통해, 새로 생성된 컨텍스트를 포함하는 새로운 <code>*http.Request</code> 인스턴스를 만들어 준다.
+마지막으로 <code>http.Handler</code>의 다음 함수를 호출해준다.</p>
+<br>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c Controller)</span> <span class="hljs-title">handleRequest</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+	ctx := r.Context()
+	user, ok := UserFromContext(ctx)
+	<span class="hljs-keyword">if</span> !ok {
+		w.WriteHeader(http.StatusInternalServerError)
+		<span class="hljs-keyword">return</span>
+	}
+
+	data := r.URL.Query().Get(<span class="hljs-string">"data"</span>)
+	result, err := c.Logic.businessLogic(ctx, user, data)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]<span class="hljs-keyword">byte</span>(err.Error()))
+		<span class="hljs-keyword">return</span>
+	}
+
+	w.Write([]<span class="hljs-keyword">byte</span>(result))
+}
+</code></pre>
+<p>위 예제의 핸들러에서는 <code>Context()</code> 메소드로 요청에 대한 컨텍스트를 획득하여,
+해당 컨텍스트로부터 <code>UserFromContext()</code> 함수를 통해 유저 정보를 추출한다. 그리고 비즈니스 로직을 호출한다.</p>
+<p>파라미터를 통해 값을 넘기기보단, 이런 방식을 통해 컨텍스트에 값을 저장하는게 더 나을 만한 상황도 존재한다. 앞서 말했던 GUID를 추적하는 경우이다.
+이 정보는 비즈니스 로직보단 어플리케이션 관리를 위해 사용된다.
+이러한 방식을 사용하면 GUID에 대해 알 필요가 없는 비즈니스 로직이 이 정보를 볼 수 없게 되며, 로그를 작성하거나 다른 서버에 연결할 때 사용할 수 있다.</p>
+<br>
+<p>다음은 컨텍스트가 서비스에서 서비스로 전달될 때, GUID를 포함하여 이 값을 추적하고 로그를 기록하는 예제이다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> tracker
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">"context"</span>
+	<span class="hljs-string">"fmt"</span>
+	<span class="hljs-string">"net/http"</span>
+
+	<span class="hljs-string">"github.com/google/uuid"</span>
+)
+
+<span class="hljs-keyword">type</span> guidKey <span class="hljs-keyword">int</span>
+
+<span class="hljs-keyword">const</span> key guidKey = <span class="hljs-number">1</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">contextWithGUID</span><span class="hljs-params">(ctx context.Context, guid <span class="hljs-keyword">string</span>)</span> <span class="hljs-title">context</span>.<span class="hljs-title">Context</span></span> {
+	<span class="hljs-keyword">return</span> context.WithValue(ctx, key, guid)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">guidFromContext</span><span class="hljs-params">(ctx context.Context)</span> <span class="hljs-params">(<span class="hljs-keyword">string</span>, <span class="hljs-keyword">bool</span>)</span></span> {
+	g, ok := ctx.Value(key).(<span class="hljs-keyword">string</span>)
+	<span class="hljs-keyword">return</span> g, ok
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Middleware</span><span class="hljs-params">(h http.Handler)</span> <span class="hljs-title">http</span>.<span class="hljs-title">Handler</span></span> {
+	<span class="hljs-keyword">return</span> http.HandlerFunc(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+		ctx := r.Context()
+		<span class="hljs-keyword">if</span> guid := r.Header.Get(<span class="hljs-string">"X-GUID"</span>); guid != <span class="hljs-string">""</span> {
+			ctx = contextWithGUID(ctx, guid)
+		} <span class="hljs-keyword">else</span> {
+			ctx = contextWithGUID(ctx, uuid.New().String())
+		}
+		r = r.WithContext(ctx)
+		h.ServeHTTP(w, r)
+	})
+}
+
+<span class="hljs-keyword">type</span> Logger <span class="hljs-keyword">struct</span>{}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(l Logger)</span> <span class="hljs-title">Log</span><span class="hljs-params">(ctx context.Context, message <span class="hljs-keyword">string</span>)</span></span> {
+	<span class="hljs-keyword">if</span> guid, ok := guidFromContext(ctx); ok {
+		message = fmt.Sprintf(<span class="hljs-string">"GUID: %s - %s"</span>, guid, message)
+	}
+	<span class="hljs-comment">// do logging</span>
+	fmt.Println(message)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Request</span><span class="hljs-params">(r *http.Request)</span> *<span class="hljs-title">http</span>.<span class="hljs-title">Request</span></span> {
+	ctx := r.Context()
+	<span class="hljs-keyword">if</span> guid, ok := guidFromContext(ctx); ok {
+		r.Header.Add(<span class="hljs-string">"X-GUID"</span>, guid)
+	}
+	<span class="hljs-keyword">return</span> r
+}
+</code></pre>
+<p><code>Middleware()</code> 함수는 요청으로부터 GUID를 추출하거나 새로은 GUID를 만들고, 컨텍스트에 이 값을 저장하여 새로운 컨텍스트를 생성한다.
+그리고 다음의 Middleware chain을 호출한다.</p>
+<p><code>Logger</code> 구조체에는 컨텍스트와 문자열을 받아서 제네릭하게 로그를 남기는 메소드가 있다.
+만약 컨텍스트에 GUID가 있다면, 로그 메시지의 앞에 추가적으로 출력한다.
+<code>Request</code> 함수는 다른 서비스를 호출하기 위해 사용되며, 컨텍스트에 GUID가 있다면 Request header에 GUID가 추가된 <code>*http.Request</code> 인스턴스를 리턴한다.</p>
+<br>
+<p>Interface 포스트에서 보았던 것처럼, 인터페이스를 통해 Dependency Injection을 하는 패턴을 사용해볼 것이다.
+이 방법을 통해 비즈니스 로직으로부터 불필요한 정보를 분리할 수 있다.</p>
+<p>먼저 <code>Logger</code> 인터페이스를 정의하고, request decorator를 나타내는 함수 타입과, 이에 관련된 비즈니스 로직 구조체를 만들어준다.</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">type</span> RequestDecorator <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(*http.Request)</span> *<span class="hljs-title">http</span>.<span class="hljs-title">Request</span></span>
+
+<span class="hljs-keyword">type</span> Logger <span class="hljs-keyword">interface</span> {
+	Log(context.Context, <span class="hljs-keyword">string</span>)
+}
+
+<span class="hljs-keyword">type</span> BusinessLogic <span class="hljs-keyword">struct</span> {
+	RequestDecorator RequestDecorator
+	Logger           Logger
+	Remote           <span class="hljs-keyword">string</span>
+}
+</code></pre>
+<p>이제 비즈니스 로직을 구현해준다.</p>
+<pre><code class="hljs language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(bl BusinessLogic)</span> <span class="hljs-title">businessLogic</span><span class="hljs-params">(ctx context.Context, user <span class="hljs-keyword">string</span>, data <span class="hljs-keyword">string</span>)</span> <span class="hljs-params">(<span class="hljs-keyword">string</span>, error)</span></span> {
+	bl.Logger.Log(ctx, fmt.Sprintf(<span class="hljs-string">"starting businessLogic for %s with %s"</span>, user, data))
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, bl.Remote+<span class="hljs-string">"?query="</span>+data, <span class="hljs-literal">nil</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		bl.Logger.Log(ctx, fmt.Sprintf(<span class="hljs-string">"error making remote request: %v"</span>, err))
+		<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>, err
+	}
+
+	req = bl.RequestDecorator(req)
+	res, err := http.DefaultClient.Do(req)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		bl.Logger.Log(ctx, fmt.Sprintf(<span class="hljs-string">"error making remote request: %v"</span>, err))
+		<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>, err
+	}
+
+	body := res.Body
+	<span class="hljs-keyword">defer</span> body.Close()
+	out, err := ioutil.ReadAll(body)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		bl.Logger.Log(ctx, fmt.Sprintf(<span class="hljs-string">"error making remote request: %v"</span>, err))
+		<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>, err
+	}
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">string</span>(out), <span class="hljs-literal">nil</span>
+}
+</code></pre>
+<p>GUID가 <code>Logger</code>와 request decorator에게 전달되는 과정에서 비즈니스 로직은 이를 인식하지 못하며,
+프로그램 로직에 필요한 데이터와 프로그램 관리에 필요한 데이터를 분리할 수 있다.
+코드에서 연관성을 확인할 수 있는 유일한 부분은 바로 <code>main()</code> 함수이다.</p>
+<pre><code class="hljs language-go">bl := BusinessLogic{
+	RequestDecorator: tracker.Request,
+	Logger:           tracker.Logger{},
+	Remote:           <span class="hljs-string">"http://www.example.com/query"</span>,
+}
+</code></pre>
+<br>
+<p>전체 코드는 <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/values">여기</a>에서 확인할 수 있다.</p>
+<p><br><br></p>
+<h2>References</h2>
+<hr>
+<center>
+<p><a href="https://learning.oreilly.com/library/view/learning-go/9781492077206/"><img src="https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/" alt=""></a> <br>
+<a href="https://learning.oreilly.com/library/view/learning-go/9781492077206/">Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.</a></p>
+</center>
+<p><br><br></p><!-- HTML_TAG_END --></div>
+
+</div>
+    <footer class="site-footer svelte-174pa0l">© 2022 JHSeo. All rights reserved. <br><br></footer></div>
+</div>
+
+
+		<script type="module" data-sveltekit-hydrate="i3cbfr">
+		import { start } from "/_app/immutable/start-7c0cc2ad.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="i3cbfr"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [0, 5],
+				params: {mainCategory:"Golang",subCategory:"Golang Basics",slug:"GO12"},
+				routeId: "posts/[mainCategory]/[subCategory]/[slug]"
+			}
+		});
+	</script><script type="application/json" sveltekit:data-type="data" sveltekit:data-url="/posts/Golang/Golang Basics/GO12_json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"metadata\":{\"title\":\"컨텍스트\",\"date\":\"Sep 9, 2022\",\"excerpt\":\"The Context\"},\"content\":\"\u003Cbr>\\n\u003Cp>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 22.04 LTS 기준으로 작성되었습니다.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>Introduction\u003C/h2>\\n\u003Chr>\\n\u003Cp>서버는 각각의 요청에 대해 메타데이터를 핸들링해야 할 필요가 있다.\\n이 메타데이터는 넓게 보면 두 종류로 분류할 수 있다.\\n바로 요청을 올바르게 처리하기 위해 필요한 메타데이터와, 요청 처리를 언제 중지해야 할지를 나타내는 메타데이터다.\u003C/p>\\n\u003Cp>예를 들면 어느 HTTP 서버에서는 추적 ID를 사용하여, 마이크로서비스를 통해 request chain을 식별하려고 할 수 있다.\\n또한 시간이 너무 오래 걸릴 수도 있으니, 다른 마이크로서비스의 종료를 요청하는 타이머를 설정할 수도 있다.\u003C/p>\\n\u003Cp>대부분의 언어는 \u003Cem>threadlocal\u003C/em> 변수를 사용하여 이러한 정보들을 저장하고, 특정한 쓰레드에 데이터를 연결한다.\\n다만 Go의 고루틴은 값을 조회하는데 사용할 수 있는 고유한 ID가 없기 때문에, Go에서는 할 수 없는 방식이다.\u003C/p>\\n\u003Cp>Go는 \u003Cstrong>context\u003C/strong>라는 구성을 통해 이러한 요청 메타데이터 문제를 해결한다. 컨텍스트를 사용하는 방법을 살펴보도록 하자.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>What Is the Context?\u003C/h2>\\n\u003Chr>\\n\u003Cp>컨텍스트는 \u003Ccode>context\u003C/code> 패키지에 정의된 \u003Ccode>Context\u003C/code> 인터페이스를 충족시키는 인스턴스일 뿐이다. 달리 추가적인 기능이 아니다.\\nGo의 이상적인 코드는 함수의 파라미터를 통해 데이터를 명시적으로 전달하는 것을 지향한다.\\n컨텍스트도 마찬가지로, 함수에 대한 또다른 파라미터일 뿐이다.\\nGo에서 함수의 마지막 리턴 값을 \u003Ccode>error\u003C/code>로 하는 것이 국룰인 것처럼,\\n첫 번째 파라미터를 컨텍스트로 하여 명시적으로 전달하는 것이 또다른 국룰이다.\\n보통 컨텍스트 파라미터의 변수명은 대개 \u003Ccode>ctx\u003C/code>로 한다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">logic\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, info \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(\u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, error)\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span>, \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span>\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>\u003Ccode>context\u003C/code> 패키지는 \u003Ccode>Context\u003C/code> 인터페이스를 정의하는것 외에도,\\n컨텍스트를 만들고 래핑하기 위한 몇 가지 factory function을 포함한다.\u003C/p>\\n\u003Cp>CLI 프로그램의 시작 지점처럼 기존 context가 없는 경우, \u003Ccode>context.Background()\u003C/code> 함수를 통해 비어 있는 컨텍스트를 생성한다.\\n일반적으로 함수에서 concrete type을 반환하는 것과는 달리, 이 함수는 \u003Ccode>context.Context\u003C/code> 타입을 반환한다.\u003C/p>\\n\u003Cp>비어 있는 컨텍스트는 시작점이라 할 수 있다.\\n컨텍스트에 메타데이터를 추가할 때마다, \u003Ccode>context\u003C/code> 패키지의 factory function 중 하나를 사용하여 기존 컨텍스트를 \u003Cem>감싸주면\u003C/em> 된다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">ctx := context.Background()\\nresult, err := logic(ctx, \u003Cspan class=\\\"hljs-string\\\">\\\"a string\\\"\u003C/span>)\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cblockquote>\\n\u003Cp>\u003Ccode>context.TODO()\u003C/code>도 비어 있는 \u003Ccode>context.Context()\u003C/code> 인스턴스를 만드는 함수로, 개발 도중 임시적으로 필요한 경우 사용하게끔 의도되었다.\\n컨텍스트를 어디서 가져와서 어떻게 사용할지 확실하지 않은 경우, \u003Ccode>context.TODO()\u003C/code>를 사용하면 좋다.\\n다만 릴리즈할 코드에서는 \u003Ccode>context.TODO()\u003C/code>를 포함하면 안된다.\u003C/p>\\n\u003C/blockquote>\\n\u003Cbr>\\n\u003Cp>HTTP 서버를 작성할 때는, 컨텍스트를 획득하고 미들웨어 레이어를 거쳐 \u003Ccode>http.Handler\u003C/code>까지 전달하는 데 다소 다른 패턴을 사용한다.\\n컨텍스트는 \u003Ccode>net/http\u003C/code> 패키지가 생긴 지 한참 뒤에 생긴 개념이기에,\\n호환성 문제로 인해 \u003Ccode>http.Handler\u003C/code> 인터페이스에 \u003Ccode>context.Context\u003C/code>를 파라미터로 추가하지 못했다.\u003C/p>\\n\u003Cp>대신 기존 타입에 새로운 메소드를 추가하였다.\\n\u003Ccode>http.Request\u003C/code>에는 컨텍스트에 관련된 두 개의 메소드가 존재한다.\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Ccode>Context()\u003C/code> 메소드는 해당 요청과 관련된 \u003Ccode>context.Context\u003C/code> 인스턴스를 리턴한다.\u003C/li>\\n\u003Cli>\u003Ccode>WithContext()\u003C/code> 메소드는 \u003Ccode>context.Context\u003C/code> 인스턴스를 파라미터로 받아서,\\n해당 컨텍스트와 기존의 상태가 결합된 새로운 \u003Ccode>http.Request\u003C/code> 인스턴스를 반환한다.\u003C/li>\\n\u003C/ul>\\n\u003Cbr>\\n\u003Cp>아래 코드는 일반적인 패턴이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">Middleware\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(handler http.Handler)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">http\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Handler\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> http.HandlerFunc(\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(w http.ResponseWriter, r *http.Request)\u003C/span>\u003C/span> {\\n\\t\\tctx := r.Context()\\n\\t\\t\u003Cspan class=\\\"hljs-comment\\\">// wrap the context with stuff\u003C/span>\\n\\t\\tr = r.WithContext(ctx)\\n\\t\\thandler.ServeHTTP(w, r)\\n\\t})\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>미들웨어에서 첫 번째로 하는 일은 \u003Ccode>Context()\u003C/code> 메소드를 사용해, 요청으로부터 기존 컨텍스트를 추출해내는 것이다.\\n컨텍스트에 값을 추가하고 나면, \u003Ccode>WithContext()\u003C/code> 메소드를 사용해 기존 요청과 값이 추가된 컨텍스트를 기반으로 새로운 컨텍스트를 만들어낸다.\\n마지막으로 \u003Ccode>handler\u003C/code>를 호출하여 기존의 \u003Ccode>http.ResponseWriter\u003C/code>와 새로운 \u003Ccode>*http.Request\u003C/code>를 보낸다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>handler도 마찬가지로, \u003Ccode>Context\u003C/code> 메소드를 사용하여 요청으로부터 컨텍스트를 추출하고,\\n앞서 본 것처럼 컨텍스트를 첫 번째 파라미터로 보내면서 비즈니스 로직을 호출한다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">handler\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(w http.ResponseWriter, r *http.Request)\u003C/span>\u003C/span> {\\n\\tctx := r.Context()\\n\\terr := r.ParseForm()\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tw.WriteHeader(http.StatusInternalServerError)\\n\\t\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(err.Error()))\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span>\\n\\t}\\n\\n\\tdata := r.FormValue(\u003Cspan class=\\\"hljs-string\\\">\\\"data\\\"\u003C/span>)\\n\\tresult, err := logic(ctx, data)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tw.WriteHeader(http.StatusInternalServerError)\\n\\t\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(err.Error()))\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span>\\n\\t}\\n\\n\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(result))\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>\u003Ccode>WithContext()\u003C/code> 메소드를 사용하는 경우가 한 가지 더 있다.\\n바로 어플리케이션에서 다른 HTTP 서비스로 HTTP 호출을 하는 경우이다.\\n컨텍스트를 미들웨어로 보낼 때처럼, \u003Ccode>WithContext()\u003C/code>를 사용해 나가는 요청의 컨텍스트를 설정해야 한다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(sc ServiceCaller)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">callAnotherService\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, data \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(\u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, error)\u003C/span>\u003C/span> {\\n\\treq, err := http.NewRequest(http.MethodGet, \u003Cspan class=\\\"hljs-string\\\">\\\"http://example.com?data=\\\"\u003C/span>+data, \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span>, err\\n\\t}\\n\\treq = req.WithContext(ctx)\\n\\n\\tresp, err := sc.client.Do(req)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span>, err\\n\\t}\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> resp.Body.Close()\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> resp.StatusCode != http.StatusOK {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span>, fmt.Errorf(\u003Cspan class=\\\"hljs-string\\\">\\\"unexpected status code %d\\\"\u003C/span>, resp.StatusCode)\\n\\t}\\n\\n\\t\u003Cspan class=\\\"hljs-comment\\\">// processing response\u003C/span>\\n\\tid, err := processResponse(resp.Body)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> id, err\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>자동완성에 뜨길래 본건데, \u003Ccode>http.NewRequest()\u003C/code>를 이렇게 쓸 바에는\\n\u003Ccode>http.NewRequestWithContext()\u003C/code>를 쓰면 일반적인 패턴대로 컨텍스트를 첫 번째 파라미터로 넘길 수 있는 것 같다.\u003C/p>\\n\u003Cp>아무튼 이제 컨텍스트를 획득하고 보내는 방법을 알게 되었으니, Cancellation을 통해 더 유용하게 사용하는 방법을 알아보자.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>Cancellation\u003C/h2>\\n\u003Chr>\\n\u003Cp>여러 개의 고루틴을 생성하여, 서로 다른 HTTP 서비스를 호출하는 요청이 있다고 가정해보자.\\n만약 서비스 하나에서 에러가 발생하여 더 이상 유효한 값을 얻을 수 없다고 한다면, 다른 고루틴을 계속 돌릴 이유가 없어진다.\\n이러한 맥락에서 \u003Cstrong>Cancellation\u003C/strong>을 사용하며, 컨텍스트에서 이를 사용하는 방법에 대해 알아볼 것이다.\u003C/p>\\n\u003Cp>cancellable한 컨텍스트를 만들기 위해서는 \u003Ccode>context.WithCancel()\u003C/code> 함수를 사용한다.\\n이 함수는 \u003Ccode>context.Context\u003C/code>를 파라미터로 받아서, \u003Ccode>context.Context\u003C/code>와 \u003Ccode>context.CancelFunc()\u003C/code>를 리턴한다.\\n이 때 반환받은 \u003Ccode>context.Context\u003C/code>는 파라미터로 보낸 것과는 다른 컨텍스트이다.\\n파라미터로 보낸 \u003Ccode>context.Context\u003C/code>는 \u003Cem>parent\u003C/em> 컨텍스트가 되며, 반환받은 \u003Ccode>context.Context\u003C/code>는 \u003Cem>child\u003C/em> 컨텍스트이다.\\n또한 child 컨텍스트는 parent 컨텍스트를 감싼(wrap)다.\\n\u003Ccode>context.CancelFunc()\u003C/code> 함수는 말 그대로 컨텍스트를 취소(cancel)하며, 취소 여부를 확인하고 있는 모든 코드에 처리를 중단하라는 신호를 보낸다.\u003C/p>\\n\u003Cp>기본적으로 컨텍스트는 immutable한 인스턴스로 처리되기 때문에,\\n정보를 추가하기 위해 컨텍스트 안의 값을 변경하기보단 이를 감싸는 child 컨텍스트를 생성한다.\\n이런 방식을 통해, 컨텍스트를 코드의 가장 깊은 레이어까지 전달할 수 있다.\\n반대로, 코드의 깊은 레이어에서 표면적인 레이어쪽으로 정보를 전달하는데 사용되지는 않는다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>실제로 동작하는 예제를 살펴보자.\\n먼저, \u003Ccode>go mod init [MODULE_NAME]\u003C/code>으로 모듈을 선언해준다.\\n그리고 \u003Cem>servers.go\u003C/em> 파일을 생성하여 아래와 같이 작성한다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">package\u003C/span> main\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">import\u003C/span> (\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"net/http\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"net/http/httptest\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"time\\\"\u003C/span>\\n)\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">slowServer\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span> *\u003Cspan class=\\\"hljs-title\\\">httptest\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Server\u003C/span>\u003C/span> {\\n\\ts := httptest.NewServer(http.HandlerFunc(\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(w http.ResponseWriter, r *http.Request)\u003C/span>\u003C/span> {\\n\\t\\ttime.Sleep(\u003Cspan class=\\\"hljs-number\\\">2\u003C/span> * time.Second)\\n\\t\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(\u003Cspan class=\\\"hljs-string\\\">\\\"Slow response\\\"\u003C/span>))\\n\\t}))\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> s\\n}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">fastServer\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span> *\u003Cspan class=\\\"hljs-title\\\">httptest\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Server\u003C/span>\u003C/span> {\\n\\ts := httptest.NewServer(http.HandlerFunc(\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(w http.ResponseWriter, r *http.Request)\u003C/span>\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> r.URL.Query().Get(\u003Cspan class=\\\"hljs-string\\\">\\\"error\\\"\u003C/span>) == \u003Cspan class=\\\"hljs-string\\\">\\\"true\\\"\u003C/span> {\\n\\t\\t\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(\u003Cspan class=\\\"hljs-string\\\">\\\"error\\\"\u003C/span>))\\n\\t\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span>\\n\\t\\t}\\n\\t\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(\u003Cspan class=\\\"hljs-string\\\">\\\"ok\\\"\u003C/span>))\\n\\t}))\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> s\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Ccode>httptest.Server\u003C/code>는 원격 서버와 통신하는 코드에 대해 unit test를 하기에 보다 용이하게 설계된 타입이다.\\n특히 동일한 프로그램 안에 서버와 클라이언트가 존재할 경우 매우 유용하다.\u003C/p>\\n\u003Cp>위 예제에는 서로 다른 각각의 서버를 여는 두 개의 함수가 정의되었다.\\n하나는 요청이 오면 2초동안 기다렸다가 메시지를 리턴하는 서버이며,\\n하나는 \u003Ccode>error\u003C/code>라는 쿼리스트링이 \u003Ccode>true\u003C/code>로 설정되어 있다면 \u003Ccode>error\u003C/code>라는 메시지를, 아니면 \u003Ccode>ok\u003C/code>라는 메시지를 보낸다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>이제 코드의 클라이언트 부분인, \u003Cem>client.go\u003C/em> 파일을 작성해보자.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">package\u003C/span> main\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">import\u003C/span> (\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"context\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"errors\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"fmt\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"io/ioutil\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"net/http\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"sync\\\"\u003C/span>\\n)\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> client = http.Client{}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">callBoth\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, errVal \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, slowURL \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, fastURL \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\u003C/span>\u003C/span> {\\n\\tctx, cancel := context.WithCancel(ctx)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> cancel()\\n\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> wg sync.WaitGroup\\n\\twg.Add(\u003Cspan class=\\\"hljs-number\\\">2\u003C/span>)\\n\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">go\u003C/span> \u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span>\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> wg.Done()\\n\\t\\terr := callServer(ctx, \u003Cspan class=\\\"hljs-string\\\">\\\"slow\\\"\u003C/span>, slowURL)\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\t\\tcancel()\\n\\t\\t}\\n\\t}()\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">go\u003C/span> \u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span>\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> wg.Done()\\n\\t\\terr := callServer(ctx, \u003Cspan class=\\\"hljs-string\\\">\\\"fast\\\"\u003C/span>, fastURL+\u003Cspan class=\\\"hljs-string\\\">\\\"?error=\\\"\u003C/span>+errVal)\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\t\\tcancel()\\n\\t\\t}\\n\\t}()\\n\\twg.Wait()\\n\\n\\tfmt.Println(\u003Cspan class=\\\"hljs-string\\\">\\\"done with both\\\"\u003C/span>)\\n}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">callServer\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, label \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, url \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">error\u003C/span>\u003C/span> {\\n\\treq, err := http.NewRequestWithContext(ctx, http.MethodGet, url, \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tfmt.Println(label, \u003Cspan class=\\\"hljs-string\\\">\\\"request err:\\\"\u003C/span>, err)\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> err\\n\\t}\\n\\n\\tres, err := client.Do(req)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tfmt.Println(label, \u003Cspan class=\\\"hljs-string\\\">\\\"response err:\\\"\u003C/span>, err)\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> err\\n\\t}\\n\\n\\tdata, err := ioutil.ReadAll(res.Body)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tfmt.Println(label, \u003Cspan class=\\\"hljs-string\\\">\\\"read err:\\\"\u003C/span>, err)\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> err\\n\\t}\\n\\n\\tresult := \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>(data)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> result != \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span> {\\n\\t\\tfmt.Println(label, \u003Cspan class=\\\"hljs-string\\\">\\\"result:\\\"\u003C/span>, result)\\n\\t}\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> result == \u003Cspan class=\\\"hljs-string\\\">\\\"error\\\"\u003C/span> {\\n\\t\\tfmt.Println(\u003Cspan class=\\\"hljs-string\\\">\\\"cancelling from\\\"\u003C/span>, label)\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> errors.New(\u003Cspan class=\\\"hljs-string\\\">\\\"error happened\\\"\u003C/span>)\\n\\t}\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span>\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>위 예제의 \u003Ccode>callBoth()\u003C/code> 함수에서는 \u003Ccode>context.WithCancel()\u003C/code>에 파라미터로 넘어온 컨텍스트를 넘김으로써, cancellable한 컨텍스트와 취소 함수를 생성하며,\\n이 취소 함수의 이름은 \u003Ccode>cancel\u003C/code>로 짓는 게 국룰이라고 한다.\u003C/p>\\n\u003Cp>기억해야 할 점 중 하나는 cancellable한 컨텍스트를 생성하면 취소 함수를 \u003Cem>반드시\u003C/em> 호출해주어야 한다는 것이다.\\n만약 그렇게 하지 않으면 고루틴 또는 메모리에서 리소스 낭비가 발생할 것이다.\\n취소 함수는 한 번 호출하면 두 번째부터의 호출은 무시되므로, 여러번 호출해도 상관없다.\\n위 예제에서는 \u003Ccode>defer\u003C/code>를 사용하여 결과적으로 반드시 호출되게 해주었다.\u003C/p>\\n\u003Cp>또한 cancellable한 컨텍스트, 라벨, URL 등을 캡쳐하여 두 개의 고루틴을 설정 및 실행해주었고,\\n\u003Ccode>sync.WaitGroup\u003C/code>의 \u003Ccode>sync()\u003C/code> 메소드를 사용하여 고루틴들이 끝날 때까지 대기해주었다.\u003C/p>\\n\u003Cp>\u003Ccode>callServer()\u003C/code> 함수는 간단한 클라이언트로, 취소 가능한 컨텍스트를 통해 요청을 생성하여 전송한다.\\n만약 에러가 발생하거나 서버로부터 받은 문자열 결과값이 \u003Ccode>error\u003C/code>라면, 에러를 리턴한다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>이제 메인함수를 살펴보자. \u003Cem>main.go\u003C/em> 파일을 아래와 같이 작성한다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">package\u003C/span> main\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">import\u003C/span> (\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"context\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"os\\\"\u003C/span>\\n)\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">main\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span>\u003C/span> {\\n\\tss := slowServer()\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> ss.Close()\\n\\tfs := fastServer()\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> fs.Close()\\n\\n\\tctx := context.Background()\\n\\tcallBoth(ctx, os.Args[\u003Cspan class=\\\"hljs-number\\\">1\u003C/span>], ss.URL, fs.URL)\\n}\\n\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Ccode>main()\u003C/code> 함수에서는 서버를 열고, 생성된 컨텍스트로 클라이언트를 돌려 서버에 요청을 보낸다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>작성된 코드를 빌드하여 실행해보자.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-bash\\\">$ go build ./...\\n\u003C/code>\u003C/pre>\\n\u003Cp>위 명령어를 치면 모듈이 빌드되어 실행 파일이 생성된다. 나의 경우 생성된 실행 파일은 \u003Cem>context-cancel\u003C/em>이었다.\\n두 가지 경우에 대해, 해당 파일을 실행해보자. 아래 경우는 에러가 발생하지 않았을 때이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-bash\\\">$ ./context-cancel \u003Cspan class=\\\"hljs-literal\\\">false\u003C/span>\\nfast result: ok\\nslow result: Slow response\\n\u003Cspan class=\\\"hljs-keyword\\\">done\u003C/span> with both\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>아래 경우는 에러가 발생하였을 때이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-bash\\\">$ ./context-cancel \u003Cspan class=\\\"hljs-literal\\\">true\u003C/span>\\nfast result: error\\ncancelling from fast\\nslow response err: Get \u003Cspan class=\\\"hljs-string\\\">\\\"http://127.0.0.1:39207\\\"\u003C/span>: context canceled\\n\u003Cspan class=\\\"hljs-keyword\\\">done\u003C/span> with both\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Ccode>fastServer\u003C/code>에 대한 요청에서 에러가 발생하였으므로 컨텍스트가 취소된다.\\n이 때 \u003Ccode>NewRequestWithContext()\u003C/code>가 실행 중이므로, 컨텍스트의 취소를 감지하여, 고루틴이 멈추게 된 것이다.\u003C/p>\\n\u003Cblockquote>\\n\u003Cp>만약 위 프로그램을 실행해보았다면, 에러가 발생했음에도 프로그램이 즉각 종료되지 않았다는 점을 알 수 있을 것이다.\\n이는 \u003Ccode>slowServer()\u003C/code>가 종료되는 것을 기다리기 때문이다.\\n만약 \u003Ccode>slowServer()\u003C/code>의 타임아웃을 2초에서 6초로 늘린다면,\\n\u003Ccode>httptest.Server blocked in Close after 5 seconds, waiting for connections\u003C/code>와 같이 신기한 에러 메세지가 출력되는 것을 확인할 수 있을 것이다.\u003C/p>\\n\u003Cp>\u003Ccode>slowServer()\u003C/code>를 아래와 재작성해주면 컨텍스트의 취소를 제대로 처리하여, 즉시 서버가 종료될 것이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">slowServer_rewrite\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span> *\u003Cspan class=\\\"hljs-title\\\">httptest\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Server\u003C/span>\u003C/span> {\\n\\ts := httptest.NewServer(http.HandlerFunc(\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(w http.ResponseWriter, r *http.Request)\u003C/span>\u003C/span> {\\n\\t\\tctx := r.Context()\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">select\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">case\u003C/span> &#x3C;-ctx.Done():\\n\\t\\t\\tfmt.Println(\u003Cspan class=\\\"hljs-string\\\">\\\"server shut down\\\"\u003C/span>)\\n\\t\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span>\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">case\u003C/span> &#x3C;-time.After(\u003Cspan class=\\\"hljs-number\\\">6\u003C/span> * time.Second):\\n\\t\\t\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(\u003Cspan class=\\\"hljs-string\\\">\\\"Slow response\\\"\u003C/span>))\\n\\t\\t}\\n\\t}))\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> s\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>아마 클라이언트 단의 컨텍스트가 취소되면, 요청에 있는 컨텍스트의 \u003Ccode>Done\u003C/code> 신호가 들어오는 것 같다.\u003C/p>\\n\u003C/blockquote>\\n\u003Cp>위 예제들의 소스코드는 \u003Ca href=\\\"https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/cancellation\\\">여기\u003C/a>에서 확인해볼 수 있다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>이렇게, 수동으로 컨텍스트를 취소하는 방법에 대해 살펴보았다.\\n이러한 방식도 유용하지만, 다음 섹선에서는 타임아웃을 통해 취소를 자동화하는 방법에 대해 살펴볼 것이다.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>Timers\u003C/h2>\\n\u003Chr>\\n\u003Cp>서버가 하는 일 중 가장 중요한 것 중 하나는 요청들을 관리하는 것이다.\\n아기 개발자들은 가끔 서버가 가능한 한 많은 요청을 받고, 각 클라이언트에 결과를 반환할 수 있을 때까지 작업을 해야 한다고 생각한다.\\n하지만 이는 아기 개발자들의 잘못된 생각이다. 응애!\u003C/p>\\n\u003Cp>서버는 공유 리소스와 비슷한 성격을 가진다.\\n각 사용자들은 서버에 가능한 많은 요청을 보내고 결과를 얻고 싶어하며, 이 때 다른 사용자의 요청에 대해서는 별 관심이 없다.\\n자고로 공유 리소스는 모든 사용자에게 동일한 시간만큼 제공할 수 있도록 관리할 필요성이 있다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>서버는 로드(작업량)를 관리하기 위해, 보통 네 가지 방법을 사용한다.\u003C/p>\\n\u003Col>\\n\u003Cli>동시에 처리하는 요청의 수 제한\u003C/li>\\n\u003Cli>대기 큐에서 기다리고 있는 요청의 수 제한\u003C/li>\\n\u003Cli>요청이 처리되는 시간 제한\u003C/li>\\n\u003Cli>요청이 사용할 수 있는 리소스의 양 제한(메모리, 디스크 등)\u003C/li>\\n\u003C/ol>\\n\u003Cp>Go에서는 앞의 세 개의 제한을 처리하는 도구를 제공한다.\\n특히 1번과 2번의 경우 이미 우리가 본 것이다.\\n1번의 경우 고루틴의 수를 제한하면 서버가 동시에 처리하는 요청의 수가 관리되는 것이며,\\n2번은 buffered channel의 크기를 조절하면 해결된다.\u003C/p>\\n\u003Cp>그리고, 컨텍스트를 통해 요청이 얼마나 오래동안 처리될 수 있는지를 제한할 수 있다.\\n어플리케이션을 만들 때, 사용자가 불만족스러운 경험을 하기 전에 요청을 완료하려면 얼마나 시간이 걸릴 지에 대해 알고 있어야 한다.\\n만약 요청을 실행할 수 있는 최대 시간을 알고 있다면, 요청에 컨텍스트를 적용할 수 있다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>시간이 제한된 컨텍스트를 생성하는 방법은 두 가지가 있다.\\n하나는 \u003Ccode>context.WithTimeout()\u003C/code> 함수를 사용하는 것이다. 이 함수는 기존의 컨텍스트와 타임아웃을 나타내는 \u003Ccode>time.Duration\u003C/code> 인스턴스를 파라미터로 받는다.\\n그리고 명시된 만큼의 시간이 지나면 자동으로 취소되는 컨텍스트와, 컨텍스트를 바로 취소할 수 있는 취소 함수가 함께 리턴된다.\u003C/p>\\n\u003Cp>두 번째 방법은 \u003Ccode>context.WithDeadline()\u003C/code> 함수를 사용하는 것이다.\\n이 함수도 마찬가지로 기존의 컨텍스트를 받으며, \u003Ccode>time.Duration\u003C/code> 인스턴스 대신 \u003Ccode>time.Time\u003C/code> 인스턴스를 파라미터로 받는다.\\n\u003Ccode>context.WithTimeout()\u003C/code> 함수처럼 해당 시각이 지나면 컨텍스트는 자동으로 취소되는 컨텍스트와 컨텍스트를 바로 취소할 수 있는 취소 함수가 리턴된다.\\n만약 \u003Ccode>context.WithDeadline()\u003C/code>에 과거의 \u003Ccode>time.Time\u003C/code> 시각을 보내면, 이미 취소된 컨텍스트를 리턴한다.\u003C/p>\\n\u003Cp>만약 컨텍스트가 자동으로 닫히는 시각을 알아내고 싶다면, \u003Ccode>context.Context\u003C/code> 인스턴스의 \u003Ccode>Deadline()\u003C/code> 메소드를 사용한다.\\n해당 메소드는 컨텍스트가 닫히는 시각을 나타내는 \u003Ccode>time.Time\u003C/code> 인스턴스와, 타임아웃이 설정되어 있는지 여부를 \u003Ccode>true\u003C/code>나 \u003Ccode>false\u003C/code>로 리턴한다.\\n따라서 \u003Cem>comma ok idiom\u003C/em>을 적용하면 된다.\u003C/p>\\n\u003Cp>적용된 예제가 길어져서, \u003Ca href=\\\"https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/context_timeout.go\\\">여기\u003C/a>에서 확인하면 될 듯 하다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>요청에 대한 전반적인 타임아웃을 설정할 때, 이 타임아웃을 세분화할 수도 있다.\\n이를테면 한 서비스에서 다른 서비스를 호출하는 구조가 있을 수 있는데,\\n네트워크 호출을 실행할 수 있는 시간을 제한하여 나머지 처리 시간이나 다른 네트워크 호출에 사용할 시간을 예약할 수 있다.\\n앞서 보았던 \u003Ccode>context.WithTimeout()\u003C/code>이나 \u003Ccode>context.WithDeadline()\u003C/code>으로 parent 컨텍스트를 감싸는 child 컨텍스트를 생성하여,\\n각각에 호출에 소요되는 시간을 제어할 수 있는 것이다.\u003C/p>\\n\u003Cp>특히 child 컨텍스트의 타임아웃은 parent 컨텍스트의 타임아웃에 종속된다.\\n이를테면 parent 컨텍스트의 타임아웃이 2초이고 child 컨텍스트의 타임아웃이 3초라고 하면,\\nparent 컨텍스트의 타임아웃인 2초가 지나면 child 컨텍스트도 자동으로 취소된다.\u003C/p>\\n\u003Cp>마찬가지로 예제가 좀 길어져서, \u003Ca href=\\\"https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/parent_child_timeout.go\\\">여기\u003C/a>서 확인하면 된다.\\n이 코드를 실행해보면 parent 컨텍스트의 타임아웃이 먼저 찾아올 것이고, 그와 동시에 child 컨텍스트도 취소된다.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>Handling Context Cancellation in Your Own Code\u003C/h2>\\n\u003Chr>\\n\u003Cp>대부분의 경우 코드 내에서 타임아웃이나 취소에 대해 걱절할 필요는 없다.\\n일반적인 코드들은 기란이 그렇게 오래 걸리지 않는다.\\n다만 다른 HTTP 서비스를 호출하거나, 데이터베이스를 호출할 때에는 컨텍스트를 파라미터로 잘 넘겨주어야 한다.\\n얘네들은 보통 타임아웃이 발생하거나 오류가 발생하여 취소를 할만한 상황이 종종 나오는 편이므로, 컨텍스트를 넘김으로써 취소를 처리해주기 용이하다.\u003C/p>\\n\u003Cp>만약 컨텍스트가 취소되면 중단되어야 하는 코드를 작성하는 경우, 동시성을 통해 취소 체크를 할 수 있다(10장에서 이미 살펴보았다).\\n\u003Ccode>context.Context\u003C/code> 타입은 취소를 관리하는 두 가지 메소드를 포함하고 있다.\\n\u003Ccode>Done()\u003C/code> 메소드는 \u003Ccode>struct{}\u003C/code> 타입의 채널을 리턴한다. 해당 채널은 취소 함수나 타임아웃이 발생할 때 close된다.\\n이 때 closed channel에 읽기를 시도하면 반드시 zero value를 리턴한다.\u003C/p>\\n\u003Cblockquote>\\n\u003Cp>이 때 취소할 수 없는 컨텍스트에서 \u003Ccode>Done()\u003C/code> 메소드를 호출하면 \u003Ccode>nil\u003C/code>을 반환한다.\\n게다가 \u003Ccode>nil\u003C/code> 채널에서 읽기를 시도하면 프로그램이 끝날 때까지 읽기를 시도할 것이기 때문에 멈출 것이다.\u003C/p>\\n\u003C/blockquote>\\n\u003Cbr>\\n\u003Cp>\u003Ccode>context.Context\u003C/code>의 \u003Ccode>Err()\u003C/code> 메소드는 만약 컨텍스트가 아직 활성화되어 있다면 \u003Ccode>nil\u003C/code>을 반환한다.\\n반면 만약 컨텍스트가 취소되어 있다면, \u003Ccode>context.Cancelled\u003C/code> 또는 \u003Ccode>context.DeadlineExceeded\u003C/code> 둘 중 하나의 sentinel error를 반환한다.\\n\u003Ccode>context.Cancelled\u003C/code>는 컨텍스트를 명시적으로 취소했을 때, \u003Ccode>context.DeadlineExceeded\u003C/code>는 타임아웃이 발생했을 때 리턴된다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">longRunningThing\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, data \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>)\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(\u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>, error)\u003C/span>\u003C/span> {\\n\\tticker := time.NewTicker(time.Second * \u003Cspan class=\\\"hljs-number\\\">1\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> ticker.Stop()\\n\\n\\tctx, cancel := context.WithTimeout(ctx, time.Duration(data)*time.Second)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> cancel()\\n\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">var\u003C/span> result \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">for\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">select\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">case\u003C/span> &#x3C;-ticker.C:\\n\\t\\t\\tresult += \u003Cspan class=\\\"hljs-number\\\">1\u003C/span>\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">case\u003C/span> &#x3C;-ctx.Done():\\n\\t\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> result, ctx.Err()\\n\\t\\t}\\n\\t}\\n\\n}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">longRunningThingManager\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, data \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>)\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(\u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>, error)\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">type\u003C/span> wrapper \u003Cspan class=\\\"hljs-keyword\\\">struct\u003C/span> {\\n\\t\\tresult \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>\\n\\t\\terr    error\\n\\t}\\n\\n\\tch := \u003Cspan class=\\\"hljs-built_in\\\">make\u003C/span>(\u003Cspan class=\\\"hljs-keyword\\\">chan\u003C/span> wrapper, \u003Cspan class=\\\"hljs-number\\\">1\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">go\u003C/span> \u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span>\u003C/span> {\\n\\t\\tresult, err := longRunningThing(ctx, data)\\n\\t\\tch &#x3C;- wrapper{result, err}\\n\\t}()\\n\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">select\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">case\u003C/span> data := &#x3C;-ch:\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> data.result, data.err\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">case\u003C/span> &#x3C;-ctx.Done():\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-number\\\">0\u003C/span>, ctx.Err()\\n\\t}\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Ccode>longRunningThing()\u003C/code> 함수는 타임아웃이 발생할 때까지 \u003Ccode>result\u003C/code>의 값을 누적하는 함수이다.\\n(원래 타임아웃 자체가 에러 상황을 상정하기 때문에, 실제로 이런 함수를 작성하면 안된다!)\\n\u003Ccode>case &#x3C;-ctx.Done():\u003C/code>로 타임아웃이 발생할 시 함수가 리턴된다.\u003C/p>\\n\u003Cp>\u003Ccode>longRunningThingManager()\u003C/code> 함수는 \u003Ccode>select\u003C/code>문을 통해 \u003Ccode>longRunningThing()\u003C/code> 함수의 값이 반환되기까지 기다리거나,\\n혹은 컨텍스트가 취소될 때까지 기다린다. 취소된다면 에러와 함께 함수가 리턴된다.\u003C/p>\\n\u003Cp>이 때 각각의 \u003Ccode>select\u003C/code>문의 \u003Ccode>case &#x3C;-ctx.Done():\u003C/code> 안에, \u003Ccode>ctx.Err()\u003C/code>가 있음을 확인할 수 있다.\\n이 메소드가 어떤 출력 결과를 반환하는지에 집중하여 확인해볼 것이다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>이어서 \u003Ccode>main()\u003C/code> 함수를 작성해보자.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">main\u003C/span>\u003Cspan class=\\\"hljs-params\\\">()\u003C/span>\u003C/span> {\\n\\tctx := context.Background()\\n\\tctx, cancel := context.WithCancel(ctx)\\n\\n\\ttime.AfterFunc(time.Second*\u003Cspan class=\\\"hljs-number\\\">3\u003C/span>, cancel)\\n\\tnum, err := longRunningThingManager(ctx, \u003Cspan class=\\\"hljs-number\\\">5\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tfmt.Println(err)\\n\\t}\\n\\tfmt.Println(num)\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Ccode>time.AfterFunc(time.Second*3, cancel)\u003C/code> 라인의 유무에 따라 출력이 달라지는 것을 확인할 수 있다.\\n이 라인을 지운다면 컨텍스트가 타임아웃에 의해 취소되며, 지우지 않는다면 컨텍스트가 \u003Ccode>cancel\u003C/code> 함수에 의헤 취소되기 때문이다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>본 절에서는 컨텍스트를 통한 타임아웃의 명시 및 취소 방법에 대해 알아보았다.\\n물론 이전에 보았던 \u003Ccode>time.After()\u003C/code> 함수를 통해서도 취소가 가능하지만, 개인적으로는 컨텍스트를 통한 방식이 더 좋아보이는 것 같다.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>Values\u003C/h2>\\n\u003Chr>\\n\u003Cp>컨텏트의 또 다른 용도라고 할 수 있다. 컨텍스트는 프로그램의 다른 컴포넌트에 요청에 대한 메타데이터를 전달하는 방법을 제공한다.\u003C/p>\\n\u003Cp>물론 파라미터를 통해 명시적으로 데이터를 전달하는 방식을 최우선적으로 고려하는 것이 좋다.\\nGo에서는 명시적인 데이터 전달을 이상적으로 여긴다.\\n특히 함수가 특정 데이터를 반드시 필요로 한다면, 해당 데이터가 어디서 오는지(보내는지) 명확하게 정의되어야 한다.\u003C/p>\\n\u003Cp>하지만 데이터를 명시적으로 전달하지 못할 만한 상황이 존재할 수밖에 없다.\\n그런 경우는 대부분 HTTP 요청 핸들러와 관련 미들웨어에서 발생한다.\u003C/p>\\n\u003Cp>앞서 보았듯 모든 요청 핸들러는 각각 request, response를 파라미터로 받는다.\\n그런데 미들웨어의 핸들러가 해당 값을 사용할 수 있게 만들려면, context에 값을 저장해주어야 한다.\\n이러한 경우는 유저의 JWT(JSON Web Token)을 추출하거나, 미들웨어 레이어를 거쳐 핸들러나 비즈니스 로직으로 전달되는 요청별 GUID를 생성하고자 하는 경우 발생할 수 있다.\u003C/p>\\n\u003Cp>이러한 경우에 대응하여, \u003Ccode>context\u003C/code> 패키지의 다양한 팩토리 함수 중 값을 저장할 수 있는 컨텍스트를 만드는 함수인 \u003Ccode>context.WithValue()\u003C/code>가 존재한다.\\n이 함수는 세 개의 파라미터를 받는다. 파라미터는 각각 parent 컨텍스트와, 값을 저장할 key와, 값이다.\\n그리고 parent 컨텍스트를 감싸며 key-value 페어가 존재하는 child 파라미터를 리턴한다.\\n이 때 각각 key와 value의 타입은 \u003Ccode>interface{}\u003C/code>로 선언되어 있다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>만약 어떤 컨텍스트나 해당 컨텍스트의 아무 parent 컨텍스트 중 값이 저장되어 있는지 확인하려면,\\n\u003Ccode>context.Context\u003C/code>의 \u003Ccode>Value()\u003C/code> 메소드를 사용하면 된다.\\n이 메소드는 Key를 파라미터로 받아서 해당 Key에 대한 값을 리턴한다.\\n만약 해당 Key에 대한 값이 존재하지 않는다면 \u003Ccode>nil\u003C/code>이 리턴된다.\\n타입이 \u003Ccode>interface{}\u003C/code>이기 때문에, 반환받은 값이 유효한지 확인하려면 comma ok idiom을 사용해주어야 한다.\u003C/p>\\n\u003Cblockquote>\\n\u003Cp>기본적으로 context chain에 저장된 값을 검색하려면 \u003Cem>linear search\u003C/em>를 사용할 수밖에 없다.\\n만약 컨텍스트에 저장된 값이 많지 않다면 성능상의 문제가 크진 않겠지만, 컨텍스트에 값을 너무 많이 저장하게 되면 성능이 뚝뚝 떨어질 것이다.\\n요청을 처리하기 위해 context chain에 값을 필요 이상으로 많이 집어넣어야 한다면, 리팩토링을 한번 해보는 게 좋을 것이다.\u003C/p>\\n\u003C/blockquote>\\n\u003Cbr>\\n\u003Cp>컨텍스트에 저장할 key든 value든 타입이 \u003Ccode>interface{}\u003C/code>이기 때문에 아무거나 다 넣을 수 있긴 하지만,\\n\u003Ccode>map\u003C/code>처럼 key나 value의 타입을 고정해주는 것이 좋다(특히 key는 더더욱! 비교가 가능한 타입으로 고정해주는 것이 좋다).\u003C/p>\\n\u003Cp>아래 예제에서는 \u003Ccode>int\u003C/code>를 기반으로, export되지 않은 타입을 생성해주었다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">type\u003C/span> userKey \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>\\n\u003C/code>\u003C/pre>\\n\u003Cp>만약 key의 타입으로 string이나 다른 public type을 사용한다면, 다른 패키지에서 동일한 키값이 생성될 수 있고, 이는 충돌로 이어질 수 있다.\\n그렇게 되면 컨텍스트에서 다른 패키지에서 쓴 데이터를 읽는 등, 요상한 문제가 발생하여 디버그가 힘들어지기도 한다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>이렇게 export되지 않는 key의 타입을 선언해주고 나면, export되지 않는 상수를 하나 선언해준다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">const\u003C/span> key userKey = \u003Cspan class=\\\"hljs-number\\\">1\u003C/span>\\n\u003C/code>\u003C/pre>\\n\u003Cp>위 상수와 타입 모두 export되지 않았기 때문에, 패키지 바깥에서 이 데이터를 확인할 방법이 없다.\\n따라서 컨텍스트에 겹치는 key에 덮어쓰거나 접근할 방법이 없을 것이며, 충돌도 발생하지 않을 것이다.\\n또한 만약 컨텍스트에 여러 개의 값을 저장해야 한다면 \u003Ccode>iota\u003C/code>를 사용할 수도 있을 것이다.\\n기본적으로 상수의 값이 의미있는 것이 아니라 단지 구분을 하기 위해서만 사용되기 때문에, \u003Ccode>iota\u003C/code>를 사용하기 매우 적절한 경우라고 할 수 있다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>다음으로는 컨텍스트에 값을 집어넣거나, 값을 읽어오는 API를 작성해줄 것이다.\\n패키지 외부의 코드에서 컨텍스트의 값을 읽고 써야 할 필요가 있는 경우, 이 함수들을 export한다.\\n값을 저장하는 컨텍스트를 생성하는 함수의 이름은 \u003Ccode>ContextWith\u003C/code>로 시작해야 한다.\\n또한 컨텍스트로부터 값을 읽어와서 리턴하는 함수의 이름은 \u003Ccode>FromContext\u003C/code>로 끝나야 한다.\u003C/p>\\n\u003Cp>컨텍스트에 값을 읽고 쓰는 함수들의 예제를 살펴보도록 하자.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">ContextWithUser\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, user \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">context\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Context\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> context.WithValue(ctx, key, user)\\n}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">UserFromContext\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context)\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(\u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, \u003Cspan class=\\\"hljs-keyword\\\">bool\u003C/span>)\u003C/span>\u003C/span> {\\n\\tuser, ok := ctx.Value(key).(\u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> user, ok\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>사용자 정보를 관리하는 코드를 작성했으니, 사용하는 방법을 알아볼 것이다.\\n먼저, 아래 예제는 쿠키에서 유저 ID를 추출하는 미들웨어이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">extractUser\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(req *http.Request)\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(\u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, error)\u003C/span>\u003C/span> {\\n\\tuserCookie, err := req.Cookie(\u003Cspan class=\\\"hljs-string\\\">\\\"user\\\"\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span>, err\\n\\t}\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> userCookie.Value, \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span>\\n}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">Middleware\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(h http.Handler)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">http\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Handler\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> http.HandlerFunc(\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(w http.ResponseWriter, r *http.Request)\u003C/span>\u003C/span> {\\n\\t\\tuser, err := extractUser(r)\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\t\\tw.WriteHeader(http.StatusUnauthorized)\\n\\t\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span>\\n\\t\\t}\\n\\n\\t\\tctx := r.Context()\\n\\t\\tctx = ContextWithUser(ctx, user)\\n\\t\\tr = r.WithContext(ctx)\\n\\t\\th.ServeHTTP(w, r)\\n\\t})\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>해당 미들웨어 내에서는 \u003Ccode>user\u003C/code>의 쿠키 값을 추출한 후, \u003Ccode>Context()\u003C/code> 메소드를 사용해 요청의 컨텍스트를 얻는다.\\n그리고 앞서 정의한 \u003Ccode>ContextWithUser()\u003C/code> 함수를 통해 유저 정보가 포함된 컨텍스트를 생성한다.\\n그리고 기존 \u003Ccode>*http.Request\u003C/code>에서 \u003Ccode>WithContext()\u003C/code> 메소드를 통해, 새로 생성된 컨텍스트를 포함하는 새로운 \u003Ccode>*http.Request\u003C/code> 인스턴스를 만들어 준다.\\n마지막으로 \u003Ccode>http.Handler\u003C/code>의 다음 함수를 호출해준다.\u003C/p>\\n\u003Cbr>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(c Controller)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">handleRequest\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(w http.ResponseWriter, r *http.Request)\u003C/span>\u003C/span> {\\n\\tctx := r.Context()\\n\\tuser, ok := UserFromContext(ctx)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> !ok {\\n\\t\\tw.WriteHeader(http.StatusInternalServerError)\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span>\\n\\t}\\n\\n\\tdata := r.URL.Query().Get(\u003Cspan class=\\\"hljs-string\\\">\\\"data\\\"\u003C/span>)\\n\\tresult, err := c.Logic.businessLogic(ctx, user, data)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tw.WriteHeader(http.StatusInternalServerError)\\n\\t\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(err.Error()))\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span>\\n\\t}\\n\\n\\tw.Write([]\u003Cspan class=\\\"hljs-keyword\\\">byte\u003C/span>(result))\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>위 예제의 핸들러에서는 \u003Ccode>Context()\u003C/code> 메소드로 요청에 대한 컨텍스트를 획득하여,\\n해당 컨텍스트로부터 \u003Ccode>UserFromContext()\u003C/code> 함수를 통해 유저 정보를 추출한다. 그리고 비즈니스 로직을 호출한다.\u003C/p>\\n\u003Cp>파라미터를 통해 값을 넘기기보단, 이런 방식을 통해 컨텍스트에 값을 저장하는게 더 나을 만한 상황도 존재한다. 앞서 말했던 GUID를 추적하는 경우이다.\\n이 정보는 비즈니스 로직보단 어플리케이션 관리를 위해 사용된다.\\n이러한 방식을 사용하면 GUID에 대해 알 필요가 없는 비즈니스 로직이 이 정보를 볼 수 없게 되며, 로그를 작성하거나 다른 서버에 연결할 때 사용할 수 있다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>다음은 컨텍스트가 서비스에서 서비스로 전달될 때, GUID를 포함하여 이 값을 추적하고 로그를 기록하는 예제이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">package\u003C/span> tracker\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">import\u003C/span> (\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"context\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"fmt\\\"\u003C/span>\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"net/http\\\"\u003C/span>\\n\\n\\t\u003Cspan class=\\\"hljs-string\\\">\\\"github.com/google/uuid\\\"\u003C/span>\\n)\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">type\u003C/span> guidKey \u003Cspan class=\\\"hljs-keyword\\\">int\u003C/span>\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">const\u003C/span> key guidKey = \u003Cspan class=\\\"hljs-number\\\">1\u003C/span>\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">contextWithGUID\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, guid \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">context\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Context\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> context.WithValue(ctx, key, guid)\\n}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">guidFromContext\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context)\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(\u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, \u003Cspan class=\\\"hljs-keyword\\\">bool\u003C/span>)\u003C/span>\u003C/span> {\\n\\tg, ok := ctx.Value(key).(\u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> g, ok\\n}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">Middleware\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(h http.Handler)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">http\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Handler\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> http.HandlerFunc(\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(w http.ResponseWriter, r *http.Request)\u003C/span>\u003C/span> {\\n\\t\\tctx := r.Context()\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> guid := r.Header.Get(\u003Cspan class=\\\"hljs-string\\\">\\\"X-GUID\\\"\u003C/span>); guid != \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span> {\\n\\t\\t\\tctx = contextWithGUID(ctx, guid)\\n\\t\\t} \u003Cspan class=\\\"hljs-keyword\\\">else\u003C/span> {\\n\\t\\t\\tctx = contextWithGUID(ctx, uuid.New().String())\\n\\t\\t}\\n\\t\\tr = r.WithContext(ctx)\\n\\t\\th.ServeHTTP(w, r)\\n\\t})\\n}\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">type\u003C/span> Logger \u003Cspan class=\\\"hljs-keyword\\\">struct\u003C/span>{}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(l Logger)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">Log\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, message \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\u003C/span>\u003C/span> {\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> guid, ok := guidFromContext(ctx); ok {\\n\\t\\tmessage = fmt.Sprintf(\u003Cspan class=\\\"hljs-string\\\">\\\"GUID: %s - %s\\\"\u003C/span>, guid, message)\\n\\t}\\n\\t\u003Cspan class=\\\"hljs-comment\\\">// do logging\u003C/span>\\n\\tfmt.Println(message)\\n}\\n\\n\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-title\\\">Request\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(r *http.Request)\u003C/span> *\u003Cspan class=\\\"hljs-title\\\">http\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Request\u003C/span>\u003C/span> {\\n\\tctx := r.Context()\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> guid, ok := guidFromContext(ctx); ok {\\n\\t\\tr.Header.Add(\u003Cspan class=\\\"hljs-string\\\">\\\"X-GUID\\\"\u003C/span>, guid)\\n\\t}\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> r\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Ccode>Middleware()\u003C/code> 함수는 요청으로부터 GUID를 추출하거나 새로은 GUID를 만들고, 컨텍스트에 이 값을 저장하여 새로운 컨텍스트를 생성한다.\\n그리고 다음의 Middleware chain을 호출한다.\u003C/p>\\n\u003Cp>\u003Ccode>Logger\u003C/code> 구조체에는 컨텍스트와 문자열을 받아서 제네릭하게 로그를 남기는 메소드가 있다.\\n만약 컨텍스트에 GUID가 있다면, 로그 메시지의 앞에 추가적으로 출력한다.\\n\u003Ccode>Request\u003C/code> 함수는 다른 서비스를 호출하기 위해 사용되며, 컨텍스트에 GUID가 있다면 Request header에 GUID가 추가된 \u003Ccode>*http.Request\u003C/code> 인스턴스를 리턴한다.\u003C/p>\\n\u003Cbr>\\n\u003Cp>Interface 포스트에서 보았던 것처럼, 인터페이스를 통해 Dependency Injection을 하는 패턴을 사용해볼 것이다.\\n이 방법을 통해 비즈니스 로직으로부터 불필요한 정보를 분리할 수 있다.\u003C/p>\\n\u003Cp>먼저 \u003Ccode>Logger\u003C/code> 인터페이스를 정의하고, request decorator를 나타내는 함수 타입과, 이에 관련된 비즈니스 로직 구조체를 만들어준다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-keyword\\\">type\u003C/span> RequestDecorator \u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(*http.Request)\u003C/span> *\u003Cspan class=\\\"hljs-title\\\">http\u003C/span>.\u003Cspan class=\\\"hljs-title\\\">Request\u003C/span>\u003C/span>\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">type\u003C/span> Logger \u003Cspan class=\\\"hljs-keyword\\\">interface\u003C/span> {\\n\\tLog(context.Context, \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\\n}\\n\\n\u003Cspan class=\\\"hljs-keyword\\\">type\u003C/span> BusinessLogic \u003Cspan class=\\\"hljs-keyword\\\">struct\u003C/span> {\\n\\tRequestDecorator RequestDecorator\\n\\tLogger           Logger\\n\\tRemote           \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>이제 비즈니스 로직을 구현해준다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">\u003Cspan class=\\\"hljs-function\\\">\u003Cspan class=\\\"hljs-keyword\\\">func\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(bl BusinessLogic)\u003C/span> \u003Cspan class=\\\"hljs-title\\\">businessLogic\u003C/span>\u003Cspan class=\\\"hljs-params\\\">(ctx context.Context, user \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, data \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>)\u003C/span> \u003Cspan class=\\\"hljs-params\\\">(\u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>, error)\u003C/span>\u003C/span> {\\n\\tbl.Logger.Log(ctx, fmt.Sprintf(\u003Cspan class=\\\"hljs-string\\\">\\\"starting businessLogic for %s with %s\\\"\u003C/span>, user, data))\\n\\treq, err := http.NewRequestWithContext(ctx, http.MethodGet, bl.Remote+\u003Cspan class=\\\"hljs-string\\\">\\\"?query=\\\"\u003C/span>+data, \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span>)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tbl.Logger.Log(ctx, fmt.Sprintf(\u003Cspan class=\\\"hljs-string\\\">\\\"error making remote request: %v\\\"\u003C/span>, err))\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span>, err\\n\\t}\\n\\n\\treq = bl.RequestDecorator(req)\\n\\tres, err := http.DefaultClient.Do(req)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tbl.Logger.Log(ctx, fmt.Sprintf(\u003Cspan class=\\\"hljs-string\\\">\\\"error making remote request: %v\\\"\u003C/span>, err))\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span>, err\\n\\t}\\n\\n\\tbody := res.Body\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">defer\u003C/span> body.Close()\\n\\tout, err := ioutil.ReadAll(body)\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">if\u003C/span> err != \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span> {\\n\\t\\tbl.Logger.Log(ctx, fmt.Sprintf(\u003Cspan class=\\\"hljs-string\\\">\\\"error making remote request: %v\\\"\u003C/span>, err))\\n\\t\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-string\\\">\\\"\\\"\u003C/span>, err\\n\\t}\\n\\n\\t\u003Cspan class=\\\"hljs-keyword\\\">return\u003C/span> \u003Cspan class=\\\"hljs-keyword\\\">string\u003C/span>(out), \u003Cspan class=\\\"hljs-literal\\\">nil\u003C/span>\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>GUID가 \u003Ccode>Logger\u003C/code>와 request decorator에게 전달되는 과정에서 비즈니스 로직은 이를 인식하지 못하며,\\n프로그램 로직에 필요한 데이터와 프로그램 관리에 필요한 데이터를 분리할 수 있다.\\n코드에서 연관성을 확인할 수 있는 유일한 부분은 바로 \u003Ccode>main()\u003C/code> 함수이다.\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"hljs language-go\\\">bl := BusinessLogic{\\n\\tRequestDecorator: tracker.Request,\\n\\tLogger:           tracker.Logger{},\\n\\tRemote:           \u003Cspan class=\\\"hljs-string\\\">\\\"http://www.example.com/query\\\"\u003C/span>,\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cbr>\\n\u003Cp>전체 코드는 \u003Ca href=\\\"https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/values\\\">여기\u003C/a>에서 확인할 수 있다.\u003C/p>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\\n\u003Ch2>References\u003C/h2>\\n\u003Chr>\\n\u003Ccenter>\\n\u003Cp>\u003Ca href=\\\"https://learning.oreilly.com/library/view/learning-go/9781492077206/\\\">\u003Cimg src=\\\"https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/\\\" alt=\\\"\\\">\u003C/a> \u003Cbr>\\n\u003Ca href=\\\"https://learning.oreilly.com/library/view/learning-go/9781492077206/\\\">Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.\u003C/a>\u003C/p>\\n\u003C/center>\\n\u003Cp>\u003Cbr>\u003Cbr>\u003C/p>\",\"mainCategory\":\"Golang\",\"subCategory\":\"Golang Basics\"}"}</script></div>
+    </body>
+</html>

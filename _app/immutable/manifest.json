@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-8c521313.js",
+    "file": "start-7c0cc2ad.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -15,13 +15,14 @@
       "src/routes/about.svelte",
       "src/routes/archive.svelte",
       "src/routes/index.svelte",
-      "src/routes/posts/[category]/[slug].svelte",
-      "src/routes/posts/[category]/index.svelte",
+      "src/routes/posts/[mainCategory]/[subCategory]/[slug].svelte",
+      "src/routes/posts/[mainCategory]/[subCategory]/index.svelte",
+      "src/routes/posts/[mainCategory]/index.svelte",
       "src/routes/posts/index.svelte"
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-f18685df.js",
+    "file": "pages/__layout.svelte-b969548a.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -32,7 +33,7 @@
       "_singletons-d1fb5791.js"
     ],
     "css": [
-      "assets/pages/__layout.svelte-1f847a0e.css"
+      "assets/pages/__layout.svelte-866c92ea.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
@@ -67,7 +68,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-2a3aaca2.js",
+    "file": "pages/index.svelte-f1b7b358.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -76,30 +77,46 @@
       "_paths-396f020f.js"
     ],
     "css": [
-      "assets/pages/index.svelte-4597ac79.css"
+      "assets/pages/index.svelte-571dbcff.css"
     ]
   },
-  "src/routes/posts/[category]/[slug].svelte": {
-    "file": "pages/posts/_category_/_slug_.svelte-b9e30e2c.js",
-    "src": "src/routes/posts/[category]/[slug].svelte",
+  "src/routes/posts/[mainCategory]/[subCategory]/[slug].svelte": {
+    "file": "pages/posts/_mainCategory_/_subCategory_/_slug_.svelte-0c17fdf6.js",
+    "src": "src/routes/posts/[mainCategory]/[subCategory]/[slug].svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-60cab3ee.js",
       "_index-f3b79873.js",
-      "_IconBase-0ff4bf3c.js",
-      "_paths-396f020f.js"
+      "_FaAngleRight-57d996e3.js",
+      "_paths-396f020f.js",
+      "_IconBase-0ff4bf3c.js"
     ],
     "dynamicImports": [
       "node_modules/@giscus/svelte/dist/index.es.js"
     ],
     "css": [
-      "assets/pages/posts/_category_/_slug_.svelte-41bc5db5.css"
+      "assets/pages/posts/_mainCategory_/_subCategory_/_slug_.svelte-1e6f5432.css"
     ]
   },
-  "src/routes/posts/[category]/index.svelte": {
-    "file": "pages/posts/_category_/index.svelte-40b3605f.js",
-    "src": "src/routes/posts/[category]/index.svelte",
+  "src/routes/posts/[mainCategory]/[subCategory]/index.svelte": {
+    "file": "pages/posts/_mainCategory_/_subCategory_/index.svelte-a21435b5.js",
+    "src": "src/routes/posts/[mainCategory]/[subCategory]/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f3b79873.js",
+      "_FaAngleRight-57d996e3.js",
+      "_paths-396f020f.js",
+      "_IconBase-0ff4bf3c.js"
+    ],
+    "css": [
+      "assets/pages/posts/_mainCategory_/_subCategory_/index.svelte-892f84b1.css"
+    ]
+  },
+  "src/routes/posts/[mainCategory]/index.svelte": {
+    "file": "pages/posts/_mainCategory_/index.svelte-7aa59b80.js",
+    "src": "src/routes/posts/[mainCategory]/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
@@ -107,11 +124,11 @@
       "_paths-396f020f.js"
     ],
     "css": [
-      "assets/pages/posts/_category_/index.svelte-f539ba68.css"
+      "assets/pages/posts/_mainCategory_/index.svelte-32bdb5ec.css"
     ]
   },
   "src/routes/posts/index.svelte": {
-    "file": "pages/posts/index.svelte-0b2b9256.js",
+    "file": "pages/posts/index.svelte-75de634d.js",
     "src": "src/routes/posts/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -120,7 +137,7 @@
       "_paths-396f020f.js"
     ],
     "css": [
-      "assets/pages/posts/index.svelte-2da9e721.css"
+      "assets/pages/posts/index.svelte-b7dad249.css"
     ]
   },
   "_index-f3b79873.js": {
@@ -142,6 +159,13 @@
     ],
     "css": [
       "assets/IconBase-05c40767.css"
+    ]
+  },
+  "_FaAngleRight-57d996e3.js": {
+    "file": "chunks/FaAngleRight-57d996e3.js",
+    "imports": [
+      "_index-f3b79873.js",
+      "_IconBase-0ff4bf3c.js"
     ]
   },
   "node_modules/@giscus/svelte/dist/index.es.js": {
