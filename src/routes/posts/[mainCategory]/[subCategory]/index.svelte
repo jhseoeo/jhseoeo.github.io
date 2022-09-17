@@ -1,39 +1,46 @@
 <script context="module">
   import { base } from "$app/paths";
+  import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
 
-  export async function load({ fetch }) {
-    const posts = await fetch(`${base}/index_json`).then((r) => r.json());
+  export async function load({ fetch, params }) {
+    const { mainCategory, subCategory } = params;
+    const posts = await fetch(
+      `${base}/posts/${mainCategory}/${subCategory}/posts_json`
+    ).then((r) => r.json());
 
     return {
-      props: posts,
+      props: { posts, mainCategory, subCategory },
     };
   }
 </script>
 
 <script>
-  export let posts;
+  export let posts, mainCategory, subCategory;
+  posts = posts.posts;
 </script>
 
-<svelte:head>
-  <title>Home</title>
-</svelte:head>
-
 <div class="wrapper">
-  <h1>Recent Posts</h1>
+  <h1>[{mainCategory}] {subCategory}</h1>
   <p class="info">{posts.length} posts</p>
+  <div>
+  <a class="backto" href={`${base}/posts/${mainCategory}`}>
+    {mainCategory}
+    <div class="ico">
+      <FaAngleRight />
+    </div>
+  </a>
   {#each posts as post}
     <div class="post">
       <a
         href={`${base}/posts/${post.mainCategory}/${post.subCategory}/${post.slug}`}
       >
-        <h2 class="title">
-          [{post.subCategory}] {post.metadata.title}
-        </h2>
+        <h2 class="title">{post.metadata.title}</h2>
       </a>
       <p class="date">{post.metadata.date}</p>
       <p class="content">{post.metadata.excerpt}</p>
     </div>
   {/each}
+</div>
 </div>
 
 <style>
@@ -54,10 +61,26 @@
 
   .info {
     align-self: end;
+    margin-bottom: 20px;
+  }
+
+  .ico {
+    width: 20px;
+    height: 20px;
+    margin-left: 0.2em;
+  }
+
+  .backto {
+    position: absolute;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    color: #888;
+    font-family: "Noto Sans KR", sans-serif;
   }
 
   .post {
-    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   h2.title {

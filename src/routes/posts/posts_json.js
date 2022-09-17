@@ -1,43 +1,48 @@
-import { process } from '$lib/markdown';
-import fs from 'fs';
-import dayjs from 'dayjs';
+import { process } from "$lib/markdown";
+import fs from "fs";
+import dayjs from "dayjs";
 
 export function get() {
-	let mdList = fs.readdirSync(`src/posts`).reduce((acc, cur) => {
-		let files = fs.readdirSync(`src/posts/${cur}`).map(v => {
-			return {
-				category: cur,
-				fileName: v
-			}
-		});
-		return [...acc, ...files];
-	}, []);
+    let posts = fs
+        .readdirSync(`src/posts`)
+        .reduce((allMainCategories, mainCategory) => {
+            allMainCategories[mainCategory] = fs
+                .readdirSync(`src/posts/${mainCategory}`)
+                .reduce((allSubCategories, subCategory) => {
+                    allSubCategories[subCategory] = fs
+                        .readdirSync(`src/posts/${mainCategory}/${subCategory}`)
+                        .filter((fileName) => /.+\.md$/.test(fileName))
+                        .map((fileName) => {
+                            const { metadata } = process(
+                                `src/posts/${mainCategory}/${subCategory}/${fileName}`
+                            );
+                            return {
+                                metadata,
+                                slug: fileName.slice(0, -3),
+                                mainCategory,
+                                subCategory,
+                            };
+                        });
+                    return allSubCategories;
+                }, {});
+            return allMainCategories;
+        }, {});
 
-	let posts = mdList
-			.filter(v => /.+\.md$/.test(v.fileName))
-			.map(v => {
-				const { metadata } = process(`src/posts/${v.category}/${v.fileName}`);
-				return {
-					metadata,
-					slug: v.fileName.slice(0, -3),
-					category: v.category
-				};
-			})
-			.reduce((acc, cur) => {
-				if(!(cur.category in acc)) acc[cur.category] = [];
-				const {metadata, slug} = cur;
-				acc[cur.category].push({ metadata, slug });
-				return acc;
-			}, {});
+    // sort the posts by create date.
+    Object.keys(posts).forEach((mainCategory) => {
+        Object.keys(posts[mainCategory]).forEach((subCategory) => {
+            posts[mainCategory][subCategory].sort(
+                (a, b) =>
+                    dayjs(b.metadata.date, "MMM D, YYYY") -
+                    dayjs(a.metadata.date, "MMM D, YYYY")
+            );
+        });
+    });
 
-	// sort the posts by create date.
-	Object.keys(posts).forEach(v => {
-		posts[v].sort((a, b) => (dayjs(b.metadata.date, "MMM D, YYYY") - dayjs(a.metadata.date, "MMM D, YYYY")));
-	})
+    let body = { posts };
+    console.log(body);
 
-	let body = {posts};
-
-	return {
-		body
-	}
+    return {
+        body,
+    };
 }

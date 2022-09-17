@@ -3,10 +3,10 @@
   import FaAngleRight from "svelte-icons/fa/FaAngleRight.svelte";
 
   export async function load({ params, fetch }) {
-    const { slug, category } = params;
-    const post = await fetch(`${base}/posts/${category}/${slug}_json`).then(
-      (r) => r.json()
-    );
+    const { slug, mainCategory, subCategory } = params;
+    const post = await fetch(
+      `${base}/posts/${mainCategory}/${subCategory}/${slug}_json`
+    ).then((r) => r.json());
     return {
       props: { post },
     };
@@ -27,8 +27,11 @@
 
 <span>
   <h1 class="title">{post.metadata.title}</h1>
-  <a class="backto" href={`${base}/posts/${post.category}`}>
-    {post.category}
+  <a
+    class="backto"
+    href={`${base}/posts/${post.mainCategory}/${post.subCategory}`}
+  >
+    {post.subCategory}
     <div class="ico">
       <FaAngleRight />
     </div>

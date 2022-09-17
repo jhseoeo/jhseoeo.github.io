@@ -21,17 +21,23 @@
 
 <div class="wrapper">
 	<h1>Categories</h1>
-	{#each Object.keys(posts) as post}
+	{#each Object.keys(posts) as mainCategory}
         <div class="category">
-            <a class="postname" href={`${base}/posts/${post}`}>{post}</a>
-            <ul> {#each posts[post] as content}
-                <li>
-                    <a href={`${base}/posts/${post}/${content.slug}`}>
-                        <span>{content.metadata.title}</span>
-                        <span class="date"> - {content.metadata.date}</span>
-                    </a>
-                </li>
-            {/each} </ul>
+            <a class="postname" href={`${base}/posts/${mainCategory}`}>{mainCategory}</a>
+
+            {#each Object.keys(posts[mainCategory]) as subCategory}
+            <details>
+                <summary>{subCategory}</summary>
+                <ul> {#each posts[mainCategory][subCategory] as content}
+                    <li>
+                        <a href={`${base}/posts/${mainCategory}/${subCategory}/${content.slug}`}>
+                            <span>{content.metadata.title}</span>
+                            <span class="date"> - {content.metadata.date}</span>
+                        </a>
+                    </li>
+                {/each} </ul>
+            </details>
+            {/each}
         </div>
 	{/each}
 </div>
@@ -54,6 +60,7 @@
 
     .category {
         margin: 1em;
+        font-size : 1.3em;
         padding: 1em;
         border-radius: 1em;
         background-color: #E5E5E5;
@@ -68,9 +75,12 @@
     .postname:hover {
 	    color: #AAA;
     }
+    
+    details {
+        margin: 0.25em
+    }
 
     ul {
-        
         margin: 0;
         margin-top: 0.5em;
     }
