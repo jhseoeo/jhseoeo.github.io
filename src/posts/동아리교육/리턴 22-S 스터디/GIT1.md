@@ -6,7 +6,7 @@ excerpt: 협업을 위한 Branching
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/5.jpg)  
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/5.jpg)  
 git 영상 안보고 왔으면 보고 오세요 눈물나려고 하기 전에
 
 </center>
@@ -15,7 +15,7 @@ git 영상 안보고 왔으면 보고 오세요 눈물나려고 하기 전에
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/1.png)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/1.png)
 
 </center>
 
@@ -65,7 +65,7 @@ master는 레포지토리를 생성할 때부터 만들어지는 브랜치로, �
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/2.PNG)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/2.PNG)
 
 </center>
 
@@ -84,7 +84,7 @@ git switch your-branch-name
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/3.PNG)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/3.PNG)
 
 </center>
 
@@ -208,7 +208,7 @@ ls
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/4.png)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/4.png)
 
 </center>
 
@@ -236,7 +236,7 @@ git push -u origin master
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/5.png)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/5.png)
 
 </center>
 
@@ -255,7 +255,7 @@ git push -u your-branch-name
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/6.PNG)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT1/6.PNG)
 
 </center>
 

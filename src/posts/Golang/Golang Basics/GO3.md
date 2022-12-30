@@ -239,7 +239,7 @@ zz: [30 40 70]
 
 <center>
 
-![](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang/GO3/1.jpg)
+![](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang/Golang%20Basics/GO3/1.jpg)
 
 </center>
 

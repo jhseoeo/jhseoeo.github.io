@@ -6,7 +6,7 @@ excerpt: 브랜치 병합
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/1.png)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/1.png)
 
 </center>
 
@@ -76,7 +76,7 @@ git commit -m "bye"
 
 <br>
 
-> ![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/2.png)
+> ![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/2.png)
 >
 > vim(vi improved)은 CLI상에서 텍스트를 편집할 수 있는 도구입니다. CLI상에서 간단한 파일 수정을 할 수 있다는 점이 유용합니다.
 >
@@ -108,7 +108,7 @@ git push
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/3.PNG)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/3.PNG)
 _이 사진이랑은 조금 다를 수도 있음요_
 
 </center>
@@ -174,7 +174,7 @@ git merge -m "your-merge-message" your-branch-name-2
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/4.PNG)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/4.PNG)
 
 </center>
 
@@ -226,7 +226,7 @@ git commit -m "your-merge-message"
 
 <center>
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/5.jpg)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/%EB%8F%99%EC%95%84%EB%A6%AC%EA%B5%90%EC%9C%A1/%EB%A6%AC%ED%84%B4%2022-S%20%EC%8A%A4%ED%84%B0%EB%94%94/GIT2/5.jpg)
 
 </center>
 
