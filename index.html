@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta http-equiv="content-security-policy" content="">
-	<link rel="modulepreload" href="/_app/immutable/start-b5b9e625.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/index-b1f18b80.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/paths-396f020f.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/preload-helper-60cab3ee.js">
-    </head>
-    <body>
-        <div id="svelte">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<meta http-equiv="content-security-policy" content="">
+		<link rel="modulepreload" href="/_app/immutable/start-85fcac3a.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/index-ff5f367a.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/singletons-c82454ce.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/control-f5b05b5f.js">
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet"> 
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte">
 		<script type="module" data-sveltekit-hydrate="45h">
-		import { start } from "/_app/immutable/start-b5b9e625.js";
-		start({
-			target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
-			paths: {"base":"","assets":""},
-			session: {},
-			route: true,
-			spa: true,
-			trailing_slash: "never",
-			hydrate: null
-		});
-	</script></div>
-    </body>
+			import { start } from "/_app/immutable/start-85fcac3a.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
+				version: "1674510345369"
+			});
+		</script></div>
+	</body>
 </html>

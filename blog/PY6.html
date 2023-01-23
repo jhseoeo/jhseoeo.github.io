@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<meta http-equiv="content-security-policy" content="">
+		<link href="../_app/immutable/assets/_layout-ddaa6272.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/start-85fcac3a.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index-ff5f367a.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-c82454ce.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/control-f5b05b5f.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/_layout.svelte-543d1f38.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/config-a035f9af.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.js-f4efb1d0.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-ad2a582b.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/blog/_post_/_page.svelte-1725535a.js"><title>6. Functional Programming</title><!-- HEAD_svelte-1apexcl_START --><meta data-key="description" name="description" content="함수형 프로그래밍"><meta property="og:type" content="article"><meta property="og:title" content="6. Functional Programming"><meta name="twitter:title" content="6. Functional Programming"><meta property="og:description" content="함수형 프로그래밍"><meta name="twitter:description" content="함수형 프로그래밍"><meta property="og:image:width" content="16"><meta property="og:image:height" content="9"><!-- HEAD_svelte-1apexcl_END -->
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet"> 
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte">
+
+
+
+
+
+
+<div class="layout"><header><a class="skip-to-content-link" href="#main">Skip to main content
+	</a>
+
+	<a href="/" class="site-title">집밥서선생</a>
+
+	<button aria-pressed="false" class="menu-button" tabindex="0"><span class="sr-only">Toggle hamburger menu</span>
+	<svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><rect x="0" y="12.48" width="128" height="18.688"></rect></g><g><rect x="0" y="96.832" width="128" height="18.688"></rect></g><g><rect x="0" y="54.656" width="128" height="18.688"></rect></g></svg></button>
+	
+<nav class="main-nav"><ul><li><a href="/blog" aria-current="page" class="active">Blog
+		</a></li><li><a href="/about" aria-current="false">About
+		</a></li><li><a href="/contact" aria-current="false">Contact
+		</a></li></ul>
+	<button aria-pressed="false" class="menu-button" tabindex="-1"><span class="sr-only">Toggle hamburger menu</span>
+	<svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M64,48.496l-48.496,-48.496l-15.504,15.504l48.496,48.496l-48.496,48.496l15.504,15.504l48.496,-48.496l48.496,48.496l15.504,-15.504l-48.496,-48.496l48.496,-48.496l-15.504,-15.504l-48.496,48.496Z"></path></svg></button></nav></header>
+	<main id="main" tabindex="-1">
+
+
+
+
+<article class="post">
+	<img class="cover-image" src="/images/jefferson-santos-fCEJGBzAkrU-unsplash.jpg" alt="" style="aspect-ratio: 16 / 9;" width="16" height="9">
+
+	<h1>6. Functional Programming</h1>
+
+	<div class="meta"><b>Published:</b>
+		2022-05-06T00:00:00.000Z</div>
+
+	<!-- HTML_TAG_START --><iframe width="800" height="500" src="https://www.youtube.com/embed/1jytWdelcs0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><br>
+<details markdown="1"><summary>예제 1 [Loop]</summary>
+<p>100 이하의 자연수 중, 일의 자리가 3이 아닌 소수(prime number)를 출력하는 프로그램을 작성하시오.<br></p>
+<p>츨력 예시</p>
+<pre class="language-python"><!-- HTML_TAG_START --><code class="language-python">    <span class="token number">2</span>
+    <span class="token number">5</span>
+    <span class="token number">7</span>
+    <span class="token number">11</span>
+    <span class="token number">17</span>
+    <span class="token number">19</span>
+    <span class="token number">29</span>
+    <span class="token number">31</span>
+    <span class="token number">37</span>
+    <span class="token number">41</span>
+    <span class="token number">47</span>
+    <span class="token number">59</span>
+    <span class="token number">61</span>
+    <span class="token number">67</span>
+    <span class="token number">71</span>
+    <span class="token number">79</span>
+    <span class="token number">89</span>
+    <span class="token number">97</span></code><!-- HTML_TAG_END --></pre></details>
+<br>
+<details markdown="1"><summary>예제 2 [Loop]</summary>
+<p>사용자로부터 자연수 n을 입력받아, 다음과 같이 오른쪽 대각선 행 아래의 요소가 모두 1인 n x n 삼각 행렬을 출력하는 프로그램을 작성하시오.<br></p>
+<p>입력 예시</p>
+<pre class="language-python"><!-- HTML_TAG_START --><code class="language-python">    <span class="token number">5</span>
+
+    <span class="token number">8</span></code><!-- HTML_TAG_END --></pre>
+<p>츨력 예시</p>
+<pre class="language-python"><!-- HTML_TAG_START --><code class="language-python">    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+
+    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">0</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span>
+    <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token number">1</span></code><!-- HTML_TAG_END --></pre></details>
+<br><!-- HTML_TAG_END -->
+
+	<aside class="post-footer"><h2>Posted in:</h2>
+			<ul><li><a href="/blog/category/동아리교육/">동아리교육</a>
+					</li></ul></aside></article></main>
+	<footer><nav><ul><li><a href="/api/rss.xml" data-sveltekit-reload>RSS</a></li>
+			<li><a href="/">Home</a></li></ul></nav>
+
+	<p>© 2023 JHSeo. All right reserved.</p></footer></div>
+
+
+		<script type="module" data-sveltekit-hydrate="78qp9s">
+			import { start } from "../_app/immutable/start-85fcac3a.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="78qp9s"]').parentNode,
+				version: "1674510345369",
+				hydrate: {
+					node_ids: [0, 5],
+					data: [null,{type:"data",data:{PostContent:"\u003Ciframe width=\"800\" height=\"500\" src=\"https:\u002F\u002Fwww.youtube.com\u002Fembed\u002F1jytWdelcs0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen\u003E\u003C\u002Fiframe\u003E\n\u003Cbr\u003E\u003Cbr\u003E\n\u003Cdetails markdown=\"1\"\u003E\u003Csummary\u003E예제 1 [Loop]\u003C\u002Fsummary\u003E\n\u003Cp\u003E100 이하의 자연수 중, 일의 자리가 3이 아닌 소수(prime number)를 출력하는 프로그램을 작성하시오.\u003Cbr\u003E\u003C\u002Fp\u003E\n\u003Cp\u003E츨력 예시\u003C\u002Fp\u003E\n\u003Cpre class=\"language-python\"\u003E\u003C!-- HTML_TAG_START --\u003E\u003Ccode class=\"language-python\"\u003E    \u003Cspan class=\"token number\"\u003E2\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E5\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E7\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E11\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E17\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E19\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E29\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E31\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E37\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E41\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E47\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E59\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E61\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E67\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E71\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E79\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E89\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E97\u003C\u002Fspan\u003E\u003C\u002Fcode\u003E\u003C!-- HTML_TAG_END --\u003E\u003C\u002Fpre\u003E\u003C\u002Fdetails\u003E\n\u003Cbr\u003E\n\u003Cdetails markdown=\"1\"\u003E\u003Csummary\u003E예제 2 [Loop]\u003C\u002Fsummary\u003E\n\u003Cp\u003E사용자로부터 자연수 n을 입력받아, 다음과 같이 오른쪽 대각선 행 아래의 요소가 모두 1인 n x n 삼각 행렬을 출력하는 프로그램을 작성하시오.\u003Cbr\u003E\u003C\u002Fp\u003E\n\u003Cp\u003E입력 예시\u003C\u002Fp\u003E\n\u003Cpre class=\"language-python\"\u003E\u003C!-- HTML_TAG_START --\u003E\u003Ccode class=\"language-python\"\u003E    \u003Cspan class=\"token number\"\u003E5\u003C\u002Fspan\u003E\n\n    \u003Cspan class=\"token number\"\u003E8\u003C\u002Fspan\u003E\u003C\u002Fcode\u003E\u003C!-- HTML_TAG_END --\u003E\u003C\u002Fpre\u003E\n\u003Cp\u003E츨력 예시\u003C\u002Fp\u003E\n\u003Cpre class=\"language-python\"\u003E\u003C!-- HTML_TAG_START --\u003E\u003Ccode class=\"language-python\"\u003E    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E0\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\n    \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E \u003Cspan class=\"token number\"\u003E1\u003C\u002Fspan\u003E\u003C\u002Fcode\u003E\u003C!-- HTML_TAG_END --\u003E\u003C\u002Fpre\u003E\u003C\u002Fdetails\u003E\n\u003Cbr\u003E",meta:{title:"6. Functional Programming",date:"2022-05-06T00:00:00.000Z",excerpt:"함수형 프로그래밍",categories:["동아리교육"],coverImage:"\u002Fimages\u002Fjefferson-santos-fCEJGBzAkrU-unsplash.jpg",coverWidth:16,coverHeight:9,slug:"PY6"}},uses:{params:["post"]}}],
+					form: null
+				}
+			});
+		</script>
+	</div>
+	</body>
+</html>
