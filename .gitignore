@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
-/.svelte
-/.svelte-kit
 /build
-/docs
-/functions
+/.svelte-kit
+/package
 package-lock.json
+/docs
+.env
