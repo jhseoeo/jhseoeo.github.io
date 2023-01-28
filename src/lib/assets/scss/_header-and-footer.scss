@@ -7,7 +7,7 @@ footer {
 
 	a {
 		text-decoration: none;
-
+		color: var(--white);
 		&.active {
 			font-weight: bold;
 		}
@@ -33,8 +33,8 @@ footer {
 }
 
 header {
-	background: var(--lightAccent);
-	color: var(--darker);
+	background: var(--darker);
+	color: var(--white);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -47,18 +47,17 @@ header {
 
 	.site-title {
 		font-family: var(--accentFont);
-		font-size: 2.1rem;
+		font-size: 2.5rem;
 		line-height: 1;
 		color: inherit;
 		text-align: center;
 		margin: 0;
 		display: block;
-		font-size: 1.4rem;
 		font-weight: bold;
 
 		@media (min-width: vars.$smMin) {
 			width: 100%;
-			font-size: 1.6rem;
+			font-size: 2.5rem;
 		}
 	}
 

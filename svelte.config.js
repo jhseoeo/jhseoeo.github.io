@@ -35,12 +35,12 @@ const config = {
 			entries: [
 				'*',
 				'/api/posts/page/*',
-				'/blog/category/*/page/',
-				'/blog/category/*/page/*',
-				'/blog/category/page/',
-				'/blog/category/page/*',
-				'/blog/page/',
-				'/blog/page/*'
+				'/posts/category/*/page/',
+				'/posts/category/*/page/*',
+				'/posts/category/page/',
+				'/posts/category/page/*',
+				'/posts/page/',
+				'/posts/page/*'
 			]
 		}
 	}
