@@ -21,11 +21,11 @@ export const navItems = [
 		route: '/posts'
 	},
 	{
-		title: 'About',
-		route: '/about'
+		title: 'Categories',
+		route: '/posts/category'
 	},
 	{
-		title: 'Contact',
-		route: '/contact'
+		title: 'About',
+		route: '/about'
 	}
 ];
