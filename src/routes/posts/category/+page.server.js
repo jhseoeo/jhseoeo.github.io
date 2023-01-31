@@ -3,7 +3,6 @@ export const load = async ({ url, fetch }) => {
 	let posts = await res.json();
 
 	let uniqueCategories = {};
-	console.log(posts[9]);
 
 	posts.forEach((post) => {
 		post.categories.forEach((category) => {

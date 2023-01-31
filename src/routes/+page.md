@@ -17,6 +17,7 @@ logo=CSS3&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&
 logo=javascript&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white" class="techstack-badge">
+<img src="https://img.shields.io/badge/express.js-%23000000.svg?logo=express&logoColor=white&style=for-the-badge" class="techstack-badge" />
 <img src="https://img.shields.io/badge/Svelte-FF3E00?style=for-the-badge&
 logo=Svelte&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white" class="techstack-badge">

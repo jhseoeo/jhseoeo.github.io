@@ -12,4 +12,4 @@
 📧 junhyuk0801@gmail.com
 
 <img src="./assets/github.svg" style="width: 1em;">
-https://github.com/junhyuk0801
+<a href="https://github.com/junhyuk0801">https://github.com/junhyuk0801</a>

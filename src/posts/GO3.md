@@ -154,7 +154,7 @@ fmt.Println(slice, len(slice), cap(slice))
 // append(slice, x...) => it occurs an error (append() returns an slice that the element is appended to.)
 ```
 
-이때 위 코드에서 `cap()`라는 함수를 사용된는 것을 확인할 수 있다.
+이때 위 코드에서 `cap()`라는 함수가 사용되는 것을 확인할 수 있다.
 Slice에는 요소들의 개수를 나타내는 *Length*뿐 아니라, **Capacity**라는 속성이 존재한다. 이는 요소들이 추가될 수 있는 전체 공간의 크기를 의미한다.
 `append()`로 변수 `slice`에 요소들을 추가할 때마다 Length가 증가하고, Length가 Capacity를 초과하려고 할 때마다 Capacity도 증가함을 확인할 수 있다.
 
@@ -244,7 +244,7 @@ zz: [30 40 70]
 
 <center>
 
-![](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang/Golang%20Basics/GO3/1.jpg)
+![](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO3/1.jpg)
 
 </center>
 
@@ -551,23 +551,23 @@ fmt.Println(john, kim, james, fred, beth)
 
 ```go
 var human struct { // anonymous structs
-		name string
-		age  int
-		pet  string
-	}
-	human.name = "Bob"
-	human.age = 24
-	human.pet = "dog"
+    name string
+    age  int
+    pet  string
+}
+human.name = "Bob"
+human.age = 24
+human.pet = "dog"
 
-	pet := struct { // directly initializing anonymous structs
-		name string
-		kind string
-	}{
-		name: "choco",
-		kind: "dog",
-	}
+pet := struct { // directly initializing anonymous structs
+    name string
+    kind string
+}{
+    name: "choco",
+    kind: "dog",
+}
 
-	fmt.Println(human, pet)
+fmt.Println(human, pet)
 ```
 
 위 코드는 익명 `struct` 변수를 선언하고, 또 선언과 동시에 초기화하는 예제이다.

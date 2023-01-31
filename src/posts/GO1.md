@@ -182,7 +182,7 @@ go vet ./..
 
 본인은 개발환경을 VSCode로 잡았는데, 당연히 Go 확장을 설치해주었다.
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang/Golang%20Basics/GO1/1.PNG)
+![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO1/1.PNG)
 
 <br>
 
