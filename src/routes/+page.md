@@ -26,6 +26,9 @@ logo=Svelte&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/Hadoop-66CCFF?style=for-the-badge&logo=ApacheHadoop&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/Spark-E25A1C?style=for-the-badge&logo=ApacheSpark&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white" class="techstack-badge">
+<img src="https://img.shields.io/badge/webrtc-333333?style=for-the-badge&logo=webrtc&logoColor=white" class="techstack-badge">
+<img src="https://img.shields.io/badge/bash-4EAA25?style=for-the-badge&logo=GNUBash
+&logoColor=white" class="techstack-badge">
 
 ### 📖 Interested in
 
@@ -43,7 +46,9 @@ logo=PostgreSQL&logoColor=white" class="techstack-badge">
 
 ---
 
+<img src="https://img.shields.io/badge/ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=VisualStudioCode&logoColor=white" class="techstack-badge">
+<img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white" class="techstack-badge">
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white" class="techstack-badge">
