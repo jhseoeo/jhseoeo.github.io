@@ -6,159 +6,165 @@
 <link>https://junhyuk0801.github.io</link>
 <atom:link href="https://junhyuk0801.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 <item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO13</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Networking/WebRTC/many to many signaling server</guid>
+<title>Golang으로 WebRTC Mesh Server 구현하기</title>
+<link>https://junhyuk0801.github.io/posts/post/Networking/WebRTC/many to many signaling server</link>
+<description>Golang을 통해 M:N WebRTC 시그널링 서버를 만들어보았습니다</description>
+<pubDate>Sat, 18 Feb 2023 00:00:00 GMT</pubDate>
+</item><item>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO13</guid>
 <title>테스트 작성</title>
-<link>https://junhyuk0801.github.io/posts/GO13</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO13</link>
 <description>Writing Tests</description>
 <pubDate>Mon, 06 Feb 2023 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/webrtc</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Networking/WebRTC/webrtc</guid>
 <title>WebRTC에 관하여 정리해보았다</title>
-<link>https://junhyuk0801.github.io/posts/webrtc</link>
+<link>https://junhyuk0801.github.io/posts/post/Networking/WebRTC/webrtc</link>
 <description>교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다</description>
 <pubDate>Sun, 22 Jan 2023 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/AWS Kinesis Video Streaming</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Cloud/AWS/AWS Kinesis Video Streaming</guid>
 <title>Amazon KVS WebRTC signaling channels 사용기</title>
-<link>https://junhyuk0801.github.io/posts/AWS Kinesis Video Streaming</link>
+<link>https://junhyuk0801.github.io/posts/post/Cloud/AWS/AWS Kinesis Video Streaming</link>
 <description>Amazon KVS WebRTC signaling channel에 대해 알아보자</description>
 <pubDate>Sun, 01 Jan 2023 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO12</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO12</guid>
 <title>컨텍스트</title>
-<link>https://junhyuk0801.github.io/posts/GO12</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO12</link>
 <description>The Context</description>
 <pubDate>Fri, 09 Sep 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO11</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO11</guid>
 <title>표준 라이브러리</title>
-<link>https://junhyuk0801.github.io/posts/GO11</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO11</link>
 <description>The Standard Library</description>
 <pubDate>Mon, 05 Sep 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO10</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO10</guid>
 <title>Go의 동시성</title>
-<link>https://junhyuk0801.github.io/posts/GO10</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO10</link>
 <description>Concurrency in Go</description>
 <pubDate>Tue, 30 Aug 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO9</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO9</guid>
 <title>모듈, 패키지, 임포트</title>
-<link>https://junhyuk0801.github.io/posts/GO9</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO9</link>
 <description>Modules, Packages, Imports</description>
 <pubDate>Wed, 24 Aug 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO8</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO8</guid>
 <title>에러 처리</title>
-<link>https://junhyuk0801.github.io/posts/GO8</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO8</link>
 <description>Errors</description>
 <pubDate>Fri, 19 Aug 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO7</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO7</guid>
 <title>타입, 메소드, 인터페이스</title>
-<link>https://junhyuk0801.github.io/posts/GO7</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO7</link>
 <description>Types, Methods, Interfaces</description>
 <pubDate>Thu, 11 Aug 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO6</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO6</guid>
 <title>포인터</title>
-<link>https://junhyuk0801.github.io/posts/GO6</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO6</link>
 <description>Pointer</description>
 <pubDate>Sun, 07 Aug 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO5</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO5</guid>
 <title>함수</title>
-<link>https://junhyuk0801.github.io/posts/GO5</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO5</link>
 <description>Functions</description>
 <pubDate>Sun, 31 Jul 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO4</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO4</guid>
 <title>블록, Shadowing, 흐름 제어문</title>
-<link>https://junhyuk0801.github.io/posts/GO4</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO4</link>
 <description>Blocks, Shadows, and Control Structures</description>
 <pubDate>Wed, 27 Jul 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO3</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO3</guid>
 <title>복합 타입</title>
-<link>https://junhyuk0801.github.io/posts/GO3</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO3</link>
 <description>Composite Types</description>
 <pubDate>Sat, 23 Jul 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO2</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO2</guid>
 <title>변수와 원시 타입</title>
-<link>https://junhyuk0801.github.io/posts/GO2</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO2</link>
 <description>Primitive Types and Variable Declaration</description>
 <pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GO1</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO1</guid>
 <title>개발환경설정</title>
-<link>https://junhyuk0801.github.io/posts/GO1</link>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO1</link>
 <description>Setting up Golang development environment</description>
 <pubDate>Tue, 19 Jul 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GIT2</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/GIT/GIT2</guid>
 <title>Merge Branch</title>
-<link>https://junhyuk0801.github.io/posts/GIT2</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/GIT/GIT2</link>
 <description>브랜치 병합</description>
 <pubDate>Thu, 30 Jun 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/GIT1</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/GIT/GIT1</guid>
 <title>Git Branch</title>
-<link>https://junhyuk0801.github.io/posts/GIT1</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/GIT/GIT1</link>
 <description>협업을 위한 Branching</description>
 <pubDate>Tue, 28 Jun 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY8</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY8</guid>
 <title>8. Error Handling</title>
-<link>https://junhyuk0801.github.io/posts/PY8</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY8</link>
 <description>에러 처리</description>
 <pubDate>Wed, 01 Jun 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY7</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY7</guid>
 <title>7. Network Communication</title>
-<link>https://junhyuk0801.github.io/posts/PY7</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY7</link>
 <description>Socket을 통한 네트워크 통신</description>
 <pubDate>Fri, 13 May 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY6</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY6</guid>
 <title>6. Functional Programming</title>
-<link>https://junhyuk0801.github.io/posts/PY6</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY6</link>
 <description>함수형 프로그래밍</description>
 <pubDate>Fri, 06 May 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY5</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY5</guid>
 <title>5. Thread</title>
-<link>https://junhyuk0801.github.io/posts/PY5</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY5</link>
 <description>Multiprogramming by multithreading</description>
 <pubDate>Fri, 08 Apr 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY4</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY4</guid>
 <title>4. GUI Programming</title>
-<link>https://junhyuk0801.github.io/posts/PY4</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY4</link>
 <description>implement GUI with tkinter</description>
 <pubDate>Fri, 01 Apr 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY3</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY3</guid>
 <title>3. Callback, Lambda function, Recursion</title>
-<link>https://junhyuk0801.github.io/posts/PY3</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY3</link>
 <description>Callback, Lambda function, Recursion</description>
 <pubDate>Sat, 26 Mar 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY2</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY2</guid>
 <title>2. git2</title>
-<link>https://junhyuk0801.github.io/posts/PY2</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY2</link>
 <description>git 명령어, Docstring</description>
 <pubDate>Thu, 17 Mar 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY1</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY1</guid>
 <title>1. git1</title>
-<link>https://junhyuk0801.github.io/posts/PY1</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY1</link>
 <description>git 개요</description>
 <pubDate>Thu, 10 Mar 2022 00:00:00 GMT</pubDate>
 </item><item>
-<guid isPermaLink="true">https://junhyuk0801.github.io/posts/PY0</guid>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY0</guid>
 <title>0. Introduction</title>
-<link>https://junhyuk0801.github.io/posts/PY0</link>
+<link>https://junhyuk0801.github.io/posts/post/동아리교육/Python/PY0</link>
 <description>강의계획, 개발환경 설정</description>
 <pubDate>Wed, 02 Mar 2022 00:00:00 GMT</pubDate>
 </item>
