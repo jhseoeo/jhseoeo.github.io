@@ -244,7 +244,7 @@ zz: [30 40 70]
 
 <center>
 
-![](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO3/1.jpg)
+![pepe question](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO3/1.jpg)
 
 </center>
 
@@ -659,7 +659,7 @@ fmt.Println(g == f1)
 
 <center>
 
-[![](https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/)](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br>
+[![Learning Go Book Cover](https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/)](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br>
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)
 
 </center>

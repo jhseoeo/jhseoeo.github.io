@@ -1285,13 +1285,13 @@ Go라는 언어를 특정 스타일로 구분짓기는 어렵다.
 
 <center>
 
-[![](https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/)](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br>
+[![Learning Go Book Cover](https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/)](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br>
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)
 
 </center>
 
 <br>
- 
+
 이번 포스트는 의역이 너무 많아용
 
 원문 참조하시는 게 좋을듯함
