@@ -6,7 +6,7 @@
 	{#each posts as post}
 		<li>
 			<article>
-				<a href="/posts/{post.slug}">
+				<a href="/posts/post/{post.slug}">
 					<img
 						src={post.coverImage}
 						alt=""

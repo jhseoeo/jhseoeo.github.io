@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit';
 
 export const load = async () => {
-	throw redirect(301, `/posts/category`);
+	throw redirect(301, `/category`);
 };

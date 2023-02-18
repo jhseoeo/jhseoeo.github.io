@@ -14,9 +14,9 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={excerpt} />
-	<!-- <meta property="og:image" content="https://yourdomain.com/image_path" /> -->
+	<!-- <meta property="og:image" content="https://yourdomain.com/image_path" />
 	<meta property="og:image:width" content={coverWidth} />
-	<meta property="og:image:height" content={coverHeight} />
+	<meta property="og:image:height" content={coverHeight} /> -->
 </svelte:head>
 
 <article class="post">
@@ -45,7 +45,7 @@
 			<ul>
 				{#each categories as category}
 					<li>
-						<a href="/posts/category/{category}/">
+						<a href="/category/{category}/">
 							{category}
 						</a>
 					</li>

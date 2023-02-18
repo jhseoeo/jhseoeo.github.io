@@ -20,7 +20,7 @@
 
 {#if posts.length}
 	<PostsList {posts} />
-	<Pagination currentPage={page} totalPosts={total} path="/posts/category/{category}/page" />
+	<Pagination currentPage={page} totalPosts={total} path="/category/{category}/page" />
 {:else}
 	<p><strong>Ope!</strong> Sorry, couldn't find any posts in the category "{category}".</p>
 
