@@ -5,9 +5,9 @@ export const prerender = true;
 
 export const GET = async () => {
 	const data = await Promise.all(
-		Object.entries(import.meta.glob('../../../posts/**/**/*.md')).map(async ([path, page]) => {
+		Object.entries(import.meta.glob('/src/posts/**/*.md')).map(async ([path, page]) => {
 			const { metadata } = await page();
-			const slug = path.split('/').pop().split('.').shift();
+			const slug = path.replace('/src/posts/', '').replace('.md', '');
 			return { ...metadata, slug };
 		})
 	).then((posts) => {
@@ -36,9 +36,9 @@ const render = (posts) => `<?xml version="1.0" encoding="UTF-8" ?>
 ${posts
 	.map(
 		(post) => `<item>
-<guid isPermaLink="true">https://${siteURL}/posts/${post.slug}</guid>
+<guid isPermaLink="true">https://${siteURL}/posts/post/${post.slug}</guid>
 <title>${post.title}</title>
-<link>https://${siteURL}/posts/${post.slug}</link>
+<link>https://${siteURL}/posts/post/${post.slug}</link>
 <description>${post.excerpt}</description>
 <pubDate>${new Date(post.date).toUTCString()}</pubDate>
 </item>`
