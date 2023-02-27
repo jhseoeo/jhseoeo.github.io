@@ -7,6 +7,10 @@
     <priority>0.3</priority>
 </url>
 <url>
+    <loc>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO14</loc>
+    <lastmod>2023-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+</url>,<url>
     <loc>https://junhyuk0801.github.io/posts/post/Networking/WebRTC/many to many signaling server</loc>
     <lastmod>2023-02-18</lastmod>
     <changefreq>weekly</changefreq>

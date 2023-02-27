@@ -6,6 +6,12 @@
 <link>https://junhyuk0801.github.io</link>
 <atom:link href="https://junhyuk0801.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 <item>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO14</guid>
+<title>Reflect, Unsafe, Cgo</title>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO14</link>
+<description>'Learning Go'를 읽고, Go의 런타입 타입 확인을 위한 Reflect, 에 대해 정리해보았습니다</description>
+<pubDate>Tue, 21 Feb 2023 00:00:00 GMT</pubDate>
+</item><item>
 <guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Networking/WebRTC/many to many signaling server</guid>
 <title>Golang으로 WebRTC Mesh Server 구현하기</title>
 <link>https://junhyuk0801.github.io/posts/post/Networking/WebRTC/many to many signaling server</link>
