@@ -1,5 +1,6 @@
 <script>
 	import MainNav from './MainNav.svelte';
+	import DarkModeToggle from './DarkModeToggle.svelte';
 	import HamburgerMenuButton from './HamburgerMenuButton.svelte';
 	import { siteTitle } from '$lib/config';
 
@@ -14,10 +15,12 @@
 		Skip to main content
 	</a>
 
+	<MainNav />
+	<HamburgerMenuButton />
+
 	<a href="/" class="site-title">
 		{siteTitle}
 	</a>
 
-	<HamburgerMenuButton />
-	<MainNav />
+	<DarkModeToggle />
 </header>

@@ -1,0 +1,4 @@
+/static/favicon.png merge=ours
+/static/post_img/* merge=ours
+/static/assets/* merge=ours
+/src/posts/* merge=ours

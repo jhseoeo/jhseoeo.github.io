@@ -6,6 +6,7 @@ code {
 }
 
 pre {
+	max-width: calc(100vw - 3em - 10px);
 	overflow-y: auto;
 	color: var(--paper);
 	background: var(--darker);
