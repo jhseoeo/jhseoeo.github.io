@@ -2,3 +2,7 @@
 /static/post_img/* merge=ours
 /static/assets/* merge=ours
 /src/posts/* merge=ours
+/src/routes/about/+page.* merge=ours
+/src/routes/+page.* merge=ours
+/src/lib/config.js merge=ours
+.gitattributes merge=ours
