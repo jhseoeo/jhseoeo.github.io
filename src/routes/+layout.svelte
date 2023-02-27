@@ -61,10 +61,12 @@
 -->
 <div class="layout" class:open={$isMenuOpen}>
 	<Header />
-	{#key data.path}
-		<main id="main" tabindex="-1" in:fade={transitionIn} out:fade={transitionOut}>
-			<slot />
-		</main>
-	{/key}
-	<Footer />
+	<main id="main" tabindex="-1">
+		{#key data.path}
+			<div class="content" in:fade={transitionIn} out:fade={transitionOut}>
+				<slot />
+			</div>
+		{/key}
+		<Footer />
+	</main>
 </div>

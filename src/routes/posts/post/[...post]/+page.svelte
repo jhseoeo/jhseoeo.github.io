@@ -1,6 +1,7 @@
 <!-- This file renders each individual blog post for reading. Be sure to update the svelte:head below -->
 <script>
 	import Giscus from '@giscus/svelte';
+	import { colorTheme } from '$lib/assets/js/store';
 
 	export let data;
 
@@ -66,7 +67,7 @@
 	reactionsEnabled="1"
 	emitMetadata="0"
 	inputPosition="bottom"
-	theme="light"
+	theme={$colorTheme}
 	lang="ko"
 	crossorigin="anonymous"
 	async
