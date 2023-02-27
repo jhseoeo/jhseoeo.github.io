@@ -1,4 +1,5 @@
 <script>
+	import DarkModeToggle from './DarkModeToggle.svelte';
 	import { navItems } from '$lib/config';
 	import { isMenuOpen } from '$lib/assets/js/store';
 	import NavItem from './NavItem.svelte';
@@ -15,4 +16,5 @@
 		{/each}
 	</ul>
 	<HamburgerMenuButton closeOnly="true" />
+	<DarkModeToggle />
 </nav>

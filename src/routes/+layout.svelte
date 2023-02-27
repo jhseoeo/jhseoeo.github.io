@@ -1,9 +1,10 @@
 <!-- This is the global layout file; it "wraps" every page on the site. (Or more accurately: is the parent component to every page component on the site.) -->
 <script>
+	import { browser } from '$app/environment';
 	import '$lib/assets/scss/global.scss';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import { currentPage, isMenuOpen } from '$lib/assets/js/store';
+	import { currentPage, isMenuOpen, colorTheme } from '$lib/assets/js/store';
 	import { navItems } from '$lib/config';
 	import { preloadCode } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -28,6 +29,25 @@
 	 * Any route added in src/lib/config.js will be preloaded automatically. You can add your
 	 * own preloadData() calls here, too.
 	 **/
+
+	if (browser) {
+		const isUserColorTheme = localStorage.getItem('color-theme');
+		const isOsColorTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+			? 'dark'
+			: 'light';
+
+		const getUserTheme = () => (isUserColorTheme ? isUserColorTheme : isOsColorTheme);
+
+		if (getUserTheme() === 'dark') {
+			localStorage.setItem('color-theme', 'dark');
+			document.documentElement.setAttribute('color-theme', 'dark');
+			colorTheme.set('dark');
+		} else {
+			localStorage.setItem('color-theme', 'light');
+			document.documentElement.setAttribute('color-theme', 'light');
+			colorTheme.set('light');
+		}
+	}
 
 	onMount(() => {
 		const navRoutes = navItems.map((item) => item.route);
