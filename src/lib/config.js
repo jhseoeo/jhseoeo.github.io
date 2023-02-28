@@ -5,11 +5,11 @@
  * PLEASE BE SURE TO UPDATE THEM ALL! Thank you!
  **/
 
-export const siteTitle = '집밥서선생';
-export const siteDescription = '개발블로그';
-export const siteURL = 'junhyuk0801.github.io';
-export const siteLink = 'https://junhyuk0801.github.io';
-export const siteAuthor = 'JHSeo';
+export const siteTitle = 'YOUR BLOG TITLE';
+export const siteDescription = 'YOUR BLOG DESCRIPTION';
+export const siteURL = 'YOURNAME.github.io';
+export const siteLink = 'https://YOURNAME.github.io';
+export const siteAuthor = 'YOUR NAME';
 
 // Controls how many posts are shown per page on the main blog index pages
 export const postsPerPage = 15;
@@ -32,10 +32,10 @@ export const navItems = [
 
 export const giscusConfig = {
 	activate: true,
-	repo: 'junhyuk0801/junhyuk0801.github.io',
-	repoId: 'R_kgDOHiaB9w',
-	category: 'Announcements',
-	categoryId: 'DIC_kwDOHiaB984CP9gC',
+	repo: 'YOUR_REPO',
+	repoId: 'YOUR_REPO_ID',
+	category: 'YOUR_CATEGORY',
+	categoryId: 'YOUR_CATEGORY_ID',
 	mapping: 'url',
 	lang: 'ko'
 };
