@@ -29,3 +29,13 @@ export const navItems = [
 		route: '/about'
 	}
 ];
+
+export const giscusConfig = {
+	activate: true,
+	repo: 'junhyuk0801/junhyuk0801.github.io',
+	repoId: 'R_kgDOHiaB9w',
+	category: 'Announcements',
+	categoryId: 'DIC_kwDOHiaB984CP9gC',
+	mapping: 'url',
+	lang: 'ko'
+};
