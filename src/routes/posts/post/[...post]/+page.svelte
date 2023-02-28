@@ -2,6 +2,7 @@
 <script>
 	import Giscus from '@giscus/svelte';
 	import { colorTheme } from '$lib/assets/js/store';
+	import { giscusConfig } from '$lib/config';
 
 	export let data;
 
@@ -35,7 +36,7 @@
 
 	<div class="meta">
 		<b>Published:</b>
-		{date}
+		{date.slice(0, 10)}
 	</div>
 
 	{@html data.PostContent}
@@ -56,19 +57,21 @@
 	{/if}
 </article>
 
-<Giscus
-	src="https://giscus.app/client.js"
-	repo="junhyuk0801/junhyuk0801.github.io"
-	repoId="R_kgDOHiaB9w"
-	category="Announcements"
-	categoryId="DIC_kwDOHiaB984CP9gC"
-	mapping="url"
-	strict="0"
-	reactionsEnabled="1"
-	emitMetadata="0"
-	inputPosition="bottom"
-	theme={$colorTheme}
-	lang="ko"
-	crossorigin="anonymous"
-	async
-/>
+{#if giscusConfig.activate}
+	<Giscus
+		src="https://giscus.app/client.js"
+		repo={giscusConfig.repo}
+		repoId={giscusConfig.repoId}
+		category={giscusConfig.category}
+		categoryId={giscusConfig.categoryId}
+		mapping={giscusConfig.mapping}
+		strict="0"
+		reactionsEnabled="1"
+		emitMetadata="0"
+		inputPosition="bottom"
+		theme={$colorTheme}
+		lang={giscusConfig.lang}
+		crossorigin="anonymous"
+		async
+	/>
+{/if}

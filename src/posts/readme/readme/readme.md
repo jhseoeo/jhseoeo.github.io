@@ -1,3 +1,16 @@
+---
+title: 'README'
+date: '2023-02-28'
+categories:
+  - 'sveltekit'
+  - 'markdown'
+  - 'svelte'
+coverImage: '/images/jerry-zhang-ePpaQC2c1xA-unsplash.jpg'
+coverWidth: 16
+coverHeight: 9
+excerpt: 블로그를 처음 실행하였다면 봐야 할 README!
+---
+
 <div id="top"></div>
 
 <br />
