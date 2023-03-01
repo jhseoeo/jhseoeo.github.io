@@ -43,6 +43,15 @@ hr {
 	border: 1px solid var(--normalAccent);
 }
 
+blockquote {
+	border-left: 3px solid var(--accent);
+	margin: 1em 0.5em 1em 0.5em;
+	padding: 0 1em 0 1em;
+
+	background-color: var(--lighterAccent);
+	border-radius: 5px;
+}
+
 .post {
 	margin-bottom: 100px;
 
@@ -62,6 +71,33 @@ hr {
 
 li {
 	margin-bottom: 0.25rem;
+}
+
+table {
+	border-collapse: collapse;
+	td,
+	th {
+		padding: 0.5rem;
+	}
+
+	thead {
+		th {
+			background-color: var(--dark);
+			color: var(--background);
+			font-weight: bold;
+			border: 1px solid var(--darker);
+		}
+	}
+
+	tbody {
+		td {
+			border: 1px solid var(--darker);
+		}
+
+		tr {
+			background-color: var(--background);
+		}
+	}
 }
 
 .posts-list {

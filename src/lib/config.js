@@ -27,6 +27,14 @@ export const navItems = [
 	{
 		title: 'About',
 		route: '/about'
+	},
+	{
+		title: 'RSS',
+		route: '/api/rss.xml'
+	},
+	{
+		title: 'Home',
+		route: '/#'
 	}
 ];
 
