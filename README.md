@@ -11,8 +11,6 @@
 
 ## About The Project
 
----
-
 [josh-collinsworth님의 sveltekit-blog-starter](https://github.com/josh-collinsworth/sveltekit-blog-starter)를 일부 수정하여 제작한 블로그 탬플릿입니다.  
 Markdown으로 포스트를 작성할 수 있습니다.  
 배포된 블로그는 <https://junhyuk0801.github.io/>에서 확인할 수 있습니다.
@@ -46,8 +44,6 @@ Markdown으로 포스트를 작성할 수 있습니다.
 <br>
 
 ## Getting Started
-
----
 
 ### 1. Clone Project
 
