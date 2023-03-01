@@ -6,6 +6,12 @@
 <link>https://junhyuk0801.github.io</link>
 <atom:link href="https://junhyuk0801.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 <item>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Cloud/AWS/RDS</guid>
+<title>RDS로 Postgresql 인스턴스 설정 과정</title>
+<link>https://junhyuk0801.github.io/posts/post/Cloud/AWS/RDS</link>
+<description>RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다</description>
+<pubDate>Tue, 28 Feb 2023 00:00:00 GMT</pubDate>
+</item><item>
 <guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO14</guid>
 <title>Reflect, Unsafe, Cgo</title>
 <link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO14</link>
