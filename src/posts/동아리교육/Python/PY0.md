@@ -4,7 +4,7 @@ date: 2022-03-02
 excerpt: 강의계획, 개발환경 설정
 categories:
   - '동아리교육'
-coverImage: '/post_img/22-1_return_python/cover.png'
+coverImage: '/post_img/동아리교육/22-1_return_python/cover.png'
 coverWidth: 16
 coverHeight: 9
 ---

@@ -4,7 +4,7 @@ date: 2022-05-13
 excerpt: Socket을 통한 네트워크 통신
 categories:
   - '동아리교육'
-coverImage: '/post_img/22-1_return_python/cover.png'
+coverImage: '/post_img/동아리교육/22-1_return_python/cover.png'
 coverWidth: 16
 coverHeight: 9
 ---

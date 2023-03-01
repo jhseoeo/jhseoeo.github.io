@@ -4,7 +4,7 @@ date: 2022-03-10
 excerpt: git 개요
 categories:
   - '동아리교육'
-coverImage: '/post_img/22-1_return_python/cover.png'
+coverImage: '/post_img/동아리교육/22-1_return_python/cover.png'
 coverWidth: 16
 coverHeight: 9
 ---

@@ -6,7 +6,7 @@ categories:
   - 'AWS'
   - 'AWS Kinesis Video Stream'
   - 'WebRTC'
-coverImage: '/post_img/AWS_KVS_webrtc_signaling_channel/cover.png'
+coverImage: '/post_img/Cloud/AWS_KVS_webrtc_signaling_channel/cover.png'
 coverWidth: 16
 coverHeight: 9
 ---

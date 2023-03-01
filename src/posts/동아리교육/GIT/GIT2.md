@@ -5,7 +5,7 @@ excerpt: 브랜치 병합
 categories:
   - '동아리교육'
   - 'git'
-coverImage: '/post_img/22-s_return_git/cover.jpeg'
+coverImage: '/post_img/동아리교육/22-s_return_git/cover.jpeg'
 coverWidth: 16
 coverHeight: 9
 ---

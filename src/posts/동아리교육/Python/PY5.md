@@ -4,7 +4,7 @@ date: 2022-04-08
 excerpt: Multiprogramming by multithreading
 categories:
   - '동아리교육'
-coverImage: '/post_img/22-1_return_python/cover.png'
+coverImage: '/post_img/동아리교육/22-1_return_python/cover.png'
 coverWidth: 16
 coverHeight: 9
 ---

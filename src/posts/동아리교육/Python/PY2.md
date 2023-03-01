@@ -4,7 +4,7 @@ date: 2022-03-17
 excerpt: git 명령어, Docstring
 categories:
   - '동아리교육'
-coverImage: '/post_img/22-1_return_python/cover.png'
+coverImage: '/post_img/동아리교육/22-1_return_python/cover.png'
 coverWidth: 16
 coverHeight: 9
 ---
