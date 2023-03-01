@@ -13,6 +13,8 @@ coverHeight: 9
 
 Golang으로 하는 첫 프로젝트로, WebRTC many-to-many 시그널링 서버를 만들게 되었다.
 
+<br><br>
+
 ## Basic 1:1 Signaling
 
 우선 가장 기본적인 예제인, 1:1 연결 시그널링 서버의 예제부터 구현하였다. 1:1 시그널링 서버는 언어를 막론하고 예제가 많이 존재한다.
@@ -187,14 +189,11 @@ func main() {
 
 ## Many-to-Many Mesh Server
 
-코드를 보면서 설명하는 게 빠를 듯 하다.
-
-일단 `main.go`의 변경사항이다.
+`main.go`의 변경사항이다.
 
 ```go
 func main() {
-	clientDataStore := MakeClientDataStore()
-	hub := CreateHub(clientDataStore)
+	hub := CreateHub()
 
 	...
 
@@ -211,7 +210,7 @@ func main() {
 }
 ```
 
-우선, 이전에 전역변수로 선언되던 `clients`를 로컬변수로 선언하여 `Hub`를 생성할 때 전달하도록 하였다.
+우선, 이전에 전역변수로 선언되던 `clients`는 각 세션별로 존재하며, 각 세션은 `Hub`에서 만들어진다.  
 또한 클라이언트별 웹소켓 루프를 별도의 함수로 지정하였다.
 
 <br>
@@ -220,29 +219,23 @@ func main() {
 
 ```go
 // Websocket Session Loop for each client
-func WebsocketConnectionLoop(cds *ClientDataStore, hub *MessageHub, conn *ws.Conn) {
+func WebsocketConnectionLoop(hub *MessageHub, conn *ws.Conn) {
 	session := SessionName(conn.Params("session"))
-	joinMessage, uuid, err := getUUID(conn)
+
+	uuid, err := getUUID(conn)
 	if err != nil {
-		fmt.Println("an error occured getting uuid:", err)
+		fmt.Println("an error occurred getting uuid:", err)
 		conn.Close()
 	}
 
 	fmt.Printf("user %s joined on %s\n", uuid, session)
-	hub.SendBroadcastMessage(session, uuid, joinMessage) // broadcast current users uuid
 
-	client := Client{conn: conn}
+	client := Client{Conn: conn}
 	hub.RegisterUser(session, uuid, client) // add current user's information to users list
 
-	err = sendUserList(cds, conn, session) // send users list to user
-	if err != nil {
-		fmt.Println("an error occured sending user list:", err)
-		conn.Close()
-	}
-
 	defer func() { // when user leaves
-		hub.SendBroadcastMessage(session, uuid, createLeaveMessage(uuid)) // broadcast current users uuid
-		hub.UnregisterUser(session, uuid, client)                         // delete current user's information from users list
+		fmt.Printf("user %s leaved from %s\n", uuid, session)
+		hub.UnregisterUser(session, uuid, client) // delete current user's information from users list
 		conn.Close()
 	}()
 
@@ -262,42 +255,41 @@ func WebsocketConnectionLoop(cds *ClientDataStore, hub *MessageHub, conn *ws.Con
 }
 ```
 
-클라이언트가 접속하면 자신의 UUID를 보낸다. 이 메시지는 동일한 세션 내의 다른 모든 유저들에게 브로드캐스트되며, 접속한 클라이언트에게는 해당 세션에 속한 다른 모든 클라이언트들의 UUID 목록을 보내준다. 클라이언트는 UUID 목록을 통해 각 유저별 WebRTC 연결을 생성한다.
+클라이언트가 접속하면 자신의 UUID를 보낸다. 클라이언트가 접속한 세션 정보와 이 UUID 정보를 바탕으로 `RegisterUser()` 메소드를 호출하면 클라이언트가 세션에 등록된다. 클라이언트가 접속을 종료할 때는 `UnregisterUser()`를 호출하여 유저의 퇴장을 처리한다.
 
-접속을 종료할 때도 클라이언트가 세션을 나간다는 메시지가 남아 있는 유저들에게 브로드캐스트된다.
-
-이러한 handshaking 과정을 거친 후, ICE나 SDP 등 시그널링 메시지를 처리하는 단계로 진입한다. `SendSignallingMessage()` 메소드를 통해 UUID로 구분하여 특정 대상에게 시그널링 메시지를 전달할 수 있다.
+이후, ICE나 SDP 등 시그널링 메시지를 처리하는 단계로 진입한다. `SendSignallingMessage()` 메소드를 통해 UUID로 구분하여 특정 대상에게 시그널링 메시지를 전달할 수 있다.
 
 <br>
 
-다음으로, `ClientDataStore`에 대해 살펴보자.
+다음으로, `SessionDataStore`에 대해 살펴보자.
 
 ```go
 // Client struct type. you can add any data here
+// Client struct type. you can add any data here
 type Client struct {
-	conn *ws.Conn
+	Conn *ws.Conn
 }
 
 // Datastore of client
-type ClientDataStore struct {
+type SessionDataStore struct {
 	mutex     sync.RWMutex
-	dataStore map[SessionName]map[UUIDType]Client
+	dataStore map[UUIDType]Client
 }
 
 // Create new datastore
-func MakeClientDataStore() *ClientDataStore {
-	return &ClientDataStore{
-		dataStore: make(map[SessionName]map[UUIDType]Client),
+func MakeSessionDataStore() *SessionDataStore {
+	return &SessionDataStore{
+		dataStore: make(map[UUIDType]Client),
 	}
 }
 ```
 
-`ClientDataStore`는 세션별 유저들의 정보가 저장되는 자료구조로, `GetSessionData()`, `ForEachUser()`, `GetClientData()`, `SetUserData()`, `DeleteUserData()` 메소드를 통해 접근할 수 있다.
+`SessionDataStore`는 세션별로 유저들의 정보가 저장되는 자료구조로, `GetSessionData()`, `SetUserData()`, `DeleteUserData()` 메소드를 통해 접근할 수 있다.
 `RWMutex`를 설정하여 여러 고루틴에서 동시에 접근하여 생길 수 있는 Data race 문제를 해결하였다.
 
 <br>
 
-마지막으로 채널의 데이터를 처리하는 `Hub`쪽을 살펴보자.
+채널을 관리하는 `Hub`쪽을 살펴보자.
 
 ```go
 ...
@@ -310,95 +302,145 @@ type MessageData struct {
 	DstUUID UUIDType    `json:"dstuuid"`
 }
 
+type ChannelSet struct {
+	register      chan UserInfo
+	unregister    chan UserInfo
+	deleteSession chan bool
+	broadcast     chan MessageInfo
+	signaling     chan MessageInfo
+}
+
 // Set of channels
 type Hub struct {
-	register   chan UserInfo
-	unregister chan UserInfo
-	broadcast  chan MessageInfo
-	signaling  chan MessageInfo
-	datastore  *ClientDataStore
+	mutex    sync.RWMutex
+	channels map[SessionName]ChannelSet
 }
 
-// Send broadcast message to every user in session
-func sendBroadcastMessage(cds *ClientDataStore, mi MessageInfo) error {
-	err := cds.ForEachUser(mi.Session, func(uuid UUIDType, client Client) error {
-		if uuid != mi.UUID {
-			err := client.conn.WriteJSON(mi.Message)
-			if err != nil {
-				fmt.Println("write error:", err)
-				client.conn.WriteMessage(ws.CloseMessage, []byte{})
-				client.conn.Close()
-				return err
-			}
-		}
-
-		return nil
-	})
-
-	return err
-}
-
-// Send signaling message to specific user in session
-func sendSignalingMessage(cds *ClientDataStore, mi MessageInfo) error {
-	client := cds.GetClientData(mi.Session, mi.Message.DstUUID)
-	err := client.conn.WriteJSON(mi.Message)
-	if err != nil {
-		fmt.Println("write error:", err)
-		client.conn.WriteMessage(ws.CloseMessage, []byte{})
-		client.conn.Close()
-		return err
-	}
-
-	return nil
-}
-
-...
-
-// Create new hub
-func CreateHub(clients *ClientDataStore) *Hub {
-	registerChannel, unregisterChannel := runUserHub(clients)
-	broadcastChannel, signalingChannel := runMessageHub(clients)
-
+func CreateHub() *Hub {
 	hub := Hub{
-		register:   registerChannel,
-		unregister: unregisterChannel,
-		broadcast:  broadcastChannel,
-		signaling:  signalingChannel,
-		datastore:  clients,
+		channels: make(map[SessionName]ChannelSet),
 	}
 
 	return &hub
 }
 
-...
+func (h *Hub) SendBroadcastMessage(session SessionName, uuid UUIDType, message MessageData) {
+	h.mutex.RLock()
+	defer h.mutex.RUnlock()
+
+	h.channels[session].broadcast <- MessageInfo{session, message}
+}
+
+func (h *Hub) SendSignallingMessage(session SessionName, uuid UUIDType, message MessageData) {
+	h.mutex.RLock()
+	defer h.mutex.RUnlock()
+
+	h.channels[session].signaling <- MessageInfo{session, message}
+}
 ```
 
-이외의 부분은 충분히 직관적이거나 1:1 예제에서 크게 변동이 없는 부분이라 생략하였다.
-주목할 점은 메세지 데이터의 프로토콜을 `MessageData`로 정의하였다는 점과, 브로드캐스트 메시지와 시그널링 메시지를 전송하는 방법에 차이가 있다는 것이다.
+`Hub`는 각 세션 별로 채널을 만들고 관리하는 역할이다. `Hub`의 메소드는 기본적으로 호출이 되면 유저의 세션에 따라 대응되는 채널에 정보를 집어넣는다. 이 채널은 각 세션별 고루틴으로 연결되어, 해당 고루틴에서 처리된다.
 
-`sendSignalingMessage()`의 경우 세션 정보와 UUID 클라이언트 데이터를 얻어와서 해당 클라이언트에게 메시지를 보낸다.
-한편, `sendBroadcastMessage()`의 경우 `ForEachUser()`를 사용하여 세션의 모든 클라이언트에게 메시지를 보낸다.
+```go
+
+func (h *Hub) RegisterUser(session SessionName, uuid UUIDType, client Client) error {
+	if _, ok := h.channels[session]; !ok {
+		channelSet, err := RunSessionLoop()
+		if err != nil {
+			return err
+		}
+
+		h.mutex.Lock()
+		h.channels[session] = *channelSet
+		h.mutex.Unlock()
+	}
+
+	h.mutex.RLock()
+	h.channels[session].register <- UserInfo{session, uuid, client}
+	h.mutex.RUnlock()
+
+	return nil
+}
+
+func (h *Hub) UnregisterUser(session SessionName, uuid UUIDType, client Client) {
+	h.mutex.RLock()
+	h.channels[session].unregister <- UserInfo{session, uuid, client}
+	toDetete := <-h.channels[session].deleteSession
+	h.mutex.RUnlock()
+
+	if toDetete {
+		h.mutex.Lock()
+		delete(h.channels, session)
+		h.mutex.Unlock()
+	}
+}
+```
+
+`RegisterUser()`에서는 채널에 등록할 유저 정보를을 넣기에 앞서 채널이 있는지 검사하여, 없다면 각 세션의 고루틴 및 채널을 생성한다. `UnregisterUser()`에서는 세션에 더이상 유저가 없는 경우 채널을 삭제하는 로직까지 추가된다.
+
+<br>
+
+마지막으로 각 세션의 고루틴을 실행하는 `RunSessionLoop()` 함수를 살펴보자.
+
+```go
+func RunSessionLoop() (*ChannelSet, error) {
+	channelSet := ChannelSet{
+		register:      make(chan UserInfo),
+		unregister:    make(chan UserInfo),
+		deleteSession: make(chan bool),
+		broadcast:     make(chan MessageInfo),
+		signaling:     make(chan MessageInfo),
+	}
+
+	clients := MakeSessionDataStore()
+
+	go func() {
+	loop:
+		for {
+			select {
+			case registerUser := <-channelSet.register:
+				err := handleUserRegister(clients, registerUser)
+				if err != nil {
+					fmt.Println("an error occurred while handling user registration, but still process :", err)
+				}
+
+			case unregisterUser := <-channelSet.unregister:
+				err := handleUserUnregister(clients, unregisterUser)
+				if err != nil {
+					fmt.Println("an error occurred while handling user unregistration, but still process :", err)
+				}
+
+				if clients.IsEmpty(unregisterUser.Session) {
+					channelSet.deleteSession <- true
+					break loop
+				} else {
+					channelSet.deleteSession <- false
+				}
+
+			case messageData := <-channelSet.broadcast:
+				err := sendBroadcastMessage(clients, messageData)
+				if err != nil {
+					fmt.Println("an error occurred while sending broadcast message, but still process :", err)
+				}
+
+			case messageData := <-channelSet.signaling:
+				err := sendSignalingMessage(clients, messageData)
+				if err != nil {
+					fmt.Println("an error occurred while sending signaling message, but still process :", err)
+				}
+			}
+		}
+	}()
+
+	return &channelSet, nil
+}
+```
+
+채널 목록 및 `MakeSessionDataStore()`으로 세션별 데이터 저장소를 생성하고 for~switch loop으로 채널에서 데이터를 읽어와 처리한다.
 
 <br>
 
 전체 코드는 <https://github.com/junhyuk0801/webrtc-mesh-server>에서 찾아볼 수 있다.
-
-<br><br>
-
-## 이후의 작업
-
-한 세션의 데이터를 읽기/쓰기 중인 상황이더라도 다른 세션의 클라이언트는 그 세션의 데이터에 접근할 일이 없다.
-그래서 지금과 같이 공통의 뮤텍스 하나를 걸어놓기보다는, 각 세션별로 뮤텍스를 분리해 놓는 게 성능 향상을 이끌어낼 수 있을 것이다.
-
-<br>
-
-`ForEachUser()`에는 이터레이션을 도는 도중 데이터가 수정되지 않게끔 하기 위해 뮤텍스가 걸려 있지만, 이러한 방식에는 잠재적인 문제가 있다. 아무래도 웹소켓 메시지를 보내는 오버헤드가 비교적 큰 편이니, 이터레이션을 도는 과정 전체에 뮤텍스를 걸어놓으면 성능이 뚝뚝 떨어질 것이다.
-
-대안으로는 `GetSessionData()`로 세션 정보를 받아와서 이터레이션을 도는 방법도 있겠다. 이 방법을 사용하면 이터레이션을 도는 도중 데이터가 수정될 수도 있고, 그러한 수정 사항이 이터레이션에는 반영되지 않는다. 즉, 일관성이 깨지는 것이다.
-
-어찌 보면 데이터 일관성과 성능 사이에서 고민을 하다가 일관성을 택한 셈이다.
-만약 퍼포먼스 튜닝으로 성능을 끌어올려야 하는 상황이라면 `GetSessionData()`로 세션 정보를 받아와서 이터레이션을 돌되, 다른 방법으로 데이터 일관성에 신경써 주는 게 좋겠다.
-지금 생각해보니 후자의 방법이 더 나은것 같은데 왜 전자의 방법으로 했는지 잘 기억이 안난다. 코드를 졸릴 때 짜서 그런가보다.
 
 <br><br>
 

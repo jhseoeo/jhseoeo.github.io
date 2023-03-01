@@ -88,7 +88,7 @@ WebRTC signaling channels의 구조는 다음과 같다.
 <center>
 
 ![사진](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Cloud%20Native/AWS%20Kinesis%20Video%20Stream/AWS%20Kinesis%20Video%20Streaming/3.PNG)
-_출처 : https://tech.cloud.nongshim.co.kr/2021/04/02/매뉴얼-kinesis-video-streams-whith-webrtc-생성하기/_
+_출처 : <https://tech.cloud.nongshim.co.kr/2021/04/02/매뉴얼-kinesis-video-streams-whith-webrtc-생성하기>/_
 
 </center>
 
@@ -166,7 +166,7 @@ STUN, TURN 등 사용 여부, Trickle ICE 사용 어부 등을 결정할 수 있
 
 <br><br>
 
-## 원본 코드 확인하기
+## 원본 코드 확인
 
 ---
 
@@ -176,20 +176,22 @@ STUN, TURN 등 사용 여부, Trickle ICE 사용 어부 등을 결정할 수 있
 다소 복잡하긴 하지만, `master.js`와 `viewer.js`가 각각 MASTER, VIEWER단에 해당하는 WebRTC 연결 생성을 담당하고,
 `createSignalingChannel.js`에서는 채널의 생성을 담당한다.
 
-Signaling Channel에 대해서는 잘 몰라도 WebRTC에 관련된 경험이나 이해가 어느 정도 있다면 어렵지 않게 이해할 수 있을 것이다.
-또한, 설정에 따라 코드 진행 바뀌는 부분에 주석이 상세히 달려 있어 이해하기 쉽다.
+Signaling Channel에 대해서는 잘 몰라도 WebRTC에 관련된 경험이나 이해가 어느 정도 있다면 어렵지 않게 이해할 수 있을 것이다. 또한, 설정에 따른 주석이 상세히 달려 있어 이해하기 어렵지 않다.
 본인의 경우 프로젝트에 맞게 이 코드를 거의 그대로 활용하여 단방향, Datachannel 생성, Trickle ICE 설정 등을 기본값으로 해주었다.
 
-근데 만약 이 코드를 적당히 수정하여 그대로 사용하면 Access Key를 사용자에게 노출시킬 수밖에 없다는 문제가 있다.
-그래서 채널의 생성 등을 백엔드에서 처리하여, 사용자가 직접 채널에 접근할 수 없게끔 분리해주었다.
+하지만 이 코드에는 Access Key를 사용자에게 노출시킬 수밖에 없다는 문제점이 있어, 그대로 사용하기는 어려울 것이다.
 
 <br><br>
 
-## 수정된 코드 확인하기
+## 문제점 개선
 
 ---
 
-[본인 깃허브](https://github.com/junhyuk0801/aws-kvs-webtrtc-signaling-channel-example)에 수정된 코드를 업로드해두었다.
+앞서 언급한 문제를 해결하기 위해서는 AWS Cognito를 사용하거나 채널의 생성을 백엔드단에서 처리하여 프론트엔드로 생성된 채널 정보를 넘겨주는 방식 등이 있을 것이다.
+
+Cognito를 사용하는 방법이 더 이상적인 방법이겠지만 아쉽게도 이 프로젝트를 할 당시 Cognito 사용법을 몰랐다 ㅠ
+그래서 후자의 방법, 즉 채널의 생성이나 삭제를 백엔드단에서 처리하는 방법으로 해결하였다.
+<https://github.com/junhyuk0801/aws-kvs-webtrtc-signaling-channel-example>에 수정된 코드가 있다.
 변경점을 하나씩 살펴보자.
 
 <br><br>
@@ -197,16 +199,260 @@ Signaling Channel에 대해서는 잘 몰라도 WebRTC에 관련된 경험이나
 ### 백엔드
 
 Backend 폴더에 있다.
-express로 구현하였으며,
-요청 API는 채널 생성, 채널 삭제, MASTER로 채널 정보 받아오기, VIEWER로 채널 정보 받아오기, 이렇게 4개 존재한다.
+express로 구현하였으며, 요청 API는 4개로, 각각 채널 생성, 채널 삭제, MASTER로 채널 정보 받아오기, VIEWER로 채널 정보 받아오기이다.
+
+채널 생성, 삭제 및 채널 정보를 받아오는 로직인 `Backend/src/util/kinesis.js` 파일의 내용을 중점적으로 살펴보자.
+
+javascript aws sdk의 `kinesisvideo` 및 `kinesisvideoskinesisvideosignalingchannels를` 이용하여 채널 생성 및 삭제 로직을 주로 수행하며, 채널의 presign에 `SigV4RequestSigner`가 필요하기 때문에, `amazon-kinesis-video-streams-webrtc`까지 임포트해준다.
+
+```javascript
+const kinesisVideo = require('aws-sdk/clients/kinesisvideo');
+const SigV4RequestSigner = require('amazon-kinesis-video-streams-webrtc').SigV4RequestSigner;
+const KinesisVideoSignalingChannels = require('aws-sdk/clients/kinesisvideosignalingchannels');
+```
+
+이후 채널 생성 등을 담당할 singleton class를 만들어준다.
+credential 정보로 aws sdk의 kinesisvideo 인스턴스를 만드는 부분을 생성자에 포함시켰다.
+
+```javascript
+class KinesisUtil {
+    constructor() {
+        // AWS IAM Credential Data
+        this.credential = {
+            region: process.env.KINESIS_REGION,
+            accessKeyId: process.env.KINESIS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.KINESIS_SECRET_ACCESS_KEY,
+        };
+
+        if (!this.kinesisClient) {
+            try {
+                this.kinesisClient = new kinesisVideo({ ...this.credential });
+            } catch (err) {
+                console.error("An error is occured creating Kinesis Client", err.message);
+            }
+        }
+    }
+
+    ...
+```
+
+<br>
+
+채널 생성 로직을 살펴보자.
+
+```javascript
+/**
+ * Creates channel
+ * @param {string} ChannelName - Name of the channel
+ * @param {string} role - Role of the channel
+ * @param {string} clientId - Id of peer. Only vewer needs it
+ * @returns {{errorCode:number}} An object contains information about request, which includes Error Code
+ */
+async createChannel(ChannelName, role = "VIEWER", clientId = null) {
+  	try {
+		const result = { errorCode: 400 };
+		// CHECK IF THE CHANNEL ALREADY EXISTS
+		const list = await this.kinesisClient
+			.listSignalingChannels({
+				ChannelNameCondition: {
+					ComparisonOperator: "BEGINS_WITH",
+					ComparisonValue: ChannelName,
+				},
+				MaxResults: 1,
+			})
+			.promise();
+
+		if (list.ChannelInfoList.length) {
+			// CHANNEL ALREADY EXISTS
+			console.warn("Channel already exists:", ChannelName);
+		} else {
+			// CREATE NEW CHANNEL
+			await this.kinesisClient.createSignalingChannel({ ChannelName }).promise();
+		}
+
+		const describeSignalingChannelResponse = await this.kinesisClient
+			.describeSignalingChannel({ ChannelName })
+			.promise();
+		const channelInfo = describeSignalingChannelResponse.ChannelInfo;
+
+		...
+```
+
+채널을 생성하기에 앞서 동일한 이름의 채널이 존재하는지 여부를 확인한다. 존재하지 않는다면 채널을 생성하고 생성된 채널의 정보를 가져온다.
+
+```javascript
+...
+
+const endpointsByProtocol = await this.listEndpoints(channelInfo.ChannelARN, role);
+if (!endpointsByProtocol) {
+	result.errorCode = 404;
+	return result;
+}
+
+const iceServers = await this.listICEServers(channelInfo.ChannelARN, endpointsByProtocol.HTTPS);
+if (!iceServers) {
+	result.errorCode = 404;
+	return result;
+}
+
+const configuration = {
+	iceServers,
+	iceTransportPolicy: 'all'
+};
+
+...
+```
+
+이후 각 프로토콜(Websocket, HTTPS)별 KVS signaling channel 엔드포인트의 목록을 가져온다.
+그리고 앞서 얻은 HTTPS 엔드포인트에서 ICE서버의 목록을 가져온다.
+
+```javascript
+		let queryParams = {
+			"X-Amz-ChannelARN": channelInfo.ChannelARN,
+		};
+		if (clientId) {
+			queryParams = {
+				...queryParams,
+				"X-Amz-ClientId": clientId,
+			};
+		}
+
+		const signer = new SigV4RequestSigner(process.env.KINESIS_REGION, this.credential);
+		const url = await signer.getSignedURL(endpointsByProtocol.WSS, queryParams);
+		console.log("Kinesis created channel ARN:", channelInfo.ChannelARN);
+		const response = { configuration, url, role };
+		return response;
+	} catch (err) {
+		console.error("An error is occured creating channel", err.message);
+	}
+
+	return result;
+}
+```
+
+이후 `SigV4RequestSigner`를 통해 Websocket 엔드포인트를 presign한 뒤, 앞서 얻은 ICE 서버와 함께 반환한다.
+반환된 정보는 프론트엔드에 전달되어 시그널링 채널 및 WebRTC 연결을 생성할 때 사용된다.
+
+<br>
+
+채널 정보를 얻어오는 로직은 채널 생성과 거의 똑같다. 채널을 생성하는 부분이 생략된 형태라고 보면 될 듯 하다.
+
+```javascript
+async getChannelInfo(ChannelName, role, clientId = null) {
+	const describeSignalingChannelResponse = await this.kinesisClient
+		.describeSignalingChannel({ ChannelName })
+		.promise();
+	const channelInfo = describeSignalingChannelResponse.ChannelInfo;
+
+	const endpointsByProtocol = await this.listEndpoints(channelInfo.ChannelARN, role);
+	if (!endpointsByProtocol) {
+		result.errorCode = 404;
+		return result;
+	}
+
+	const iceServers = await this.listICEServers(channelInfo.ChannelARN, endpointsByProtocol.HTTPS);
+	if (!iceServers) {
+		result.errorCode = 404;
+		return result;
+	}
+
+	const configuration = {
+		iceServers,
+		iceTransportPolicy: "all",
+	};
+
+	let queryParams = {
+		"X-Amz-ChannelARN": channelInfo.ChannelARN,
+	};
+	if (clientId) {
+		queryParams = {
+			...queryParams,
+			"X-Amz-ClientId": clientId,
+		};
+	}
+
+	const signer = new SigV4RequestSigner(process.env.KINESIS_REGION, this.credential);
+	const url = await signer.getSignedURL(endpointsByProtocol.WSS, queryParams);
+	const response = { configuration, url, role };
+	return response;
+}
+```
+
+채널에서 엔드포인트, ice서버 등을 얻어오는 내용은 채널 생성 메소드와 거의 중복되므로, 좀 더 잘게 나누는게 좋겠다.
+
+<br>
+
+채널 삭제 로직은 비교적 간단하다. ARN을 받아온 뒤 aws sdk client로 삭제 요청만 날려주면 끝.
+
+```javascript
+async deleteChannel(ChannelName) {
+	const describeSignalingChannelResponse = await this.kinesisClient
+		.describeSignalingChannel({ ChannelName })
+		.promise();
+	const ChannelARN = describeSignalingChannelResponse.ChannelInfo.ChannelARN;
+
+	try {
+		await this.kinesisClient.deleteSignalingChannel({ ChannelARN }).promise();
+	} catch (err) {
+		console.error("An error is occured deleting channel", err.message);
+	}
+}
+```
 
 <br><br>
 
 ### 프론트엔드
 
 Frontend 폴더에 있다.
-채널의 생성 및 정보 조회 부분이 백엔드로 옮겨간 만큼, 해당 API에 요청을 하기 위한 코드가 별도로 존재하며
-`master.js` 및 `viewer.js`에서도 KVS에 직접 조회하는 코드를 제외하고 요청으로 받아온 채널 정보를 통해 WebRTC 연결을 생성하도록 변경해주었다.
+채널의 생성 및 정보 조회 부분이 백엔드로 옮겨간 만큼, 해당 API에 요청을 하기 위한 코드가 별도로 존재한다.각각 `Frontend/src/lib/kinesis` 폴더의 `createChannel.js`, `deleteChannel.js`, `getChannelInfo.js`를 확인하면 된다.
+
+아래 코드는 `createChannel.js`의 코드이며, `deleteChannel.js`, `getChannelInfo.js`도 내용이 크게 다르지는 않다. 대충 method나 path만 다른 정도?
+
+```javascript
+/**
+ * Create WebRTC Signaling Channel and get info about the channel
+ * @returns {Promise<Response>} - Info about Channel
+ */
+async function createSignalingChannel(channelName) {
+	const channel = await fetch(process.env.REACT_APP_PROXY_HOST + '/channel/' + channelName, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}).then((res) => res.json());
+
+	return channel;
+}
+
+module.exports = createSignalingChannel;
+```
+
+`master.js` 및 `viewer.js`에서도 KVS에 직접 조회하는 코드를 날리고 요청으로 받아온 채널 정보를 통해 WebRTC 연결을 생성하도록 변경해주었다.
+
+`SignalingClient`를 생성할 때 `RequestSigner`라는 인터페이스 필드가 존재하며, `RequestSigner`는 `getSignedURL()` 메소드가 있어야 한다. 이 인터페이스를 충족하게끔 클래스 `CustomSigner`를 만들어주었다.
+
+```javascript
+class CustomSigner {
+	constructor(_url) {
+		this.url = _url;
+	}
+
+	getSignedURL() {
+		return this.url;
+	}
+}
+```
+
+이후 `CustomSigner`를 생성할 때 서버로부터 받은 키네시스 채널 정보의 signed url와 함께 초기화해주면 된다.
+
+```javascript
+this.signalingClient = new SignalingClient({
+	requestSigner: new CustomSigner(kinesisInfo.url),
+	...
+});
+```
+
+그 외의 부분은 기본 예제와 거의 동일하다!
 
 현재 프로젝트 스펙에 맞게 단방향 연결을 생성하게끔 설정되어 있는데,
 가령 이를 양방향으로 수정하더라도 백엔드 코드를 수정할 필요 없이 프론트엔드쪽 코드만 고치면 된다.
@@ -218,7 +464,7 @@ Frontend 폴더에 있다.
 ---
 
 AWS KVS  
-https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/what-is-kvswebrtc.html
+<https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/what-is-kvswebrtc.html>
 
 Signaling Channel 그림  
-https://tech.cloud.nongshim.co.kr/2021/04/02/%EB%A7%A4%EB%89%B4%EC%96%BC-kinesis-video-streams-whith-webrtc-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/
+<https://tech.cloud.nongshim.co.kr/2021/04/02/%EB%A7%A4%EB%89%B4%EC%96%BC-kinesis-video-streams-whith-webrtc-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/>
