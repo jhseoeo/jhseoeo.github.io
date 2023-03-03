@@ -6,6 +6,12 @@
 <link>https://junhyuk0801.github.io</link>
 <atom:link href="https://junhyuk0801.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 <item>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO15</guid>
+<title>Generics in Go</title>
+<link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO15</link>
+<description>'Learning Go'를 읽고, Go의 제네릭 프로그래밍에 대해 알아보았습니다</description>
+<pubDate>Wed, 01 Mar 2023 00:00:00 GMT</pubDate>
+</item><item>
 <guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Cloud/AWS/RDS</guid>
 <title>RDS로 Postgresql 인스턴스 설정 과정</title>
 <link>https://junhyuk0801.github.io/posts/post/Cloud/AWS/RDS</link>

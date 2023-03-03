@@ -7,6 +7,10 @@
     <priority>0.3</priority>
 </url>
 <url>
+    <loc>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO15</loc>
+    <lastmod>2023-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+</url>,<url>
     <loc>https://junhyuk0801.github.io/posts/post/Cloud/AWS/RDS</loc>
     <lastmod>2023-02-28</lastmod>
     <changefreq>weekly</changefreq>

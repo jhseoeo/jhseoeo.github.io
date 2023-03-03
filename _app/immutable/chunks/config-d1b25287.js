@@ -1,1 +1,0 @@
-const t="집밥서선생",o="개발블로그",s="JHSeo",e=15,a=[{title:"Posts",route:"/posts"},{title:"Categories",route:"/category"},{title:"About",route:"/about"}],i={activate:!0,repo:"junhyuk0801/junhyuk0801.github.io",repoId:"R_kgDOHiaB9w",category:"Announcements",categoryId:"DIC_kwDOHiaB984CP9gC",mapping:"url",lang:"ko"};export{s as a,o as b,i as g,a as n,e as p,t as s};
