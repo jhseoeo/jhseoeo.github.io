@@ -6,6 +6,12 @@
 <link>https://junhyuk0801.github.io</link>
 <atom:link href="https://junhyuk0801.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 <item>
+<guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Networking/WebRTC/RFC8828</guid>
+<title>RFC8828: WebRTC IP Address Handling Requirements 정리</title>
+<link>https://junhyuk0801.github.io/posts/post/Networking/WebRTC/RFC8828</link>
+<description>RFC8828을 읽고 WebRTC의 IP주소 처리 정책을 정리해보았습니다</description>
+<pubDate>Wed, 15 Mar 2023 00:00:00 GMT</pubDate>
+</item><item>
 <guid isPermaLink="true">https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO15</guid>
 <title>Generics in Go</title>
 <link>https://junhyuk0801.github.io/posts/post/Go/Golang Basics/GO15</link>
