@@ -5,10 +5,12 @@
  * PLEASE BE SURE TO UPDATE THEM ALL! Thank you!
  **/
 
+import type { Mapping } from '@giscus/svelte';
+
 export const siteTitle = '집밥서선생';
 export const siteDescription = '개발블로그';
-export const siteURL = 'junhyuk0801.github.io';
-export const siteLink = 'https://junhyuk0801.github.io';
+export const siteURL = 'jhseoeo.github.io';
+export const siteLink = 'https://jhseoeo.github.io';
 export const siteAuthor = 'JHSeo';
 
 // Controls how many posts are shown per page on the main blog index pages
@@ -40,10 +42,10 @@ export const navItems = [
 
 export const giscusConfig = {
 	activate: true,
-	repo: 'junhyuk0801/junhyuk0801.github.io',
+	repo: 'junhyuk0801/junhyuk0801.github.io' as `${string}/${string}`,
 	repoId: 'R_kgDOHiaB9w',
 	category: 'Announcements',
 	categoryId: 'DIC_kwDOHiaB984CP9gC',
-	mapping: 'url',
+	mapping: 'url' as Mapping,
 	lang: 'ko'
 };
