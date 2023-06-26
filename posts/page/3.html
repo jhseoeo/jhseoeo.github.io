@@ -5,22 +5,20 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta http-equiv="content-security-policy" content="">
-		<link href="../../_app/immutable/assets/_layout-ffe4af90.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../_app/immutable/start-d3a6f33f.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/index-d6e32500.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons-8e55b403.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/index-ed7ec42a.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper-41c905a7.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/control-f5b05b5f.js">
-		<link rel="modulepreload" href="../../_app/immutable/components/pages/_layout.svelte-51fe4c05.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/config-2138fdd4.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/store-8f69a99e.js">
-		<link rel="modulepreload" href="../../_app/immutable/modules/pages/_layout.js-f4efb1d0.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/_layout-ad2a582b.js">
-		<link rel="modulepreload" href="../../_app/immutable/components/pages/posts/page/_page_/_page.svelte-c02f0ea8.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/PostsList-03089b5c.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Pagination-2caceb1d.js"><title>Blog - page 3</title><!-- HEAD_svelte-19tq2vo_START --><meta data-key="description" name="description" content="개발블로그"><!-- HEAD_svelte-19tq2vo_END -->
+		
+		<link href="../../_app/immutable/assets/0.ffe4af90.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.e639b47d.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/index.7a488568.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.d6296bcf.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/index.5c7186c6.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.42363b66.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.41c905a7.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.c302a73e.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/config.2138fdd4.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/store.ac9b2e1d.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/11.e721eb20.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/PostsList.dcf67b64.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Pagination.18d6923e.js"><title>Blog - page 3</title><!-- HEAD_svelte-19tq2vo_START --><meta data-key="description" name="description" content="개발블로그"><!-- HEAD_svelte-19tq2vo_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -99,21 +97,31 @@
 		<footer><p>© 2023 JHSeo. All right reserved.</p></footer></main></div>
 
 
-		<script type="module" data-sveltekit-hydrate="1y8b1se">
-			import { start } from "../../_app/immutable/start-d3a6f33f.js";
+			
+			<script>
+				{
+					__sveltekit_1cf1g40 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: {}
+					};
 
-			start({
-				env: {},
-				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="1y8b1se"]').parentNode,
-				version: "1681724828779",
-				hydrate: {
-					node_ids: [0, 11],
-					data: [null,{type:"data",data:{posts:[{title:"1. git1",slug:"동아리교육\u002FPython\u002FPY1",excerpt:"git 개요",coverImage:"\u002Fpost_img\u002F동아리교육\u002F22-1_return_python\u002Fcover.png",coverWidth:16,coverHeight:9,date:"2022-03-10T00:00:00.000Z",categories:["동아리교육"]},{title:"0. Introduction",slug:"동아리교육\u002FPython\u002FPY0",excerpt:"강의계획, 개발환경 설정",coverImage:"\u002Fpost_img\u002F동아리교육\u002F22-1_return_python\u002Fcover.png",coverWidth:16,coverHeight:9,date:"2022-03-02T00:00:00.000Z",categories:["동아리교육"]}],page:3,totalPosts:32},uses:{params:["page"]}}],
-					form: null
+					const element = document.currentScript.parentElement;
+
+					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{posts:[{title:"1. git1",slug:"동아리교육/Python/PY1",excerpt:"git 개요",coverImage:"/post_img/동아리교육/22-1_return_python/cover.png",coverWidth:16,coverHeight:9,date:"2022-03-10T00:00:00.000Z",categories:["동아리교육"],indexed:false},{title:"0. Introduction",slug:"동아리교육/Python/PY0",excerpt:"강의계획, 개발환경 설정",coverImage:"/post_img/동아리교육/22-1_return_python/cover.png",coverWidth:16,coverHeight:9,date:"2022-03-02T00:00:00.000Z",categories:["동아리교육"],indexed:false}],page:3,totalPosts:32},"uses":{"params":["page"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.e639b47d.js"),
+						import("../../_app/immutable/entry/app.42363b66.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 11],
+							data,
+							form: null,
+							error: null
+						});
+					});
 				}
-			});
-		</script>
-	</div>
+			</script>
+		</div>
 	</body>
 </html>

@@ -5,20 +5,18 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta http-equiv="content-security-policy" content="">
-		<link href="./_app/immutable/assets/_layout-ffe4af90.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/start-d3a6f33f.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-d6e32500.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-8e55b403.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-ed7ec42a.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-41c905a7.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/control-f5b05b5f.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-51fe4c05.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/config-2138fdd4.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/store-8f69a99e.js">
-		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-f4efb1d0.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-ad2a582b.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/category/_page.svelte-4b23b0d3.js"><title>Blog | Categories</title><!-- HEAD_svelte-si9hjk_START --><!-- HEAD_svelte-si9hjk_END -->
+		
+		<link href="./_app/immutable/assets/0.ffe4af90.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.e639b47d.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.7a488568.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.d6296bcf.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.5c7186c6.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.42363b66.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper.41c905a7.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.c302a73e.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/config.2138fdd4.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/store.ac9b2e1d.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/4.5a8023f7.js"><title>Blog | Categories</title><!-- HEAD_svelte-si9hjk_START --><!-- HEAD_svelte-si9hjk_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,45 +63,35 @@
 
 <div class="compressed-content"><h1 class="h2">All blog categories</h1>
 
-	<ul><li><a href="/category/WebRTC">WebRTC</a>
-				(5)
-			</li><li><a href="/category/논문정리">논문정리</a>
-				(2)
-			</li><li><a href="/category/Golang">Golang</a>
-				(16)
-			</li><li><a href="/category/AWS">AWS</a>
-				(2)
-			</li><li><a href="/category/RDS">RDS</a>
-				(1)
-			</li><li><a href="/category/Database">Database</a>
-				(1)
-			</li><li><a href="/category/Signaling Server">Signaling Server</a>
-				(1)
-			</li><li><a href="/category/AWS Kinesis Video Stream">AWS Kinesis Video Stream</a>
-				(1)
-			</li><li><a href="/category/동아리교육">동아리교육</a>
-				(11)
-			</li><li><a href="/category/git">git</a>
-				(2)
-			</li></ul></div></div>
+	<ul></ul></div></div>
 		<footer><p>© 2023 JHSeo. All right reserved.</p></footer></main></div>
 
 
-		<script type="module" data-sveltekit-hydrate="1jziwvc">
-			import { start } from "./_app/immutable/start-d3a6f33f.js";
+			
+			<script>
+				{
+					__sveltekit_1cf1g40 = {
+						base: new URL(".", location).pathname.slice(0, -1),
+						env: {}
+					};
 
-			start({
-				env: {},
-				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="1jziwvc"]').parentNode,
-				version: "1681724828779",
-				hydrate: {
-					node_ids: [0, 4],
-					data: [null,{type:"data",data:{uniqueCategories:[{title:"WebRTC",count:5},{title:"논문정리",count:2},{title:"Golang",count:16},{title:"AWS",count:2},{title:"RDS",count:1},{title:"Database",count:1},{title:"Signaling Server",count:1},{title:"AWS Kinesis Video Stream",count:1},{title:"동아리교육",count:11},{title:"git",count:2}]},uses:{}}],
-					form: null
+					const element = document.currentScript.parentElement;
+
+					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{uniqueCategories:[]},"uses":{}}];
+
+					Promise.all([
+						import("./_app/immutable/entry/start.e639b47d.js"),
+						import("./_app/immutable/entry/app.42363b66.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
 				}
-			});
-		</script>
-	</div>
+			</script>
+		</div>
 	</body>
 </html>

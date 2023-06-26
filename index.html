@@ -5,13 +5,13 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="/_app/immutable/start-d3a6f33f.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/index-d6e32500.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/singletons-8e55b403.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/index-ed7ec42a.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/preload-helper-41c905a7.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/control-f5b05b5f.js">
+		
+		<link rel="modulepreload" href="/_app/immutable/entry/start.e639b47d.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/index.7a488568.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/singletons.d6296bcf.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/index.5c7186c6.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/app.42363b66.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/preload-helper.41c905a7.js">
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,15 +30,23 @@
 	</head>
 	<body>
 		<div id="svelte">
-		<script type="module" data-sveltekit-hydrate="45h">
-			import { start } from "/_app/immutable/start-d3a6f33f.js";
+			<script>
+				{
+					__sveltekit_1cf1g40 = {
+						base: "",
+						env: {}
+					};
 
-			start({
-				env: {},
-				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
-				version: "1681724828779"
-			});
-		</script></div>
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.e639b47d.js"),
+						import("/_app/immutable/entry/app.42363b66.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
 	</body>
 </html>

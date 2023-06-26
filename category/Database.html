@@ -5,22 +5,20 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta http-equiv="content-security-policy" content="">
-		<link href="../_app/immutable/assets/_layout-ffe4af90.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/start-d3a6f33f.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/index-d6e32500.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-8e55b403.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/index-ed7ec42a.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper-41c905a7.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/control-f5b05b5f.js">
-		<link rel="modulepreload" href="../_app/immutable/components/pages/_layout.svelte-51fe4c05.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/config-2138fdd4.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/store-8f69a99e.js">
-		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.js-f4efb1d0.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-ad2a582b.js">
-		<link rel="modulepreload" href="../_app/immutable/components/pages/category/_category_/_page.svelte-6ded9061.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/PostsList-03089b5c.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Pagination-2caceb1d.js"><title>Category: Database</title><!-- HEAD_svelte-2blklu_START --><!-- HEAD_svelte-2blklu_END -->
+		
+		<link href="../_app/immutable/assets/0.ffe4af90.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.e639b47d.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.7a488568.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.d6296bcf.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.5c7186c6.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.42363b66.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper.41c905a7.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.c302a73e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/config.2138fdd4.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/store.ac9b2e1d.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/5.86af26d6.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/PostsList.dcf67b64.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Pagination.18d6923e.js"><title>Category: Database</title><!-- HEAD_svelte-2blklu_START --><!-- HEAD_svelte-2blklu_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -81,21 +79,31 @@
 		<footer><p>© 2023 JHSeo. All right reserved.</p></footer></main></div>
 
 
-		<script type="module" data-sveltekit-hydrate="1lzcq1t">
-			import { start } from "../_app/immutable/start-d3a6f33f.js";
+			
+			<script>
+				{
+					__sveltekit_1cf1g40 = {
+						base: new URL("..", location).pathname.slice(0, -1),
+						env: {}
+					};
 
-			start({
-				env: {},
-				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="1lzcq1t"]').parentNode,
-				version: "1681724828779",
-				hydrate: {
-					node_ids: [0, 5],
-					data: [null,{type:"data",data:{posts:[{title:"RDS로 Postgresql 인스턴스 설정 과정",slug:"Cloud\u002FAWS\u002FRDS",excerpt:"RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다",coverImage:"\u002Fpost_img\u002FCloud\u002FRDS\u002Fcover.jpg",coverWidth:16,coverHeight:9,date:"2023-02-28",categories:["AWS","RDS","Database"]}],category:"Database",page:1,total:1},uses:{params:["category","page"]}}],
-					form: null
+					const element = document.currentScript.parentElement;
+
+					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{posts:[{title:"RDS로 Postgresql 인스턴스 설정 과정",slug:"Cloud/AWS/RDS",excerpt:"RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다",coverImage:"/post_img/Cloud/RDS/cover.jpg",coverWidth:16,coverHeight:9,date:"2023-02-28",categories:["AWS","RDS","Database"],indexed:true}],category:"Database",page:1,total:1},"uses":{"params":["category"]}}];
+
+					Promise.all([
+						import("../_app/immutable/entry/start.e639b47d.js"),
+						import("../_app/immutable/entry/app.42363b66.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 5],
+							data,
+							form: null,
+							error: null
+						});
+					});
 				}
-			});
-		</script>
-	</div>
+			</script>
+		</div>
 	</body>
 </html>
