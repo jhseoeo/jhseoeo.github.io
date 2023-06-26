@@ -12,8 +12,6 @@ export const GET = async ({}: RequestEvent) => {
 		'Content-Type': 'application/xml'
 	};
 
-	console.log(data.posts);
-
 	return new Response(body, {
 		status: 200,
 		headers
