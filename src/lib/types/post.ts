@@ -10,6 +10,7 @@ interface PostMetadata {
 	coverHeight: number;
 	date: string;
 	categories: string[];
+	indexed: boolean;
 }
 
 interface Post extends PostMetadata {

@@ -37,7 +37,8 @@ export default async function fetchPosts({
 		coverWidth: post.coverWidth,
 		coverHeight: post.coverHeight,
 		date: post.date,
-		categories: post.categories
+		categories: post.categories,
+		indexed: post.indexed
 	}));
 
 	return {
