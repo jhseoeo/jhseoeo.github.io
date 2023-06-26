@@ -6,7 +6,7 @@ import type { RequestEvent } from './$types';
 export const prerender = true;
 
 export const GET = async ({}: RequestEvent) => {
-	const data = await fetchPosts({});
+	const data = await fetchPosts({ limit: -1 });
 	const body = renderRSS(data.posts);
 	const headers = {
 		'Cache-Control': `max-age=0, s-max-age=${600}`,
