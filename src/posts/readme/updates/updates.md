@@ -9,6 +9,7 @@ coverImage: '/images/jerry-zhang-ePpaQC2c1xA-unsplash.jpg'
 coverWidth: 16
 coverHeight: 9
 excerpt: 블로그 업데이트 내역!
+indexed: true
 ---
 
 ### 2023-02-26
@@ -34,6 +35,14 @@ excerpt: 블로그 업데이트 내역!
 
 - Changed blog layout
 - > Add blockquote design
-- | Add |       | Table |
-  | --- | ----- | ------ |
-  |     | Design |        |
+- | Add |        | Table |
+  | --- | ------ | ----- |
+  |     | Design |       |
+
+### 2023-06-21
+
+- Migrate to Typescript
+
+### 2023-06-26
+
+- Add `indexed` tag to decide whether to include in sitemap.xml

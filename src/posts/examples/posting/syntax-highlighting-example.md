@@ -10,6 +10,7 @@ coverImage: '/images/linus-nylund-Q5QspluNZmM-unsplash.jpg'
 coverWidth: 16
 coverHeight: 9
 excerpt: This post shows you how syntax highlighting works here.
+indexed: false
 ---
 
 mdsvex has automatic, built-in syntax highlighting with [Prism.js](https://prismjs.com/); just include the language name after the triple backticks, like so:
