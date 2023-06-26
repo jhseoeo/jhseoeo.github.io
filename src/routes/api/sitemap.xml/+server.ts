@@ -5,14 +5,12 @@ import type { RequestEvent } from './$types';
 export const prerender = true;
 
 export const GET = async ({}: RequestEvent) => {
-	const data = await fetchPosts();
+	const data = await fetchPosts({ limit: -1 });
 	const body = renderSitemap(data.posts);
 	const headers = {
 		'Cache-Control': `max-age=0, s-max-age=${600}`,
 		'Content-Type': 'application/xml'
 	};
-
-	console.log(data.posts);
 
 	return new Response(body, {
 		status: 200,
