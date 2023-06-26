@@ -6,7 +6,7 @@ export const prerender = true;
 
 export const GET = async ({}: RequestEvent) => {
 	const options = {
-		limit: 0
+		limit: -1
 	};
 
 	const { posts } = await fetchPosts(options);
