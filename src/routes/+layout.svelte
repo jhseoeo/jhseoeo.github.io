@@ -1,5 +1,5 @@
 <!-- This is the global layout file; it "wraps" every page on the site. (Or more accurately: is the parent component to every page component on the site.) -->
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import '$lib/assets/scss/global.scss';
 	import Header from '$lib/components/Header.svelte';
@@ -13,8 +13,6 @@
 
 	const transitionIn = { delay: 150, duration: 150 };
 	const transitionOut = { duration: 100 };
-
-	export const prerender = true;
 
 	/**
 	 * Updates the global store with the current path. (Used for highlighting

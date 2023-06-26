@@ -1,5 +1,5 @@
 <!-- This page handles any error encountered by the site. -->
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 </script>
 

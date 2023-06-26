@@ -1,5 +1,5 @@
 <!-- Renders any page at /posts/category/* -->
-<script>
+<script lang="ts">
 	import PostsList from '$lib/components/PostsList.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import { postsPerPage } from '$lib/config';

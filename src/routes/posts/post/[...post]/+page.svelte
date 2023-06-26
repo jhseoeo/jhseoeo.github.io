@@ -1,5 +1,5 @@
 <!-- This file renders each individual blog post for reading. Be sure to update the svelte:head below -->
-<script>
+<script lang="ts">
 	import Giscus from '@giscus/svelte';
 	import { colorTheme } from '$lib/assets/js/store';
 	import { giscusConfig } from '$lib/config';
@@ -59,7 +59,6 @@
 
 {#if giscusConfig.activate}
 	<Giscus
-		src="https://giscus.app/client.js"
 		repo={giscusConfig.repo}
 		repoId={giscusConfig.repoId}
 		category={giscusConfig.category}
@@ -71,7 +70,5 @@
 		inputPosition="bottom"
 		theme={$colorTheme}
 		lang={giscusConfig.lang}
-		crossorigin="anonymous"
-		async
 	/>
 {/if}
