@@ -7,6 +7,7 @@ categories:
 coverImage: '/post_img/Golang_basics/cover.png'
 coverWidth: 16
 coverHeight: 9
+indexed: true
 ---
 
 <br>

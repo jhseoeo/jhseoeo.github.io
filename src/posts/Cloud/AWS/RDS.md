@@ -9,6 +9,7 @@ categories:
 coverImage: '/post_img/Cloud/RDS/cover.jpg'
 coverWidth: 16
 coverHeight: 9
+indexed: true
 ---
 
 ## RDS란?

@@ -8,6 +8,7 @@ categories:
 coverImage: '/post_img/동아리교육/22-s_return_git/cover.jpeg'
 coverWidth: 16
 coverHeight: 9
+indexed: false
 ---
 
 <center>
