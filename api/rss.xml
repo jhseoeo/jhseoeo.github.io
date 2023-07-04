@@ -6,6 +6,12 @@
 				<link>https://jhseoeo.github.io</link>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 				<item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/DDD/DDD1</guid>
+						title>Domain Driven Design의 역사</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/DDD/DDD1</link>
+						<description>History of Domain Driven Design</description>
+						<pubDate>Tue, 04 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Networking/WebRTC/RFC8835</guid>
 						title>RFC8836: Congestion Control Requirements for Interactive Real-Time Media 정리</title>
 						<link>https://jhseoeo.github.io/posts/post/Networking/WebRTC/RFC8835</link>
