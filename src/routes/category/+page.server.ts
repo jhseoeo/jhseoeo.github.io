@@ -23,7 +23,9 @@ export const load = async ({ url, fetch }: PageServerLoadEvent) => {
 		});
 	});
 
-	const sortedUniqueCategories = Object.values(uniqueCategories).sort((a, b) => a.title - b.title);
+	const sortedUniqueCategories = Array.from(uniqueCategories.values()).sort((a, b) =>
+		a.title.localeCompare(b.title)
+	);
 
 	return {
 		uniqueCategories: sortedUniqueCategories
