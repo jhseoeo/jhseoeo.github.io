@@ -1,12 +1,12 @@
 ---
-title: Domain Driven Design의 역사
+title: 'Domain Driven Design의 역사'
 date: 2023-07-04
 excerpt: History of Domain Driven Design
 categories:
   - 'Golang'
   - 'Backend'
   - 'Domain Driven Design'
-coverImage: '/post_img/ddd/cover.png'
+coverImage: '/post_img/backend/ddd/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true
