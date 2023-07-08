@@ -6,14 +6,7 @@ export default async function fetchPosts({
 	limit = postsPerPage,
 	category = ''
 } = {}): Promise<PostData> {
-	const rawPostsRecords = loadRawPostsRecords();
-	const posts = await Promise.all(
-		Object.entries(rawPostsRecords).map(async ([path, resolver]) => {
-			const { metadata } = await resolver();
-			const slug = path.replace('/src/posts/', '').replace('.md', '');
-			return { ...metadata, slug };
-		})
-	);
+	const posts = await loadRawPostsRecords();
 
 	let sortedPosts = posts
 		.filter((post) => post.exposed)
