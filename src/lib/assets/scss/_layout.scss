@@ -45,11 +45,15 @@ hr {
 
 blockquote {
 	border-left: 3px solid var(--accent);
-	margin: 1em 0.5em 1em 0.5em;
-	padding: 0 1em 0 1em;
+	margin: 1rem 0.5rem 1rem 0.5rem;
+	padding: 0.5rem 1rem 0.5rem 1rem;
 
 	background-color: var(--lighterAccent);
 	border-radius: 5px;
+
+	p {
+		margin: 0;
+	}
 }
 
 .post {
