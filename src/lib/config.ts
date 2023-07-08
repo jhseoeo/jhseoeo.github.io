@@ -31,6 +31,10 @@ export const navItems = [
 		route: '/about'
 	},
 	{
+		title: 'Learning',
+		route: '/learning'
+	},
+	{
 		title: 'RSS',
 		route: '/api/rss.xml'
 	},

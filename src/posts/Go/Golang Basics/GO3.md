@@ -4,6 +4,7 @@ date: 2022-07-23
 excerpt: Composite Types
 categories:
   - 'Golang'
+  - 'Basic Golang'
 coverImage: '/post_img/Go/Golang_basics/cover.png'
 coverWidth: 16
 coverHeight: 9
