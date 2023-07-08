@@ -5,8 +5,9 @@ excerpt: History of Domain Driven Design
 categories:
   - 'Golang'
   - 'Backend'
+  - 'Architecture'
   - 'Domain Driven Design'
-coverImage: '/post_img/backend/ddd/cover.png'
+coverImage: '/post_img/Backend/Architecture/DDD/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true

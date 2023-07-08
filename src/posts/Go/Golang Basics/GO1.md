@@ -4,7 +4,7 @@ date: 2022-07-19
 excerpt: Setting up Golang development environment
 categories:
   - 'Golang'
-coverImage: '/post_img/Golang_basics/cover.png'
+coverImage: '/post_img/Go/Golang_basics/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true
@@ -183,7 +183,7 @@ go vet ./..
 
 본인은 개발환경을 VSCode로 잡았는데, 당연히 Go 확장을 설치해주었다.
 
-![PIC](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO1/1.PNG)
+![PIC](/post_img/Go/Golang_basics/GO1/1.PNG)
 
 <br>
 

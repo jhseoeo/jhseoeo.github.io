@@ -6,7 +6,7 @@ categories:
   - 'WebRTC'
   - 'Golang'
   - 'Signaling Server'
-coverImage: '/post_img/WebRTC/cover.png'
+coverImage: '/post_img/Networking/WebRTC/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true

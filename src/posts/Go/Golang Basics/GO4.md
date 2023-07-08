@@ -4,7 +4,7 @@ date: 2022-07-27
 excerpt: Blocks, Shadows, and Control Structures
 categories:
   - 'Golang'
-coverImage: '/post_img/Golang_basics/cover.png'
+coverImage: '/post_img/Go/Golang_basics/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true

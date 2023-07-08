@@ -4,7 +4,7 @@ date: 2022-08-24
 excerpt: Modules, Packages, Imports
 categories:
   - 'Golang'
-coverImage: '/post_img/Golang_basics/cover.png'
+coverImage: '/post_img/Go/Golang_basics/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true
@@ -150,7 +150,7 @@ func Format(num int) string {
 
 <center>
 
-![사진](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO9/1.PNG)
+![사진](/post_img/Go/Golang_basics/GO9/1.PNG)
 
 </center>
 
@@ -408,7 +408,7 @@ go doc money.Convert
 
 <center>
 
-![사진](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO9/2.PNG)
+![사진](/post_img/Go/Golang_basics/GO9/2.PNG)
 
 </center>
 
@@ -1009,7 +1009,7 @@ Vendoring의 장점은 프로젝트에 어떤 서드 파티 코드가 사용될�
 
 <center>
 
-![사진](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO9/3.PNG)
+![사진](/post_img/Go/Golang_basics/GO9/3.PNG)
 
 </center>
 

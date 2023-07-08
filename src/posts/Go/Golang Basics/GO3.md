@@ -4,7 +4,7 @@ date: 2022-07-23
 excerpt: Composite Types
 categories:
   - 'Golang'
-coverImage: '/post_img/Golang_basics/cover.png'
+coverImage: '/post_img/Go/Golang_basics/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true
@@ -245,7 +245,7 @@ zz: [30 40 70]
 
 <center>
 
-![pepe question](https://raw.githubusercontent.com/junhyuk0801/junhyuk0801.github.io/post-pictures/pictures/Golang%20Basics/Golang/GO3/1.jpg)
+![pepe question](/post_img/Go/Golang_basics/GO3/1.jpg)
 
 </center>
 
