@@ -6,14 +6,7 @@ export default async function fetchPosts({
 	limit = postsPerPage,
 	category = ''
 } = {}): Promise<PostData> {
-	const rawPostsRecords = loadRawPostsRecords();
-	const posts = await Promise.all(
-		Object.entries(rawPostsRecords).map(async ([path, resolver]) => {
-			const { metadata } = await resolver();
-			const slug = path.replace('/src/posts/', '').replace('.md', '');
-			return { ...metadata, slug };
-		})
-	);
+	const posts = await loadRawPostsRecords();
 
 	let sortedPosts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -38,7 +31,8 @@ export default async function fetchPosts({
 		coverHeight: post.coverHeight,
 		date: post.date,
 		categories: post.categories,
-		indexed: post.indexed
+		indexed: post.indexed,
+		exposed: post.exposed
 	}));
 
 	return {
