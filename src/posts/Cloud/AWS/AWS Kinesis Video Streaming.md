@@ -10,6 +10,7 @@ coverImage: '/post_img/Cloud/AWS/AWS_KVS_webrtc_signaling_channel/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true
+exposed: true
 ---
 
 <br><br>

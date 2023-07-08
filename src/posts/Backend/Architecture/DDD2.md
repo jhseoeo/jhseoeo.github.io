@@ -11,6 +11,7 @@ coverImage: '/post_img/Backend/Architecture/DDD/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true
+exposed: true
 ---
 
 ## 상황 설정

@@ -8,6 +8,7 @@ coverImage: '/post_img/Networking/WebRTC/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true
+exposed: true
 ---
 
 교내 프로젝트, 교과목, 스터디를 통해 정리한 WebRTC 관련 내용을 기록해보았습니다

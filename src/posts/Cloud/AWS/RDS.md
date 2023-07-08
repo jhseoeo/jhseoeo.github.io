@@ -10,6 +10,7 @@ coverImage: '/post_img/Cloud/AWS/RDS/cover.jpg'
 coverWidth: 16
 coverHeight: 9
 indexed: true
+exposed: true
 ---
 
 ## RDS란?

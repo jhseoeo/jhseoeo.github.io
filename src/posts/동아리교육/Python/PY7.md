@@ -8,6 +8,7 @@ coverImage: '/post_img/동아리교육/22-1_return_python/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: false
+exposed: false
 ---
 
 <iframe width="800" height="500" src="https://www.youtube.com/embed/4ISt4I63eso" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

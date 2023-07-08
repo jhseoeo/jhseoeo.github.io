@@ -10,6 +10,7 @@ coverImage: '/post_img/Networking/WebRTC/cover.png'
 coverWidth: 16
 coverHeight: 9
 indexed: true
+exposed: true
 ---
 
 Golang으로 하는 첫 프로젝트로, WebRTC many-to-many 시그널링 서버를 만들게 되었다.
