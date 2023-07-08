@@ -6,6 +6,12 @@
 				<link>https://jhseoeo.github.io</link>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 				<item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/NAT Instance</guid>
+						title>넘나 비싼 NAT Gateway 대신 NAT Instance를 사용해서 Lambda에서 인터넷에 액세스하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/NAT Instance</link>
+						<description>가장 저렴하게 Lambda에서 인터넷에 액세스하는 방법</description>
+						<pubDate>Sat, 08 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD2</guid>
 						title>도메인, 유비쿼터스 언어, 제한된 컨텍스트 이해하기</title>
 						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD2</link>
