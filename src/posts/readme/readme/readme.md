@@ -10,6 +10,7 @@ coverWidth: 16
 coverHeight: 9
 excerpt: 블로그를 처음 실행하였다면 봐야 할 README!
 indexed: true
+exposed: true
 ---
 
 <div id="top"></div>
