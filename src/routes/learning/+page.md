@@ -5,9 +5,25 @@
 
 # 배워온 것들, 배워갈 것들
 
-더 좋은 개발자가 되기 위해 배워온 것들, 그리고 배워갈 것들을 정리하는 공간입니다.
+더 좋은 개발자가 되기 위해 배워온 것들, 그리고 앞으로 배워나갈 것들을 정리하는 공간입니다.
 
-## Computer Science
+<br><br>
+
+## Development
+
+---
+
+- [x] git / github
+- [x] Terminal
+- [x] Vim
+
+### Programming
+
+- [x] Functional Programming
+- [ ] Clean Code
+- [ ] TDD
+
+### Computer Science
 
 - [x] Object Oriented Programming
 - [x] Data Structure
@@ -15,11 +31,6 @@
 - [x] Database
 - [x] Network
 - [x] Algorithm
-
-### Linux
-
-- [x] Using Linux(Ubuntu)
-- [x] Vim
 
 <br><br>
 
@@ -40,7 +51,7 @@
 
 <br><br>
 
-## Backend
+## [Backend](https://roadmap.sh/backend)
 
 ---
 
