@@ -10,6 +10,7 @@ coverWidth: 16
 coverHeight: 9
 excerpt: 블로그 업데이트 내역!
 indexed: true
+exposed: true
 ---
 
 ### 2023-02-26
@@ -46,3 +47,7 @@ indexed: true
 ### 2023-06-26
 
 - Add `indexed` tag to decide whether to include in sitemap.xml
+
+### 2023-07-08
+
+- Add `exposed` tag to decide whether to include in the post list

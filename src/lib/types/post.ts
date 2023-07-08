@@ -11,6 +11,7 @@ interface PostMetadata {
 	date: string;
 	categories: string[];
 	indexed: boolean;
+	exposed: boolean;
 }
 
 interface Post extends PostMetadata {

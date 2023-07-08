@@ -15,7 +15,9 @@ export default async function fetchPosts({
 		})
 	);
 
-	let sortedPosts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+	let sortedPosts = posts
+		.filter((post) => post.exposed)
+		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 	if (category) {
 		sortedPosts = sortedPosts.filter((post) => post.categories.includes(category));
@@ -38,7 +40,8 @@ export default async function fetchPosts({
 		coverHeight: post.coverHeight,
 		date: post.date,
 		categories: post.categories,
-		indexed: post.indexed
+		indexed: post.indexed,
+		exposed: post.exposed
 	}));
 
 	return {
