@@ -6,6 +6,12 @@
 				<link>https://jhseoeo.github.io</link>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 				<item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD3</guid>
+								<title>엔티티, 밸류 오브젝트, 애그리거트</title>
+								<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD3</link>
+								<description>Entities, Value Objects, and Aggregates</description>
+								<pubDate>Thu, 13 Jul 2023 00:00:00 GMT</pubDate>
+							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/NAT Instance</guid>
 								<title>넘나 비싼 NAT Gateway 대신 NAT Instance를 사용해서 Lambda에서 인터넷에 액세스하기</title>
 								<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/NAT Instance</link>
