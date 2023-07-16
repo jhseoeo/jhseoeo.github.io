@@ -553,3 +553,16 @@ type Order struct {
 여러 제한된 컨텍스트에 걸치는 경우에는 eventual consistency를 목표로 해야 한다.
 즉, 다른 시스템이 우리가 보낸 이벤트를 적절히 잘 받아서 처리할 것이라고 기대할 뿐, 제한된 컨텍스트 안에서 하는 것처럼 atomic하게 처리하는 것을 기대하면 안된다.
 이를 통해 더 강력한 복원력과 확장 가능성을 가진 분리된 시스템으로 발전할 수 있다(마이크로서비스!).
+
+<br><br>
+
+## References
+
+---
+
+<center>
+
+[![Domain-Driven Design with Golang Cover](https://learning.oreilly.com/covers/urn:orm:book:9781804613450/400w/)](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/) <br>
+[Matthew Boyle, Domain-Driven Design with Golang』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/)
+
+</center>

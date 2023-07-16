@@ -613,5 +613,3 @@ func (m *MarketingCampaignModel) ToCampaign() (*Campaign, error) {
 [Matthew Boyle, Domain-Driven Design with Golang』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/)
 
 </center>
-
-<br><br>

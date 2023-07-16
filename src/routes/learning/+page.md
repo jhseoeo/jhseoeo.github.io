@@ -17,15 +17,16 @@
 - [x] Terminal
 - [x] Vim
 
-### Programming
+### Programming Methodology
 
+- [x] Object Oriented Programming
 - [x] Functional Programming
 - [ ] Clean Code
+- [ ] [Domain Driven Design](/category/Domain%20Driven%20Design)
 - [ ] TDD
 
 ### Computer Science
 
-- [x] Object Oriented Programming
 - [x] Data Structure
 - [x] Operating System
 - [x] Database
@@ -71,7 +72,6 @@
 
 ### Architecture / Design Pattern
 
-- [ ] [Domain Driven Design](/category/Domain%20Driven%20Design)
 - [ ] Event Sourcing
 - [ ] CQRS
 - [ ] Microservice Architecture
@@ -86,6 +86,7 @@
 - [ ] Firebase
 - [ ] Cassandra
 - [ ] TimeScaleDB
+- [ ] CockroachDB
 
 <br><br>
 
