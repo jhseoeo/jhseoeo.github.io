@@ -1,6 +1,6 @@
-import type { PageServerLoadEvent } from './$types';
+import type { PageServerLoad, PageServerLoadEvent } from './$types';
 
-export const load = async ({ url, fetch }: PageServerLoadEvent) => {
+export const load: PageServerLoad = async ({ url, fetch }) => {
 	const postRes = await fetch(`${url.origin}/api/posts.json`);
 	const posts = await postRes.json();
 

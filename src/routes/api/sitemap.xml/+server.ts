@@ -1,10 +1,10 @@
 import fetchPosts from '$lib/assets/js/fetchPosts';
 import { siteURL, siteLink } from '$lib/config';
-import type { RequestEvent } from './$types';
+import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-export const GET = async ({}: RequestEvent) => {
+export const GET: RequestHandler = async ({}) => {
 	const data = await fetchPosts({ limit: -1 });
 	const body = renderSitemap(data.posts);
 	const headers = {

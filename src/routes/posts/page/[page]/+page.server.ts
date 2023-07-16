@@ -1,9 +1,9 @@
 import { postsPerPage } from '$lib/config';
 import fetchPosts from '$lib/assets/js/fetchPosts';
 import { redirect } from '@sveltejs/kit';
-import type { PageServerLoadEvent } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load = async ({ url, params, fetch }: PageServerLoadEvent) => {
+export const load: PageServerLoad = async ({ url, params, fetch }) => {
 	const page = parseInt(params.page) || 1;
 
 	// Keeps from duplicationg the blog index route as page 1

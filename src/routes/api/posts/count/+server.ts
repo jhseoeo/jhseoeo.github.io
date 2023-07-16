@@ -1,10 +1,10 @@
 import loadRawPostsRecords from '$lib/assets/js/loadPosts';
 import { json } from '@sveltejs/kit';
-import type { RequestEvent } from './$types';
+import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-export const GET = async ({}: RequestEvent) => {
+export const GET: RequestHandler = async ({}) => {
 	const posts = await loadRawPostsRecords();
 
 	return json(Object.keys(posts).length);

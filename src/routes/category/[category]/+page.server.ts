@@ -1,8 +1,7 @@
 import fetchPosts from '$lib/assets/js/fetchPosts';
-import { redirect } from '@sveltejs/kit';
-import type { PageServerLoadEvent } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load = async ({ params }: PageServerLoadEvent) => {
+export const load: PageServerLoad = async ({ params }) => {
 	const category = params.category;
 	const options = { category, limit: -1 };
 	const { posts } = await fetchPosts(options);
