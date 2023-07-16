@@ -1,10 +1,10 @@
 import fetchPosts from '$lib/assets/js/fetchPosts';
 import { json } from '@sveltejs/kit';
-import type { RequestEvent } from './$types';
+import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-export const GET = async ({}: RequestEvent) => {
+export const GET: RequestHandler = async ({}) => {
 	const options = {
 		limit: -1
 	};

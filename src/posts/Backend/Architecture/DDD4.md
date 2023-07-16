@@ -14,6 +14,10 @@ indexed: true
 exposed: true
 ---
 
+<script>
+	import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
+</script>
+
 ## 팩토리 패턴
 
 ---
@@ -24,8 +28,7 @@ exposed: true
 Go는 객체지향 언어가 아님에도 팩토리 패턴은 꽤 유용하다.
 아래 예제는 팩토리 패턴의 간단한 예제이다.
 
-<details>
-<summary>예제 코드</summary>
+<CodeBlockWrapper>
 
 ```go
 package chapter4
@@ -79,7 +82,7 @@ func main() {
 }
 ```
 
-</details>
+</CodeBlockWrapper>
 
 위 예제에서는 `Car` 인터페이스를 충족하는 `BMW`와 `Tesla` 구조체를 정의하였고, `Car` 오브젝트의 필드값을 초기화하여 반환하는 팩토리 함수 `BuildCar`를 정의하였다.
 또한, 자동차의 타입이 유효하지 않을 경우 에러를 반환한다.
@@ -90,8 +93,7 @@ func main() {
 가령 미용실 예약 시스템을 구현한다고 가정해보자.
 누군가 업무 시간이 지나고 예약하려 하는 경우, 다음과 같이 팩토리 함수를 통해 예외를 발생시킬 수 있다.
 
-<details>
-<summary>예제 코드</summary>
+<CodeBlockWrapper>
 
 ```go
 package chapter4
@@ -129,7 +131,7 @@ closingTime, \_ := time.Parse(time.Kitchen, "17:00pm")
 
 ```
 
-</details>
+</CodeBlockWrapper>
 
 위 예제는 엔티티를 생성하는 팩토리 함수를 보여주며, 엔티티의 식별자는 팩토리에서 생성된다.
 
@@ -188,8 +190,7 @@ type BookingRepository interface {
 
 PostgreSQL 데이터베이스를 위한 간단한 레포지토리 레이어를 구현해보자.
 
-<details>
-<summary>예제 코드</summary>
+<CodeBlockWrapper>
 
 ```go
 package chapter4
@@ -248,7 +249,7 @@ func (p PostgresRepository) DeleteBooking(ctx context.Context, booking Booking) 
 }
 ```
 
-</details>
+</CodeBlockWrapper>
 
 코드에서 볼 수 있듯, 데이터베이스와 상호작용하는 것은 꽤 간단하며, 도메인 로직이 들어가지 않는다.
 도메인 로직은 애플리케이션 서비스 계층에 들어가며, 애플리케이션 서비스 계층은 다음 장에서 다룬다.
@@ -279,10 +280,7 @@ DDD에서 코드를 조직화하기 위해 몇 가지 종류의 서비스를 사
 
 서비스가 유용하게 쓰일 수 있는 예제를 살펴보자. 엔티티 내에 이런 코드가 있다고 가정해보자.
 
-<details>
-<summary>예제 코드</summary>
-
-````go
+<CodeBlockWrapper>
 
 ```go
 package chapter4
@@ -319,16 +317,15 @@ func (s *ShoppingCart) AddToCard(p Product) bool {
 	}
 	return true
 }
-````
+```
 
-</details>
+</CodeBlockWrapper>
 
 괜찮아 보이는 코드지만 문제가 있다.
 `ShoppingCart`의 구현에서 다른 엔티티를 참조하고 있고, 실제로 `ShoppingCart`에 속하지 않는 비즈니스 로직이 포함되어 있다.
 이런 문제를 해결하기 위해 도메인 서비스를 사용할 수 있다.
 
-<details>
-<summary>예제 코드</summary>
+<CodeBlockWrapper>
 
 ```go
 package chapter4
@@ -359,6 +356,8 @@ func (c *CheckOutService) AddProductToCart(p *Product) error {
 }
 ```
 
+</CodeBlockWrapper>
+
 두 엔티티에 모두 접근할 수 있는 도메인 로직이 도메인 서비스에 작성되었다.
 이를 통해, `CheckOutService`에서 더 많은 엔티티를 참조하고자 할 때 더 유용해질 것이다.
 단일 도메인 서비스에 이러한 로직이 있기 때문에, 다른 클라이언트에서 우리의 동작을 구현하려는 경우 이 서비스를 사용할 수 있으며, 비즈니스 불변성이 유지된다.
@@ -370,8 +369,6 @@ func (c *CheckOutService) AddProductToCart(p *Product) error {
 
 ### 애플리케이션 서비스
 
-</details>
-
 애플리케이션 서비스는 다른 서비스 및 레포지토리를 구성하는 데 사용되며, 여러 모달 사이에서 트랜잭션을 관리한다.
 다만 도메인 로직은 애플리케이션 서비스가 아니라 도메인 서비스에 작성되어야 한다.
 
@@ -379,8 +376,7 @@ func (c *CheckOutService) AddProductToCart(p *Product) error {
 
 예약 예제를 통해 애플리케이션 서비스를 살펴보자.
 
-<details>
-<summary>예제 코드</summary>
+<CodeBlockWrapper>
 
 ```go
 package chapter4
@@ -434,7 +430,7 @@ func (b *BookingAppService) CreateBooking(ctx context.Context, booking Booking) 
 }
 ```
 
-</details>
+</CodeBlockWrapper>
 
 위 코드에서는 기본적인 인증을 수행하고, 도메인 레이어와 레포지토리 레이어로 애플리케이션 서비스를 구성한다.
 이런 예제의 경우에서라면 애플리케이션 서비스가 여러 도메인에 걸쳐 있지 않기 때문에 영속성을 도메인 서비스에서 건드리는 것도 괜찮다.
@@ -450,8 +446,7 @@ UI는 여러 도메인 서비스를 통해 구성될 필요가 있는데, 이런
 
 가령 이메일 인프라스트럭처 서비스는 다음과 같이 구현될 수 있다.
 
-<details>
-<summary>예제 코드</summary>
+<CodeBlockWrapper>
 
 ```go
 package chapter4
@@ -534,12 +529,11 @@ func (m MailChimp) SendEmail(ctx context.Context, to string, title string, body 
 }
 ```
 
-</details>
+</CodeBlockWrapper>
 
 이와 같이 인프라스트럭처 레이어를 구성하면, 애플리케이션 서비스에서 다음과 같이 사용할 수 있다.
 
-<details>
-<summary>예제 코드</summary>
+<CodeBlockWrapper>
 
 ```go
 type BookingAppService struct {
@@ -577,7 +571,7 @@ func (b *BookingAppService) CreateBooking(ctx context.Context, booking Booking) 
 }
 ```
 
-</details>
+</CodeBlockWrapper>
 
 이제 애플리케이션 서비스의 `CreateBooking` 함수가 호출되면 예약을 생성하고, 데이터베이스에 저장하는 것 뿐만 아니라 이메일을 유저에게 보낼 것이다.
 
@@ -593,4 +587,3 @@ func (b *BookingAppService) CreateBooking(ctx context.Context, booking Booking) 
 [Matthew Boyle, Domain-Driven Design with Golang』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/)
 
 </center>
-```

@@ -1,14 +1,17 @@
-import { HttpError, error } from '@sveltejs/kit';
-import type { PageServerLoadEvent } from './$types';
+import { error } from '@sveltejs/kit';
+import type { PageServerLoad, PageServerLoadEvent } from './$types';
 
-export const load = async ({ params }: PageServerLoadEvent) => {
+export const load: PageServerLoad = async ({ params }) => {
 	try {
 		const [mainCategory, subCategory, postName] = params.post.split('/');
-		const post = await import(`../../../../posts/${mainCategory}/${subCategory}/${postName}.md`);
-		return {
-			PostContent: post.default.render().html,
-			meta: { ...post.metadata, slug: params.post }
+
+		// const post = await import(`../../../../posts/${mainCategory}/${subCategory}/${postName}.md`);
+		const result = {
+			params
+			// meta: { ...post.metadata, slug: params.post }
 		};
+		// console.log(result);
+		return result;
 	} catch (err) {
 		throw error(404, err as Error);
 	}

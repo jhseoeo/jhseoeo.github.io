@@ -1,5 +1,6 @@
-import { redirect, type LoadEvent } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
+import type { PageServerLoad } from '../$types';
 
-export const load = ({}: LoadEvent) => {
+export const load: PageServerLoad = ({}) => {
 	throw redirect(301, '/posts');
 };

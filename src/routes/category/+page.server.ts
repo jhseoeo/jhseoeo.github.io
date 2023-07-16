@@ -1,7 +1,7 @@
 import type { uniqueCategory } from '$lib/types/uniqueCatrgory';
-import type { PageServerLoadEvent } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load = async ({ url, fetch }: PageServerLoadEvent) => {
+export const load: PageServerLoad = async ({ url, fetch }) => {
 	const res = await fetch(`${url.origin}/api/posts_all.json`);
 	let posts: Post[] = await res.json();
 

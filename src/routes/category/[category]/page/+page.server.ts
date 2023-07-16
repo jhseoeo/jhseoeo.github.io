@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
-import type { PageServerLoadEvent } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load = async ({ params }: PageServerLoadEvent) => {
+export const load: PageServerLoad = async ({ params }) => {
 	throw redirect(301, `/category/${params.category}`);
 };

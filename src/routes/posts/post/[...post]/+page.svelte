@@ -7,6 +7,7 @@
 	export let data;
 
 	const { title, excerpt, date, coverImage, coverWidth, coverHeight, categories } = data.meta;
+	const PostContent = data.PostContent;
 </script>
 
 <svelte:head>
@@ -39,7 +40,7 @@
 		{date.slice(0, 10)}
 	</div>
 
-	{@html data.PostContent}
+	<svelte:component this={PostContent} />
 
 	{#if categories}
 		<aside class="post-footer">

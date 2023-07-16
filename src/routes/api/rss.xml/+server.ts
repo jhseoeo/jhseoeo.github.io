@@ -1,11 +1,11 @@
 // IMPORTANT: update all these property values in src/lib/config.js
 import fetchPosts from '$lib/assets/js/fetchPosts';
 import { siteTitle, siteDescription, siteURL, siteLink } from '$lib/config';
-import type { RequestEvent } from './$types';
+import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-export const GET = async ({}: RequestEvent) => {
+export const GET: RequestHandler = async ({}) => {
 	const data = await fetchPosts({ limit: -1 });
 	const body = renderRSS(data.posts);
 	const headers = {
