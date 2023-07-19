@@ -25,7 +25,9 @@ function renderRSS(posts: Post[]) {
 				<title>${siteTitle}</title>
 				<description>${siteDescription}</description>
 				<link>${siteLink}</link>
+				<language>ko-KR</language>
 				<atom:link href="https://${siteURL}/rss.xml" rel="self" type="application/rss+xml"/>
+				<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 				${posts
 					.map(
 						(post) =>
