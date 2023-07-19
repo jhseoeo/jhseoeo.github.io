@@ -25,16 +25,17 @@ function renderSitemap(posts: Post[]) {
 			<loc>${siteLink}</loc>
 			<lastmod>2023-01-01</lastmod>
 			<changefreq>weekly</changefreq>
-			<priority>0.3</priority>
+			<priority>0.8</priority>
 		</url>
 		${posts
 			.filter((post) => post.indexed)
 			.map(
 				(post) => `<url>
-			<loc>https://${siteURL}/posts/post/${post.slug}</loc>
-			<lastmod>${post.date.slice(0, 10)}</lastmod>
-			<changefreq>weekly</changefreq>
-		</url>`
+					<loc>https://${siteURL}/posts/post/${post.slug}</loc>
+					<lastmod>${post.date.slice(0, 10)}</lastmod>
+					<changefreq>weekly</changefreq>
+					<priority>0.6</priority>
+				</url>`
 			)}
 	</urlset>
 	`;
