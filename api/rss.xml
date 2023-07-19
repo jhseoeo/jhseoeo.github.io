@@ -4,7 +4,9 @@
 				<title>집밥서선생</title>
 				<description>개발블로그</description>
 				<link>https://jhseoeo.github.io</link>
+				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+				<lastBuildDate>Wed, 19 Jul 2023 00:41:58 GMT</lastBuildDate>
 				<item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD4</guid>
 								<title>팩토리, 레포지토리, 서비스</title>
