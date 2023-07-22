@@ -7,6 +7,11 @@
 			<priority>0.8</priority>
 		</url>
 		<url>
+					<loc>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD5</loc>
+					<lastmod>2023-07-20</lastmod>
+					<changefreq>weekly</changefreq>
+					<priority>0.6</priority>
+				</url>,<url>
 					<loc>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD4</loc>
 					<lastmod>2023-07-16</lastmod>
 					<changefreq>weekly</changefreq>
