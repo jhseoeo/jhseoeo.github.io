@@ -6,8 +6,14 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Sat, 22 Jul 2023 11:06:08 GMT</lastBuildDate>
+				<lastBuildDate>Wed, 02 Aug 2023 13:00:20 GMT</lastBuildDate>
 				<item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD6</guid>
+								<title>마이크로서비스에 DDD 적용하기 (+ wire 사용해보기)</title>
+								<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD6</link>
+								<description>Applying DDD to a Microservice Application (+ Using wire)</description>
+								<pubDate>Thu, 27 Jul 2023 00:00:00 GMT</pubDate>
+							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD5</guid>
 								<title>모놀리식 애플리케이션에 DDD 적용하기</title>
 								<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD5</link>
