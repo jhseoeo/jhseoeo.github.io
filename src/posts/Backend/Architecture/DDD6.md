@@ -361,9 +361,11 @@ func (svc *Service) Get(ctx context.Context, tripStart time.Time, tripEnd time.T
 }
 ```
 
+</CodeBlockWrapper>
+
 이와 같이 여행 기간과 예산이 주어졌을 때, 가장 저렴한 여행 옵션을 추천하는 기능을 구현하였다. 이는 작은 서비스로, 제한된 컨텍스트 안에서 많은 도메인 언어를 사용하였다.
 
-<br><Br>
+<br><br>
 
 ## 어탭터 패턴 사용
 
