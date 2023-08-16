@@ -6,8 +6,14 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Sun, 06 Aug 2023 09:43:06 GMT</lastBuildDate>
+				<lastBuildDate>Wed, 16 Aug 2023 09:33:13 GMT</lastBuildDate>
 				<item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD8</guid>
+								<title>DDD와 함께 TDD, BDD 사용하기</title>
+								<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD8</link>
+								<description>TDD, BDD, and DDD</description>
+								<pubDate>Fri, 11 Aug 2023 00:00:00 GMT</pubDate>
+							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD7</guid>
 								<title>분산 시스템에 DDD 적용하기</title>
 								<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD7</link>
