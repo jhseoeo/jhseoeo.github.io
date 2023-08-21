@@ -1,5 +1,6 @@
-<script>
-	export let color = 'yellow';
+<script lang="ts">
+	type Color = 'yellow' | 'red' | 'green' | 'blue';
+	export let color: Color = 'yellow';
 
 	const colorMap = {
 		yellow: 'var(--highlightYellow)',
