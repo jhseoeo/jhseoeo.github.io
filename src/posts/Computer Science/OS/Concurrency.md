@@ -5,7 +5,7 @@ excerpt: Concepts about concurrency
 categories:
   - 'Computer Science'
   - 'OS'
-  - 'Go'
+  - 'Golang'
 coverImage: '/post_img/Computer Science/OS/Concurrency/cover.png'
 coverWidth: 16
 coverHeight: 9
