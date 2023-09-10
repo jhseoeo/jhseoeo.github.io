@@ -231,6 +231,6 @@ exposed: true
 <center>
 
 [![Effective Concurrency in Go](https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/)](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/) <br>
-[Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
+[Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
 
 </center>
