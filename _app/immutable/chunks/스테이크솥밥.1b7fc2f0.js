@@ -1,1 +1,0 @@
-import{S as t,i as u,s}from"./index.5621e629.js";const i={title:"스테이크솥밥",date:"2023-07-04T00:00:00.000Z",excerpt:"History of Domain Driven Design",categories:["요리"],coverImage:"/post_img/Backend/Architecture/DDD/cover.png",coverWidth:16,coverHeight:9,indexed:!1,exposed:!1};class r extends t{constructor(e){super(),u(this,e,null,null,s,{})}}export{r as default,i as metadata};

@@ -6,8 +6,20 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Fri, 01 Sep 2023 12:53:40 GMT</lastBuildDate>
+				<lastBuildDate>Sun, 10 Sep 2023 07:50:58 GMT</lastBuildDate>
 				<item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO5</guid>
+								<title>Worker Pool 및 Pipeline</title>
+								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO5</link>
+								<description>동시성 프로그래밍에서 워커 풀과 파이프라인 패턴을 Go로 구현해보자</description>
+								<pubDate>Sat, 09 Sep 2023 00:00:00 GMT</pubDate>
+							</item><item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Distributed Computing/Spark/RDD</guid>
+								<title>Spark 논문(RDD) 정리</title>
+								<link>https://jhseoeo.github.io/posts/post/Distributed Computing/Spark/RDD</link>
+								<description>Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</description>
+								<pubDate>Wed, 06 Sep 2023 00:00:00 GMT</pubDate>
+							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO3</guid>
 								<title>Go의 메모리 모델</title>
 								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO3</link>
