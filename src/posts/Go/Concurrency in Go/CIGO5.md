@@ -805,4 +805,3 @@ func orderedFanIn[T sequenced](done <-chan struct{}, channels ...<-chan T) <-cha
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
 
 </center>
-```
