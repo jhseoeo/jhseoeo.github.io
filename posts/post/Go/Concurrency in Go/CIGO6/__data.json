@@ -1,0 +1,1 @@
+{"type":"data","nodes":[{"type":"data","data":[null],"uses":{}},{"type":"data","data":[{"params":1},{"post":2},"Go/Concurrency in Go/CIGO6"],"uses":{"params":["post","then",null]}}]}

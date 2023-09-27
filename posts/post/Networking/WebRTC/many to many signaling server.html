@@ -8,18 +8,18 @@
 		
 		<link href="../../../../_app/immutable/assets/0.bf7b65b6.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.6bf551a2.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.c6eb1359.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.4cbbd8de.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.d78780bf.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.2b98f984.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.6999cb1f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.53878e7f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.74374dcf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.91f6d52b.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.fd5195c7.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.95ea4997.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.4ba40868.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/store.8bff042e.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.96cef4e6.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.2ef7ac73.js"><title>Golang으로 WebRTC Mesh Server 구현하기</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="Golang을 통해 M:N WebRTC 시그널링 서버를 만들어보았습니다"><meta property="og:type" content="article"><meta property="og:title" content="Golang으로 WebRTC Mesh Server 구현하기"><meta property="og:description" content="Golang을 통해 M:N WebRTC 시그널링 서버를 만들어보았습니다"><!-- HEAD_svelte-15lge4r_END -->
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.46cba462.js"><title>Golang으로 WebRTC Mesh Server 구현하기</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="Golang을 통해 M:N WebRTC 시그널링 서버를 만들어보았습니다"><meta property="og:type" content="article"><meta property="og:title" content="Golang으로 WebRTC Mesh Server 구현하기"><meta property="og:description" content="Golang을 통해 M:N WebRTC 시그널링 서버를 만들어보았습니다"><!-- HEAD_svelte-15lge4r_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -206,7 +206,7 @@ wss<span class="token punctuation">.</span><span class="token function-variable 
 웹소켓 연결이 생성되면 <code>register</code> 채널에 클라이언트 정보를 보내고, defer문을 통해 클라이언트가 웹소켓 연결을 끊으면 <code>unregister</code> 채널에 클라이언트 정보를 보낼 수 있게끔 하였다.</p>
 <p>1:1 연결에서는 이러한 100줄 정도의 코드만으로도 시그널링 서버를 구현할 수 있다.</p>
 <br>
-<p>전체 코드는 <a href="https://github.com/junhyuk0801/webrtc-mesh-server/tree/5d435d745a48ba3be0c1299163029364ec31a3bf" rel="nofollow">https://github.com/junhyuk0801/webrtc-mesh-server/tree/5d435d745a48ba3be0c1299163029364ec31a3bf</a>에서 찾아볼 수 있다.</p>
+<p>전체 코드는 <a href="https://github.com/jhseoeo/webrtc-mesh-server/tree/5d435d745a48ba3be0c1299163029364ec31a3bf" rel="nofollow">https://github.com/jhseoeo/webrtc-mesh-server/tree/5d435d745a48ba3be0c1299163029364ec31a3bf</a>에서 찾아볼 수 있다.</p>
 <br><br>
 <h2 id="개선할-점"><a aria-hidden="true" tabindex="-1" href="#개선할-점"><span class="icon icon-link"></span></a>개선할 점</h2>
 <p>일단 M:M으로 나아가기에 앞서, 위 예제에서 몇 가지 문제점을 찾아볼 수 있다.</p>
@@ -435,7 +435,7 @@ wss<span class="token punctuation">.</span><span class="token function-variable 
 <span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
 <p>채널 목록 및 <code>MakeSessionDataStore()</code>으로 세션별 데이터 저장소를 생성하고 for~switch loop으로 채널에서 데이터를 읽어와 처리한다.</p>
 <br>
-<p>전체 코드는 <a href="https://github.com/junhyuk0801/webrtc-mesh-server" rel="nofollow">https://github.com/junhyuk0801/webrtc-mesh-server</a>에서 찾아볼 수 있다.</p>
+<p>전체 코드는 <a href="https://github.com/jhseoeo/webrtc-mesh-server" rel="nofollow">https://github.com/jhseoeo/webrtc-mesh-server</a>에서 찾아볼 수 있다.</p>
 <br><br>
 <h2 id="후기"><a aria-hidden="true" tabindex="-1" href="#후기"><span class="icon icon-link"></span></a>후기</h2>
 <p>many-to-many 만들 때 시그널링 메시지를 브로드캐스팅으로 보내버려서 피어 수가 3명이 넘어가면 연결이 제대로 안됐었는데, 뭐가 문제인지 찾는 데 한참 걸렸다.</p>
@@ -454,7 +454,7 @@ wss<span class="token punctuation">.</span><span class="token function-variable 
 			
 			<script>
 				{
-					__sveltekit_2ggmwr = {
+					__sveltekit_k0loi8 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -464,8 +464,8 @@ wss<span class="token punctuation">.</span><span class="token function-variable 
 					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{params:{post:"Networking/WebRTC/many to many signaling server"}},"uses":{"params":["post","then",null]}}];
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.c6eb1359.js"),
-						import("../../../../_app/immutable/entry/app.74374dcf.js")
+						import("../../../../_app/immutable/entry/start.4cbbd8de.js"),
+						import("../../../../_app/immutable/entry/app.91f6d52b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 13],

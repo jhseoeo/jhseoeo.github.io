@@ -6,8 +6,26 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Sun, 10 Sep 2023 07:50:58 GMT</lastBuildDate>
+				<lastBuildDate>Wed, 27 Sep 2023 11:32:17 GMT</lastBuildDate>
 				<item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO8</guid>
+								<title>동시성 프로그래밍과 요청 처리</title>
+								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO8</link>
+								<description>동시성 프로그래밍과 서버 프로그래밍을 잘 버무려보자.</description>
+								<pubDate>Sat, 16 Sep 2023 00:00:00 GMT</pubDate>
+							</item><item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO7</guid>
+								<title>Timer와 Ticker</title>
+								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO7</link>
+								<description>Go에서 일정 시간이 지난 이후 또는 주기적으로 특정 작업을 수행하려면 어떻게 해야 할지 알아보자.</description>
+								<pubDate>Thu, 14 Sep 2023 00:00:00 GMT</pubDate>
+							</item><item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO6</guid>
+								<title>동시성 프로그램의 에러 핸들링</title>
+								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO6</link>
+								<description>동시성 프로그래밍에서 발생하는 에러 및 panic은 어떻게 핸들링해야 할지 알아보자</description>
+								<pubDate>Mon, 11 Sep 2023 00:00:00 GMT</pubDate>
+							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO5</guid>
 								<title>Worker Pool 및 Pipeline</title>
 								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO5</link>

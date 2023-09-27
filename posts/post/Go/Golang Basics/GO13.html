@@ -8,18 +8,18 @@
 		
 		<link href="../../../../_app/immutable/assets/0.bf7b65b6.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.6bf551a2.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.c6eb1359.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.4cbbd8de.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.d78780bf.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.2b98f984.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.6999cb1f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.53878e7f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.74374dcf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.91f6d52b.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.fd5195c7.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.95ea4997.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.4ba40868.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/store.8bff042e.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.96cef4e6.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.2ef7ac73.js"><title>테스트 작성</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="Writing Tests"><meta property="og:type" content="article"><meta property="og:title" content="테스트 작성"><meta property="og:description" content="Writing Tests"><!-- HEAD_svelte-15lge4r_END -->
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.46cba462.js"><title>테스트 작성</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="Writing Tests"><meta property="og:type" content="article"><meta property="og:title" content="테스트 작성"><meta property="og:description" content="Writing Tests"><!-- HEAD_svelte-15lge4r_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -128,12 +128,12 @@ Go에서 표준 라이브러리로 테스트에 관련된 기능을 포함하는
     adder_test.go:8: incorrect result: expected 5, got 4
 FAIL
 exit status 1
-FAIL    github.com/junhyuk0801/learning-go/13/adder     0.001s</code><!-- HTML_TAG_END --></pre>
+FAIL    github.com/jhseoeo/learning-go/13/adder     0.001s</code><!-- HTML_TAG_END --></pre>
 <p>이렇듯 테스트가 성공하지 못했음을 확인하였다. 우리가 작성한 함수에서 버그를 찾아 고쳐주자.
 <code>return x + x</code>를 <code>return x + y</code>로 고쳐주고 다시 <code>go test</code>를 실행하면 테스트가 성공적으로 끝남을 확인할 수 있다.</p>
 <pre class="language-go"><!-- HTML_TAG_START --><code class="language-go">$ <span class="token keyword">go</span> test
 PASS
-ok      github<span class="token punctuation">.</span>com<span class="token operator">/</span>junhyuk0801<span class="token operator">/</span>learning<span class="token operator">-</span><span class="token keyword">go</span><span class="token operator">/</span><span class="token number">13</span><span class="token operator">/</span>adder     <span class="token number">0</span><span class="token punctuation">.</span>001s</code><!-- HTML_TAG_END --></pre>
+ok      github<span class="token punctuation">.</span>com<span class="token operator">/</span>jhseoeo<span class="token operator">/</span>learning<span class="token operator">-</span><span class="token keyword">go</span><span class="token operator">/</span><span class="token number">13</span><span class="token operator">/</span>adder     <span class="token number">0</span><span class="token punctuation">.</span>001s</code><!-- HTML_TAG_END --></pre>
 <p><code>go test</code> 명령어는 어떤 패키지에서 테스트를 진행할 지 명시할 수 있다.
 <code>./...</code>를 붙이면 현재 디렉토리와 모든 하위 디렉토리에 대해서 테스트를 진행한다.
 <code>-v</code> 플래그가 있으면 verbose output을 출력한다.</p>
@@ -191,7 +191,7 @@ TestFirst uses stuff set up in TestMain 2023-02-06 00:32:52.707847138 +0900 KST 
 TestSecond uses stuff set up in TestMain 2023-02-06 00:32:52.707847138 +0900 KST m=+0.000167689
 PASS
 Clean up stuff after tests here
-ok      github.com/junhyuk0801/learning-go/13/testmain  0.001s</code><!-- HTML_TAG_END --></pre>
+ok      github.com/jhseoeo/learning-go/13/testmain  0.001s</code><!-- HTML_TAG_END --></pre>
 <p><code>TestMain()</code>은 딱 한 번만 호출되며, 패키지당 하나의 <code>TestMain()</code>만 사용할 수 있다.
 <code>TestMain()</code>을 유용하게 사용할 만한 상황은 다음과 같다.</p>
 <ul><li>데이터베이스 등, 외부 repository를 구축해야 하는 경우</li>
@@ -255,7 +255,7 @@ ok      github.com/junhyuk0801/learning-go/13/testmain  0.001s</code><!-- HTML_T
 <span class="token keyword">import</span> <span class="token punctuation">(</span>
 	<span class="token string">"testing"</span>
 
-	<span class="token string">"github.com/junhyuk0801/learning-go/13-tests/adder"</span>
+	<span class="token string">"github.com/jhseoeo/learning-go/13-tests/adder"</span>
 <span class="token punctuation">)</span>
 
 <span class="token keyword">func</span> <span class="token function">TestAddNumbers</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -297,7 +297,7 @@ ok      github.com/junhyuk0801/learning-go/13/testmain  0.001s</code><!-- HTML_T
 	<span class="token string">"testing"</span>
 
 	<span class="token string">"github.com/google/go-cmp/cmp"</span>
-	testcmp <span class="token string">"github.com/junhyuk0801/learning-go/13-tests/cmp"</span>
+	testcmp <span class="token string">"github.com/jhseoeo/learning-go/13-tests/cmp"</span>
 <span class="token punctuation">)</span>
 
 <span class="token keyword">func</span> <span class="token function">TestCreatePerson</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -326,7 +326,7 @@ ok      github.com/junhyuk0801/learning-go/13/testmain  0.001s</code><!-- HTML_T
 
 FAIL
 exit status 1
-FAIL    github.com/junhyuk0801/learning-go/13-tests/cmp 0.001s</code><!-- HTML_TAG_END --></pre>
+FAIL    github.com/jhseoeo/learning-go/13-tests/cmp 0.001s</code><!-- HTML_TAG_END --></pre>
 <p><code>+</code>와 <code>-</code>가 있는 라인에서 예측값과 실제 값의 차이를 나타낸다.
 위 예제의 경우 <code>DateAdded</code> 필드가 일치하지 않았기 때문에 실패하였다. <code>DateAdded</code> 필드는 <code>testcmp.CreatePerson()</code>를 통해서만 제대로 처리할 수 있기 때문에, <code>DateAdded</code> 필드는 검사 대상에서 제외할 필요가 있다.
 아래와 같이 비교 함수를 정의해서, 비교하고자 하는 필드를 지정할수 있다.</p>
@@ -436,7 +436,7 @@ slice의 각 항목은 각각의 테스트 케이스를 의미한다.</p>
     --- PASS: TestDoMath/division (0.00s)
     --- PASS: TestDoMath/bad_division (0.00s)
 PASS
-ok      github.com/junhyuk0801/learning-go/13-tests/table       0.001s</code><!-- HTML_TAG_END --></pre>
+ok      github.com/jhseoeo/learning-go/13-tests/table       0.001s</code><!-- HTML_TAG_END --></pre>
 <blockquote><p>위 예제에서는 <code>error</code>의 에러 메시지를 비교하여 예측 에러와 실제 에러를 비교하지만, 실제로는 <code>errors.Is()</code> 또는 <code>errors.As()</code>를 사용하여 에러를 검증하는 편이 더 이상적이다.</p></blockquote>
 <br><br>
 <h2 id="code-coverage"><a aria-hidden="true" tabindex="-1" href="#code-coverage"><span class="icon icon-link"></span></a>Code Coverage</h2>
@@ -450,14 +450,14 @@ ok      github.com/junhyuk0801/learning-go/13-tests/table       0.001s</code><!-
 coverage: 87.5% of statements</code><!-- HTML_TAG_END --></pre>
 <p>이처럼 coverage의 달성률을 보여주며, 파일은 아래와 같이 저장된다.</p>
 <pre class="language-text"><!-- HTML_TAG_START --><code class="language-text">mode: set
-github.com/junhyuk0801/learning-go/13-tests/table/table.go:5.53,6.12 1 1
-github.com/junhyuk0801/learning-go/13-tests/table/table.go:7.11,8.26 1 1
-github.com/junhyuk0801/learning-go/13-tests/table/table.go:9.11,10.26 1 1
-github.com/junhyuk0801/learning-go/13-tests/table/table.go:11.11,12.26 1 1
-github.com/junhyuk0801/learning-go/13-tests/table/table.go:13.11,14.16 1 1
-github.com/junhyuk0801/learning-go/13-tests/table/table.go:17.3,17.26 1 1
-github.com/junhyuk0801/learning-go/13-tests/table/table.go:18.10,19.50 1 0
-github.com/junhyuk0801/learning-go/13-tests/table/table.go:14.16,16.4 1 1</code><!-- HTML_TAG_END --></pre>
+github.com/jhseoeo/learning-go/13-tests/table/table.go:5.53,6.12 1 1
+github.com/jhseoeo/learning-go/13-tests/table/table.go:7.11,8.26 1 1
+github.com/jhseoeo/learning-go/13-tests/table/table.go:9.11,10.26 1 1
+github.com/jhseoeo/learning-go/13-tests/table/table.go:11.11,12.26 1 1
+github.com/jhseoeo/learning-go/13-tests/table/table.go:13.11,14.16 1 1
+github.com/jhseoeo/learning-go/13-tests/table/table.go:17.3,17.26 1 1
+github.com/jhseoeo/learning-go/13-tests/table/table.go:18.10,19.50 1 0
+github.com/jhseoeo/learning-go/13-tests/table/table.go:14.16,16.4 1 1</code><!-- HTML_TAG_END --></pre>
 <p>마지막이 0으로 끝나는 라인이, 테스트 케이스에 의해 cover되지 않은 코드의 위치를 의미한다.</p>
 <br>
 <p>이 방식도 충분히 좋지만, 조금 더 직관적인 도구가 <code>cover</code>라는 도구이다. HTML로 coverage 정보를 소스코드와 함께 나타내주기 때문에 매우 직관적이다.
@@ -505,7 +505,7 @@ github.com/junhyuk0801/learning-go/13-tests/table/table.go:14.16,16.4 1 1</code>
 	<span class="token string">"os"</span>
 	<span class="token string">"testing"</span>
 
-	<span class="token string">"github.com/junhyuk0801/learning-go/13-tests/bench"</span>
+	<span class="token string">"github.com/jhseoeo/learning-go/13-tests/bench"</span>
 <span class="token punctuation">)</span>
 
 <span class="token keyword">func</span> <span class="token function">TestMain</span><span class="token punctuation">(</span>m <span class="token operator">*</span>testing<span class="token punctuation">.</span>M<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1050,7 +1050,7 @@ rs <span class="token operator">:=</span> RemoteSolver<span class="token punctua
     race_test.go:8: unexpected counter: 4116
 FAIL
 exit status 1
-FAIL    github.com/junhyuk0801/learning-go/13-tests/race        0.001s</code><!-- HTML_TAG_END --></pre>
+FAIL    github.com/jhseoeo/learning-go/13-tests/race        0.001s</code><!-- HTML_TAG_END --></pre>
 <p>테스트를 통과할 때도 있지만, 가끔 이렇게 결과가 5000이 아닐 때가 있다!</p>
 <p>공유된 변수 <code>counter</code>에 접근하여 값을 증가시키는 과정에서, data race로 인해 변수의 값 갱신이 누락되는 현상이 생기는 것이다.
 아주 간단한 예제를 소개했지만, 실제로 코드에서는 data race를 유발하는 원인을 훨씬 찾기 힘들 것이다.
@@ -1060,17 +1060,17 @@ FAIL    github.com/junhyuk0801/learning-go/13-tests/race        0.001s</code><!-
 ==================
 WARNING: DATA RACE
 Read at 0x00c000018248 by goroutine 10:
-  github.com/junhyuk0801/learning-go/13-tests/race.getCounter.func1()
+  github.com/jhseoeo/learning-go/13-tests/race.getCounter.func1()
       /home/junhyuk/Programming/Golang/13-tests/race/race.go:13 +0x46
 
 Previous write at 0x00c000018248 by goroutine 8:
-  github.com/junhyuk0801/learning-go/13-tests/race.getCounter.func1()
+  github.com/jhseoeo/learning-go/13-tests/race.getCounter.func1()
       /home/junhyuk/Programming/Golang/13-tests/race/race.go:13 +0x58
 
 Goroutine 10 (running) created at:
-  github.com/junhyuk0801/learning-go/13-tests/race.getCounter()
+  github.com/jhseoeo/learning-go/13-tests/race.getCounter()
       /home/junhyuk/Programming/Golang/13-tests/race/race.go:11 +0x8d
-  github.com/junhyuk0801/learning-go/13-tests/race.TestGetCounter()
+  github.com/jhseoeo/learning-go/13-tests/race.TestGetCounter()
       /home/junhyuk/Programming/Golang/13-tests/race/race_test.go:6 +0x2b
   testing.tRunner()
       /usr/local/go/src/testing/testing.go:1439 +0x213
@@ -1078,9 +1078,9 @@ Goroutine 10 (running) created at:
       /usr/local/go/src/testing/testing.go:1486 +0x47
 
 Goroutine 8 (finished) created at:
-  github.com/junhyuk0801/learning-go/13-tests/race.getCounter()
+  github.com/jhseoeo/learning-go/13-tests/race.getCounter()
       /home/junhyuk/Programming/Golang/13-tests/race/race.go:11 +0x8d
-  github.com/junhyuk0801/learning-go/13-tests/race.TestGetCounter()
+  github.com/jhseoeo/learning-go/13-tests/race.TestGetCounter()
       /home/junhyuk/Programming/Golang/13-tests/race/race_test.go:6 +0x2b
   testing.tRunner()
       /usr/local/go/src/testing/testing.go:1439 +0x213
@@ -1092,7 +1092,7 @@ Goroutine 8 (finished) created at:
     testing.go:1312: race detected during execution of test
 FAIL
 exit status 1
-FAIL    github.com/junhyuk0801/learning-go/13-tests/race        0.007s</code><!-- HTML_TAG_END --></pre>
+FAIL    github.com/jhseoeo/learning-go/13-tests/race        0.007s</code><!-- HTML_TAG_END --></pre>
 <p>이처럼 race condition을 유발하는 코드 라인, 고루틴이 생성된 라인 등을 추적해준다.</p>
 <br>
 <p>프로그램을 빌드할 때도 <code>-race</code> 플래그를 붙여서 race checker를 실행할 수 있다. 이렇게 하면 빌드 이전에 테스트를 거치지 않고도 data race를 추적해볼 수 있다. 다만 <code>-race</code> 플래그가 붙은 채로 빌드된 바이너리는 속도가 매우 느리기 때문에, 프로덕션 코드에서는 절대 권장되지 않는다.</p>
@@ -1115,7 +1115,7 @@ FAIL    github.com/junhyuk0801/learning-go/13-tests/race        0.007s</code><!-
 			
 			<script>
 				{
-					__sveltekit_2ggmwr = {
+					__sveltekit_k0loi8 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -1125,8 +1125,8 @@ FAIL    github.com/junhyuk0801/learning-go/13-tests/race        0.007s</code><!-
 					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{params:{post:"Go/Golang Basics/GO13"}},"uses":{"params":["post","then",null]}}];
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.c6eb1359.js"),
-						import("../../../../_app/immutable/entry/app.74374dcf.js")
+						import("../../../../_app/immutable/entry/start.4cbbd8de.js"),
+						import("../../../../_app/immutable/entry/app.91f6d52b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 13],

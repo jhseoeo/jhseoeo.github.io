@@ -8,18 +8,18 @@
 		
 		<link href="../../../../_app/immutable/assets/0.bf7b65b6.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.6bf551a2.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.c6eb1359.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.4cbbd8de.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.d78780bf.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.2b98f984.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.6999cb1f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.53878e7f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.74374dcf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.91f6d52b.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.fd5195c7.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.95ea4997.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.4ba40868.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/store.8bff042e.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.96cef4e6.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.2ef7ac73.js"><title>모듈, 패키지, 임포트</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="Modules, Packages, Imports"><meta property="og:type" content="article"><meta property="og:title" content="모듈, 패키지, 임포트"><meta property="og:description" content="Modules, Packages, Imports"><!-- HEAD_svelte-15lge4r_END -->
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.46cba462.js"><title>모듈, 패키지, 임포트</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="Modules, Packages, Imports"><meta property="og:type" content="article"><meta property="og:title" content="모듈, 패키지, 임포트"><meta property="og:description" content="Modules, Packages, Imports"><!-- HEAD_svelte-15lge4r_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -91,7 +91,7 @@
 하지만 이제부터는 우리의 프로젝트가 모듈임을 선언할 필요가 있다.</p>
 <p>모든 모듈은 고유한 식별자를 가진다(Java와 달리, Go에서는 반드시 Unique해야 할 필요는 없는 것 같다).
 일반적으로는 모듈이 저장되는 레포지토리의 주소를 사용한다.
-예를 들어, 나의 <code>ASDFDSA</code>라는 이름의 모듈이 깃허브에 저장된다면, <code>github.com/junhyuk0801/ASDFDSA</code>와 같은 식이다.</p>
+예를 들어, 나의 <code>ASDFDSA</code>라는 이름의 모듈이 깃허브에 저장된다면, <code>github.com/jhseoeo/ASDFDSA</code>와 같은 식이다.</p>
 <br><br>
 <h2 id="gomod"><a aria-hidden="true" tabindex="-1" href="#gomod"><span class="icon icon-link"></span></a>go.mod</h2>
 <hr>
@@ -342,7 +342,7 @@ godoc은 아주 간단하다. 특정한 기호를 사용할 필요는 없고, �
 	<span class="token keyword">return</span> a <span class="token operator">*</span> <span class="token number">2</span>
 <span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
 <p><code>foo</code>, <code>bar</code>, <code>sibling</code>, <code>main</code> 등, 모듈 내의 나머지 패키지들은 <code>internal</code> 패키지의 <code>Double()</code>을 호출하게끔 적절히 작성해 주자.
-작성된 예제는 <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/09-modules_packages_imports/internal_package" rel="nofollow">Github</a>에 올라가 있으니,
+작성된 예제는 <a href="https://github.com/jhseoeo/Learning-golang/tree/master/09-modules_packages_imports/internal_package" rel="nofollow">Github</a>에 올라가 있으니,
 확인할 수 있다.</p>
 <p>이제 루트 디렉토리에서 모듈을 빌드하여, 출력되는 컴파일 에러 메시지를 확인해보자.</p>
 <pre class="language-bash"><!-- HTML_TAG_START --><code class="language-bash">$ go build ./<span class="token punctuation">..</span>.
@@ -434,7 +434,7 @@ package github.com/learning-go/9/circular_dependency
 <p>만약 두 패키지를 반드시 분리해야 한다면,
 한 쪽 패키지에서 circular dependency를 일으키는 대상을 반대쪽 패키지나 새로운 패키지로 이동시키는 방법이 있을 수 있다.
 이를테면 <code>person</code> 패키지의 <code>owners</code> 변수를 <code>pet</code> 패키지나 새로운 패키지로 이동하면 오류가 발생하지 않을 것이다.</p>
-<p>작성된 예제는 <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/09-modules_packages_imports/circular_dependency" rel="nofollow">Github</a>에 올라가 있으니,
+<p>작성된 예제는 <a href="https://github.com/jhseoeo/Learning-golang/tree/master/09-modules_packages_imports/circular_dependency" rel="nofollow">Github</a>에 올라가 있으니,
 확인할 수 있다.</p>
 <br><br>
 <h3 id="renaming-and-reorganizing-api"><a aria-hidden="true" tabindex="-1" href="#renaming-and-reorganizing-api"><span class="icon icon-link"></span></a>Renaming and Reorganizing API</h3>
@@ -833,7 +833,7 @@ Private Repositories에 대한 정보조차 유출하고 싶지 않을 수 있�
 			
 			<script>
 				{
-					__sveltekit_2ggmwr = {
+					__sveltekit_k0loi8 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -843,8 +843,8 @@ Private Repositories에 대한 정보조차 유출하고 싶지 않을 수 있�
 					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{params:{post:"Go/Golang Basics/GO9"}},"uses":{"params":["post","then",null]}}];
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.c6eb1359.js"),
-						import("../../../../_app/immutable/entry/app.74374dcf.js")
+						import("../../../../_app/immutable/entry/start.4cbbd8de.js"),
+						import("../../../../_app/immutable/entry/app.91f6d52b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 13],

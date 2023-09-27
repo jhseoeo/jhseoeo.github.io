@@ -8,18 +8,18 @@
 		
 		<link href="../../../../_app/immutable/assets/0.bf7b65b6.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.6bf551a2.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.c6eb1359.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.4cbbd8de.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.d78780bf.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.2b98f984.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.6999cb1f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.53878e7f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.74374dcf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.91f6d52b.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.fd5195c7.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.95ea4997.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.4ba40868.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/store.8bff042e.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.96cef4e6.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.2ef7ac73.js"><title>컨텍스트</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="The Context"><meta property="og:type" content="article"><meta property="og:title" content="컨텍스트"><meta property="og:description" content="The Context"><!-- HEAD_svelte-15lge4r_END -->
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.46cba462.js"><title>컨텍스트</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="The Context"><meta property="og:type" content="article"><meta property="og:title" content="컨텍스트"><meta property="og:description" content="The Context"><!-- HEAD_svelte-15lge4r_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -373,7 +373,7 @@ slow response err: Get <span class="token string">"http://127.0.0.1:39207"</span
 	<span class="token keyword">return</span> s
 <span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
 <p>아마 클라이언트 단의 컨텍스트가 취소되면, 요청에 있는 컨텍스트의 <code>Done</code> 신호가 들어오는 것 같다.</p></blockquote>
-<p>위 예제들의 소스코드는 <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/cancellation" rel="nofollow">여기</a>에서 확인해볼 수 있다.</p>
+<p>위 예제들의 소스코드는 <a href="https://github.com/jhseoeo/Learning-golang/tree/master/12-context/cancellation" rel="nofollow">여기</a>에서 확인해볼 수 있다.</p>
 <br>
 <p>이렇게, 수동으로 컨텍스트를 취소하는 방법에 대해 살펴보았다.
 이러한 방식도 유용하지만, 다음 섹선에서는 타임아웃을 통해 취소를 자동화하는 방법에 대해 살펴볼 것이다.</p>
@@ -410,7 +410,7 @@ slow response err: Get <span class="token string">"http://127.0.0.1:39207"</span
 <p>만약 컨텍스트가 자동으로 닫히는 시각을 알아내고 싶다면, <code>context.Context</code> 인스턴스의 <code>Deadline()</code> 메소드를 사용한다.
 해당 메소드는 컨텍스트가 닫히는 시각을 나타내는 <code>time.Time</code> 인스턴스와, 타임아웃이 설정되어 있는지 여부를 <code>true</code>나 <code>false</code>로 리턴한다.
 따라서 <em>comma ok idiom</em>을 적용하면 된다.</p>
-<p>적용된 예제가 길어져서, <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/context_timeout.go" rel="nofollow">여기</a>에서 확인하면 될 듯 하다.</p>
+<p>적용된 예제가 길어져서, <a href="https://github.com/jhseoeo/Learning-golang/tree/master/12-context/context_timeout.go" rel="nofollow">여기</a>에서 확인하면 될 듯 하다.</p>
 <br>
 <p>요청에 대한 전반적인 타임아웃을 설정할 때, 이 타임아웃을 세분화할 수도 있다.
 이를테면 한 서비스에서 다른 서비스를 호출하는 구조가 있을 수 있는데,
@@ -420,7 +420,7 @@ slow response err: Get <span class="token string">"http://127.0.0.1:39207"</span
 <p>특히 child 컨텍스트의 타임아웃은 parent 컨텍스트의 타임아웃에 종속된다.
 이를테면 parent 컨텍스트의 타임아웃이 2초이고 child 컨텍스트의 타임아웃이 3초라고 하면,
 parent 컨텍스트의 타임아웃인 2초가 지나면 child 컨텍스트도 자동으로 취소된다.</p>
-<p>마찬가지로 예제가 좀 길어져서, <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/parent_child_timeout.go" rel="nofollow">여기</a>서 확인하면 된다.
+<p>마찬가지로 예제가 좀 길어져서, <a href="https://github.com/jhseoeo/Learning-golang/tree/master/12-context/parent_child_timeout.go" rel="nofollow">여기</a>서 확인하면 된다.
 이 코드를 실행해보면 parent 컨텍스트의 타임아웃이 먼저 찾아올 것이고, 그와 동시에 child 컨텍스트도 취소된다.</p>
 <br><br>
 <h2 id="handling-context-cancellation-in-your-own-code"><a aria-hidden="true" tabindex="-1" href="#handling-context-cancellation-in-your-own-code"><span class="icon icon-link"></span></a>Handling Context Cancellation in Your Own Code</h2>
@@ -718,7 +718,7 @@ Go에서는 명시적인 데이터 전달을 이상적으로 여긴다.
 	Remote<span class="token punctuation">:</span>           <span class="token string">"http://www.example.com/query"</span><span class="token punctuation">,</span>
 <span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
 <br>
-<p>전체 코드는 <a href="https://github.com/junhyuk0801/Learning-golang/tree/master/12-context/values" rel="nofollow">여기</a>에서 확인할 수 있다.</p>
+<p>전체 코드는 <a href="https://github.com/jhseoeo/Learning-golang/tree/master/12-context/values" rel="nofollow">여기</a>에서 확인할 수 있다.</p>
 <br><br>
 <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2>
 <hr>
@@ -738,7 +738,7 @@ Go에서는 명시적인 데이터 전달을 이상적으로 여긴다.
 			
 			<script>
 				{
-					__sveltekit_2ggmwr = {
+					__sveltekit_k0loi8 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -748,8 +748,8 @@ Go에서는 명시적인 데이터 전달을 이상적으로 여긴다.
 					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{params:{post:"Go/Golang Basics/GO12"}},"uses":{"params":["post","then",null]}}];
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.c6eb1359.js"),
-						import("../../../../_app/immutable/entry/app.74374dcf.js")
+						import("../../../../_app/immutable/entry/start.4cbbd8de.js"),
+						import("../../../../_app/immutable/entry/app.91f6d52b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 13],

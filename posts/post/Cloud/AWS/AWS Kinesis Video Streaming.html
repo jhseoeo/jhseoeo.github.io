@@ -8,18 +8,18 @@
 		
 		<link href="../../../../_app/immutable/assets/0.bf7b65b6.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.6bf551a2.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.c6eb1359.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.4cbbd8de.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.d78780bf.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.2b98f984.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.6999cb1f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.53878e7f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.74374dcf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.91f6d52b.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.fd5195c7.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.95ea4997.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.4ba40868.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/store.8bff042e.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.96cef4e6.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.2ef7ac73.js"><title>Amazon KVS WebRTC signaling channels 사용기</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="Amazon KVS WebRTC signaling channel에 대해 알아보자"><meta property="og:type" content="article"><meta property="og:title" content="Amazon KVS WebRTC signaling channels 사용기"><meta property="og:description" content="Amazon KVS WebRTC signaling channel에 대해 알아보자"><!-- HEAD_svelte-15lge4r_END -->
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.46cba462.js"><title>Amazon KVS WebRTC signaling channels 사용기</title><!-- HEAD_svelte-15lge4r_START --><meta data-key="description" name="description" content="Amazon KVS WebRTC signaling channel에 대해 알아보자"><meta property="og:type" content="article"><meta property="og:title" content="Amazon KVS WebRTC signaling channels 사용기"><meta property="og:description" content="Amazon KVS WebRTC signaling channel에 대해 알아보자"><!-- HEAD_svelte-15lge4r_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -166,7 +166,7 @@ STUN, TURN 등 사용 여부, Trickle ICE 사용 어부 등을 결정할 수 있
 <p>앞서 언급한 문제를 해결하기 위해서는 AWS Cognito를 사용하거나 채널의 생성을 백엔드단에서 처리하여 프론트엔드로 생성된 채널 정보를 넘겨주는 방식 등이 있을 것이다.</p>
 <p>Cognito를 사용하는 방법이 더 이상적인 방법이겠지만 아쉽게도 이 프로젝트를 할 당시 Cognito 사용법을 몰랐다 ㅠ
 그래서 후자의 방법, 즉 채널의 생성이나 삭제를 백엔드단에서 처리하는 방법으로 해결하였다.
-<a href="https://github.com/junhyuk0801/aws-kvs-webtrtc-signaling-channel-example" rel="nofollow">https://github.com/junhyuk0801/aws-kvs-webtrtc-signaling-channel-example</a>에 수정된 코드가 있다.
+<a href="https://github.com/jhseoeo/aws-kvs-webtrtc-signaling-channel-example" rel="nofollow">https://github.com/jhseoeo/aws-kvs-webtrtc-signaling-channel-example</a>에 수정된 코드가 있다.
 변경점을 하나씩 살펴보자.</p>
 <br><br>
 <h3 id="백엔드"><a aria-hidden="true" tabindex="-1" href="#백엔드"><span class="icon icon-link"></span></a>백엔드</h3>
@@ -397,7 +397,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 			
 			<script>
 				{
-					__sveltekit_2ggmwr = {
+					__sveltekit_k0loi8 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -407,8 +407,8 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{params:{post:"Cloud/AWS/AWS Kinesis Video Streaming"}},"uses":{"params":["post","then",null]}}];
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.c6eb1359.js"),
-						import("../../../../_app/immutable/entry/app.74374dcf.js")
+						import("../../../../_app/immutable/entry/start.4cbbd8de.js"),
+						import("../../../../_app/immutable/entry/app.91f6d52b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 13],
