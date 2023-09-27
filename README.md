@@ -13,7 +13,7 @@
 
 [josh-collinsworth님의 sveltekit-blog-starter](https://github.com/josh-collinsworth/sveltekit-blog-starter)를 일부 수정하여 제작한 블로그 탬플릿입니다.  
 Markdown으로 포스트를 작성할 수 있습니다.  
-배포된 블로그는 <https://junhyuk0801.github.io/>에서 확인할 수 있습니다.
+배포된 블로그는 <https://jhseoeo.github.io/>에서 확인할 수 있습니다.
 
 <br>
 
@@ -50,7 +50,7 @@ Markdown으로 포스트를 작성할 수 있습니다.
 프로젝트를 clone하여 실행해봅니다.
 
 ```bash
-git clone https://github.com/junhyuk0801/junhyuk0801.github.io blog
+git clone https://github.com/jhseoeo/jhseoeo.github.io blog
 cd blog
 npm i
 npm run dev

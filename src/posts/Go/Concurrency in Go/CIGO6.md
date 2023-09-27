@@ -444,4 +444,3 @@ func pipelineStage[IN any, OUT WithError](input <-chan IN, output chan<- WithErr
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
 
 </center>
-````

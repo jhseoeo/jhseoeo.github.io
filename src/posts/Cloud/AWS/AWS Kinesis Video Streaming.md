@@ -193,7 +193,7 @@ Signaling Channel에 대해서는 잘 몰라도 WebRTC에 관련된 경험이나
 
 Cognito를 사용하는 방법이 더 이상적인 방법이겠지만 아쉽게도 이 프로젝트를 할 당시 Cognito 사용법을 몰랐다 ㅠ
 그래서 후자의 방법, 즉 채널의 생성이나 삭제를 백엔드단에서 처리하는 방법으로 해결하였다.
-<https://github.com/junhyuk0801/aws-kvs-webtrtc-signaling-channel-example>에 수정된 코드가 있다.
+<https://github.com/jhseoeo/aws-kvs-webtrtc-signaling-channel-example>에 수정된 코드가 있다.
 변경점을 하나씩 살펴보자.
 
 <br><br>

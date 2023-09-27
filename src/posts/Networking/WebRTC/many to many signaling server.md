@@ -169,7 +169,7 @@ func main() {
 
 <br>
 
-전체 코드는 <https://github.com/junhyuk0801/webrtc-mesh-server/tree/5d435d745a48ba3be0c1299163029364ec31a3bf>에서 찾아볼 수 있다.
+전체 코드는 <https://github.com/jhseoeo/webrtc-mesh-server/tree/5d435d745a48ba3be0c1299163029364ec31a3bf>에서 찾아볼 수 있다.
 
 <br><br>
 
@@ -442,7 +442,7 @@ func RunSessionLoop() (*ChannelSet, error) {
 
 <br>
 
-전체 코드는 <https://github.com/junhyuk0801/webrtc-mesh-server>에서 찾아볼 수 있다.
+전체 코드는 <https://github.com/jhseoeo/webrtc-mesh-server>에서 찾아볼 수 있다.
 
 <br><br>
 

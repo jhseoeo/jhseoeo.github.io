@@ -118,7 +118,7 @@ go install github.com/rakyll/hey@latest
 설치한 `hey` 라이브러리를 사용해보자
 
 ```bash
-hey https://junhyuk0801.github.io
+hey https://jhseoeo.github.io
 ```
 
 실행 결과를 보면 알 수 있다시피, 대충 `curl` 비슷한 http 서버 테스트하는 용도의 라이브러리이다.

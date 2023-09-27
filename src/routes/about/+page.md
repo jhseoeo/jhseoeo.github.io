@@ -65,4 +65,4 @@
 📧 junhyuk0801@gmail.com
 
 <img src="./assets/github.svg" style="width: 1em;" alt="github icon">
-<a href="https://github.com/junhyuk0801">https://github.com/junhyuk0801</a>
+<a href="https://github.com/jhseoeo">https://github.com/jhseoeo</a>

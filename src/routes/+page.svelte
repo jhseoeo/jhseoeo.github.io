@@ -22,6 +22,6 @@
 <h2>About Blog</h2>
 <hr />
 이 블로그의 소스코드를 확인하려면
-<a href="https://github.com/junhyuk0801/junhyuk0801.github.io">
-	https://github.com/junhyuk0801/junhyuk0801.github.io
+<a href="https://github.com/jhseoeo/jhseoeo.github.io">
+	https://github.com/jhseoeo/jhseoeo.github.io
 </a>
