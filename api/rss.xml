@@ -6,8 +6,14 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Wed, 27 Sep 2023 11:32:17 GMT</lastBuildDate>
+				<lastBuildDate>Sun, 01 Oct 2023 14:40:33 GMT</lastBuildDate>
 				<item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO9</guid>
+								<title>아토믹 메모리 오퍼레이션</title>
+								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO9</link>
+								<description>아토믹 메모리 오퍼레이션에 대해 알아보자</description>
+								<pubDate>Sun, 01 Oct 2023 00:00:00 GMT</pubDate>
+							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO8</guid>
 								<title>동시성 프로그래밍과 요청 처리</title>
 								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO8</link>
