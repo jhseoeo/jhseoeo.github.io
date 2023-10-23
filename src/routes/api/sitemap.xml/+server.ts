@@ -20,12 +20,19 @@ export const GET: RequestHandler = async ({}) => {
 
 function renderSitemap(posts: Post[]) {
 	return `<?xml version="1.0" encoding="UTF-8"?>
-	<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<urlset
+		xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+		xmlns:xhtml="https://www.w3.org/1999/xhtml"
+		xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
+		xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
+		xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
+		xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
+	>
 		<url>
 			<loc>${siteLink}</loc>
 			<lastmod>2023-01-01</lastmod>
 			<changefreq>weekly</changefreq>
-			<priority>0.8</priority>
+			<priority>1.0</priority>
 		</url>
 		${posts
 			.filter((post) => post.indexed)
@@ -34,7 +41,7 @@ function renderSitemap(posts: Post[]) {
 					<loc>https://${siteURL}/posts/post/${post.slug}</loc>
 					<lastmod>${post.date.slice(0, 10)}</lastmod>
 					<changefreq>weekly</changefreq>
-					<priority>0.6</priority>
+					<priority>0.9</priority>
 				</url>`
 			)}
 	</urlset>

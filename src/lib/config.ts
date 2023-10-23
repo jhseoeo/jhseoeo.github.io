@@ -46,7 +46,7 @@ export const navItems = [
 
 export const giscusConfig = {
 	activate: true,
-	repo: 'jhseoer/jhseoer.github.io' as `${string}/${string}`,
+	repo: 'jhseoeo/jhseoeo.github.io' as `${string}/${string}`,
 	repoId: 'R_kgDOHiaB9w',
 	category: 'Announcements',
 	categoryId: 'DIC_kwDOHiaB984CP9gC',

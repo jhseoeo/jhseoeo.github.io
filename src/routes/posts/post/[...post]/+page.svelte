@@ -2,7 +2,7 @@
 <script lang="ts">
 	import Giscus from '@giscus/svelte';
 	import { colorTheme } from '$lib/assets/js/store';
-	import { giscusConfig } from '$lib/config';
+	import { giscusConfig, siteLink } from '$lib/config';
 
 	export let data;
 
@@ -17,9 +17,9 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={excerpt} />
-	<!-- <meta property="og:image" content="https://yourdomain.com/image_path" />
+	<meta property="og:image" content="{siteLink}/{coverImage}" />
 	<meta property="og:image:width" content={coverWidth} />
-	<meta property="og:image:height" content={coverHeight} /> -->
+	<meta property="og:image:height" content={coverHeight} />
 </svelte:head>
 
 <article class="post">

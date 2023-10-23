@@ -29,6 +29,7 @@ function renderRSS(posts: Post[]) {
 				<atom:link href="https://${siteURL}/rss.xml" rel="self" type="application/rss+xml"/>
 				<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 				${posts
+					.filter((post) => post.indexed)
 					.map(
 						(post) =>
 							`<item>

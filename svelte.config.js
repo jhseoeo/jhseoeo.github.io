@@ -11,6 +11,7 @@ const config = {
 
 	preprocess: [
 		preprocess({
+			preserve: ['ld+json'],
 			scss: {
 				// Ensures Sass variables are always available inside component <style> blocks as vars.$variableDefinedInFile
 				prependData: `@use 'src/lib/assets/scss/vars';`
