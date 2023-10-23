@@ -6,12 +6,12 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Mon, 23 Oct 2023 06:32:12 GMT</lastBuildDate>
+				<lastBuildDate>Mon, 23 Oct 2023 14:13:45 GMT</lastBuildDate>
 				<item>
-								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda With Golang</guid>
-								<title>AWS Lambda</title>
-								<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda With Golang</link>
-								<description>Amazon KVS WebRTC signaling channel에 대해 알아보자</description>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda with Golang</guid>
+								<title>AWS Lambda 함수를 Golang으로 작성할 때 알아두면 좋은 것들</title>
+								<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda with Golang</link>
+								<description>AWS Lambda Golang으로 함수를 만들어 보며 알게 된 것들</description>
 								<pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate>
 							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Distributed Computing/Spark/RDD</guid>
