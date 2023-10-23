@@ -6,8 +6,14 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Mon, 02 Oct 2023 17:54:30 GMT</lastBuildDate>
+				<lastBuildDate>Mon, 23 Oct 2023 06:12:41 GMT</lastBuildDate>
 				<item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda With Golang</guid>
+								<title>AWS Lambda</title>
+								<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda With Golang</link>
+								<description>Amazon KVS WebRTC signaling channel에 대해 알아보자</description>
+								<pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate>
+							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO10</guid>
 								<title>동시성 문제 해결하기</title>
 								<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO10</link>
