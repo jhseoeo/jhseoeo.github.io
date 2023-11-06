@@ -6,7 +6,7 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Mon, 06 Nov 2023 18:49:07 GMT</lastBuildDate>
+				<lastBuildDate>Mon, 06 Nov 2023 18:55:27 GMT</lastBuildDate>
 				<item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda with Golang</guid>
 								<title>AWS Lambda 함수를 Golang으로 작성할 때 알아두면 좋은 것들</title>
