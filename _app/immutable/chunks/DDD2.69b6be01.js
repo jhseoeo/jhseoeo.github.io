@@ -1,4 +1,4 @@
-import{S as Yf,i as hf,s as gf,k as e,q as l,a as u,y as Fs,l as p,m as r,h as n,r as o,c as i,z as Ks,n as k,U as Sl,b as c,E as a,A as Ws,g as zs,d as Zs,B as Js,M as Xs}from"./index.d78780bf.js";import{C as Vs}from"./CodeBlockWrapper.9fa2b505.js";function s1(y){let f,v=`<code class="language-go"><span class="token keyword">package</span> chapter2
+import{S as Yf,i as hf,s as gf,k as e,q as l,a as u,y as Fs,l as p,m as r,h as n,r as o,c as i,z as Ks,n as k,U as Sl,b as c,E as a,A as Ws,g as zs,d as Zs,B as Js,M as Xs}from"./index.d78780bf.js";import{C as Vs}from"./CodeBlockWrapper.eeb7c0c0.js";function s1(y){let f,v=`<code class="language-go"><span class="token keyword">package</span> chapter2
 
 <span class="token keyword">import</span> <span class="token string">"context"</span>
 

@@ -1,4 +1,4 @@
-import{S as iu,i as fu,s as wu,k as o,q as l,a as r,y as v,l as e,m as c,h as s,r as u,c as i,z as b,n as w,U as Ia,b as p,E as t,A as P,g as C,d as R,B as W,M as O}from"./index.d78780bf.js";import{C as I}from"./CodeBlockWrapper.9fa2b505.js";function du(_){let k,y=`<code class="language-go"><span class="token keyword">type</span> Work <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+import{S as iu,i as fu,s as wu,k as o,q as l,a as r,y as v,l as e,m as c,h as s,r as u,c as i,z as b,n as w,U as Ia,b as p,E as t,A as P,g as C,d as R,B as W,M as O}from"./index.d78780bf.js";import{C as I}from"./CodeBlockWrapper.eeb7c0c0.js";function du(_){let k,y=`<code class="language-go"><span class="token keyword">type</span> Work <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
 	file    <span class="token builtin">string</span>
 	pattern <span class="token operator">*</span>regexp<span class="token punctuation">.</span>Regexp
 <span class="token punctuation">&#125;</span>

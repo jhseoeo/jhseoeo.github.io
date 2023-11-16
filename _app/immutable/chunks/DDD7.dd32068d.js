@@ -1,4 +1,4 @@
-import{S as Xi,i as Yi,s as hi,k as l,q as i,a as u,y as gi,l as p,m as o,r,h as t,c,z as sr,n as f,U as it,b as a,E as e,A as tr,g as nr,d as ar,B as er,M as lr}from"./index.d78780bf.js";import{C as pr}from"./CodeBlockWrapper.9fa2b505.js";function or(Qe){let v,rt=`<code class="language-go"><span class="token keyword">package</span> chapter7
+import{S as Xi,i as Yi,s as hi,k as l,q as i,a as u,y as gi,l as p,m as o,r,h as t,c,z as sr,n as f,U as it,b as a,E as e,A as tr,g as nr,d as ar,B as er,M as lr}from"./index.d78780bf.js";import{C as pr}from"./CodeBlockWrapper.eeb7c0c0.js";function or(Qe){let v,rt=`<code class="language-go"><span class="token keyword">package</span> chapter7
 
 <span class="token keyword">import</span> <span class="token string">"context"</span>
 

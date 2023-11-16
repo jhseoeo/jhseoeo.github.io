@@ -1,4 +1,4 @@
-import{S as tu,i as pu,s as eu,k as e,q as c,a as i,y as ds,l as o,m as l,h as s,r as u,c as r,z as Es,n as k,U as Hc,b as p,E as a,A as _s,g as vs,d as ws,B as ys,M as bs}from"./index.d78780bf.js";import{C as Ds}from"./CodeBlockWrapper.9fa2b505.js";function ou(y){let f,E=`<code class="language-go"><span class="token keyword">package</span> chapter3
+import{S as tu,i as pu,s as eu,k as e,q as c,a as i,y as ds,l as o,m as l,h as s,r as u,c as r,z as Es,n as k,U as Hc,b as p,E as a,A as _s,g as vs,d as ws,B as ys,M as bs}from"./index.d78780bf.js";import{C as Ds}from"./CodeBlockWrapper.eeb7c0c0.js";function ou(y){let f,E=`<code class="language-go"><span class="token keyword">package</span> chapter3
 
 <span class="token keyword">import</span> <span class="token string">"time"</span>
 

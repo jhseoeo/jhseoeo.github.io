@@ -1,4 +1,4 @@
-import{S as U1,i as j1,s as q1,k as e,q as c,a as i,y as J,l as o,m as l,r as u,h as s,c as r,z as F,n as k,U as z1,b as p,E as a,A as W,g as Y,d as K,B as Q,M as V}from"./index.d78780bf.js";import{C as Z}from"./CodeBlockWrapper.9fa2b505.js";function h1(v){let f,b=`<code class="language-go"><span class="token keyword">package</span> main
+import{S as U1,i as j1,s as q1,k as e,q as c,a as i,y as J,l as o,m as l,r as u,h as s,c as r,z as F,n as k,U as z1,b as p,E as a,A as W,g as Y,d as K,B as Q,M as V}from"./index.d78780bf.js";import{C as Z}from"./CodeBlockWrapper.eeb7c0c0.js";function h1(v){let f,b=`<code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token punctuation">(</span>
 	<span class="token string">"encoding/json"</span>

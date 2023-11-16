@@ -1,4 +1,4 @@
-import{S as io,i as ko,s as ro,k as o,q as k,a as u,y as z,l as e,m as c,h as s,r,c as i,z as V,n as f,U as fo,b as t,E as p,A as Z,g as J,d as X,B as Y,M as sn}from"./index.d78780bf.js";import{C as nn}from"./CodeBlockWrapper.9fa2b505.js";function bo(w){let l,d=`<code class="language-go"><span class="token keyword">package</span> chapter4
+import{S as io,i as ko,s as ro,k as o,q as k,a as u,y as z,l as e,m as c,h as s,r,c as i,z as V,n as f,U as fo,b as t,E as p,A as Z,g as J,d as X,B as Y,M as sn}from"./index.d78780bf.js";import{C as nn}from"./CodeBlockWrapper.eeb7c0c0.js";function bo(w){let l,d=`<code class="language-go"><span class="token keyword">package</span> chapter4
 
 <span class="token keyword">import</span> <span class="token punctuation">(</span>
 	<span class="token string">"errors"</span>
