@@ -73,3 +73,6 @@
 		lang={giscusConfig.lang}
 	/>
 {/if}
+
+<style>
+</style>

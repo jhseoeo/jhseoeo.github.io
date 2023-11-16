@@ -10,13 +10,17 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"
-		/>
-		<link
+			rel="preload"
 			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
-			rel="stylesheet"
+			as="style"
+			onload="this.onload=null;this.rel='stylesheet'"
 		/>
+		<noscript>
+			<link
+				href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
+				rel="stylesheet"
+			/>
+		</noscript>
 
 		<!-- End Google Fonts block -->
 		<meta name="google-site-verification" content="kTz5xeug4vOcZSULbtGzj4xjmF8AxGtxARj8vCKoVOA" />
