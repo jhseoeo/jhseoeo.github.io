@@ -10,7 +10,7 @@ categories:
 coverImage: '/post_img/Backend/Architecture/DDD/cover.png'
 coverWidth: 16
 coverHeight: 9
-indexed: false
+indexed: true
 exposed: true
 ---
 
