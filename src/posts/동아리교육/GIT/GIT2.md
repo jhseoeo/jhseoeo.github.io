@@ -12,9 +12,13 @@ indexed: false
 exposed: false
 ---
 
+<script>
+  import Image from '$lib/components/Image.svelte';
+</script>
+
 <center>
 
-![PIC](/post_img/동아리교육/22-s_return_git//GIT2/1.png)
+<Image alt="PIC" src="/post_img/동아리교육/22-s_return_git//GIT2/1.png"/>
 
 </center>
 
@@ -84,7 +88,7 @@ git commit -m "bye"
 
 <br>
 
-> ![PIC](/post_img/동아리교육/22-s_return_git//GIT2/2.png)
+> <Image alt="PIC" src="/post_img/동아리교육/22-s_return_git//GIT2/2.png"/>
 >
 > vim(vi improved)은 CLI상에서 텍스트를 편집할 수 있는 도구입니다. CLI상에서 간단한 파일 수정을 할 수 있다는 점이 유용합니다.
 >
@@ -116,7 +120,7 @@ git push
 
 <center>
 
-![PIC](/post_img/동아리교육/22-s_return_git//GIT2/3.PNG)
+<Image alt="PIC" src="/post_img/동아리교육/22-s_return_git//GIT2/3.PNG"/>
 _이 사진이랑은 조금 다를 수도 있음요_
 
 </center>
@@ -182,7 +186,7 @@ git merge -m "your-merge-message" your-branch-name-2
 
 <center>
 
-![PIC](/post_img/동아리교육/22-s_return_git//GIT2/4.PNG)
+<Image alt="PIC" src="/post_img/동아리교육/22-s_return_git//GIT2/4.PNG"/>
 
 </center>
 
@@ -234,7 +238,7 @@ git commit -m "your-merge-message"
 
 <center>
 
-![PIC](/post_img/동아리교육/22-s_return_git//GIT2/5.jpg)
+<Image alt="PIC" src="/post_img/동아리교육/22-s_return_git//GIT2/5.jpg"/>
 
 </center>
 

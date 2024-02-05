@@ -16,6 +16,7 @@ exposed: true
 
 <script>
 	import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
+	import Image from '$lib/components/Image.svelte';
 </script>
 
 이전 포스트에서 모놀리식 아키텍처에 DDD를 적용하는 방법을 알아보았는데, 시스템의 복잡도가 커질수록 마이크로서비스로의 전환은 불가피하다.
@@ -825,7 +826,9 @@ curl --location --request GET 'http://localhost:3030/recommendation?location=UK&
 
 <center>
 
-[![Domain-Driven Design with Golang Cover](https://learning.oreilly.com/covers/urn:orm:book:9781804613450/400w/)](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/) <br>
+[
+<Image alt="Domain-Driven Design with Golang Cover" src="https://learning.oreilly.com/covers/urn:orm:book:9781804613450/400w/"/>
+](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/) <br>
 [Matthew Boyle, Domain-Driven Design with Golang』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/)
 
 </center>

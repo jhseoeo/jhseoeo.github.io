@@ -11,6 +11,10 @@ indexed: false
 exposed: false
 ---
 
+<script>
+  import Image from '$lib/components/Image.svelte';
+</script>
+
 <iframe width="800" height="500" src="https://www.youtube.com/embed/zXF6vrFqjmE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <br><br>
@@ -156,7 +160,7 @@ getKorean 함수는 배열의 인덱스를 이용하면 훨씬 간단하게 구�
 <details markdown="1">
 <summary>예제 4 [Math Module]</summary>
 
-![Polar](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1p569xyGBCJcMoVoo7-7L2-XNOexkDQ5niw&usqp=CAU)
+<Image alt="Polar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1p569xyGBCJcMoVoo7-7L2-XNOexkDQ5niw&usqp=CAU"/>
 
 님들 미분적분학에서 배울거^^
 

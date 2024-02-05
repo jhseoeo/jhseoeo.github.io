@@ -12,6 +12,10 @@ indexed: true
 exposed: true
 ---
 
+<script>
+  import Image from '$lib/components/Image.svelte';
+</script>
+
 개인프로젝트를 하며 Lambda를 쓰게 되었고, 열심히 공부한 Golang으로 작성하게 되었다. 그 과정에서 겪은 여러 시행착오와 알게 된 것들을 정리해보려고 한다.
 
 ## Handler 함수의 signature
@@ -38,7 +42,7 @@ func (context.Context, TIn) (TOut, error)
 event로 어떤 데이터가 올지 모르는 경우 `interface{}`로 놓을 수 있다. 이 때는 `map[string]interface{}`로 unmarshal 되는데, 데이터 구조를 대략적으로 확인할 수 있다.
 거기다가 ChatGPT한테 golang struct 형태로 바꿔달라 하면 바꿔준다!
 
-![사진](/post_img/Cloud/AWS/Lambda_with_Golang/1.png)
+<Image alt="사진" src="/post_img/Cloud/AWS/Lambda_with_Golang/1.png"/>
 
 오오 GPT는 신이야
 

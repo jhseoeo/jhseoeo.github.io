@@ -1,19 +1,22 @@
----
+\*\*\*\*---
 title: Go의 동시성 지원
 date: 2023-08-25
 excerpt: Go에서 동시성을 지원하는 방법들
 categories:
-  - 'Golang'
-  - 'Concurrency in Go'
-coverImage: '/post_img/Go/Concurrency in Go/cover.png'
-coverWidth: 16
-coverHeight: 9
-indexed: false
-exposed: true
+
+- 'Golang'
+- 'Concurrency in Go'
+  coverImage: '/post_img/Go/Concurrency in Go/cover.png'
+  coverWidth: 16
+  coverHeight: 9
+  indexed: false
+  exposed: true
+
 ---
 
 <script>
     import Highlight from '$lib/components/Highlight.svelte';
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 내용의 상당 부분이 <https://jhseoeo.github.io/posts/post/Go/Golang%20Basics/GO10>의 내용과 중복되므로, 해당 포스트를 먼저 읽고 오시는 것을 추천드립니다.
@@ -230,7 +233,9 @@ exposed: true
 
 <center>
 
-[![Effective Concurrency in Go](https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/)](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/) <br>
+[
+<Image alt="Effective Concurrency in Go" src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/"/>
+](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br>
 [Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
 
 </center>

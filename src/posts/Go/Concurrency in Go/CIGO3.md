@@ -14,6 +14,7 @@ exposed: true
 
 <script>
     import Highlight from '$lib/components/Highlight.svelte';
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 어떤 언어든 그 언어를 딥하게 파고 제대로 이해하기 위해서는 그 언어의 메모리 모델을 이해하는 것이 중요하다고 생각한다.
@@ -201,7 +202,9 @@ Go의 메모리 모델에 대해 본격적으로 알아보자.
 
 <center>
 
-[![Effective Concurrency in Go](https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/)](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/) <br>
+[
+<Image alt="Effective Concurrency in Go" src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/"/>
+](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br>
 [Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
 
 </center>

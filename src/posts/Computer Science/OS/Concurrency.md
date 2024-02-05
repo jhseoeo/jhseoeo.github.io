@@ -15,6 +15,7 @@ exposed: true
 
 <script>
     import Highlight from '$lib/components/Highlight.svelte';
+    import Image from '$lib/components/Image.svelte';
 </script>
 
 **Effective Concurrency in Go**를 읽던 중, 동시성 관련해서 좋은 내용들이 많이 나와서 한 번 개념을 정리해보았읍니다.
@@ -229,7 +230,9 @@ exposed: true
 
 <center>
 
-[![Effective Concurrency in Go](https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/)](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/) <br>
-[Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
+[
+<Image alt="Effective Concurrency in Go" src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/"/>
+](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br>
+[Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
 
 </center>

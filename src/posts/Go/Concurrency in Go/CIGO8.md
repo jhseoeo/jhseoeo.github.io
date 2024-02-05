@@ -15,6 +15,7 @@ exposed: true
 <script>
   import Highlight from '$lib/components/Highlight.svelte';
   import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Context를 통한 취소 및 타임아웃
@@ -1118,7 +1119,9 @@ Fiber에도 웹소켓 핸들러가 있어서 이를 사용했다.
 
 <center>
 
-[![Effective Concurrency in Go](https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/)](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/) <br>
-[Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
+[
+<Image alt="Effective Concurrency in Go" src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/"/>
+](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br>
+[Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
 
 </center>

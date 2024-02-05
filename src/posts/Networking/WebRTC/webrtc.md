@@ -11,6 +11,10 @@ indexed: true
 exposed: true
 ---
 
+<script>
+  import Image from '$lib/components/Image.svelte';
+</script>
+
 교내 프로젝트, 교과목, 스터디를 통해 정리한 WebRTC 관련 내용을 기록해보았습니다
 
 <br><br>
@@ -89,7 +93,7 @@ exposed: true
 
 ### WebRTC 동작 흐름
 
-![webrtc signaling architecture](/post_img/Networking/WebRTC/2023-01-16-22-07-55.png)
+<Image alt="webrtc signaling architecture" src="/post_img/Networking/WebRTC/2023-01-16-22-07-55.png"/>
 
 1. Signaling Server : 기기 사이에서 커넥션을 생성 및 해제해주고, 통신할 대상을 찾아줌
 2. STUN Server : 요청자의 Public IP를 확인
@@ -105,7 +109,7 @@ exposed: true
 
 ### SDP란?
 
-![js sdp example](/post_img/Networking/WebRTC/2023-01-29-22-15-14.PNG)
+<Image alt="js sdp example" src="/post_img/Networking/WebRTC/2023-01-29-22-15-14.PNG"/>
 
 - Session Description Protocol의 약자 (실질적으로는 프로토콜이 아니긴 함)
 - 해상도, 형식, 코덱, 암호화 등, 컨텐츠에 대한 메타데이터 정보
@@ -162,7 +166,7 @@ exposed: true
 
 ### NAT?
 
-![port forwarding](/post_img/Networking/WebRTC/2023-01-17-00-20-14.png)
+<Image alt="port forwarding" src="/post_img/Networking/WebRTC/2023-01-17-00-20-14.png"/>
 
 - Network Address Translation
 - 일반적인 사용자의 네트워크 환경에서는 대부분 공유기를 두기 때문에 Private IP, Public IP가 각각 존재함
@@ -196,7 +200,7 @@ exposed: true
 
 ### P2P vs SFU vs MCU
 
-![data flow diagram of each realy server](/post_img/Networking/WebRTC/2023-01-29-23-58-14.png)
+<Image alt="data flow diagram of each realy server" src="/post_img/Networking/WebRTC/2023-01-29-23-58-14.png"/>
 
 - P2P
 
@@ -224,7 +228,7 @@ exposed: true
 
 ### Signaling Server
 
-![webrtc signaling process](/post_img/Networking/WebRTC/2023-01-30-01-11-14.png)
+<Image alt="webrtc signaling process" src="/post_img/Networking/WebRTC/2023-01-30-01-11-14.png"/>
 
 - 기기 사이에서 연결 생성 및 해제
 - 통신할 대상을 찾아주는 역할

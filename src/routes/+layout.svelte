@@ -34,9 +34,7 @@
 			? 'dark'
 			: 'light';
 
-		const getUserTheme = () => (isUserColorTheme ? isUserColorTheme : isOsColorTheme);
-
-		if (getUserTheme() === 'dark') {
+		if (isUserColorTheme ?? isOsColorTheme === 'dark') {
 			localStorage.setItem('color-theme', 'dark');
 			document.documentElement.setAttribute('color-theme', 'dark');
 			colorTheme.set('dark');

@@ -15,6 +15,7 @@ exposed: true
 <script>
   import Highlight from '$lib/components/Highlight.svelte';
   import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
+  import Image from '$lib/components/Image.svelte';
 </script>
 
 ## Worker Pool
@@ -381,7 +382,7 @@ func syncPipeline(input *csv.Reader) {
 파이프라인 전체가 한 단위로 실행되기 때문에, 파이프라인의 각 단계가 동시에 실행되지 않는다.
 각 단계가 인터리빙되지 않기 때문에 파이프라인의 성능은 전체 단계의 성능에 의존하게 된다.
 
-![Alt text](/post_img/Go/Concurrency%20in%20Go/CIGO5/0.png)
+<Image alt="Alt text" src="/post_img/Go/Concurrency%20in%20Go/CIGO5/0.png"/>
 
 ### 비동기 파이프라인
 
@@ -391,7 +392,7 @@ func syncPipeline(input *csv.Reader) {
 각각의 단계가 별도의 고루틴에서 실행되기 때문에, 각 단계는 동시에 실행될 수 있다.
 따라서 파이프라인의 성능은 가장 느린 단계의 성능에 의존하며, 전체 단계의 성능에 의존하지 않기 때문에 동기 파이프라인보다 더 좋은 성능을 보인다.
 
-![Alt text](/post_img/Go/Concurrency%20in%20Go/CIGO5/1.png)
+<Image alt="Alt text" src="/post_img/Go/Concurrency%20in%20Go/CIGO5/1.png"/>
 
 <br>
 
@@ -460,7 +461,7 @@ func asyncPipeline(input *csv.Reader) {
 
 가령 다음과 같이 파이프라이닝된 작업이 있다고 가정하자.
 
-![Alt text](/post_img/Go/Concurrency%20in%20Go/CIGO5/2.png)
+<Image alt="Alt text" src="/post_img/Go/Concurrency%20in%20Go/CIGO5/2.png"/>
 
 모든 worker가 병렬적으로 실행되며, 각 단계마다 두 개의 worker가 실행되고 있다.
 
@@ -528,7 +529,7 @@ $ go run csv.go
 각 단계의 고루틴이 전용 채널을 사용한다면 정렬된 순서를 보장할 수 있다.
 이러한 디자인은 파이프라인의 일부 단계가 특히 처리량이 많이 필요하여, worker를 여러 개 두고 싶을 때 유용하다.
 
-![Alt text](/post_img/Go/Concurrency%20in%20Go/CIGO5/3.png)
+<Image alt="Alt text" src="/post_img/Go/Concurrency%20in%20Go/CIGO5/3.png"/>
 
 위 그림처럼 특정 단계의 결과가 전용 채널을 통해 전달되므로, 데이터를 fan-in 및 정렬하는 단계가 필요하다.
 따라서 입력 채널과 done 채널을 받고 출력 채널을 반환하는 제네릭 함수를 작성한다. 이를 통해 한 고루틴의 출력을 다른 고루틴의 입력으로 전달할 수 있다.
@@ -801,7 +802,9 @@ func orderedFanIn[T sequenced](done <-chan struct{}, channels ...<-chan T) <-cha
 
 <center>
 
-[![Effective Concurrency in Go](https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/)](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/) <br>
-[Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
+[
+<Image alt="Effective Concurrency in Go" src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/"/>
+](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br>
+[Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
 
 </center>

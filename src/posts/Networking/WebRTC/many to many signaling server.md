@@ -13,6 +13,10 @@ indexed: true
 exposed: true
 ---
 
+<script>
+  import Image from '$lib/components/Image.svelte';
+</script>
+
 Golang으로 하는 첫 프로젝트로, WebRTC many-to-many 시그널링 서버를 만들게 되었다.
 
 <br><br>

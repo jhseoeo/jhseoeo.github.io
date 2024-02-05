@@ -14,6 +14,10 @@ indexed: false
 exposed: true
 ---
 
+<script>
+  import Image from '$lib/components/Image.svelte';
+</script>
+
 ## Domain Driven Design의 탄생
 
 ---
@@ -111,7 +115,9 @@ Big Red Book에서는 다음과 같은 DDD 스코어 카드를 제시한다.
 
 <center>
 
-[![Domain-Driven Design with Golang Cover](https://learning.oreilly.com/covers/urn:orm:book:9781804613450/400w/)](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/) <br>
+[
+<Image alt="Domain-Driven Design with Golang Cover" src="https://learning.oreilly.com/covers/urn:orm:book:9781804613450/400w/"/>
+](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/) <br>
 [Matthew Boyle, Domain-Driven Design with Golang』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/)
 
 </center>

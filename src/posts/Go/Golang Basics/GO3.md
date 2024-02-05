@@ -12,6 +12,10 @@ indexed: false
 exposed: true
 ---
 
+<script>
+  import Image from '$lib/components/Image.svelte';
+</script>
+
 <br>
 
 본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 20.04 LTS 기준으로 작성되었습니다.
@@ -247,7 +251,7 @@ zz: [30 40 70]
 
 <center>
 
-![pepe question](/post_img/Go/Golang_basics/GO3/1.jpg)
+<Image alt="pepe question" src="/post_img/Go/Golang_basics/GO3/1.jpg"/>
 
 </center>
 
@@ -662,7 +666,9 @@ fmt.Println(g == f1)
 
 <center>
 
-[![Learning Go Book Cover](https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/)](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br>
+[
+<Image alt="Learning Go Book Cover" src="https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/"/>
+](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br>
 [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)
 
 </center>
