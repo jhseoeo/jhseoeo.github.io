@@ -1,6 +1,6 @@
 ---
 title: 'WebSocket에 CORS를 적용하려면'
-date: 2023-08-11
+date: 2023-11-11
 excerpt: '???: 내 웹소켓은 부끄럼쟁이인가봐요'
 categories:
   - 'Golang'
@@ -62,7 +62,10 @@ app.Use(func(c *fiber.Ctx) error {
 })
 ```
 
-<br><br>
+<br>
+
+아니 파이버야 당연히 OPTIONS도 해주는 줄 알았지...  
+그래도 덕분에 Preflight Request에 대해 다시 한번 공부했다.
 
 ## References
 

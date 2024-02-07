@@ -1,9 +1,8 @@
-\*\*\*\*---
+---
 title: Amazon KVS WebRTC signaling channels 사용기
 date: '2023-01-01'
 excerpt: Amazon KVS WebRTC signaling channel에 대해 알아보자
 categories:
-
 - 'AWS'
 - 'AWS Kinesis Video Stream'
 - 'WebRTC'
@@ -12,7 +11,6 @@ categories:
   coverHeight: 9
   indexed: true
   exposed: true
-
 ---
 
 <script>
