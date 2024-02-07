@@ -6,14 +6,8 @@
 				<link>https://jhseoeo.github.io</link>
 				<language>ko-KR</language>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-				<lastBuildDate>Mon, 20 Nov 2023 10:37:38 GMT</lastBuildDate>
+				<lastBuildDate>Wed, 07 Feb 2024 16:40:36 GMT</lastBuildDate>
 				<item>
-								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/WebSocket/Websocket CORS</guid>
-								<title>WebSocket에 CORS를 적용하려면</title>
-								<link>https://jhseoeo.github.io/posts/post/Backend/WebSocket/Websocket CORS</link>
-								<description>???: 내 웹소켓은 부끄럼쟁이인가봐요</description>
-								<pubDate>Mon, 13 Nov 2023 00:00:00 GMT</pubDate>
-							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda with Golang</guid>
 								<title>AWS Lambda 함수를 Golang으로 작성할 때 알아두면 좋은 것들</title>
 								<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda with Golang</link>
@@ -31,6 +25,12 @@
 								<link>https://jhseoeo.github.io/posts/post/Computer Science/OS/Concurrency</link>
 								<description>Concepts about concurrency</description>
 								<pubDate>Fri, 18 Aug 2023 00:00:00 GMT</pubDate>
+							</item><item>
+								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/WebSocket/Websocket CORS</guid>
+								<title>WebSocket에 CORS를 적용하려면</title>
+								<link>https://jhseoeo.github.io/posts/post/Backend/WebSocket/Websocket CORS</link>
+								<description>???: 내 웹소켓은 부끄럼쟁이인가봐요</description>
+								<pubDate>Fri, 11 Aug 2023 00:00:00 GMT</pubDate>
 							</item><item>
 								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/NAT Instance</guid>
 								<title>넘나 비싼 NAT Gateway 대신 NAT Instance를 사용해서 Lambda에서 인터넷에 액세스하기</title>
@@ -67,12 +67,6 @@
 								<link>https://jhseoeo.github.io/posts/post/Networking/WebRTC/webrtc</link>
 								<description>교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다</description>
 								<pubDate>Sun, 22 Jan 2023 00:00:00 GMT</pubDate>
-							</item><item>
-								<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/AWS Kinesis Video Streaming</guid>
-								<title>Amazon KVS WebRTC signaling channels 사용기</title>
-								<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/AWS Kinesis Video Streaming</link>
-								<description>Amazon KVS WebRTC signaling channel에 대해 알아보자</description>
-								<pubDate>Sun, 01 Jan 2023 00:00:00 GMT</pubDate>
 							</item>
 			</channel>
 		</rss>

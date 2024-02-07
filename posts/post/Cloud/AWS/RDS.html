@@ -8,21 +8,21 @@
 		
 		<link href="../../../../_app/immutable/assets/0.bf7b65b6.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/IconBase.6bf551a2.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.dbdc229e.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.b7a35af6.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.d78780bf.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.9119b66a.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.ece7405f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.53878e7f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.9d09918f.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.a5c0de8b.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.267e3c48.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.30afbbb8.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.2df51e04.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.07eebc89.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/store.8bff042e.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.96cef4e6.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.195a5d91.js"><title>RDS로 Postgresql 인스턴스 설정 과정</title><!-- HEAD_svelte-ovibev_START --><meta data-key="description" name="description" content="RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다"><meta property="og:type" content="article"><meta property="og:title" content="RDS로 Postgresql 인스턴스 설정 과정"><meta property="og:description" content="RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다"><meta property="og:image" content="https://jhseoeo.github.io//post_img/Cloud/AWS/RDS/cover.jpg"><meta property="og:image:width" content="16"><meta property="og:image:height" content="9"><!-- HEAD_svelte-ovibev_END -->
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.d4b063b9.js"><title>RDS로 Postgresql 인스턴스 설정 과정</title><!-- HEAD_svelte-ovibev_START --><meta data-key="description" name="description" content="RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다"><meta property="og:type" content="article"><meta property="og:title" content="RDS로 Postgresql 인스턴스 설정 과정"><meta property="og:description" content="RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다"><meta property="og:image" content="https://jhseoeo.github.io//post_img/Cloud/AWS/RDS/cover.jpg"><meta property="og:image:width" content="16"><meta property="og:image:height" content="9"><!-- HEAD_svelte-ovibev_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
 		<link
 			rel="preload"
 			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
@@ -88,11 +88,11 @@
 <br><br>
 <h2 id="vpc-설정"><a aria-hidden="true" tabindex="-1" href="#vpc-설정"><span class="icon icon-link"></span></a>VPC 설정</h2>
 <hr>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-49-45.png" alt=" "><br>
-<img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-50-27.png" alt=" "><br>
-<img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-02-47.png" alt=" "><br>
-<img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-05-11.png" alt=" "><br>
-<img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-05-37.png" alt=" "></p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-49-45.png" alt=" " loading="lazy">  
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-50-27.png" alt=" " loading="lazy">  
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-02-47.png" alt=" " loading="lazy">  
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-05-11.png" alt=" " loading="lazy">  
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-05-37.png" alt=" " loading="lazy">
 <ul><li>VPC</li>
 <li>서로 다른 AZ의 Subnet <em>세 개</em></li>
 <li>Internet Gateway</li>
@@ -101,26 +101,26 @@
 5432가 postgresql 기본 포트이고, 25432는 추후 연결시 변경한 포트</p></blockquote>
 <p><a href="https://tech.cloud.nongshim.co.kr/2018/10/16/4-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0vpc-subnet-route-table-internet-gateway/" rel="nofollow">여기를 참조하여</a> VPC는 위와 같이 세팅해놓았다.</p>
 <br>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-45-50.png" alt=" ">
-만들어진 vpc에 Actions &gt; Edit VPC settings 해서 DNS setting을 모두 체크해주었다. 아마 Public Access할 때 필요한 옵션이다.</p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-45-50.png" alt=" " loading="lazy">
+만들어진 vpc에 Actions &gt; Edit VPC settings 해서 DNS setting을 모두 체크해주었다. 아마 Public Access할 때 필요한 옵션이다.
 <br><br>
 <h2 id="ec2-instance-생성"><a aria-hidden="true" tabindex="-1" href="#ec2-instance-생성"><span class="icon icon-link"></span></a>EC2 Instance 생성</h2>
 <hr>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-20-02.png" alt=" ">
-<img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-20-57.png" alt=" "><br>
-EC2 특이사항은 없고 생성할 때 VPC, SG에 등록해준다.</p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-20-02.png" alt=" " loading="lazy">
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-20-57.png" alt=" " loading="lazy">  
+EC2 특이사항은 없고 생성할 때 VPC, SG에 등록해준다.
 <br><br>
 <h2 id="rds-생성"><a aria-hidden="true" tabindex="-1" href="#rds-생성"><span class="icon icon-link"></span></a>RDS 생성</h2>
 <hr>
 <p>주요 설정은 아래 사진과 같다.</p>
 <br>
 <h3 id="데이터베이스-버전"><a aria-hidden="true" tabindex="-1" href="#데이터베이스-버전"><span class="icon icon-link"></span></a>데이터베이스 버전</h3>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-12-24-05.png" alt=" "><br>
-PostgreSQL로 인스턴스를 생성할 것이며, 기본 버전인 PostgreSQL 13.7-R1로 생성하였다.</p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-12-24-05.png" alt=" " loading="lazy">  
+PostgreSQL로 인스턴스를 생성할 것이며, 기본 버전인 PostgreSQL 13.7-R1로 생성하였다.
 <br>
 <h3 id="template-및-availability"><a aria-hidden="true" tabindex="-1" href="#template-및-availability"><span class="icon icon-link"></span></a>Template 및 Availability</h3>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-12-05-06.png" alt=" "><br>
-프로덕션용/개발용 여부인지에 따라서 Production이랑 Dev/Test 중 골라서 선택해주면 될 듯 하다.</p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-12-05-06.png" alt=" " loading="lazy">  
+프로덕션용/개발용 여부인지에 따라서 Production이랑 Dev/Test 중 골라서 선택해주면 될 듯 하다.
 <p>그 아래 Deployment options은 Multi-AZ cluster, Multi-AZ instance, single instance 세 개의 option이 있다.</p>
 <p>single instance는 당연히 하나의 인스턴스만 띄우는 것인데 반해, Multi-AZ가 붙은 옵션은 AZ에 문제가 생기는 경우를 상정하여 다른 AZ에 스탠바이 인스턴스를 띄운다.</p>
 <p>multi-AZ cluster에서는 writer 인스턴스와 reader 인스턴스가 분리되어 있으며, 쓰기 작업은 writer 인스턴스, 읽기 작업은 reader 인스턴스에서 진행된다. 반면 Multi-AZ instance나 Single Instance에서는 하나의 인스턴스에서 읽기/쓰기가 모두 진행된다.</p>
@@ -144,12 +144,12 @@ PostgreSQL로 인스턴스를 생성할 것이며, 기본 버전인 PostgreSQL 1
 <td align="center">돈 아끼고 싶을 때</td></tr></tbody></table>
 <br>
 <h3 id="authentification-settings"><a aria-hidden="true" tabindex="-1" href="#authentification-settings"><span class="icon icon-link"></span></a>Authentification Settings</h3>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-32-43.png" alt=" "><br>
-master username, master password를 설정해준다.</p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-32-43.png" alt=" " loading="lazy">  
+master username, master password를 설정해준다.
 <br>
 <h3 id="instance-type"><a aria-hidden="true" tabindex="-1" href="#instance-type"><span class="icon icon-link"></span></a>Instance Type</h3>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-35-07.png" alt=" ">
-인스턴스 타입이나 스토리지 타입을 적절히 설정해준다. 마찬가지로 아래 표로 정리하였다.</p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-35-07.png" alt=" " loading="lazy">
+인스턴스 타입이나 스토리지 타입을 적절히 설정해준다. 마찬가지로 아래 표로 정리하였다.
 <table><thead><tr><th></th>
 <th align="center">용도</th>
 <th align="center">상황</th></tr></thead>
@@ -179,9 +179,9 @@ master username, master password를 설정해준다.</p>
 <td align="center">쓰지마세용</td></tr></tbody></table>
 <br>
 <h3 id="connectivity"><a aria-hidden="true" tabindex="-1" href="#connectivity"><span class="icon icon-link"></span></a>Connectivity</h3>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-41-18.png" alt=" ">
-<img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-43-59.png" alt=" ">
-EC2에 직접 연결을 하면 public access가 블록된다. public access를 허용하려면 EC2에 연결하지 않고 public access를 허용해주면 되며, VPC 및 SG를 설정해주면 EC2에서도 연결이 가능하다. 추가로 사진엔 반영되지 않았는데 포트까지 25432로 변경해보았다.</p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-41-18.png" alt=" " loading="lazy">
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-43-59.png" alt=" " loading="lazy">
+EC2에 직접 연결을 하면 public access가 블록된다. public access를 허용하려면 EC2에 연결하지 않고 public access를 허용해주면 되며, VPC 및 SG를 설정해주면 EC2에서도 연결이 가능하다. 추가로 사진엔 반영되지 않았는데 포트까지 25432로 변경해보았다.
 <p>additional configuration에 cloudwatch 설정같은 것도 있는 듯 하니, 필요하다면 설정해도 될 듯 하다.</p>
 <p>이후 인스턴스를 생성하면 얼마 후 연결이 가능할 것이다.</p>
 <br><br>
@@ -230,12 +230,12 @@ q<span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre>
 <br>
 <h3 id="gui-tools"><a aria-hidden="true" tabindex="-1" href="#gui-tools"><span class="icon icon-link"></span></a>gui tools</h3>
 <p><a href="https://americanopeople.tistory.com/316" rel="nofollow">어느 블로그 포스트</a>를 보니 모니터링 툴 중 TablePlus란 게 그렇게 좋다고 한다. 써보니 우분투는 아직 알파 릴리즈라 오류가 좀 나는 듯.</p>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-20-57-47.png" alt=" "></p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-20-57-47.png" alt=" " loading="lazy">
 <p>보이는 필드들을 모두 채워주면 된다.</p>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-20-59-27.png" alt=" "></p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-20-59-27.png" alt=" " loading="lazy">
 <br>
 <p>접속하고 나서 이것저것 시도해보니 이렇게 데이터를 보여줍니다.</p>
-<p><img src="/post_img/Cloud/AWS/RDS/2023-01-06-21-07-07.png" alt=" "></p>
+<img src="/post_img/Cloud/AWS/RDS/2023-01-06-21-07-07.png" alt=" " loading="lazy">
 <br><br>
 <h3 id="orm-연결"><a aria-hidden="true" tabindex="-1" href="#orm-연결"><span class="icon icon-link"></span></a>ORM 연결</h3>
 <p>ORM으로 Python의 SQL Alchemy를 써서 연결해보았다.</p>
@@ -272,13 +272,13 @@ session<span class="token punctuation">.</span>close<span class="token punctuati
 					</li></ul></aside></article>
 
 </div>
-		<footer><p>© 2023 JHSeo. All right reserved.</p></footer></main></div>
+		<footer><p>© 2024 JHSeo. All right reserved.</p></footer></main></div>
 
 
 			
 			<script>
 				{
-					__sveltekit_165q531 = {
+					__sveltekit_mefty0 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -288,8 +288,8 @@ session<span class="token punctuation">.</span>close<span class="token punctuati
 					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{params:{post:"Cloud/AWS/RDS"}},"uses":{"params":["post","then",null]}}];
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.dbdc229e.js"),
-						import("../../../../_app/immutable/entry/app.9d09918f.js")
+						import("../../../../_app/immutable/entry/start.b7a35af6.js"),
+						import("../../../../_app/immutable/entry/app.a5c0de8b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 13],

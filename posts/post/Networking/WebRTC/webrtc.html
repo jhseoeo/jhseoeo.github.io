@@ -8,21 +8,21 @@
 		
 		<link href="../../../../_app/immutable/assets/0.bf7b65b6.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/IconBase.6bf551a2.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.dbdc229e.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.b7a35af6.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.d78780bf.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.9119b66a.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.ece7405f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.53878e7f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.9d09918f.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.a5c0de8b.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.267e3c48.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.30afbbb8.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.2df51e04.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.07eebc89.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/store.8bff042e.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.96cef4e6.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.195a5d91.js"><title>WebRTC에 관하여 정리해보았다</title><!-- HEAD_svelte-ovibev_START --><meta data-key="description" name="description" content="교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다"><meta property="og:type" content="article"><meta property="og:title" content="WebRTC에 관하여 정리해보았다"><meta property="og:description" content="교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다"><meta property="og:image" content="https://jhseoeo.github.io//post_img/Networking/WebRTC/cover.png"><meta property="og:image:width" content="16"><meta property="og:image:height" content="9"><!-- HEAD_svelte-ovibev_END -->
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.d4b063b9.js"><title>WebRTC에 관하여 정리해보았다</title><!-- HEAD_svelte-ovibev_START --><meta data-key="description" name="description" content="교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다"><meta property="og:type" content="article"><meta property="og:title" content="WebRTC에 관하여 정리해보았다"><meta property="og:description" content="교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다"><meta property="og:image" content="https://jhseoeo.github.io//post_img/Networking/WebRTC/cover.png"><meta property="og:image:width" content="16"><meta property="og:image:height" content="9"><!-- HEAD_svelte-ovibev_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
 		<link
 			rel="preload"
 			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
@@ -126,7 +126,7 @@
 <li>다양한 네트워크 상의 이슈(방화벽, 공유기나 라우터의 보안 정책 등) 때문에 피어간 직접 통신이 되지 않을 경우 -&gt; TURN 서버를 통해 데이터를 Relay</li></ul></li></ol>
 <br>
 <h3 id="webrtc-동작-흐름"><a aria-hidden="true" tabindex="-1" href="#webrtc-동작-흐름"><span class="icon icon-link"></span></a>WebRTC 동작 흐름</h3>
-<p><img src="/post_img/Networking/WebRTC/2023-01-16-22-07-55.png" alt="webrtc signaling architecture"></p>
+<img src="/post_img/Networking/WebRTC/2023-01-16-22-07-55.png" alt="webrtc signaling architecture" loading="lazy">
 <ol><li>Signaling Server : 기기 사이에서 커넥션을 생성 및 해제해주고, 통신할 대상을 찾아줌</li>
 <li>STUN Server : 요청자의 Public IP를 확인</li>
 <li>TURN Server : P2P로 데이터를 직접 전송할 수 없다면, 데이터를 Relay</li></ol>
@@ -135,7 +135,7 @@
 <h2 id="sdp"><a aria-hidden="true" tabindex="-1" href="#sdp"><span class="icon icon-link"></span></a>SDP</h2>
 <hr>
 <h3 id="sdp란"><a aria-hidden="true" tabindex="-1" href="#sdp란"><span class="icon icon-link"></span></a>SDP란?</h3>
-<p><img src="/post_img/Networking/WebRTC/2023-01-29-22-15-14.PNG" alt="js sdp example"></p>
+<img src="/post_img/Networking/WebRTC/2023-01-29-22-15-14.PNG" alt="js sdp example" loading="lazy">
 <ul><li>Session Description Protocol의 약자 (실질적으로는 프로토콜이 아니긴 함)</li>
 <li>해상도, 형식, 코덱, 암호화 등, 컨텐츠에 대한 메타데이터 정보</li>
 <li>누구와 어떻게 대화할지에 대한 정보를 포함함</li>
@@ -169,7 +169,7 @@
 <h2 id="signaling"><a aria-hidden="true" tabindex="-1" href="#signaling"><span class="icon icon-link"></span></a>Signaling</h2>
 <hr>
 <h3 id="nat"><a aria-hidden="true" tabindex="-1" href="#nat"><span class="icon icon-link"></span></a>NAT?</h3>
-<p><img src="/post_img/Networking/WebRTC/2023-01-17-00-20-14.png" alt="port forwarding"></p>
+<img src="/post_img/Networking/WebRTC/2023-01-17-00-20-14.png" alt="port forwarding" loading="lazy">
 <ul><li>Network Address Translation</li>
 <li>일반적인 사용자의 네트워크 환경에서는 대부분 공유기를 두기 때문에 Private IP, Public IP가 각각 존재함<ul><li>(일반적인 경우) 한 대의 공유기에 여러 대의 장치가 연결되고, 따라서 한 개의 Public IP와 여러 개의 Private IP가 존재함</li></ul></li>
 <li>이 때 NAT는 Public IP를 특정 Private IP로 매핑시킴<ul><li>다만 연결된 장치 개수만큼 여러 대의 Private IP가 Public IP에 매핑될 필요가 있기에, PAT도 함께 적용</li>
@@ -190,7 +190,7 @@
 <li>SFU, MCU도 TURN 서버의 일종이라고 볼 수 있음</li></ul>
 <br>
 <h3 id="p2p-vs-sfu-vs-mcu"><a aria-hidden="true" tabindex="-1" href="#p2p-vs-sfu-vs-mcu"><span class="icon icon-link"></span></a>P2P vs SFU vs MCU</h3>
-<p><img src="/post_img/Networking/WebRTC/2023-01-29-23-58-14.png" alt="data flow diagram of each realy server"></p>
+<img src="/post_img/Networking/WebRTC/2023-01-29-23-58-14.png" alt="data flow diagram of each realy server" loading="lazy">
 <ul><li><p>P2P</p>
 <ul><li>각 사용자는 (전체 사용자-1) 만큼의 업로드/다운로드 연결을 가짐</li>
 <li>서버의 부담이 덜하며 지연시간이 가장 짧음</li>
@@ -209,7 +209,7 @@
 <li>대규모 N:N 통신에 적합</li></ul></li></ul>
 <br>
 <h3 id="signaling-server"><a aria-hidden="true" tabindex="-1" href="#signaling-server"><span class="icon icon-link"></span></a>Signaling Server</h3>
-<p><img src="/post_img/Networking/WebRTC/2023-01-30-01-11-14.png" alt="webrtc signaling process"></p>
+<img src="/post_img/Networking/WebRTC/2023-01-30-01-11-14.png" alt="webrtc signaling process" loading="lazy">
 <ul><li>기기 사이에서 연결 생성 및 해제</li>
 <li>통신할 대상을 찾아주는 역할</li>
 <li>SDP나 ICE Candidates 등 연결 생성을 위한 데이터가 각 피어에게 전달됨</li>
@@ -224,13 +224,13 @@
 					</li></ul></aside></article>
 
 </div>
-		<footer><p>© 2023 JHSeo. All right reserved.</p></footer></main></div>
+		<footer><p>© 2024 JHSeo. All right reserved.</p></footer></main></div>
 
 
 			
 			<script>
 				{
-					__sveltekit_165q531 = {
+					__sveltekit_mefty0 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -240,8 +240,8 @@
 					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{params:{post:"Networking/WebRTC/webrtc"}},"uses":{"params":["post","then",null]}}];
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.dbdc229e.js"),
-						import("../../../../_app/immutable/entry/app.9d09918f.js")
+						import("../../../../_app/immutable/entry/start.b7a35af6.js"),
+						import("../../../../_app/immutable/entry/app.a5c0de8b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 13],

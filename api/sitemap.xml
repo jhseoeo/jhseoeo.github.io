@@ -14,11 +14,6 @@
 			<priority>1.0</priority>
 		</url>
 		<url>
-					<loc>https://jhseoeo.github.io/posts/post/Backend/WebSocket/Websocket CORS</loc>
-					<lastmod>2023-11-13</lastmod>
-					<changefreq>weekly</changefreq>
-					<priority>0.9</priority>
-				</url>,<url>
 					<loc>https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda with Golang</loc>
 					<lastmod>2023-10-23</lastmod>
 					<changefreq>weekly</changefreq>
@@ -31,6 +26,11 @@
 				</url>,<url>
 					<loc>https://jhseoeo.github.io/posts/post/Computer Science/OS/Concurrency</loc>
 					<lastmod>2023-08-18</lastmod>
+					<changefreq>weekly</changefreq>
+					<priority>0.9</priority>
+				</url>,<url>
+					<loc>https://jhseoeo.github.io/posts/post/Backend/WebSocket/Websocket CORS</loc>
+					<lastmod>2023-08-11</lastmod>
 					<changefreq>weekly</changefreq>
 					<priority>0.9</priority>
 				</url>,<url>
@@ -61,11 +61,6 @@
 				</url>,<url>
 					<loc>https://jhseoeo.github.io/posts/post/Networking/WebRTC/webrtc</loc>
 					<lastmod>2023-01-22</lastmod>
-					<changefreq>weekly</changefreq>
-					<priority>0.9</priority>
-				</url>,<url>
-					<loc>https://jhseoeo.github.io/posts/post/Cloud/AWS/AWS Kinesis Video Streaming</loc>
-					<lastmod>2023-01-01</lastmod>
 					<changefreq>weekly</changefreq>
 					<priority>0.9</priority>
 				</url>

@@ -8,21 +8,21 @@
 		
 		<link href="../../../../_app/immutable/assets/0.bf7b65b6.css" rel="stylesheet">
 		<link href="../../../../_app/immutable/assets/IconBase.6bf551a2.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.dbdc229e.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start.b7a35af6.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.d78780bf.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.9119b66a.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/singletons.ece7405f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.53878e7f.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.9d09918f.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.a5c0de8b.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/preload-helper.41c905a7.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.267e3c48.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.30afbbb8.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.2df51e04.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/config.07eebc89.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/store.8bff042e.js">
 		<link rel="modulepreload" href="../../../../_app/immutable/chunks/index.96cef4e6.js">
-		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.195a5d91.js"><title>Worker Pool 및 Pipeline</title><!-- HEAD_svelte-ovibev_START --><meta data-key="description" name="description" content="동시성 프로그래밍에서 워커 풀과 파이프라인 패턴을 Go로 구현해보자"><meta property="og:type" content="article"><meta property="og:title" content="Worker Pool 및 Pipeline"><meta property="og:description" content="동시성 프로그래밍에서 워커 풀과 파이프라인 패턴을 Go로 구현해보자"><meta property="og:image" content="https://jhseoeo.github.io//post_img/Go/Concurrency in Go/cover.png"><meta property="og:image:width" content="16"><meta property="og:image:height" content="9"><!-- HEAD_svelte-ovibev_END -->
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/13.d4b063b9.js"><title>Worker Pool 및 Pipeline</title><!-- HEAD_svelte-ovibev_START --><meta data-key="description" name="description" content="동시성 프로그래밍에서 워커 풀과 파이프라인 패턴을 Go로 구현해보자"><meta property="og:type" content="article"><meta property="og:title" content="Worker Pool 및 Pipeline"><meta property="og:description" content="동시성 프로그래밍에서 워커 풀과 파이프라인 패턴을 Go로 구현해보자"><meta property="og:image" content="https://jhseoeo.github.io//post_img/Go/Concurrency in Go/cover.png"><meta property="og:image:width" content="16"><meta property="og:image:height" content="9"><!-- HEAD_svelte-ovibev_END -->
 		<!-- You can replace this block to update the Google fonts used in the project -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
 		<link
 			rel="preload"
 			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
@@ -387,13 +387,13 @@ CSV 파일 안의 사람들의 키, 몸무게가 인치, 파운드 단위로 저
 <p>그런데 이 동기 파이프라인은 문제가 있다.
 파이프라인 전체가 한 단위로 실행되기 때문에, 파이프라인의 각 단계가 동시에 실행되지 않는다.
 각 단계가 인터리빙되지 않기 때문에 파이프라인의 성능은 전체 단계의 성능에 의존하게 된다.</p>
-<p><img src="/post_img/Go/Concurrency%20in%20Go/CIGO5/0.png" alt="Alt text"></p>
+<img src="/post_img/Go/Concurrency%20in%20Go/CIGO5/0.png" alt="Alt text" loading="lazy">
 <h3 id="비동기-파이프라인"><a aria-hidden="true" tabindex="-1" href="#비동기-파이프라인"><span class="icon icon-link"></span></a>비동기 파이프라인</h3>
 <p>비동기 파이프라인에서는 각 단계가 별도의 고루틴에서 실행되며, 각 단계는 채널을 통해 데이터를 전달한다.
 또한 입력 채널이 닫히면 출력 채널도 닫히도록 하여 연쇄적으로 채널이 닫히도록 하여 파이프라인을 종료한다.</p>
 <p>각각의 단계가 별도의 고루틴에서 실행되기 때문에, 각 단계는 동시에 실행될 수 있다.
 따라서 파이프라인의 성능은 가장 느린 단계의 성능에 의존하며, 전체 단계의 성능에 의존하지 않기 때문에 동기 파이프라인보다 더 좋은 성능을 보인다.</p>
-<p><img src="/post_img/Go/Concurrency%20in%20Go/CIGO5/1.png" alt="Alt text"></p>
+<img src="/post_img/Go/Concurrency%20in%20Go/CIGO5/1.png" alt="Alt text" loading="lazy">
 <br>
 <p>파이프라인의 각 단계를 연결하는 제네릭 함수를 작성한다.</p>
 <pre class="language-go"><!-- HTML_TAG_START --><code class="language-go"><span class="token keyword">func</span> pipelineStage<span class="token punctuation">[</span>IN any<span class="token punctuation">,</span> OUT any<span class="token punctuation">]</span><span class="token punctuation">(</span>input <span class="token operator">&lt;-</span><span class="token keyword">chan</span> IN<span class="token punctuation">,</span> output <span class="token keyword">chan</span><span class="token operator">&lt;-</span> OUT<span class="token punctuation">,</span> process <span class="token keyword">func</span><span class="token punctuation">(</span>IN<span class="token punctuation">)</span> OUT<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -448,7 +448,7 @@ CSV 파일 안의 사람들의 키, 몸무게가 인치, 파운드 단위로 저
 <h2 id="fan-out-fan-in"><a aria-hidden="true" tabindex="-1" href="#fan-out-fan-in"><span class="icon icon-link"></span></a>Fan-out, Fan-in</h2>
 <hr>
 <p>가령 다음과 같이 파이프라이닝된 작업이 있다고 가정하자.</p>
-<p><img src="/post_img/Go/Concurrency%20in%20Go/CIGO5/2.png" alt="Alt text"></p>
+<img src="/post_img/Go/Concurrency%20in%20Go/CIGO5/2.png" alt="Alt text" loading="lazy">
 <p>모든 worker가 병렬적으로 실행되며, 각 단계마다 두 개의 worker가 실행되고 있다.</p>
 <p>이 디자인에서 파이프라인의 각 단계는 Shared Channel을 통해 통신한다.
 따라서 여러 고루틴이 동일한 입력 채널에서 읽고(Fan-out), 출력 채널을 통해 데이터를 전달한다(Fan-in).</p>
@@ -499,7 +499,7 @@ CSV 파일 안의 사람들의 키, 몸무게가 인치, 파운드 단위로 저
 <p>지금의 파이프라인은 각 단계의 worker가 공유된 채널을 통해 통신하고 있다. 따라서 결과가 인터리빙되서 출력되므로 정렬된 순서를 보장할 수 없다.
 각 단계의 고루틴이 전용 채널을 사용한다면 정렬된 순서를 보장할 수 있다.
 이러한 디자인은 파이프라인의 일부 단계가 특히 처리량이 많이 필요하여, worker를 여러 개 두고 싶을 때 유용하다.</p>
-<p><img src="/post_img/Go/Concurrency%20in%20Go/CIGO5/3.png" alt="Alt text"></p>
+<img src="/post_img/Go/Concurrency%20in%20Go/CIGO5/3.png" alt="Alt text" loading="lazy">
 <p>위 그림처럼 특정 단계의 결과가 전용 채널을 통해 전달되므로, 데이터를 fan-in 및 정렬하는 단계가 필요하다.
 따라서 입력 채널과 done 채널을 받고 출력 채널을 반환하는 제네릭 함수를 작성한다. 이를 통해 한 고루틴의 출력을 다른 고루틴의 입력으로 전달할 수 있다.</p>
 <div class="codeBlockWrapper closed"><div><pre class="language-go"><!-- HTML_TAG_START --><code class="language-go"><span class="token keyword">func</span> cancelablePipelineStage<span class="token punctuation">[</span>IN any<span class="token punctuation">,</span> OUT any<span class="token punctuation">]</span><span class="token punctuation">(</span>input <span class="token operator">&lt;-</span><span class="token keyword">chan</span> IN<span class="token punctuation">,</span> output <span class="token keyword">chan</span><span class="token operator">&lt;-</span> OUT<span class="token punctuation">,</span> done <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> process <span class="token keyword">func</span><span class="token punctuation">(</span>IN<span class="token punctuation">)</span> OUT<span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> OUT <span class="token punctuation">&#123;</span>
@@ -739,8 +739,11 @@ pause 채널에 의해 고루틴이 일시 정지될 것이고, 판단 결과에
 <br><br>
 <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2>
 <hr>
-<center><p><a href="https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/" rel="nofollow"><img src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/" alt="Effective Concurrency in Go"></a> <br>
-<a href="https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/" rel="nofollow">Jon Bodner, 『Learning Go』, O’Reilly Media, Inc.</a></p></center>
+<center><p>[</p>
+<img src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/" alt="Effective Concurrency in Go" loading="lazy">
+](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br>
+[Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)
+</center>
 
 	<aside class="post-footer"><h2>Posted in:</h2>
 			<ul><li><a href="/category/Golang/">Golang</a>
@@ -748,13 +751,13 @@ pause 채널에 의해 고루틴이 일시 정지될 것이고, 판단 결과에
 					</li></ul></aside></article>
 
 </div>
-		<footer><p>© 2023 JHSeo. All right reserved.</p></footer></main></div>
+		<footer><p>© 2024 JHSeo. All right reserved.</p></footer></main></div>
 
 
 			
 			<script>
 				{
-					__sveltekit_165q531 = {
+					__sveltekit_mefty0 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -764,8 +767,8 @@ pause 채널에 의해 고루틴이 일시 정지될 것이고, 판단 결과에
 					const data = [{"type":"data","data":null,"uses":{}},{"type":"data","data":{params:{post:"Go/Concurrency in Go/CIGO5"}},"uses":{"params":["post","then",null]}}];
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.dbdc229e.js"),
-						import("../../../../_app/immutable/entry/app.9d09918f.js")
+						import("../../../../_app/immutable/entry/start.b7a35af6.js"),
+						import("../../../../_app/immutable/entry/app.a5c0de8b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 13],
