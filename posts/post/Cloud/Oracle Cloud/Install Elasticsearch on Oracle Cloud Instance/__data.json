@@ -1,0 +1,1 @@
+{"type":"data","nodes":[{"type":"data","data":[null],"uses":{}},{"type":"data","data":[{"params":1},{"post":2},"Cloud/Oracle Cloud/Install Elasticsearch on Oracle Cloud Instance"],"uses":{"params":["post","then",null]}}]}
