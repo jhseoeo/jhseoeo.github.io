@@ -1,0 +1,82 @@
+// Breakpoints
+$xsMin: 37.5rem;
+$xsMax: 47.9375rem;
+$smMin: 48rem;
+$smMax: 63.9375rem;
+$mdMin: 64rem;
+$mdMax: 79.9375rem;
+$lgMin: 80rem;
+$lgMax: 89.9375rem;
+$xlMin: 90rem;
+$xlMax: 104.9375rem;
+$xxlMin: 105rem;
+$xxlMax: 122.4375rem;
+$xxxlMin: 122.5rem;
+
+:root {
+	// Fonts
+	/**
+	 * These are broken out into two separate variables from a previous iteration. I left
+	 * it in because it's nice to be able to split out the heading and body fonts.
+	 */
+	--accentFont: 'Jua', sans-serif;
+	--primaryFont: 'Nanum Gothic', sans-serif;
+	--codeFont: 'Source Code Pro', monospace;
+
+	// Base styles
+	font-size: 1rem;
+	line-height: 1.6;
+}
+//Light Mode Colors
+:root[color-theme='light'] {
+	--accent: #e63946;
+	--background: var(--white);
+	--normalAccent: #b1b2b3;
+	--lightAccent: #d1d2d3;
+	--lighterAccent: #e1e2e3;
+	--dark: #5a5a5a;
+	--darker: #3f3f3f;
+	--slate: #2f3948;
+
+	--white: #f1f2f3;
+	--black: #152030;
+
+	--highlightYellow: #fff5b1;
+	--highlightRed: #ffdddd;
+	--highlightGreen: #ddffdd;
+	--highlightBlue: #ddddff;
+
+	--ink: var(--slate);
+	--paper: var(--background);
+}
+:root[color-theme='dark'] {
+	--accent: #e63946;
+	--background: #232323;
+	--normalAccent: #565656;
+	--lightAccent: #454545;
+	--lighterAccent: #343434;
+	--dark: #c1c2c3;
+	--darker: #d1d2d3;
+	--slate: #e1e2e3;
+
+	--white: #f1f2f3;
+	--black: #152030;
+
+	--highlightYellow: #665522;
+	--highlightRed: #773333;
+	--highlightGreen: #337733;
+	--highlightBlue: #333377;
+
+	--ink: var(--slate);
+	--paper: var(--background);
+}
+
+body {
+	@media (min-width: $smMin) {
+		font-size: 1.125rem;
+	}
+
+	@media (min-width: $lgMin) {
+		font-size: 1.25rem;
+	}
+}

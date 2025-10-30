@@ -1,0 +1,189 @@
+@use './vars';
+
+header,
+footer {
+	font-family: var(--primaryFont);
+
+	a {
+		text-decoration: none;
+		color: var(--darker);
+		&.active {
+			font-weight: bold;
+		}
+	}
+
+	nav ul {
+		list-style-type: none;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0rem 1.5rem;
+		padding: 0;
+		margin: 0;
+
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+
+	svg {
+		fill: currentColor;
+	}
+}
+
+header {
+	background: var(--background);
+	border-bottom: 1px solid var(--lightAccent);
+	color: var(--darker);
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 1em;
+	width: 100vw;
+	height: 4em;
+	z-index: 1001;
+
+	.site-title {
+		font-family: var(--accentFont);
+		font-size: 1.8rem;
+		line-height: 1;
+		color: inherit;
+		text-align: center;
+		display: block;
+		font-weight: bold;
+		width: auto;
+
+		@media (min-width: vars.$smMin) {
+			font-size: 2.5rem;
+		}
+	}
+
+	.menu-button {
+		margin: 0;
+		background: transparent !important;
+		color: inherit;
+		padding: 0;
+		border: 0;
+		width: 1.4em;
+
+		@media (min-width: vars.$smMin) {
+			width: 1.8em;
+		}
+	}
+
+	.toggle-theme {
+		height: 2em;
+		width: 2em;
+		display: flex;
+		margin: 0;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		border: none;
+		background: var(--background);
+	}
+
+	.main-nav {
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		transform: translateX(-100vw);
+		visibility: hidden;
+		width: 100vw;
+		height: 100vh;
+		pointer-events: none;
+		opacity: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: var(--lighterAccent);
+		color: var(--dark);
+		border-right: 1px solid var(--lightAccent);
+		transition: all 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+		@media (min-width: vars.$smMin) {
+			width: 25vw;
+		}
+
+		&.open {
+			transform: translateX(0);
+			opacity: 1;
+			pointer-events: unset;
+			visibility: unset;
+
+			li {
+				opacity: 0;
+				animation: slide_in_left 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+
+				a {
+					color: inherit;
+				}
+
+				// Probably shouldn't have more than 8 main nav menu items, but if you do, you can adjust this
+				@for $i from 1 through 8 {
+					&:nth-of-type(#{$i}) {
+						animation-delay: 0.15s + $i * 0.05s;
+					}
+				}
+			}
+		}
+
+		.menu-button {
+			position: absolute;
+			top: 2rem;
+			right: 2rem;
+		}
+
+		ul li {
+			font-size: 1.3rem;
+			display: block;
+			width: 100%;
+			text-align: center;
+			margin-bottom: calc(0.2rem + 2vh);
+
+			:hover {
+				text-decoration: none;
+				color: var(--lightAccent);
+			}
+		}
+	}
+}
+
+footer {
+	grid-area: footer;
+	background: var(--background);
+	color: var(--darker);
+	border-top: 1px solid var(--lightAccent);
+	width: 100%;
+	height: 8rem;
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	p {
+		font-size: 0.8rem;
+	}
+}
+
+.skip-to-content-link {
+	position: absolute;
+	top: -6rem;
+	left: 0;
+	padding: 0.5em;
+	opacity: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3rem;
+	background: var(--darker);
+	color: var(--background);
+
+	&:focus {
+		transform: translateY(6rem);
+		opacity: 1;
+		z-index: 11;
+	}
+}
