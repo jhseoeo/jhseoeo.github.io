@@ -3,7 +3,22 @@ import type { PageServerLoadEvent } from './$types';
 
 export const load = async ({ url, fetch }: PageServerLoadEvent) => {
 	const res = await fetch(`${url.origin}/api/posts_all.json`);
+
+	if (!res.ok) {
+		console.error(`Failed to fetch posts: ${res.status} ${res.statusText}`);
+		return {
+			uniqueCategories: []
+		};
+	}
+
 	let posts: Post[] = await res.json();
+
+	if (!Array.isArray(posts)) {
+		console.error('Expected posts to be an array, got:', typeof posts);
+		return {
+			uniqueCategories: []
+		};
+	}
 
 	let uniqueCategories: Record<string, uniqueCategory> = {};
 

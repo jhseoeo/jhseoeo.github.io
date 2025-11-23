@@ -1,14 +1,11 @@
-<script>
+<script lang="ts">
 	import { postsPerPage } from '$lib/config';
 
-	export let currentPage;
-	export let totalPosts;
-	export let path = '/posts/page';
+	let { currentPage, totalPosts, path = '/posts/page' }: { currentPage: number; totalPosts: number; path?: string } = $props();
 
-	let pagesAvailable;
-	$: pagesAvailable = Math.ceil(totalPosts / postsPerPage);
+	let pagesAvailable = $derived(Math.ceil(totalPosts / postsPerPage));
 
-	const isCurrentPage = (page) => page == currentPage;
+	const isCurrentPage = (page: number) => page == currentPage;
 </script>
 
 <!-- For some reason, the pagination wasn't re-rendering properly during navigation without the #key block -->

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { navItems } from '$lib/config';
 	import { isMenuOpen } from '$lib/assets/js/store';
 	import NavItem from './NavItem.svelte';

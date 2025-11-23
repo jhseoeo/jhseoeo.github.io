@@ -31,7 +31,7 @@ function renderRSS(posts: Post[]) {
 						(post) =>
 							`<item>
 						<guid isPermaLink="true">https://${siteURL}/posts/post/${post.slug}</guid>
-						title>${post.title}</title>
+						<title>${post.title}</title>
 						<link>https://${siteURL}/posts/post/${post.slug}</link>
 						<description>${post.excerpt}</description>
 						<pubDate>${new Date(post.date).toUTCString()}</pubDate>

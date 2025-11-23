@@ -39,7 +39,7 @@
 		{date.slice(0, 10)}
 	</div>
 
-	{@html data.PostContent}
+	<svelte:component this={data.component} />
 
 	{#if categories}
 		<aside class="post-footer">

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import MainNav from './MainNav.svelte';
 	import DarkModeToggle from './DarkModeToggle.svelte';
 	import HamburgerMenuButton from './HamburgerMenuButton.svelte';

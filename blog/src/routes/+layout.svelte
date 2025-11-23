@@ -9,7 +9,9 @@
 	import { preloadCode } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	export let data;
+	import type { Snippet } from 'svelte';
+
+	let { data, children }: { data: any; children: Snippet } = $props();
 
 	const transitionIn = { delay: 150, duration: 150 };
 	const transitionOut = { duration: 100 };
@@ -18,7 +20,9 @@
 	 * Updates the global store with the current path. (Used for highlighting
 	 * the current page in the nav, but could be useful for other purposes.)
 	 **/
-	$: currentPage.set(data.path);
+	$effect(() => {
+		currentPage.set(data.path);
+	});
 
 	/**
 	 * This pre-fetches all top-level routes on the site in the background for faster loading.
@@ -46,13 +50,14 @@
 	}
 
 	onMount(() => {
-		const navRoutes = navItems.map((item) => item.route);
-		preloadCode(...navRoutes);
+		navItems.forEach((item) => {
+			preloadCode(item.route);
+		});
 	});
 </script>
 
-<!-- 
-	The below markup is used on every page in the site. The <slot> is where the page's
+<!--
+	The below markup is used on every page in the site. {@render children()} is where the page's
 	actual contents will show up.
 -->
 <div class="layout" class:open={$isMenuOpen}>
@@ -60,7 +65,7 @@
 	<main id="main" tabindex="-1">
 		{#key data.path}
 			<div class="content" in:fade={transitionIn} out:fade={transitionOut}>
-				<slot />
+				{@render children()}
 			</div>
 		{/key}
 		<Footer />

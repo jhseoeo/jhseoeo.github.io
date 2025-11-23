@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 	import { currentPage, isMenuOpen } from '$lib/assets/js/store';
+	import type { Snippet } from 'svelte';
 
-	export let href;
+	let { href, children }: { href: string; children?: Snippet } = $props();
 
-	$: isCurrentPage = $currentPage.startsWith(href);
+	let isCurrentPage = $derived($currentPage.startsWith(href));
 
 	const maybeCloseMenu = () => {
 		if (href != $currentPage) {
@@ -19,6 +20,6 @@
 		class:active={isCurrentPage}
 		aria-current={isCurrentPage ? 'page' : false}
 	>
-		<slot />
+		{@render children?.()}
 	</a>
 </li>

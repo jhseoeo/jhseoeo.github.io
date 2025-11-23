@@ -1,5 +1,7 @@
-<script>
-	export let posts = [];
+<script lang="ts">
+	import type { Post } from '$lib/types/post';
+
+	let { posts = [] }: { posts?: Post[] } = $props();
 </script>
 
 <ul class="posts-list">

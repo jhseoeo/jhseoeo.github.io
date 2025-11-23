@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import { isMenuOpen } from '$lib/assets/js/store';
 	import HamburgerSVG from './svg/HamburgerSVG.svelte';
 	import XSVG from './svg/XSVG.svelte';
 
-	export let closeOnly = false;
+	let { closeOnly = false }: { closeOnly?: boolean } = $props();
 
 	const toggleIsMenuOpen = () => {
 		isMenuOpen.set(!$isMenuOpen);

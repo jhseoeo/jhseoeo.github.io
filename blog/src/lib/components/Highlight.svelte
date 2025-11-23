@@ -1,5 +1,7 @@
-<script>
-	export let color = 'yellow';
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	let { color = 'yellow', children }: { color?: string; children?: Snippet } = $props();
 
 	const colorMap = {
 		yellow: 'var(--highlightYellow)',
@@ -10,5 +12,5 @@
 </script>
 
 <span style={`background-color: ${colorMap[color]}`}>
-	<slot />
+	{@render children?.()}
 </span>
