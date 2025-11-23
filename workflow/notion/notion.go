@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/jhseoeo/notion-blog/workflow/model"
 	"github.com/jhseoeo/notion-blog/workflow/notion/dto"
-	"github.com/jhseoeo/notion-blog/workflow/notion/model"
 )
 
 type NotionClient struct {
@@ -114,7 +114,6 @@ func (c *NotionClient) RetrieveBlockChildren(blockID string) ([]*model.Block, er
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println(string(respBody))
 
 		if resp.StatusCode != http.StatusOK {
 			return nil, fmt.Errorf("failed to retrieve block: %d %s", resp.StatusCode, string(respBody))

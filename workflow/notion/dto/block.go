@@ -3,7 +3,7 @@ package dto
 import (
 	"encoding/json"
 
-	"github.com/jhseoeo/notion-blog/workflow/notion/model"
+	"github.com/jhseoeo/notion-blog/workflow/model"
 )
 
 type RetrieveBlockChildrenResponse struct {

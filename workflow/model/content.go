@@ -65,7 +65,6 @@ type Content struct {
 func (c *Content) ToDocs() string {
 	var ret string
 
-	ret += fmt.Sprintf("<%s>", c.Type)
 	switch c.Type {
 	case ContentTypeText:
 		ret += c.Text.Content
@@ -74,18 +73,22 @@ func (c *Content) ToDocs() string {
 			ret += content.ToDocs()
 		}
 	case ContentTypeBulletedListItem:
+		ret += "- "
 		for _, content := range c.BulletedListItem.RichText {
 			ret += content.ToDocs()
 		}
 	case ContentTypeHeading1:
+		ret += "# "
 		for _, content := range c.ContentHeading1.RichText {
 			ret += content.ToDocs()
 		}
 	case ContentTypeHeading2:
+		ret += "## "
 		for _, content := range c.ContentHeading2.RichText {
 			ret += content.ToDocs()
 		}
 	case ContentTypeToggle:
+		ret += "(미안하다토글아직안만들었다)"
 		for _, content := range c.ContentToggle.RichText {
 			ret += content.ToDocs()
 		}
@@ -94,7 +97,6 @@ func (c *Content) ToDocs() string {
 	case ContentTypeChildPage:
 		ret += c.ChildPage.Title
 	}
-	ret += fmt.Sprintf("</%s>", c.Type)
 
 	return ret
 }

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/jhseoeo/notion-blog/workflow/notion"
+	"github.com/jhseoeo/notion-blog/workflow/post"
 	"github.com/joho/godotenv"
 )
 
@@ -19,18 +19,13 @@ func main() {
 		panic(err)
 	}
 
-	for _, page := range pages {
-		fmt.Println(page)
-	}
-
 	if len(pages) > 0 {
 		blocks, err := client.RetrieveBlockChildren(pages[0].ID)
 		if err != nil {
 			panic(err)
 		}
-
-		for _, block := range blocks {
-			fmt.Println(block.ToDocs())
+		if err := post.ExportPost("./output", pages[0], blocks); err != nil {
+			panic(err)
 		}
 	}
 }
