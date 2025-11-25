@@ -10,6 +10,7 @@ import (
 
 	"github.com/jhseoeo/notion-blog/workflow/model"
 	"github.com/jhseoeo/notion-blog/workflow/notion/dto"
+	"github.com/sirupsen/logrus"
 )
 
 type NotionClient struct {
@@ -30,6 +31,7 @@ func (c *NotionClient) authorizeRequest(req *http.Request) {
 }
 
 func (c *NotionClient) GetPages(dataSourceID string) ([]*model.Page, error) {
+	logrus.Debugf("Fetching page %s", dataSourceID)
 	var (
 		cursor string
 		ret    []*model.Page
@@ -82,7 +84,8 @@ func (c *NotionClient) GetPages(dataSourceID string) ([]*model.Page, error) {
 	return ret, nil
 }
 
-func (c *NotionClient) RetrieveBlockChildren(blockID string) ([]*model.Block, error) {
+func (c *NotionClient) RetrieveBlockChildren(blockID string, depth int) ([]*model.Block, error) {
+	logrus.Debugf("Fetching block children %s (depth: %d)", blockID, depth)
 	var (
 		cursor string
 		ret    []*model.Block
@@ -122,6 +125,17 @@ func (c *NotionClient) RetrieveBlockChildren(blockID string) ([]*model.Block, er
 		var result dto.RetrieveBlockChildrenResponse
 		if err := json.Unmarshal(respBody, &result); err != nil {
 			return nil, err
+		}
+		fmt.Println(string(respBody))
+
+		for _, block := range result.Blocks {
+			if block.HasChildren {
+				children, err := c.RetrieveBlockChildren(block.ID, depth+1)
+				if err != nil {
+					return nil, err
+				}
+				block.Children = children
+			}
 		}
 		ret = append(ret, result.Blocks...)
 		if !result.HasMore {

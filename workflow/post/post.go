@@ -1,6 +1,7 @@
 package post
 
 import (
+	"fmt"
 	"os"
 	"strings"
 	"text/template"
@@ -21,14 +22,26 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 	if err != nil {
 		return err
 	}
-	categories := make([]string, len(page.Tags))
-	for i, tag := range page.Tags {
-		categories[i] = tag.Name
-	}
-	var content string
-	for _, block := range contents {
-		content += block.ToDocs() + "  \n"
-	}
+	categories := func() []string {
+		categories := make([]string, len(page.Tags))
+		for i, tag := range page.Tags {
+			categories[i] = tag.Name
+		}
+		return categories
+	}()
+	fileTitle := func() string {
+		title := strings.ReplaceAll(page.Title, " ", "_")
+		title = strings.ReplaceAll(title, "/", "\\")
+		return title
+	}()
+	content := func() string {
+		var content string
+		for _, block := range contents {
+			content += block.ToDocs(0) + "  \n"
+		}
+		return content
+	}()
+
 	params := templateParams{
 		Title:      page.Title,
 		Date:       lastEditedTime.Format("2006-01-02"),
@@ -37,7 +50,7 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 		Content:    content,
 	}
 
-	fileName := outputDir + "/" + strings.ReplaceAll(page.Title, " ", "_") + ".md"
+	fileName := fmt.Sprintf("%s/%s.md", outputDir, fileTitle)
 
 	// open file
 	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, 0644)

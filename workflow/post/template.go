@@ -11,14 +11,14 @@ type templateParams struct {
 }
 
 const postTmpl = `---
-title: {{ .Title }}
-date: {{ .Date }}
+title: '{{ .Title }}'
+date: '{{ .Date }}'
 categories: {{ range .Categories }}
-  - {{ . }}{{ end }}
-coverImage: {{ .CoverImage }}
+  - '{{ . }}'{{ end }}
+coverImage: '{{ .CoverImage }}'
 coverWidth: 16
 coverHeight: 9
-excerpt: {{ .Excerpt }}
+excerpt: '{{ .Excerpt }}'
 indexed: false
 exposed: true
 ---
