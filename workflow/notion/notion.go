@@ -126,7 +126,7 @@ func (c *NotionClient) RetrieveBlockChildren(blockID string, depth int) ([]*mode
 		if err := json.Unmarshal(respBody, &result); err != nil {
 			return nil, err
 		}
-		fmt.Println(string(respBody))
+		// fmt.Println(string(respBody))
 
 		for _, block := range result.Blocks {
 			if block.HasChildren {
@@ -137,6 +137,7 @@ func (c *NotionClient) RetrieveBlockChildren(blockID string, depth int) ([]*mode
 				block.Children = children
 			}
 		}
+
 		ret = append(ret, result.Blocks...)
 		if !result.HasMore {
 			break

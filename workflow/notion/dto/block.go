@@ -37,11 +37,11 @@ func (r *RetrieveBlockChildrenResponse) UnmarshalJSON(data []byte) error {
 			continue
 		}
 
-		var block model.Block
-		if err := json.Unmarshal(elem, &block); err != nil {
+		b := new(model.Block)
+		if err := json.Unmarshal(elem, b); err != nil {
 			return err
 		}
-		r.Blocks = append(r.Blocks, &block)
+		r.Blocks = append(r.Blocks, b)
 	}
 
 	return nil

@@ -37,7 +37,7 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 	content := func() string {
 		var content string
 		for _, block := range contents {
-			content += block.ToDocs(0) + "  \n"
+			content += block.ToDocs(0)
 		}
 		return content
 	}()

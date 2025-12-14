@@ -1,8 +1,6 @@
 package model
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
 	"strings"
 
@@ -97,89 +95,71 @@ func (c *Content) ToDocs(depth int) string {
 	var ret string
 	switch c.Type {
 	case ContentTypeText:
-		ret += fmt.Sprintf("%s%s", indent, c.Text.Content)
+		ret += fmt.Sprintf("%s%s\n", indent, c.Text.Content)
 	case ContentTypeParagraph:
+		ret += indent
 		for _, content := range c.Paragraph.RichText {
 			ret += fmt.Sprintf("%s%s", indent, content.ToDocs(depth))
 		}
+		ret += "\n"
 	case ContentTypeBulletedListItem:
-		ret += "- "
+		ret += fmt.Sprintf("%s- ", indent)
 		for _, content := range c.BulletedListItem.RichText {
-			ret += fmt.Sprintf("%s%s", indent, content.ToDocs(depth))
+			ret += content.ToDocs(depth)
 		}
+		ret += "\n"
 	case ContentTypeNumberedListItem:
 		// 뭔가 방법이 필요한 데 일단 1로 뭉뚱그리자
-		ret += "1. "
+		ret += fmt.Sprintf("%s1. ", indent)
 		for _, content := range c.NumberedListItem.RichText {
-			ret += fmt.Sprintf("%s%s", indent, content.ToDocs(depth))
+			ret += content.ToDocs(depth)
 		}
+		ret += "\n"
 	case ContentTypeHeading1:
-		ret += "# "
+		ret += fmt.Sprintf("%s# ", indent)
 		for _, content := range c.ContentHeading1.RichText {
-			ret += fmt.Sprintf("%s%s", indent, content.ToDocs(depth))
+			ret += content.ToDocs(depth)
 		}
+		ret += "\n"
 	case ContentTypeHeading2:
-		ret += "## "
+		ret += fmt.Sprintf("%s## ", indent)
 		for _, content := range c.ContentHeading2.RichText {
-			ret += fmt.Sprintf("%s%s", indent, content.ToDocs(depth))
+			ret += content.ToDocs(depth)
 		}
+		ret += "\n"
 	case ContentTypeHeading3:
-		ret += "### "
+		ret += fmt.Sprintf("%s### ", indent)
 		for _, content := range c.ContentHeading3.RichText {
-			ret += fmt.Sprintf("%s%s", indent, content.ToDocs(depth))
+			ret += content.ToDocs(depth)
 		}
+		ret += "\n"
 	case ContentTypeToggle:
-		ret += "(미안하다토글아직안만들었다)"
+		ret += fmt.Sprintf("%s(미안하다토글아직안만들었다)", indent)
 		for _, content := range c.ContentToggle.RichText {
-			ret += fmt.Sprintf("%s%s", indent, content.ToDocs(depth))
+			ret += content.ToDocs(depth)
 		}
+		ret += "\n"
 	case ContentTypeMention:
-		ret += c.ContentMention.ToDocs(depth)
+		ret += fmt.Sprintf("%s%s\n", indent, c.ContentMention.ToDocs(depth))
 	case ContentTypeChildPage:
-		ret += fmt.Sprintf("%s%s", indent, c.ChildPage.Title)
+		ret += fmt.Sprintf("%s%s\n", indent, c.ChildPage.Title)
 	case ContentTypeImage: // TODO: 이미지는 나중에 배치로 다운받기
 		caption := ""
 		if len(c.Image.Caption) > 0 {
 			caption = c.Image.Caption[0].ToDocs(depth)
 		}
-		ret += "![" + caption + "](" + c.Image.File.URL + ")"
+		ret += fmt.Sprintf("%s![%s](%s)\n", indent, caption, c.Image.File.URL)
 	case ContentTypeCode:
 		ret += fmt.Sprintf("%s```%s\n", indent, c.Code.Language)
 		for _, content := range c.Code.RichText {
-			ret += fmt.Sprintf("%s%s", indent, content.ToDocs(depth))
+			ret += content.ToDocs(depth)
 		}
-		ret += fmt.Sprintf("%s```", indent)
+		ret += fmt.Sprintf("%s```\n", indent)
 	default:
 		panic("notion: unknown content type: " + string(c.Type))
 	}
 
 	return ret
-}
-
-func (c *Content) UnmarshalJSON(data []byte) error {
-	type Alias Content
-	if err := json.Unmarshal(data, (*Alias)(c)); err != nil {
-		return errors.New("notion: failed to unmarshal content: " + string(data))
-	}
-	switch c.Type {
-	case ContentTypeText,
-		ContentTypeParagraph,
-		ContentTypeHeading1,
-		ContentTypeHeading2,
-		ContentTypeHeading3,
-		ContentTypeBulletedListItem,
-		ContentTypeNumberedListItem,
-		ContentTypeToggle,
-		ContentTypeMention,
-		ContentTypeChildPage,
-		ContentTypeImage,
-		ContentTypeCode:
-		break
-	default:
-		return errors.New("notion: unknown content type: " + string(c.Type) + "\n" + string(data))
-	}
-
-	return nil
 }
 
 type ContentText struct {
