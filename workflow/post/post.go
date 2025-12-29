@@ -44,6 +44,11 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 		return title
 	}()
 
+	// Download images and replace URLs with local paths
+	if err := DownloadImagesInBlocks(contents, outputDir, fileTitle); err != nil {
+		return fmt.Errorf("failed to download images: %w", err)
+	}
+
 	// Generate HTML content with list grouping
 	htmlContent := model.RenderBlocksWithListGrouping(contents, 0)
 
