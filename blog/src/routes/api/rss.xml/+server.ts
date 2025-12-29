@@ -1,6 +1,6 @@
 // IMPORTANT: update all these property values in src/lib/config.js
 import fetchPosts from '$lib/assets/js/fetchPosts';
-import { siteTitle, siteDescription, siteURL, siteLink } from '$lib/config';
+import { siteTitle, siteDescription, siteURL, siteLink, cacheMaxAge } from '$lib/config';
 import type { RequestEvent } from './$types';
 
 export const prerender = true;
@@ -9,7 +9,7 @@ export const GET = async ({}: RequestEvent) => {
 	const data = await fetchPosts({ limit: -1 });
 	const body = renderRSS(data.posts);
 	const headers = {
-		'Cache-Control': `max-age=0, s-max-age=${600}`,
+		'Cache-Control': `max-age=0, s-max-age=${cacheMaxAge}`,
 		'Content-Type': 'application/xml'
 	};
 	return new Response(body, {

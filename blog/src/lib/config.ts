@@ -14,6 +14,9 @@ export const siteAuthor = 'YOUR NAME';
 // Controls how many posts are shown per page on the main blog index pages
 export const postsPerPage = 15;
 
+// Cache duration in seconds for RSS and sitemap
+export const cacheMaxAge = 600;
+
 // Edit this to alter the main nav menu. (Also used by the footer and mobile nav.)
 export const navItems = [
 	{

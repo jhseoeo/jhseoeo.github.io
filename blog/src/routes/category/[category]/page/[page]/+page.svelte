@@ -1,14 +1,10 @@
 <!-- Renders posts listed by category -->
 <script lang="ts">
-	import PostsList from '$lib/components/PostsList.svelte';
-	import Pagination from '$lib/components/Pagination.svelte';
-	import { siteDescription, postsPerPage } from '$lib/config';
+	import PaginatedPostsView from '$lib/components/PaginatedPostsView.svelte';
+	import { siteDescription } from '$lib/config';
 
 	let { data } = $props();
 	const { page, category, totalPosts, posts } = data;
-
-	let lowerBound = $derived(page * postsPerPage - (postsPerPage - 1) || 1);
-	let upperBound = $derived(Math.min(page * postsPerPage, totalPosts));
 </script>
 
 <svelte:head>
@@ -16,22 +12,10 @@
 	<meta data-key="description" name={siteDescription} />
 </svelte:head>
 
-<!-- TODO: this is duplicated across multiple `+page.svelte` files -->
-{#if posts && posts.length}
-	<h1>
-		Category: {category}
-		<br />
-		<small>Posts {lowerBound}–{upperBound} of {totalPosts}</small>
-	</h1>
-	<Pagination currentPage={page} {totalPosts} path="/category/{category}/page" />
-
-	<PostsList {posts} />
-
-	<Pagination currentPage={page} {totalPosts} path="/category/{category}/page" />
-{:else}
-	<h1>Oops!</h1>
-
-	<p>Sorry, no posts to show here.</p>
-
-	<a href="/posts">Back to blog</a>
-{/if}
+<PaginatedPostsView
+	{page}
+	{totalPosts}
+	{posts}
+	{category}
+	paginationPath="/category/{category}/page"
+/>

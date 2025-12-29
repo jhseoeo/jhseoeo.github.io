@@ -1,19 +1,12 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { colorTheme } from '$lib/assets/js/store';
+	import { toggleTheme, getStoredTheme } from '$lib/utils/theme';
 
 	const toggleDarkMode = () => {
 		if (browser) {
-			let theme = localStorage.getItem('color-theme');
-			if (theme === 'light') {
-				document.documentElement.setAttribute('color-theme', 'dark');
-				localStorage.setItem('color-theme', 'dark');
-				colorTheme.set('dark');
-			} else {
-				document.documentElement.setAttribute('color-theme', 'light');
-				localStorage.setItem('color-theme', 'light');
-				colorTheme.set('light');
-			}
+			const currentTheme = getStoredTheme() ?? 'light';
+			toggleTheme(currentTheme, (theme) => colorTheme.set(theme));
 		}
 	};
 </script>

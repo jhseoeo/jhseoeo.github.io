@@ -33,20 +33,9 @@
 	 **/
 
 	if (browser) {
-		const isUserColorTheme = localStorage.getItem('color-theme');
-		const isOsColorTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-			? 'dark'
-			: 'light';
-
-		if (isUserColorTheme ?? isOsColorTheme === 'dark') {
-			localStorage.setItem('color-theme', 'dark');
-			document.documentElement.setAttribute('color-theme', 'dark');
-			colorTheme.set('dark');
-		} else {
-			localStorage.setItem('color-theme', 'light');
-			document.documentElement.setAttribute('color-theme', 'light');
-			colorTheme.set('light');
-		}
+		import('$lib/utils/theme').then(({ initializeTheme }) => {
+			initializeTheme((theme) => colorTheme.set(theme));
+		});
 	}
 
 	onMount(() => {

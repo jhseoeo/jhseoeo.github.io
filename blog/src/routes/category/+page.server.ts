@@ -1,8 +1,9 @@
 import type { uniqueCategory } from '$lib/types/uniqueCatrgory';
 import type { PageServerLoadEvent } from './$types';
+import { apiEndpoints } from '$lib/utils/api';
 
 export const load = async ({ url, fetch }: PageServerLoadEvent) => {
-	const res = await fetch(`${url.origin}/api/posts_all.json`);
+	const res = await fetch(apiEndpoints.postsAllJson(url.origin));
 
 	if (!res.ok) {
 		console.error(`Failed to fetch posts: ${res.status} ${res.statusText}`);

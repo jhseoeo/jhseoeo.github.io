@@ -4,6 +4,7 @@
 	import Giscus from '@giscus/svelte';
 	import { colorTheme } from '$lib/assets/js/store';
 	import { giscusConfig } from '$lib/config';
+	import { formatDate } from '$lib/utils/date';
 	import Prism from 'prismjs';
 	import 'prismjs/components/prism-go';
 	import 'prismjs/components/prism-typescript';
@@ -48,7 +49,7 @@
 
 	<div class="meta">
 		<b>Published:</b>
-		{date.slice(0, 10)}
+		{formatDate(date)}
 	</div>
 
 	<svelte:component this={data.component} />
