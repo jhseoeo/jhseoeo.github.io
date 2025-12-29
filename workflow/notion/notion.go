@@ -13,6 +13,11 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+const (
+	// DefaultPageSize is the default page size for paginated Notion API requests
+	DefaultPageSize = 100
+)
+
 type NotionClient struct {
 	secret string
 }
@@ -39,7 +44,7 @@ func (c *NotionClient) GetPages(dataSourceID string) ([]*model.Page, error) {
 	for {
 		reqPayload := dto.QueryDataSourceRequest{
 			PaginationReq: dto.PaginationReq{
-				PageSize:    100,
+				PageSize:    DefaultPageSize,
 				StartCursor: cursor,
 			},
 		}
@@ -96,7 +101,7 @@ func (c *NotionClient) RetrieveBlockChildren(blockID string, depth int) ([]*mode
 			return nil, err
 		}
 		paginationReq := dto.PaginationReq{
-			PageSize:    100,
+			PageSize:    DefaultPageSize,
 			StartCursor: cursor,
 		}
 		paginationReq.ApplyQueryString(u)

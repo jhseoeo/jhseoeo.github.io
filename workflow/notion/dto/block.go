@@ -14,35 +14,24 @@ type RetrieveBlockChildrenResponse struct {
 
 func (r *RetrieveBlockChildrenResponse) UnmarshalJSON(data []byte) error {
 	type alias RetrieveBlockChildrenResponse
-	var aux struct {
-		alias
-		Results []json.RawMessage `json:"results"`
-	}
+	var aux alias
 	if err := json.Unmarshal(data, &aux); err != nil {
 		return err
 	}
-	*r = RetrieveBlockChildrenResponse(aux.alias)
+	*r = RetrieveBlockChildrenResponse(aux)
 
-	// 각 elem을 Block으로 변환
-	for _, elem := range aux.Results {
-		var header struct {
-			ObjectType string `json:"object"`
-		}
-		if err := json.Unmarshal(elem, &header); err != nil {
-			return err
-		}
-
-		// 일단 block가 아닌 타입이 있으면 넘어가자
-		if header.ObjectType != "block" {
-			continue
-		}
-
+	// Unmarshal blocks using helper
+	blocks, err := unmarshalResults(data, "block", func(elem []byte) (*model.Block, error) {
 		b := new(model.Block)
 		if err := json.Unmarshal(elem, b); err != nil {
-			return err
+			return nil, err
 		}
-		r.Blocks = append(r.Blocks, b)
+		return b, nil
+	})
+	if err != nil {
+		return err
 	}
+	r.Blocks = blocks
 
 	return nil
 }

@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/jhseoeo/notion-blog/workflow/model"
+	"github.com/jhseoeo/notion-blog/workflow/renderer"
 )
 
 func ExportPost(outputDir string, page *model.Page, contents []*model.Block) error {
@@ -50,7 +51,7 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 	}
 
 	// Generate HTML content with list grouping
-	htmlContent := model.RenderBlocksWithListGrouping(contents, 0)
+	htmlContent := renderer.RenderBlocks(contents, 0)
 
 	params := templateParams{
 		Title:        page.Title,
