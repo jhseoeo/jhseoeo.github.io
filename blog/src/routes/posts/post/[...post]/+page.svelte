@@ -1,12 +1,24 @@
 <!-- This file renders each individual blog post for reading. Be sure to update the svelte:head below -->
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import Giscus from '@giscus/svelte';
 	import { colorTheme } from '$lib/assets/js/store';
 	import { giscusConfig } from '$lib/config';
+	import Prism from 'prismjs';
+	import 'prismjs/components/prism-go';
+	import 'prismjs/components/prism-typescript';
+	import 'prismjs/components/prism-python';
+	import 'prismjs/components/prism-bash';
+	import 'prismjs/components/prism-json';
 
 	export let data;
 
 	const { title, excerpt, date, coverImage, coverWidth, coverHeight, categories } = data.meta;
+
+	onMount(() => {
+		// Highlight code blocks for .svelte posts
+		Prism.highlightAll();
+	});
 </script>
 
 <svelte:head>
