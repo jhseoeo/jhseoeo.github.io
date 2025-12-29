@@ -3,28 +3,59 @@ code {
 	font-family: var(--codeFont);
 	-webkit-font-smoothing: auto;
 	-moz-osx-font-smoothing: auto;
+	font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 pre {
-	max-width: calc(100vw - 3em - 10px);
-	overflow-y: auto;
-	color: var(--paper);
-	background: var(--darker);
-	padding: 1rem;
-	font-size: 0.8rem;
+	max-width: 100%;
+	overflow-x: auto;
+	color: var(--code-text);
+	background: var(--code-bg);
+	padding: var(--space-lg);
+	font-size: var(--text-sm);
+	line-height: var(--leading-relaxed);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-lg);
+	border: 1px solid var(--border);
+	margin: var(--space-lg) 0;
+	position: relative;
+
+	// Scrollbar styling
+	&::-webkit-scrollbar {
+		height: 8px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba(255, 255, 255, 0.2);
+		border-radius: 4px;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.3);
+		}
+	}
 }
 
 code {
-	color: var(--darker);
-	font-size: 1rem;
-	padding: 0.125em 0.25em;
-	border-radius: 4px;
-	background: var(--lighterAccent);
+	color: var(--accent-dark);
+	font-size: var(--text-sm);
+	padding: 0.2em 0.4em;
+	border-radius: var(--radius-sm);
+	background: var(--surface);
+	border: 1px solid var(--border);
 	white-space: pre;
+	font-weight: 500;
 }
 
 pre code {
 	padding: 0;
 	background: transparent;
-	font-size: 0.8rem;
+	border: none;
+	font-size: var(--text-sm);
+	color: var(--code-text);
+	font-weight: 400;
 }

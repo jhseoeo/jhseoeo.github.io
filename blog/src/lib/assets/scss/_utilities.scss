@@ -15,3 +15,68 @@
 	list-style-type: none;
 	padding-left: 0;
 }
+
+// Loading skeleton
+.skeleton {
+	background: linear-gradient(90deg, var(--surface) 25%, var(--elevated) 50%, var(--surface) 75%);
+	background-size: 200% 100%;
+	animation: shimmer 1.5s ease-in-out infinite;
+	border-radius: var(--radius-md);
+	position: relative;
+	overflow: hidden;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+		animation: shimmer 2s ease-in-out infinite;
+	}
+}
+
+// Glow utilities
+.glow-accent {
+	box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4);
+}
+
+.glow-accent-lg {
+	box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.6);
+}
+
+// Gradient text
+.gradient-text {
+	background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+// Glass effect
+.glass {
+	background: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(12px) saturate(180%);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+
+	:root[color-theme='dark'] & {
+		background: rgba(15, 23, 42, 0.8);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+}
+
+// Hover lift
+.hover-lift {
+	transition: all var(--transition-base);
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-lg);
+	}
+}
+
+// Pulse animation
+.pulse {
+	animation: pulse-glow 2s ease-in-out infinite;
+}

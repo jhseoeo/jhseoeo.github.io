@@ -32,57 +32,100 @@ footer {
 }
 
 header {
-	background: var(--background);
-	border-bottom: 1px solid var(--lightAccent);
-	color: var(--darker);
+	background: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(12px) saturate(180%);
+	border-bottom: 1px solid var(--border);
+	box-shadow: var(--shadow-sm);
+	color: var(--text-primary);
 	position: fixed;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
-	padding: 1em;
+	padding: 1em clamp(1.5rem, 5vw, 3rem);
+	gap: clamp(1rem, 3vw, 2rem);
 	width: 100vw;
-	height: 4em;
+	min-height: 4.2em;
 	z-index: 1001;
+	transition: all var(--transition-base);
+
+	:root[color-theme='dark'] & {
+		background: rgba(15, 23, 42, 0.8);
+	}
 
 	.site-title {
 		font-family: var(--accentFont);
-		font-size: 1.8rem;
+		font-size: 1.7rem;
 		line-height: 1;
-		color: inherit;
 		text-align: center;
 		display: block;
-		font-weight: bold;
+		font-weight: 800;
+		letter-spacing: -0.02em;
 		width: auto;
+		background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		transition: all var(--transition-base);
 
 		@media (min-width: vars.$smMin) {
-			font-size: 2.5rem;
+			font-size: 2.1rem;
+		}
+
+		&:hover {
+			transform: scale(1.05);
 		}
 	}
 
 	.menu-button {
 		margin: 0;
 		background: transparent !important;
-		color: inherit;
-		padding: 0;
+		color: var(--text-primary);
+		padding: 0.5rem;
 		border: 0;
-		width: 1.4em;
+		width: 2em;
+		height: 2em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--radius-md);
+		transition: all var(--transition-base);
+		cursor: pointer;
+
+		&:hover {
+			background: var(--surface) !important;
+		}
 
 		@media (min-width: vars.$smMin) {
-			width: 1.8em;
+			width: 2.3em;
+			height: 2.3em;
+		}
+
+		svg {
+			width: 100%;
+			height: 100%;
 		}
 	}
 
 	.toggle-theme {
-		height: 2em;
-		width: 2em;
+		height: 2.5em;
+		width: 2.5em;
 		display: flex;
 		margin: 0;
 		justify-content: center;
 		align-items: center;
-		border-radius: 10px;
-		border: none;
-		background: var(--background);
+		border-radius: var(--radius-md);
+		border: 1px solid var(--border);
+		background: var(--surface);
+		transition: all var(--transition-base);
+		cursor: pointer;
+		font-size: 1.2em;
+
+		&:hover {
+			background: var(--accent);
+			border-color: var(--accent);
+			transform: scale(1.1) rotate(10deg);
+		}
 	}
 
 	.main-nav {
@@ -90,22 +133,24 @@ header {
 		z-index: 2;
 		top: 0;
 		left: 0;
-		transform: translateX(-100vw);
+		transform: translateX(-100%);
 		visibility: hidden;
-		width: 100vw;
+		width: min(85vw, 320px);
 		height: 100vh;
 		pointer-events: none;
 		opacity: 0;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background: var(--lighterAccent);
-		color: var(--dark);
-		border-right: 1px solid var(--lightAccent);
-		transition: all 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(20px) saturate(180%);
+		color: var(--text-primary);
+		border-right: 1px solid var(--border);
+		box-shadow: var(--shadow-xl);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-		@media (min-width: vars.$smMin) {
-			width: 25vw;
+		:root[color-theme='dark'] & {
+			background: rgba(15, 23, 42, 0.95);
 		}
 
 		&.open {
@@ -116,16 +161,26 @@ header {
 
 			li {
 				opacity: 0;
-				animation: slide_in_left 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+				animation: slide_in_left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 
 				a {
-					color: inherit;
+					color: var(--text-primary);
+					padding: 0.75rem 1.5rem;
+					border-radius: var(--radius-md);
+					transition: all var(--transition-base);
+					display: block;
+
+					&:hover,
+					&.active {
+						background: var(--accent);
+						color: white;
+						transform: translateX(8px);
+					}
 				}
 
-				// Probably shouldn't have more than 8 main nav menu items, but if you do, you can adjust this
 				@for $i from 1 through 8 {
 					&:nth-of-type(#{$i}) {
-						animation-delay: 0.15s + $i * 0.05s;
+						animation-delay: 0.15s + $i * 0.06s;
 					}
 				}
 			}
@@ -133,20 +188,28 @@ header {
 
 		.menu-button {
 			position: absolute;
-			top: 2rem;
-			right: 2rem;
+			top: 1.5rem;
+			right: 1.5rem;
+			background: var(--surface) !important;
+			border: 1px solid var(--border);
+
+			&:hover {
+				background: var(--accent) !important;
+				color: white;
+			}
 		}
 
-		ul li {
-			font-size: 1.3rem;
-			display: block;
+		ul {
 			width: 100%;
-			text-align: center;
-			margin-bottom: calc(0.2rem + 2vh);
+			padding: 0 1rem;
 
-			:hover {
-				text-decoration: none;
-				color: var(--lightAccent);
+			li {
+				font-size: 1.1rem;
+				font-weight: 500;
+				display: block;
+				width: 100%;
+				text-align: left;
+				margin-bottom: 0.5rem;
 			}
 		}
 	}
@@ -155,16 +218,43 @@ header {
 footer {
 	grid-area: footer;
 	background: var(--background);
-	color: var(--darker);
-	border-top: 1px solid var(--lightAccent);
+	color: var(--text-secondary);
+	border-top: 1px solid var(--border);
 	width: 100%;
-	height: 8rem;
-	padding: 1rem;
+	padding: var(--space-xl);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--accent), transparent);
+		opacity: 0.5;
+	}
+
 	p {
-		font-size: 0.8rem;
+		font-size: var(--text-sm);
+		margin: 0;
+		text-align: center;
+		color: var(--text-secondary);
+		font-weight: 500;
+	}
+
+	a {
+		color: var(--accent);
+		font-weight: 600;
+		text-decoration: none;
+		transition: all var(--transition-base);
+
+		&:hover {
+			color: var(--accent-light);
+		}
 	}
 }
 
