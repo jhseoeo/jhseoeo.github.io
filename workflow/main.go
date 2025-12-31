@@ -57,4 +57,6 @@ func main() {
 			logrus.WithError(err).WithField("page", page.Title).Fatal("Failed to export post")
 		}
 	}
+
+	logrus.Info("Successfully exported all posts!")
 }
