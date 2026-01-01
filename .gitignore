@@ -53,9 +53,6 @@ blog/build/
 blog/.vercel/
 blog/.netlify/
 blog/dist/
-blog/package-lock.json
-blog/yarn.lock
-blog/pnpm-lock.yaml
 node_modules/
 .svelte-kit/
 build/

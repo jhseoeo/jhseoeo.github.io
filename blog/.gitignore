@@ -3,6 +3,5 @@ node_modules
 /build
 /.svelte-kit
 /package
-package-lock.json
 /docs
 .env

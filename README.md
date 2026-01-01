@@ -80,16 +80,7 @@ git remote set-url origin https://github.com/<your-username>/<your-username>.git
 git push -u origin master
 ```
 
-### 2. Create Posts Branch
-
-```bash
-# Create posts branch for deployment
-git checkout -b posts
-git push -u origin posts
-git checkout master
-```
-
-### 3. Configure Terraform Variables
+### 2. Configure Terraform Variables
 
 Edit `terraform/terraform.tfvars`:
 
@@ -113,7 +104,9 @@ schedule_expression = "cron(0 15 * * ? *)"
 
 **Important:** Never commit `terraform.tfvars` to git (already in `.gitignore`)
 
-### 4. Deploy Infrastructure
+**Note:** The `posts` branch will be automatically created by the workflow when it runs for the first time. You don't need to create it manually.
+
+### 3. Deploy Infrastructure
 
 ```bash
 cd terraform
@@ -131,7 +124,7 @@ terraform apply
 terraform output ecr_repository_url
 ```
 
-### 5. Enable GitHub Pages
+### 4. Enable GitHub Pages
 
 1. Go to your repository on GitHub
 2. Navigate to **Settings → Pages**
@@ -146,7 +139,7 @@ terraform output ecr_repository_url
 
 **Note:** The `gh-pages` branch will be created automatically by the GitHub Actions workflow when you push to the `posts` branch.
 
-### 6. Build and Push Docker Image
+### 5. Build and Push Docker Image
 
 ```bash
 cd ../workflow
@@ -166,7 +159,7 @@ docker tag notion-blog-sync:latest $ECR_REPO:latest
 docker push $ECR_REPO:latest
 ```
 
-### 7. Test Manual Execution (Optional)
+### 6. Test Manual Execution (Optional)
 
 ```bash
 # Trigger ECS task manually
@@ -183,7 +176,7 @@ aws ecs run-task \
 aws logs tail /ecs/notion-blog-sync --follow
 ```
 
-### 8. Setup GitHub Actions for Workflow Deployment (Optional)
+### 7. Setup GitHub Actions for Workflow Deployment (Optional)
 
 **Purpose:** Automatically rebuild Docker image when workflow code changes
 

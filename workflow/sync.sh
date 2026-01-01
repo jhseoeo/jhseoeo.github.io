@@ -41,6 +41,17 @@ cd repo
 git config user.name "${GIT_USER_NAME:-Notion Blog Sync Bot}"
 git config user.email "${GIT_USER_EMAIL:-noreply@example.com}"
 
+# Checkout posts branch (create if doesn't exist)
+echo "Switching to posts branch..."
+git fetch origin
+if git rev-parse --verify origin/posts >/dev/null 2>&1; then
+    # posts branch exists on remote
+    git checkout posts
+else
+    # posts branch doesn't exist, create from master
+    git checkout -b posts
+fi
+
 # Copy output files to blog/src/posts/
 echo "Copying files..."
 mkdir -p blog/src/posts
@@ -59,7 +70,7 @@ COMMIT_MSG="Update blog posts - $(date '+%Y-%m-%d %H:%M:%S')"
 git commit -m "$COMMIT_MSG"
 
 echo "Pushing to GitHub (posts branch)..."
-git push origin posts
+git push -u origin posts
 
 echo "Step 2: Complete ✓"
 echo "=== Sync Successful ==="

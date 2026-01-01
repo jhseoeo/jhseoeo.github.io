@@ -80,16 +80,7 @@ git remote set-url origin https://github.com/<your-username>/<your-username>.git
 git push -u origin master
 ```
 
-### 2. Posts 브랜치 생성
-
-```bash
-# 배포용 posts 브랜치 생성
-git checkout -b posts
-git push -u origin posts
-git checkout master
-```
-
-### 3. Terraform 변수 설정
+### 2. Terraform 변수 설정
 
 `terraform/terraform.tfvars` 파일 수정:
 
@@ -113,7 +104,9 @@ schedule_expression = "cron(0 15 * * ? *)"
 
 **중요:** `terraform.tfvars`는 절대 커밋하지 마세요 (이미 `.gitignore`에 포함됨)
 
-### 4. 인프라 배포
+**참고:** `posts` 브랜치는 워크플로우가 처음 실행될 때 자동으로 생성됩니다. 수동으로 만들 필요가 없습니다.
+
+### 3. 인프라 배포
 
 ```bash
 cd terraform
@@ -131,7 +124,7 @@ terraform apply
 terraform output ecr_repository_url
 ```
 
-### 5. GitHub Pages 활성화
+### 4. GitHub Pages 활성화
 
 1. GitHub에서 본인의 저장소로 이동
 2. **Settings → Pages** 이동
@@ -146,7 +139,7 @@ terraform output ecr_repository_url
 
 **참고:** `gh-pages` 브랜치는 `posts` 브랜치에 푸시할 때 GitHub Actions 워크플로우가 자동으로 생성합니다.
 
-### 6. Docker 이미지 빌드 및 푸시
+### 5. Docker 이미지 빌드 및 푸시
 
 ```bash
 cd ../workflow
@@ -166,7 +159,7 @@ docker tag notion-blog-sync:latest $ECR_REPO:latest
 docker push $ECR_REPO:latest
 ```
 
-### 7. 수동 실행 테스트 (선택사항)
+### 6. 수동 실행 테스트 (선택사항)
 
 ```bash
 # ECS 태스크 수동 트리거
@@ -183,7 +176,7 @@ aws ecs run-task \
 aws logs tail /ecs/notion-blog-sync --follow
 ```
 
-### 8. GitHub Actions 설정 (선택사항)
+### 7. GitHub Actions 설정 (선택사항)
 
 **목적:** Workflow 코드 변경 시 Docker 이미지 자동 재빌드
 
