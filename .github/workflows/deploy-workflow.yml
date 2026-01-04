@@ -1,0 +1,65 @@
+name: Build and Deploy Workflow
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'workflow/**'
+      - '.github/workflows/deploy-workflow.yml'
+
+env:
+  AWS_REGION: ap-northeast-2
+  ECR_REPOSITORY: notion-blog-sync
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # For OIDC authentication
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          # Option 1: OIDC (recommended, more secure)
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+          # Option 2: Access keys (uncomment if not using OIDC)
+          # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker image
+        working-directory: ./workflow
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      - name: Push Docker image to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      - name: Force new ECS deployment
+        run: |
+          # Update ECS task to use the new image
+          # Note: Since EventBridge triggers tasks, we don't have a service to update
+          # The next scheduled run will automatically use the :latest image
+          echo "New image pushed successfully. Next scheduled ECS task will use the updated image."
+          echo "To test immediately, trigger a manual ECS task run:"
+          echo "aws ecs run-task --cluster notion-blog-sync-cluster --task-definition notion-blog-sync --launch-type FARGATE ..."
