@@ -18,9 +18,10 @@ func main() {
 	logrus.Info("Starting...")
 
 	if err := godotenv.Load(); err != nil {
-		logrus.WithError(err).Fatal("Failed to load environment variables")
+		logrus.WithError(err).Warn("Failed to load .env file (this is expected in production)")
+	} else {
+		logrus.Info("Loaded .env file")
 	}
-	logrus.Info("Loaded environment variables")
 
 	// Get database ID from environment variable
 	notionDBID := os.Getenv("NOTION_DB_ID")
