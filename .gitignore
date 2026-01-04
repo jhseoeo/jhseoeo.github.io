@@ -35,7 +35,6 @@ credentials/
 # Go (workflow/)
 workflow/bin/
 workflow/vendor/
-workflow/go.sum
 *.exe
 *.exe~
 *.dll
