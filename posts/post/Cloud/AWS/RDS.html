@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		
+		<link href="../../../../_app/immutable/assets/0.CWEFMGw7.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.DOA6KAmR.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start._ykarBe4.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/A4kHFXCN.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CVx5jffJ.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DIeogL5L.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DMgF1Uhx.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D0iwhpLH.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/ByF348JK.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.Bg9oACF-.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dp1pzeXC.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D_kqQSo5.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/2cXyNWGb.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bzak7iHL.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Ca2j7qFz.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BmVC6lTd.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BnZK2-eX.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/C0t2u1D1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.DWOaqez1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D7leeM5l.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DKQVeb5P.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CP-r3QU3.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bp7YhWCs.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DkPbIObf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/69_IOA4Y.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D2vXKg8d.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DJh_0fka.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dg0EvQHI.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/12.p0gh8pNe.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DF2T1Nhr.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CxRPdVhl.js"><!--1y1qu0s--><meta data-key="description" name="description" content="RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다"/> <meta property="og:type" content="article"/> <meta property="og:title" content="RDS로 Postgresql 인스턴스 설정 과정"/> <meta property="og:description" content="RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다"/><!----><title>RDS로 Postgresql 인스턴스 설정 과정</title>
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte"><!--[--><!--[--><!----><div class="layout"><header><a class="skip-to-content-link" href="#main">Skip to main content</a> <nav class="main-nav"><ul><!--[--><li><a href="/posts" aria-current="false"><!---->Posts<!----></a></li><li><a href="/category" aria-current="false"><!---->Categories<!----></a></li><li><a href="/about" aria-current="false"><!---->About<!----></a></li><li><a href="/api/rss.xml" aria-current="false"><!---->RSS<!----></a></li><li><a href="/#" aria-current="false"><!---->Home<!----></a></li><!--]--></ul> <button aria-pressed="false" class="menu-button" tabindex="-1"><span class="sr-only">Toggle hamburger menu</span> <!--[--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M64,48.496l-48.496,-48.496l-15.504,15.504l48.496,48.496l-48.496,48.496l15.504,15.504l48.496,-48.496l48.496,48.496l15.504,-15.504l-48.496,-48.496l48.496,-48.496l-15.504,-15.504l-48.496,48.496Z"></path></svg><!--]--></button><!----></nav><!----> <button aria-pressed="false" class="menu-button" tabindex="0"><span class="sr-only">Toggle hamburger menu</span> <!--[!--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><rect x="0" y="12.48" width="128" height="18.688"></rect></g><g><rect x="0" y="96.832" width="128" height="18.688"></rect></g><g><rect x="0" y="54.656" width="128" height="18.688"></rect></g></svg><!--]--></button><!----> <a href="/" class="site-title">집밥서선생</a> <button class="toggle-theme"><!--[-->☀️<!--]--></button><!----></header><!----> <main id="main" tabindex="-1"><!----><div class="content"><!----><article class="post"><img class="cover-image" src="/post_img/Cloud/AWS/RDS/cover.jpg" alt="" style="aspect-ratio: 16 / 9;" width="16" height="9"/> <h1>RDS로 Postgresql 인스턴스 설정 과정</h1> <div class="meta"><b>Published:</b> 2023-02-28</div> <!----><h2 id="rds란"><a aria-hidden="true" tabindex="-1" href="#rds란"><span class="icon icon-link"></span></a>RDS란?</h2> <hr/> <p>RDS는 MySQL, PostgreSQL, Oracle, Microsoft SQL Server, Amazon Aurora와 같은 다양한 데이터베이스 엔진을 클라우드 환경에서 쉽게 구축, 운영, 확장할 수 있도록 지원하는 Amazon Web Services의 관리형 관계형 데이터베이스 서비스이다.</p> <p>데이터베이스 인스턴스를 생성하고 구성하는 프로세스를 자동화함으로써 개발자와 시스템 관리자가 데이터베이스를 관리하는 데 필요한 대부분의 작업을 간소화한다. 또한 백업, 복원, 패치, 모니터링 및 확장과 같은 관리 작업을 수행하는 데 필요한 다양한 기능을 제공한다.</p> <p>이 뿐만 아니라 RDS는 보안, 가용성, 확장성 등에 대한 기본적인 지원을 제공하기 때문에 사용자가 애플리케이션에 필요한 데이터베이스 서비스를 쉽게 사용할 수 있다. 이러한 요소들로 인해 RDS는 클라우드 환경에서 안전하고 신뢰할 수 있는 데이터베이스가 된다.</p> <br/><br/> <h2 id="vpc-설정"><a aria-hidden="true" tabindex="-1" href="#vpc-설정"><span class="icon icon-link"></span></a>VPC 설정</h2> <hr/> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-49-45.png" alt=" " loading="lazy"/><!----> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-50-27.png" alt=" " loading="lazy"/><!----> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-02-47.png" alt=" " loading="lazy"/><!----> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-05-11.png" alt=" " loading="lazy"/><!----> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-18-05-37.png" alt=" " loading="lazy"/><!----> <ul><li>VPC</li> <li>서로 다른 AZ의 Subnet <em>세 개</em></li> <li>Internet Gateway</li> <li>인바운드 포트로 <code>22</code>, <code>80</code>, <code>25432</code> 세 개 뚫어놓은 Security Group</li></ul> <blockquote><p>rds cluster를 만들 때 서로 다른 AZ에 속하는 subnet이 최소 세 개 필요<br/> 5432가 postgresql 기본 포트이고, 25432는 추후 연결시 변경한 포트</p></blockquote> <p><a href="https://tech.cloud.nongshim.co.kr/2018/10/16/4-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0vpc-subnet-route-table-internet-gateway/" rel="nofollow">여기를 참조하여</a> VPC는 위와 같이 세팅해놓았다.</p> <br/> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-17-45-50.png" alt=" " loading="lazy"/><!----> 만들어진 vpc에 Actions > Edit VPC settings 해서 DNS setting을 모두 체크해주었다. 아마 Public Access할 때 필요한 옵션이다. <br/><br/> <h2 id="ec2-instance-생성"><a aria-hidden="true" tabindex="-1" href="#ec2-instance-생성"><span class="icon icon-link"></span></a>EC2 Instance 생성</h2> <hr/> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-20-02.png" alt=" " loading="lazy"/><!----> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-20-57.png" alt=" " loading="lazy"/><!----> EC2 특이사항은 없고 생성할 때 VPC, SG에 등록해준다. <br/><br/> <h2 id="rds-생성"><a aria-hidden="true" tabindex="-1" href="#rds-생성"><span class="icon icon-link"></span></a>RDS 생성</h2> <hr/> <p>주요 설정은 아래 사진과 같다.</p> <br/> <h3 id="데이터베이스-버전"><a aria-hidden="true" tabindex="-1" href="#데이터베이스-버전"><span class="icon icon-link"></span></a>데이터베이스 버전</h3> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-12-24-05.png" alt=" " loading="lazy"/><!----> PostgreSQL로 인스턴스를 생성할 것이며, 기본 버전인 PostgreSQL 13.7-R1로 생성하였다. <br/> <h3 id="template-및-availability"><a aria-hidden="true" tabindex="-1" href="#template-및-availability"><span class="icon icon-link"></span></a>Template 및 Availability</h3> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-12-05-06.png" alt=" " loading="lazy"/><!----> 프로덕션용/개발용 여부인지에 따라서 Production이랑 Dev/Test 중 골라서 선택해주면 될 듯 하다. <p>그 아래 Deployment options은 Multi-AZ cluster, Multi-AZ instance, single instance 세 개의 option이 있다.</p> <p>single instance는 당연히 하나의 인스턴스만 띄우는 것인데 반해, Multi-AZ가 붙은 옵션은 AZ에 문제가 생기는 경우를 상정하여 다른 AZ에 스탠바이 인스턴스를 띄운다.</p> <p>multi-AZ cluster에서는 writer 인스턴스와 reader 인스턴스가 분리되어 있으며, 쓰기 작업은 writer 인스턴스, 읽기 작업은 reader 인스턴스에서 진행된다. 반면 Multi-AZ instance나 Single Instance에서는 하나의 인스턴스에서 읽기/쓰기가 모두 진행된다.</p> <table><thead><tr><th align="left">항목</th><th align="center">Multi-AZ cluster</th><th align="center">Multi-AZ instance</th></tr></thead><tbody><tr><td align="left">인스턴스 타입</td><td align="center">read/write 인스턴스 분리</td><td align="center">read/write 인스턴스 통합</td></tr><tr><td align="left">인스턴스 수</td><td align="center">reader 2개 + writer 1개</td><td align="center">active 1개 + standby 1개</td></tr><tr><td align="left">비용</td><td align="center"><strong>비쌈</strong><br/>($0.804 per hour)</td><td align="center"><strong>덜 비쌈</strong><br/>($0.441 per hour)</td></tr><tr><td align="left">autoscaling</td><td align="center">불가능</td><td align="center">가능</td></tr><tr><td align="left">언제 쓸까?</td><td align="center">서비스가 더 커질 것을 전망</td><td align="center">돈 아끼고 싶을 때</td></tr></tbody></table> <br/> <h3 id="authentification-settings"><a aria-hidden="true" tabindex="-1" href="#authentification-settings"><span class="icon icon-link"></span></a>Authentification Settings</h3> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-32-43.png" alt=" " loading="lazy"/><!----> master username, master password를 설정해준다. <br/> <h3 id="instance-type"><a aria-hidden="true" tabindex="-1" href="#instance-type"><span class="icon icon-link"></span></a>Instance Type</h3> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-35-07.png" alt=" " loading="lazy"/><!----> 인스턴스 타입이나 스토리지 타입을 적절히 설정해준다. 마찬가지로 아래 표로 정리하였다. <table><thead><tr><th></th><th align="center">용도</th><th align="center">상황</th></tr></thead><tbody><tr><td>db.m~</td><td align="center">범용</td><td align="center">일반적인 경우</td></tr><tr><td>db.r~</td><td align="center">메모리 최적화</td><td align="center">저장하는 데이터가 많은 경우</td></tr><tr><td>db.t~</td><td align="center">CPU 버스트</td><td align="center">읽기/쓰기 빈도가 높은 경우</td></tr></tbody></table> <table><thead><tr><th></th><th align="center">용도</th><th align="center">상황</th></tr></thead><tbody><tr><td>General Purpose SSD (gp2)</td><td align="center">범용</td><td align="center">일반적인 경우</td></tr><tr><td>General Purpose SSD (gp3)</td><td align="center">범용 + 확장성</td><td align="center">일반적인 경우 + 확장 가능성</td></tr><tr><td>Provisioned IOPS (io)</td><td align="center">I/O 최적화</td><td align="center">읽기/쓰기 빈도가 높은 경우</td></tr><tr><td>Magnetic</td><td align="center">Deprecated</td><td align="center">쓰지마세용</td></tr></tbody></table> <br/> <h3 id="connectivity"><a aria-hidden="true" tabindex="-1" href="#connectivity"><span class="icon icon-link"></span></a>Connectivity</h3> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-41-18.png" alt=" " loading="lazy"/><!----> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-14-43-59.png" alt=" " loading="lazy"/><!----> EC2에 직접 연결을 하면 public access가 블록된다. public access를 허용하려면 EC2에 연결하지 않고 public access를 허용해주면 되며, VPC 및 SG를 설정해주면 EC2에서도 연결이 가능하다. 추가로 사진엔 반영되지 않았는데 포트까지 25432로 변경해보았다. <p>additional configuration에 cloudwatch 설정같은 것도 있는 듯 하니, 필요하다면 설정해도 될 듯 하다.</p> <p>이후 인스턴스를 생성하면 얼마 후 연결이 가능할 것이다.</p> <br/><br/> <h2 id="rds-접속"><a aria-hidden="true" tabindex="-1" href="#rds-접속"><span class="icon icon-link"></span></a>RDS 접속</h2> <p>이제 접속이 잘 되는지 확인해보자.</p> <hr/> <h3 id="ec2에서-rds-연결"><a aria-hidden="true" tabindex="-1" href="#ec2에서-rds-연결"><span class="icon icon-link"></span></a>(EC2에서) RDS 연결</h3> <p>만약 public access를 활성화했다면 로컬에서도 연결이 가능하다. 비활성화 했다면 EC2에서만 접근이 가능하다.</p> <p>우선 EC2 인스턴스에 postgresql client를 설치해주자. postgresql client가 설치되어 있다면 이 과정은 생략해도 좋다.</p> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> upgrade
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> postgresql-client</code><!----></pre> <p>rds 인스턴스의 접속 엔드포인트를 확인한 후, 다음과 같은 명령어로 rds 인스턴스에 접속한다.
+만약 인스턴스를 생성할 때 Multi-AZ cluster로 생성하였다면 writer의 엔드포인트로 접속해야 한다.</p> <pre class="language-bash"><!----><code class="language-bash">psql <span class="token punctuation"></span>
+<span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token operator">&lt;</span>엔드포인트<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token operator">&lt;</span>포트번호<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--username</span><span class="token operator">=</span><span class="token operator">&lt;</span>사용자명<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--password</span> <span class="token punctuation"></span>
+<span class="token parameter variable">--dbname</span><span class="token operator">=</span>postgres</code><!----></pre> <blockquote><p>dbname의 postgres는 PostgreSQL의 마스터 유저로, 초기 접속시에는 postgres로 접속해야 한다.</p></blockquote> <br/> <p>접속했다면, 데이터베이스를 생성하고 다시 접속하여 테스트 데이터를 만들어보자.</p> <pre class="language-sql"><!----><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">database</span> mydb<span class="token punctuation">;</span>
+q<span class="token punctuation">;</span></code><!----></pre> <pre class="language-bash"><!----><code class="language-bash">psql <span class="token punctuation"></span>
+<span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token operator">&lt;</span>엔드포인트<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token operator">&lt;</span>포트번호<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--username</span><span class="token operator">=</span><span class="token operator">&lt;</span>사용자명<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--password</span> <span class="token punctuation"></span>
+<span class="token parameter variable">--dbname</span><span class="token operator">=</span>mydb</code><!----></pre> <pre class="language-sql"><!----><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> mytable <span class="token punctuation">(</span>
+    id <span class="token keyword">int</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+    name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> mytable <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'ㅎㅇ'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!----></pre> <br/> <blockquote><p>Multi-AZ cluster라면 <code>\q</code>로 나간 후 reader로 재접속하여 endpoint로 rds에 접속해서 확인해보자.</p> <pre class="language-bash"><!----><code class="language-bash">psql <span class="token punctuation"></span>
+<span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token operator">&lt;</span>엔드포인트<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token operator">&lt;</span>포트번호<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--username</span><span class="token operator">=</span><span class="token operator">&lt;</span>사용자명<span class="token operator">></span> <span class="token punctuation"></span>
+<span class="token parameter variable">--password</span> <span class="token punctuation"></span>
+<span class="token parameter variable">--dbname</span><span class="token operator">=</span>mydb</code><!----></pre></blockquote> <pre class="language-sql"><!----><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> mytable<span class="token punctuation">;</span></code><!----></pre> <br/> <h3 id="gui-tools"><a aria-hidden="true" tabindex="-1" href="#gui-tools"><span class="icon icon-link"></span></a>gui tools</h3> <p><a href="https://americanopeople.tistory.com/316" rel="nofollow">어느 블로그 포스트</a>를 보니 모니터링 툴 중 TablePlus란 게 그렇게 좋다고 한다. 써보니 우분투는 아직 알파 릴리즈라 오류가 좀 나는 듯.</p> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-20-57-47.png" alt=" " loading="lazy"/><!----> <p>보이는 필드들을 모두 채워주면 된다.</p> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-20-59-27.png" alt=" " loading="lazy"/><!----> <br/> <p>접속하고 나서 이것저것 시도해보니 이렇게 데이터를 보여줍니다.</p> <img src="/post_img/Cloud/AWS/RDS/2023-01-06-21-07-07.png" alt=" " loading="lazy"/><!----> <br/><br/> <h3 id="orm-연결"><a aria-hidden="true" tabindex="-1" href="#orm-연결"><span class="icon icon-link"></span></a>ORM 연결</h3> <p>ORM으로 Python의 SQL Alchemy를 써서 연결해보았다.</p> <pre class="language-python"><!----><code class="language-python"><span class="token keyword">from</span> sqlalchemy <span class="token keyword">import</span> create_engine
+<span class="token keyword">from</span> dotenv <span class="token keyword">import</span> load_dotenv
+<span class="token keyword">from</span> sqlalchemy<span class="token punctuation">.</span>orm <span class="token keyword">import</span> sessionmaker
+<span class="token keyword">import</span> os
+
+load_dotenv<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+HOST <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"DB_HOST"</span><span class="token punctuation">)</span>
+PORT <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"DB_PORT"</span><span class="token punctuation">)</span>
+ID <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"DB_ID"</span><span class="token punctuation">)</span>
+PW <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"DB_PW"</span><span class="token punctuation">)</span>
+DB <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"DB_DB"</span><span class="token punctuation">)</span>
+
+URL <span class="token operator">=</span> <span class="token string">"postgresql://&#123;&#125;:&#123;&#125;@&#123;&#125;:&#123;&#125;/&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ID<span class="token punctuation">,</span> PW<span class="token punctuation">,</span> HOST<span class="token punctuation">,</span> PORT<span class="token punctuation">,</span> DB<span class="token punctuation">)</span>
+
+db <span class="token operator">=</span> create_engine<span class="token punctuation">(</span>URL<span class="token punctuation">)</span>
+Session <span class="token operator">=</span> sessionmaker<span class="token punctuation">(</span>db<span class="token punctuation">)</span>
+session <span class="token operator">=</span> Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+rows <span class="token operator">=</span> session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SELECT * FROM mytable"</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> row <span class="token keyword">in</span> rows<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span>
+
+session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></code><!----></pre> <p>모델 코드 짜기 귀찮아서 로우쿼리 날렸는데 잘 받아와진다.</p><!----> <!--[--><aside class="post-footer"><h2>Posted in:</h2> <ul><!--[--><li><a href="/category/AWS/">AWS</a></li><li><a href="/category/RDS/">RDS</a></li><li><a href="/category/Database/">Database</a></li><!--]--></ul></aside><!--]--></article> <!--[--><!--[!--><!--]--><!--]--><!----><!----></div><!----> <footer><p>© 2026 JHSeo</p></footer><!----></main></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_9x1lhv = {
+						base: new URL("../../../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../../../_app/immutable/entry/start._ykarBe4.js"),
+						import("../../../../_app/immutable/entry/app.Bg9oACF-.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 12],
+							data: [{type:"data",data:null,uses:{}},null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

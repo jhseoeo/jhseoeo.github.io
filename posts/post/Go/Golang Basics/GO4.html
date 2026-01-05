@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		
+		<link href="../../../../_app/immutable/assets/0.CWEFMGw7.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.DOA6KAmR.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start._ykarBe4.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/A4kHFXCN.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CVx5jffJ.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DIeogL5L.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DMgF1Uhx.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D0iwhpLH.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/ByF348JK.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.Bg9oACF-.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dp1pzeXC.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D_kqQSo5.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/2cXyNWGb.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bzak7iHL.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Ca2j7qFz.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BmVC6lTd.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BnZK2-eX.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/C0t2u1D1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.DWOaqez1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D7leeM5l.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DKQVeb5P.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CP-r3QU3.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bp7YhWCs.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DkPbIObf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/69_IOA4Y.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D2vXKg8d.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DJh_0fka.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dg0EvQHI.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/12.p0gh8pNe.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DF2T1Nhr.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CxRPdVhl.js"><!--1y1qu0s--><meta data-key="description" name="description" content="Blocks, Shadows, and Control Structures"/> <meta property="og:type" content="article"/> <meta property="og:title" content="블록, Shadowing, 흐름 제어문"/> <meta property="og:description" content="Blocks, Shadows, and Control Structures"/><!----><title>블록, Shadowing, 흐름 제어문</title>
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte"><!--[--><!--[--><!----><div class="layout"><header><a class="skip-to-content-link" href="#main">Skip to main content</a> <nav class="main-nav"><ul><!--[--><li><a href="/posts" aria-current="false"><!---->Posts<!----></a></li><li><a href="/category" aria-current="false"><!---->Categories<!----></a></li><li><a href="/about" aria-current="false"><!---->About<!----></a></li><li><a href="/api/rss.xml" aria-current="false"><!---->RSS<!----></a></li><li><a href="/#" aria-current="false"><!---->Home<!----></a></li><!--]--></ul> <button aria-pressed="false" class="menu-button" tabindex="-1"><span class="sr-only">Toggle hamburger menu</span> <!--[--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M64,48.496l-48.496,-48.496l-15.504,15.504l48.496,48.496l-48.496,48.496l15.504,15.504l48.496,-48.496l48.496,48.496l15.504,-15.504l-48.496,-48.496l48.496,-48.496l-15.504,-15.504l-48.496,48.496Z"></path></svg><!--]--></button><!----></nav><!----> <button aria-pressed="false" class="menu-button" tabindex="0"><span class="sr-only">Toggle hamburger menu</span> <!--[!--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><rect x="0" y="12.48" width="128" height="18.688"></rect></g><g><rect x="0" y="96.832" width="128" height="18.688"></rect></g><g><rect x="0" y="54.656" width="128" height="18.688"></rect></g></svg><!--]--></button><!----> <a href="/" class="site-title">집밥서선생</a> <button class="toggle-theme"><!--[-->☀️<!--]--></button><!----></header><!----> <main id="main" tabindex="-1"><!----><div class="content"><!----><article class="post"><img class="cover-image" src="/post_img/Go/Golang_basics/cover.png" alt="" style="aspect-ratio: 16 / 9;" width="16" height="9"/> <h1>블록, Shadowing, 흐름 제어문</h1> <div class="meta"><b>Published:</b> 2022-07-27</div> <!----><br/> <p>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 20.04 LTS 기준으로 작성되었습니다.</p> <br/><br/> <h2 id="shadowing"><a aria-hidden="true" tabindex="-1" href="#shadowing"><span class="icon icon-link"></span></a>Shadowing</h2> <hr/> <p>Go에서 기본적으로 <code>Block</code>의 개념은 타 언어와 유사하다. <code>if</code>, <code>for</code> 등 흐름 제어 키워드들에 의해 중괄호가 시작되고, 해당 중괄호가 닫히는 영역까지를 <code>Block</code>이라 한다.</p> <pre class="language-go"><!----><code class="language-go">x1 <span class="token operator">:=</span> <span class="token number">10</span> <span class="token comment">// shadowed variable.</span>
+<span class="token keyword">if</span> x1 <span class="token operator">></span> <span class="token number">5</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x1<span class="token punctuation">)</span> <span class="token comment">// 10 => x1 is not yet shadowed</span>
+    x1 <span class="token operator">:=</span> <span class="token number">5</span>         <span class="token comment">// shadowing variable. from this line to end of this block</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x1<span class="token punctuation">)</span> <span class="token comment">// 5 => x1 is shadowed until if-blocks ends</span>
+<span class="token punctuation">&#125;</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x1<span class="token punctuation">)</span> <span class="token comment">// 10 => if-block ends. x1 is not shadowed</span></code><!----></pre> <p>이전 챕터에서도 다루었지만, Shadowing이 발생하면 해당 블록이 끝날 때까지 Shadowing된 변수에 접근할 수 없다.</p> <br/> <pre class="language-go"><!----><code class="language-go">	<span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token builtin">int</span> <span class="token operator">:=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">"hi"</span>
+	fmt <span class="token operator">:=</span> <span class="token string">"oops"</span>    <span class="token comment">// fmt is shadowed</span></code><!----></pre> <p>이렇게 패키지명이나 <em>universe block</em>의 구분자들을 Shadowing하는 것이 문법적으로는 가능하지만, <strong>절대</strong> 이렇게 하지 않도록 주의하자.</p> <br/> <p>변수가 Shadowing되는 것을 확인할 수 있는 명령어가 존재한다. 외부 모듈이므로 설치 후 사용해주어야 한다.</p> <pre class="language-bash"><!----><code class="language-bash">go <span class="token function">install</span> golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@latest
+shadow ./<span class="token punctuation">..</span></code><!----></pre> <p>위와 같이 설치 후, <code>shadow</code> 명령어를 통해 검사를 실시하고자 하는 파일을 지정한다.</p> <pre class="language-bash"><!----><code class="language-bash">declaration of <span class="token string">"x"</span> shadows declaration at line <span class="token number">6</span></code><!----></pre> <br/><br/> <h2 id="if"><a aria-hidden="true" tabindex="-1" href="#if"><span class="icon icon-link"></span></a>if</h2> <hr/> <p>C 계열 프로그래밍 언어의 <code>if</code>문과 크게 다르지 않다. 특이사항으로는 괄호를 생략한다.</p> <pre class="language-go"><!----><code class="language-go">n1 <span class="token operator">:=</span> <span class="token number">7</span>
+<span class="token keyword">if</span> n1 <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>        <span class="token comment">// there is no parenthesis around the condition</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"too low"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> n1 <span class="token operator">></span> <span class="token number">5</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"too big :"</span><span class="token punctuation">,</span> n1<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"good :"</span><span class="token punctuation">,</span> n1<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <br/> <p>특이사항으로는 <code>if</code>문의 조건 확인 구문 안에서 변수 선언을 동시에 할 수 있다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">if</span> n2 <span class="token operator">:=</span> <span class="token number">4</span><span class="token punctuation">;</span> n2 <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span> <span class="token comment">// both declaring variable and checking condition</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"too low"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> n2 <span class="token operator">></span> <span class="token number">5</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"too big :"</span><span class="token punctuation">,</span> n2<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"good :"</span><span class="token punctuation">,</span> n2<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// fmt.Println(n2) // it causes error. once a if/else statement ends, n1 is not accessable.</span></code><!----></pre> <p>단, 이렇게 선언된 변수는 <code>if</code>문 밖에선 접근할 수 없다.</p> <br/><br/> <h2 id="for"><a aria-hidden="true" tabindex="-1" href="#for"><span class="icon icon-link"></span></a>for</h2> <hr/> <p>Go의 <code>for</code>문은 4가지 유형이 존재한다.</p> <ol><li>일반적인 <code>for</code>문과 유사함 => <code>for(int i = 0; i &lt; n; i++) {}</code></li> <li>일반적인 while문과 유사함 => <code>while(condition)</code></li> <li>무한 루프 => <code>while(True)</code></li> <li>range-based의 foreach문 => <code>for(const auto&amp; element : containor) {}</code></li></ol> <p>하나씩 살펴보자.</p> <br/><br/> <h3 id="the-complete-for-statement"><a aria-hidden="true" tabindex="-1" href="#the-complete-for-statement"><span class="icon icon-link"></span></a>The Complete for Statement</h3> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p><code>if</code>문처럼 괄호를 사용하지 않는다. 또한 변수를 초기화할 때 <code>var</code> 키워드를 사용하지 않고, <code>:=</code> 연산자를 이용하여 초기화해야 한다.</p> <br/> <h3 id="condition-only-statements"><a aria-hidden="true" tabindex="-1" href="#condition-only-statements"><span class="icon icon-link"></span></a>condition-only statements</h3> <pre class="language-go"><!----><code class="language-go">i <span class="token operator">:=</span> <span class="token number">1</span>
+<span class="token keyword">for</span> i <span class="token operator">&lt;</span> <span class="token number">100</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token string">" "</span><span class="token punctuation">)</span>
+    i <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>변수의 선언과 증감이 생략된 형태로, 다른 언어의 while문과 유사한 형태이다.</p> <br/> <h3 id="infinite-loop-and-break-continue-statements"><a aria-hidden="true" tabindex="-1" href="#infinite-loop-and-break-continue-statements"><span class="icon icon-link"></span></a>infinite loop and break, continue statements</h3> <pre class="language-go"><!----><code class="language-go">j <span class="token operator">:=</span> <span class="token number">0</span>
+<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> j<span class="token operator">++</span><span class="token punctuation">;</span> j <span class="token operator">></span> <span class="token number">10</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">break</span> <span class="token comment">// if there is no break statement, loop will last until a keyboard interrupt(ctrl-c) occurs</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> j<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">continue</span>
+    <span class="token punctuation">&#125;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token string">" "</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p><code>for</code> 키워드 이후 아무런 표현식도 오지 않으면 무한루프를 돌게 된다. <code>break</code>문과 <code>contine</code>문도 사용 가능하다.</p> <br/> <h3 id="for-range-loop"><a aria-hidden="true" tabindex="-1" href="#for-range-loop"><span class="icon icon-link"></span></a>for-range loop</h3> <pre class="language-go"><!----><code class="language-go"><span class="token comment">// for-range loop (array, slice, string)</span>
+evenVals <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">&#123;</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">for</span> i<span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> evenVals <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token comment">// i is an key(index) of the data, v is value of the data</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// ignoring the key in a for-range loop</span>
+<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> evenVals <span class="token punctuation">&#123;</span> <span class="token comment">// using underscore(_), we can only access the value</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token string">" "</span><span class="token punctuation">)</span> <span class="token comment">// if you want, it is also possible to ignore the value by using underscore</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>다른 언어에 존재하는 <code>for-each</code> 형태의 반복문과 유사한 형태이다. <code>range</code> 키워드를 통해 각각 인덱스와 값에 접근할 수 있다.
+또한 변수 이름을 언더바(<code>_</code>)로 설정하면, 해당 값을 사용하지 않고 넘긴다는 의미가 된다. 적절히 사용할 수 있도록 하자.</p> <br/> <p><code>map</code> 타입에 대해서도 for-range loop를 적용할 수 있다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token comment">// for-range loop (map)</span>
+names <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">bool</span><span class="token punctuation">&#123;</span>
+    <span class="token string">"Fred"</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string">"Raul"</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string">"Will"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> names <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> k <span class="token operator">:=</span> <span class="token keyword">range</span> names <span class="token punctuation">&#123;</span> <span class="token comment">// by leave off second variable, it is possible to get key only.</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> names<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>대충 Python이랑 비슷한 것 같다.</p> <br/> <p><code>string</code>에 대해서도 for-range loop가 가능하다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token comment">// for-range loop (string)</span>
+samples <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">&#123;</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token string">"안녕하세요"</span><span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> sample <span class="token operator">:=</span> <span class="token keyword">range</span> samples <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> r <span class="token operator">:=</span> <span class="token keyword">range</span> sample <span class="token punctuation">&#123;</span> <span class="token comment">// it iterates over the runes, not bytes</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> r<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// key is the number of byte from the beginning of the string, type of value is rune</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>특이사항은 <code>byte</code> 단위가 아닌 <code>rune</code> 단위로 iterating한다는 것.
+따라서 문자의 크기가 2바이트 이상인 경우, 인덱스가 점프하는 것을 확인할 수 있다.</p> <br/> <p>Go에서의 <code>for</code>문은 <strong>Labeling</strong>을 지원한다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	samples <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">&#123;</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token string">"안녕hello"</span><span class="token punctuation">&#125;</span>
+
+outer<span class="token punctuation">:</span> <span class="token comment">// label of outer for-statements</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> sample <span class="token operator">:=</span> <span class="token keyword">range</span> samples <span class="token punctuation">&#123;</span>
+		<span class="token keyword">for</span> i<span class="token punctuation">,</span> r <span class="token operator">:=</span> <span class="token keyword">range</span> sample <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> r<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token keyword">if</span> r <span class="token operator">==</span> <span class="token char">'l'</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">continue</span> outer <span class="token comment">// this leads to continue nested loop</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// this line is not reached because all the strings contain 'l', and the process continued outer loop</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>바깥쪽 반복문에 <code>outer</code>라는 Label이 붙어있다.
+그리고 안쪽 반복문에서 <code>continue outer</code>를 통해 <code>for i, r := range sample {}</code> 블록이 아닌, <code>for _, sample := range samples</code> 블록의 시작점으로 되돌아가고 있다.</p> <br/><br/> <h2 id="switch"><a aria-hidden="true" tabindex="-1" href="#switch"><span class="icon icon-link"></span></a>switch</h2> <hr/> <p>보통 제한적인 상황에서만 사용되거나 <code>switch</code>문이 없는 다른 언어들과는 달리, Go는 <code>switch</code>문이 엄청 잘되어있다.</p> <pre class="language-go"><!----><code class="language-go">words <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">&#123;</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"cow"</span><span class="token punctuation">,</span> <span class="token string">"smile"</span><span class="token punctuation">,</span> <span class="token string">"gopher"</span><span class="token punctuation">,</span> <span class="token string">"octopus"</span><span class="token punctuation">,</span> <span class="token string">"영어싫어"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> word <span class="token operator">:=</span> <span class="token keyword">range</span> words <span class="token punctuation">&#123;</span>
+    <span class="token keyword">switch</span> size <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">;</span> size <span class="token punctuation">&#123;</span> <span class="token comment">// as like if-statements, there is no parenthesis</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">:</span> <span class="token comment">// using comma(,), we can make multiple matches</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>word<span class="token punctuation">,</span> <span class="token string">"is a short word!"</span><span class="token punctuation">)</span>
+    <span class="token keyword">case</span> <span class="token number">5</span><span class="token punctuation">:</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>word<span class="token punctuation">,</span> <span class="token string">"is exactly the right length:"</span><span class="token punctuation">,</span> size<span class="token punctuation">)</span>
+        <span class="token keyword">break</span>                         <span class="token comment">// this makes it exits switch earlier</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"not be printed"</span><span class="token punctuation">)</span> <span class="token comment">// because of break above, this line is unreachable</span>
+    <span class="token keyword">case</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">:</span> <span class="token comment">// empty case (nothing happened)</span>
+        <span class="token comment">// fallthrough // if keyword &#96;fallthrough&#96; is here, as like other languages, run next case's block</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>word<span class="token punctuation">,</span> <span class="token string">"is a wrong word"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>여러 값에 대해 적용되는 <code>case</code>를 설정하려면 컴마(<code>,</code>)로 값들을 구분지어서 나열하면 된다.<br/> 특이사항은 <code>case</code> 블록에서 <code>break</code>를 통한 탈출을 지원하긴 하지만, 다른 언어와 달리 반드시 사용하지 않아도 <code>case</code> 블록이 끝나면 알아서 탈출해준다.
+만약 <code>case</code> 블록이 끝나고 아래 <code>case</code> 블록도 실행되게끔 하고자 하는 경우, <code>fallthrough</code> 키워드를 사용하면 된다 한다. 다만 권장되지는 않는 듯 하다.</p> <br/> <p><code>switch</code>문에 아무런 변수도 할당하지 않는 경우, boolean expression의 true/false 여부에 따라 <code>case</code> 블록이 실행된다. <code>if</code>/<code>else</code>문이랑 비슷한듯.</p> <pre class="language-go"><!----><code class="language-go">	<span class="token comment">// blank switch, break a loop in switch/case statements</span>
+loop<span class="token punctuation">:</span> <span class="token comment">// to break in switch/case statement, attach a label to for-statements</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">switch</span> <span class="token punctuation">&#123;</span> <span class="token comment">// this is a blank switch. no variable</span>
+		<span class="token keyword">case</span> i<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token comment">// here can be boolean expression</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token string">"is even number"</span><span class="token punctuation">)</span>
+		<span class="token keyword">case</span> i<span class="token operator">%</span><span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token string">"is divisible by 3 but not 2"</span><span class="token punctuation">)</span>
+		<span class="token keyword">case</span> i<span class="token operator">%</span><span class="token number">7</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"exit the loop"</span><span class="token punctuation">)</span>
+			<span class="token keyword">break</span> loop <span class="token comment">// if this statement is just &#96;break&#96;, it cannot exit the loop. just proceed until the loop ends</span>
+		<span class="token keyword">default</span><span class="token punctuation">:</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token string">"is boring"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span></code><!----></pre> <p><code>case</code>안에서 <code>for</code>문을 탈출하려면 위처럼 <code>break</code>문에 Label을 명시해주어야 한다.</p> <br/><br/> <h2 id="goto"><a aria-hidden="true" tabindex="-1" href="#goto"><span class="icon icon-link"></span></a>goto</h2> <hr/> <p>놀랍게도 Go엔 <code>goto</code>가 있다. <code>goto</code> 자체가 가지고 있는 문제점을 해결하기 위해 몇 가지 보완이 이루어진 듯 하다.</p> <pre class="language-go"><!----><code class="language-go">	a <span class="token operator">:=</span> <span class="token number">10</span>
+	<span class="token comment">// goto skip // cannot jump over variable declaration</span>
+	b <span class="token operator">:=</span> <span class="token number">20</span>
+	<span class="token keyword">goto</span> skip
+skip<span class="token punctuation">:</span>
+	c <span class="token operator">:=</span> <span class="token number">30</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> c <span class="token operator">></span> a <span class="token punctuation">&#123;</span>
+		<span class="token comment">// goto inner // cannot jump into block</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">if</span> a <span class="token operator">&lt;</span> b <span class="token punctuation">&#123;</span>
+		<span class="token keyword">goto</span> inner
+	inner<span class="token punctuation">:</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"a is less than b"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span></code><!----></pre> <p><code>goto</code>를 통해 특정 block 안으로 들어가거나, 변수 선언 이전으로 되돌아가거나 할 수는 없다.</p> <br/> <p><code>goto</code>가 유용하게 쓰이는 경우가 한 가지 있다.</p> <pre class="language-go"><!----><code class="language-go">    x <span class="token operator">:=</span> rand<span class="token punctuation">.</span><span class="token function">Intn</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">for</span> x <span class="token operator">&lt;</span> <span class="token number">100</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> a<span class="token operator">%</span><span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">goto</span> done <span class="token comment">// in this case, instead of using boolean flag, using goto makes code clearer and readable</span>
+		<span class="token punctuation">&#125;</span>
+		a <span class="token operator">=</span> a<span class="token operator">*</span><span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span>
+	<span class="token punctuation">&#125;</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"do something when the loop completes normally"</span><span class="token punctuation">)</span>
+done<span class="token punctuation">:</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"do complicated stuff no matter why we left the loop"</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span></code><!----></pre> <p>위처럼 flag를 설정하여, flag의 여부에 따라 추가적으로 처리를 해주어야 하는 경우이다.
+이 경우 위처럼 <code>goto</code>를 사용하는 것이 <code>if</code>를 사용하는 것보다 깔끔하다고 한다.</p> <br/><br/> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <center>**** <p>[</p> <img src="https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/" alt="Learning Go Book Cover" loading="lazy"/><!----> ](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br/> [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)</center> <br/><br/><!----> <!--[--><aside class="post-footer"><h2>Posted in:</h2> <ul><!--[--><li><a href="/category/Golang/">Golang</a></li><li><a href="/category/Basic Golang/">Basic Golang</a></li><!--]--></ul></aside><!--]--></article> <!--[--><!--[!--><!--]--><!--]--><!----><!----></div><!----> <footer><p>© 2026 JHSeo</p></footer><!----></main></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_9x1lhv = {
+						base: new URL("../../../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../../../_app/immutable/entry/start._ykarBe4.js"),
+						import("../../../../_app/immutable/entry/app.Bg9oACF-.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 12],
+							data: [{type:"data",data:null,uses:{}},null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

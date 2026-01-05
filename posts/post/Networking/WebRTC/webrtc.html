@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		
+		<link href="../../../../_app/immutable/assets/0.CWEFMGw7.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.DOA6KAmR.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start._ykarBe4.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/A4kHFXCN.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CVx5jffJ.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DIeogL5L.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DMgF1Uhx.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D0iwhpLH.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/ByF348JK.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.Bg9oACF-.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dp1pzeXC.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D_kqQSo5.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/2cXyNWGb.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bzak7iHL.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Ca2j7qFz.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BmVC6lTd.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BnZK2-eX.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/C0t2u1D1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.DWOaqez1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D7leeM5l.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DKQVeb5P.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CP-r3QU3.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bp7YhWCs.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DkPbIObf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/69_IOA4Y.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D2vXKg8d.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DJh_0fka.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dg0EvQHI.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/12.p0gh8pNe.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DF2T1Nhr.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CxRPdVhl.js"><!--1y1qu0s--><meta data-key="description" name="description" content="교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다"/> <meta property="og:type" content="article"/> <meta property="og:title" content="WebRTC에 관하여 정리해보았다"/> <meta property="og:description" content="교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다"/><!----><title>WebRTC에 관하여 정리해보았다</title>
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte"><!--[--><!--[--><!----><div class="layout"><header><a class="skip-to-content-link" href="#main">Skip to main content</a> <nav class="main-nav"><ul><!--[--><li><a href="/posts" aria-current="false"><!---->Posts<!----></a></li><li><a href="/category" aria-current="false"><!---->Categories<!----></a></li><li><a href="/about" aria-current="false"><!---->About<!----></a></li><li><a href="/api/rss.xml" aria-current="false"><!---->RSS<!----></a></li><li><a href="/#" aria-current="false"><!---->Home<!----></a></li><!--]--></ul> <button aria-pressed="false" class="menu-button" tabindex="-1"><span class="sr-only">Toggle hamburger menu</span> <!--[--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M64,48.496l-48.496,-48.496l-15.504,15.504l48.496,48.496l-48.496,48.496l15.504,15.504l48.496,-48.496l48.496,48.496l15.504,-15.504l-48.496,-48.496l48.496,-48.496l-15.504,-15.504l-48.496,48.496Z"></path></svg><!--]--></button><!----></nav><!----> <button aria-pressed="false" class="menu-button" tabindex="0"><span class="sr-only">Toggle hamburger menu</span> <!--[!--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><rect x="0" y="12.48" width="128" height="18.688"></rect></g><g><rect x="0" y="96.832" width="128" height="18.688"></rect></g><g><rect x="0" y="54.656" width="128" height="18.688"></rect></g></svg><!--]--></button><!----> <a href="/" class="site-title">집밥서선생</a> <button class="toggle-theme"><!--[-->☀️<!--]--></button><!----></header><!----> <main id="main" tabindex="-1"><!----><div class="content"><!----><article class="post"><img class="cover-image" src="/post_img/Networking/WebRTC/cover.png" alt="" style="aspect-ratio: 16 / 9;" width="16" height="9"/> <h1>WebRTC에 관하여 정리해보았다</h1> <div class="meta"><b>Published:</b> 2023-01-22</div> <!----><p>교내 프로젝트, 교과목, 스터디를 통해 정리한 WebRTC 관련 내용을 기록해보았습니다</p> <br/><br/> <h2 id="webrtc"><a aria-hidden="true" tabindex="-1" href="#webrtc"><span class="icon icon-link"></span></a>WebRTC</h2> <hr/> <h3 id="webrtc란"><a aria-hidden="true" tabindex="-1" href="#webrtc란"><span class="icon icon-link"></span></a>WebRTC란?</h3> <ul><li><p>Web Real-Time Communication의 약자</p></li> <li><p>별도의 소프트웨어나 플러그인 없이 (<strong>웹 브라우저 만으로도</strong>) 오디오 및 비디오 데이터를 주고받을 수 있음</p> <ul><li>화상 통화, 실시간 회의 등 구현 가능</li></ul></li> <li><p>웹 브라우저 뿐 아니라 IOS, Android Native App 위에서도 동작함</p></li> <li><p>구글이 표준화를 주도하고 있어, Chrome 호환성이 제일 좋음</p></li> <li><p>UDP, 피어-to-피어로 통신함</p></li> <li><p>브라우저 API 제공</p> <ul><li><code>RTC피어Connection()</code> : signal 처리, 코덱 처리, p2p 통신, 보안, bandwidth 관리 등, 다양한 역할을 하는 WebRTC 통신 주요 class</li> <li><code>getUserMedia()</code> : 카메라나 마이크 등 장치에 접근하여 유저 데이터를 capture</li> <li><code>RTCDataChannel()</code> : 오디오, 비디오 외의 비정형 데이터를 주고받기 위함. WebSocket과 거의 유사한 api</li></ul></li></ul> <br/> <h3 id="webrtc-장점"><a aria-hidden="true" tabindex="-1" href="#webrtc-장점"><span class="icon icon-link"></span></a>WebRTC 장점</h3> <ol><li><p>UDP를 사용하여 지연시간이 매우 짧다</p> <ul><li>카메라로 찍은 화면이 상대에게 도달하기까지 걸리는 시간이 500ms 이하</li> <li>다른 HTTP Live Stream 기술들의 경우, 주로 영상을 사람들에게 뿌리는(1:N) 용도라서 지연 시간이 존재</li></ul></li> <li><p>Platform and Device Independent</p> <ul><li>웹브라우저 위에서 돌아가도록 설계되었기 때문에, 브라우저만 돌아가면 OS, 장치가 무엇이든 상관없음</li></ul></li> <li><p>Open-source 및 표준화되어있음</p> <ul><li>언어별로 표준 문서가 존재하며, 표준대로 진행하면 모두 연결 가능함</li></ul></li> <li><p>네트워크 성능에 따라 품질 조정</p> <ul><li>네트워크 성능에 따라 전송받는 (영상)데이터의 품질(화질)이 달라질 수 있음</li> <li>하지만 한 순간에는 특정 해상도의 영상 하나만 받을 수 있음</li> <li>Simulcasting <ul><li>동시의 여러 해상도의 영상을 보냄</li> <li>bandwidth를 낭비하지만, 수신 장치가 알아서 적합한 품질의 영상 선택</li></ul></li></ul></li> <li><p>P2P의 장점</p> <ul><li>주요 데이터가 서버를 경유하지 않기 때문에, 서버 입장에선 부담이 적음</li> <li>유저 입장에선 내 데이터를 서버가 볼 수 없기 때문에, 안심하고 이용 가능</li></ul></li></ol> <br/> <h3 id="webrtc-단점"><a aria-hidden="true" tabindex="-1" href="#webrtc-단점"><span class="icon icon-link"></span></a>WebRTC 단점</h3> <ol><li><p>Scalability</p> <ul><li>하나의 세션에 참가하는 통신 대상이 일정 이상 늘어나기 어려움</li> <li>통신하는 대상의 수가 제한됨 <ul><li>권고에 따르면 최대 50개 (WebRTC expert Tsahi LeventLevi recommends staying shy of any more than 50 concurrent 피어 connections.)</li></ul></li> <li>몇 천 명의 유저가 통신하는 경우, live streaming server를 두어 데이터를 분산시킴 <ul><li>SFU, MCU 등이 대표적</li></ul></li></ul></li> <li><p>Broadcast Quality</p> <ul><li>WebRTC 자체에 퀄리티 문제는 없지만, Broadcast를 함으로써 발생하는 영상 품질의 하락 문제</li></ul></li> <li><p>그래도 서버가 필요함</p> <ul><li>두 피어끼리의 connection 생성 및 해제 -> Signaling Server</li> <li>피어간 통신이 가능한지 여부 또는 Public IP를 확인해야 하는 경우 -> STUN 서버</li> <li>다양한 네트워크 상의 이슈(방화벽, 공유기나 라우터의 보안 정책 등) 때문에 피어간 직접 통신이 되지 않을 경우 -> TURN 서버를 통해 데이터를 Relay</li></ul></li></ol> <br/> <h3 id="webrtc-동작-흐름"><a aria-hidden="true" tabindex="-1" href="#webrtc-동작-흐름"><span class="icon icon-link"></span></a>WebRTC 동작 흐름</h3> <img src="/post_img/Networking/WebRTC/2023-01-16-22-07-55.png" alt="webrtc signaling architecture" loading="lazy"/><!----> <ol><li>Signaling Server : 기기 사이에서 커넥션을 생성 및 해제해주고, 통신할 대상을 찾아줌</li> <li>STUN Server : 요청자의 Public IP를 확인</li> <li>TURN Server : P2P로 데이터를 직접 전송할 수 없다면, 데이터를 Relay</li></ol> <p>자세한 내용은 아래에서 다룰 예정</p> <br/><br/> <h2 id="sdp"><a aria-hidden="true" tabindex="-1" href="#sdp"><span class="icon icon-link"></span></a>SDP</h2> <hr/> <h3 id="sdp란"><a aria-hidden="true" tabindex="-1" href="#sdp란"><span class="icon icon-link"></span></a>SDP란?</h3> <img src="/post_img/Networking/WebRTC/2023-01-29-22-15-14.PNG" alt="js sdp example" loading="lazy"/><!----> <ul><li>Session Description Protocol의 약자 (실질적으로는 프로토콜이 아니긴 함)</li> <li>해상도, 형식, 코덱, 암호화 등, 컨텐츠에 대한 메타데이터 정보</li> <li>누구와 어떻게 대화할지에 대한 정보를 포함함</li> <li>SIP(Session Initiation Protocol)를 통해 SDP를 전송 <ul><li>SIP는 WebRTC 이전에도 존재하던 사용자/참가자 그룹 간의 연결 설정 프로토콜이며, WebRTC는 SIP를 사용하여 Session 설정</li></ul></li></ul> <br/><br/> <h2 id="ice"><a aria-hidden="true" tabindex="-1" href="#ice"><span class="icon icon-link"></span></a>ICE</h2> <hr/> <h3 id="ice란"><a aria-hidden="true" tabindex="-1" href="#ice란"><span class="icon icon-link"></span></a>ICE란?</h3> <ul><li><p>Interactive Connectivity Establishment</p></li> <li><p>브라우저가 피어를 통한 연결이 가능하게 해주는 프레임워크</p></li> <li><p>두 피어간 <strong>최적의 경로</strong>를 찾아줌 (NAT Traversal)</p></li> <li><p>피어끼리 연결이 쉽지 않은 이유</p> <ul><li>방화벽에 걸리는 경우</li> <li>장치에 Public IP가 없는 경우</li> <li>라우터의 보안 정책이 피어간 직접 연결을 막는 경우</li></ul></li> <li><p>ICE는 STUN서버와 TURN서버를 사용하여 이러한 작업 수행</p> <ul><li>일반적으로, STUN, TURN 서버까지 거치고 나면 다음과 같은 주소를 얻음 <ul><li>Private IP, Port</li> <li>Public IP, Port (through STUN)</li> <li>TURN 서버의 IP, Port(through TURN)</li></ul></li></ul></li></ul> <br/> <h3 id="ice-candidates"><a aria-hidden="true" tabindex="-1" href="#ice-candidates"><span class="icon icon-link"></span></a>ICE Candidates</h3> <ul><li>WebRTC 피어 연결을 시작하면, 일반적으로 여러개의 candiate들이 각 피어에 의해 만들어짐</li> <li>구분자(<code>foundation</code>), IP, 포트, 우선순위, 프로토콜 등으로 구성</li> <li>UDP가 기본이지만 UDP가 안되면 TCP도 허용함</li> <li>각 피어가 수집한 ICE Candidates로 패킷을 보내 본 뒤, 가장 latency가 낮고 안정적인 ICE Candidates를 사용</li></ul> <br/> <h3 id="trickle-ice"><a aria-hidden="true" tabindex="-1" href="#trickle-ice"><span class="icon icon-link"></span></a>Trickle ICE</h3> <ul><li>일반적으로 피어는 ICE Candidates를 수집하여 목록을 완성한 후 한꺼번에 교환함 <ul><li>이 방식은 네트워크 지연 등 이유로 ICE Candidates를 수집하는 데 오래 걸릴 수 있음</li></ul></li> <li>비효율적인 ICE Candidates 교환 작업을 비동기 처리 <ul><li>ICE Candidates를 찾은 즉시 피어에게 전송</li></ul></li></ul> <br/><br/> <h2 id="signaling"><a aria-hidden="true" tabindex="-1" href="#signaling"><span class="icon icon-link"></span></a>Signaling</h2> <hr/> <h3 id="nat"><a aria-hidden="true" tabindex="-1" href="#nat"><span class="icon icon-link"></span></a>NAT?</h3> <img src="/post_img/Networking/WebRTC/2023-01-17-00-20-14.png" alt="port forwarding" loading="lazy"/><!----> <ul><li>Network Address Translation</li> <li>일반적인 사용자의 네트워크 환경에서는 대부분 공유기를 두기 때문에 Private IP, Public IP가 각각 존재함 <ul><li>(일반적인 경우) 한 대의 공유기에 여러 대의 장치가 연결되고, 따라서 한 개의 Public IP와 여러 개의 Private IP가 존재함</li></ul></li> <li>이 때 NAT는 Public IP를 특정 Private IP로 매핑시킴 <ul><li>다만 연결된 장치 개수만큼 여러 대의 Private IP가 Public IP에 매핑될 필요가 있기에, PAT도 함께 적용</li> <li>NAT + PAT(포트포워딩이라고도 함)는 Public IP:특정 포트를, 특정 Private IP:특정 포트로 매핑시킴</li> <li>위 그림에서 Public IP:80으로 요청을 보내면, 192.168.0.37을 가진 장치가 80번 포트로 요청을 받을 것</li></ul></li></ul> <br/> <h3 id="stun"><a aria-hidden="true" tabindex="-1" href="#stun"><span class="icon icon-link"></span></a>STUN</h3> <ul><li>Session Traversal Utilities for NAT</li> <li>기본적으로, NAT 환경에서 사용자 장치는 자신의 Public IP를 알 수 없음</li> <li>STUN 서버는 사용자의 Public IP를 알려주는 역할 <ul><li><a href="https://ipip.kr" rel="nofollow">https://ipip.kr</a>에 접속하면 Public IP를 알 수 있음. 이와 유사한 역할</li></ul></li> <li>STUN을 통해 사용자가 P2P UDP 통신을 위해 사용할 수 있는 IP주소와 포트번호를 찾아냄</li></ul> <br/> <h3 id="turn"><a aria-hidden="true" tabindex="-1" href="#turn"><span class="icon icon-link"></span></a>TURN</h3> <ul><li>Traversal Using Relays around NAT</li> <li>상대 Peer에게 보낼 정보를 TURN 서버에 전달하고, TURN이 상대 Peer에게 전달해줌</li> <li>Symmetric NAT 등, Router의 NAT으로 생기는 제약 조건 등을 우회함</li> <li>오버헤드가 발생하지만 대안이 없는 경우 사용</li> <li>SFU, MCU도 TURN 서버의 일종이라고 볼 수 있음</li></ul> <br/> <h3 id="p2p-vs-sfu-vs-mcu"><a aria-hidden="true" tabindex="-1" href="#p2p-vs-sfu-vs-mcu"><span class="icon icon-link"></span></a>P2P vs SFU vs MCU</h3> <img src="/post_img/Networking/WebRTC/2023-01-29-23-58-14.png" alt="data flow diagram of each realy server" loading="lazy"/><!----> <ul><li><p>P2P</p> <ul><li>각 사용자는 (전체 사용자-1) 만큼의 업로드/다운로드 연결을 가짐</li> <li>서버의 부담이 덜하며 지연시간이 가장 짧음</li> <li>통신에 참여하는 사용자가 많아질수록 클라이언트의 워크로드가 급격히 증가함</li> <li>1:1 통신 및 소규모의 1:N, N:N 통신에 적합</li></ul></li> <li><p>SFU</p> <ul><li>각 사용자는 한 개의 중앙 서버와의 업로드 연결, 그리고 (전체 사용자-1) 만큼의 다운로드 연결을 가짐</li> <li>지연 시간이 P2P보다는 길지만 MCU보다는 빠름</li> <li>데이터가 서버를 거치기 때문에 서버 부담이 존재</li> <li>클라이언트의 워크로드를 줄일 수 있지만, 대규모의 N:N 통신에서는 여전히 부하가 심함</li> <li>1:N 및 대규모가 아닌 N:N 통신에 적합</li></ul></li> <li><p>MCU</p> <ul><li>각 사용자는 한 개의 중앙 서버와의 업로드/다운로드 연결을 가짐</li> <li>클라이언트 부담 최소화</li> <li>데이터가 서버를 거쳐, 각 클라이언트들에게 데이터를 처리하여 분배해야 하기 때문에 서버 부담이 매우 크며 지연 시간이 길어짐</li> <li>대규모 N:N 통신에 적합</li></ul></li></ul> <br/> <h3 id="signaling-server"><a aria-hidden="true" tabindex="-1" href="#signaling-server"><span class="icon icon-link"></span></a>Signaling Server</h3> <img src="/post_img/Networking/WebRTC/2023-01-30-01-11-14.png" alt="webrtc signaling process" loading="lazy"/><!----> <ul><li>기기 사이에서 연결 생성 및 해제</li> <li>통신할 대상을 찾아주는 역할</li> <li>SDP나 ICE Candidates 등 연결 생성을 위한 데이터가 각 피어에게 전달됨</li> <li>Websocket, HTTPS 등 서로 다른 통신 프로토콜로 설계 가능</li></ul> <br/><br/> <h2 id="출처"><a aria-hidden="true" tabindex="-1" href="#출처"><span class="icon icon-link"></span></a>출처</h2> <p>WebRTC : <a href="https://wormwlrm.github.io/2021/01/24/Introducing-WebRTC.html" rel="nofollow">https://wormwlrm.github.io/2021/01/24/Introducing-WebRTC.html</a></p> <br/><br/><!----> <!--[--><aside class="post-footer"><h2>Posted in:</h2> <ul><!--[--><li><a href="/category/WebRTC/">WebRTC</a></li><!--]--></ul></aside><!--]--></article> <!--[--><!--[!--><!--]--><!--]--><!----><!----></div><!----> <footer><p>© 2026 JHSeo</p></footer><!----></main></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_9x1lhv = {
+						base: new URL("../../../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../../../_app/immutable/entry/start._ykarBe4.js"),
+						import("../../../../_app/immutable/entry/app.Bg9oACF-.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 12],
+							data: [{type:"data",data:null,uses:{}},null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,425 @@
+import"./Bzak7iHL.js";import"./69_IOA4Y.js";import{s as n,f as hn,c as s,r as a,n as U}from"./CVx5jffJ.js";import{f as Sn,a as _n}from"./2cXyNWGb.js";import{h as p}from"./D6IIVJDJ.js";import{I as Cn}from"./BVXqo7x9.js";const xn={title:"에러 처리",date:"2022-08-19T00:00:00.000Z",excerpt:"Errors",categories:["Golang","Basic Golang"],coverImage:"/post_img/Go/Golang_basics/cover.png",coverWidth:16,coverHeight:9,indexed:!1,exposed:!0},{title:Wn,date:Nn,excerpt:Dn,categories:Mn,coverImage:zn,coverWidth:Un,coverHeight:Ln,indexed:Zn,exposed:Bn}=xn;var Rn=Sn(`<br/> <p>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 22.04 LTS 기준으로 작성되었습니다.</p> <br/><br/> <h2 id="errors"><a aria-hidden="true" tabindex="-1" href="#errors"><span class="icon icon-link"></span></a>Errors</h2> <hr/> <p>다른 언어를 쓰다가 Go를 배워보면, Go의 에러 핸들링은 상당히 낯설게 느껴진다고 한다.
+에러를 핸들링하는 Go의 접근 방식에 대해 알아보고, <code>panic</code>과 <code>recover</code>에 대해 알아보자.</p> <p>Go는 함수에서 <code>error</code> 타입의 값을 리턴함으로써, 에러를 핸들링한다.
+만약 함수가 정상적으로 잘 동작했다면 <code>error</code> 파라미터로 <code>nil</code>을 리턴한다. 반면 함수가 함수가 무언가 잘못되었다면, 에러 값이 리턴된다.
+그 함수를 호출한 함수는 에러 변수를 <code>nil</code>과 비교하여 에러 여부를 판단함으로써 핸들링한다. 만약 에러가 발생했다면 리턴된 에러 변수를 그대로 리턴한다.
+이런 방식이 굉장히 낡은 방식이라고 느낄 수는 있는데, 동시에 가장 강력한 방식이다.</p> <pre class="language-go"><!></pre> <p>만약 파라미터로 받은 분모가 0일 경우, <code>errors</code> 패키지의 <code>New()</code> 함수로 새로운 에러를 생성한다.
+에러의 알파벳 앞 글자는 대문자를 사용하지 않고(not capitalized), 마침표(<code>.</code>)를 사용하거나, 개행을 하지 않는 게 국룰이라고 한다.
+또한 에러가 발생했을 시, 대부분의 경우 다른 리턴값은 Zero value로 리턴한다.</p> <p>다른 언어의 예외 처리 방법과는 달리, Go에서 특별히 에러를 확인하는 문법은 없다.
+if문을 사용하여 에러 변수가 <code>nil</code>인지 확인하는 것이 유일한 방법이다.</p> <br/> <p><code>error</code>는 내부적으로 이렇게 생겼다.</p> <pre class="language-go"><!></pre> <p><code>Error()</code>라는 한 개의 메소드가 존재하는 인터페이스로, 이 인터페이스를 충족시키는 모든 타입들은 에러로 간주된다.
+또한 에러가 발생하지 않았을 때 <code>nil</code>을 리턴하는 이유는 <code>nil</code>이 인터페이스의 Zero Value이기 때문.</p> <br/> <p>이렇듯 Go가 일반적인 <code>Try</code>-<code>Catch</code>-<code>Throw</code> 방식의 예외처리가 아니라 <code>error</code>를 리턴하여 처리하는 방식을 택한 이유가 있다.
+첫 번째로, exception을 사용하면 코드가 진행되는 흐름이 또 한개 더 생겨버리게 되며, 이런 흐름들은 불분명한 경우가 많다.
+만일 exception이 제대로 처리되지 않으면 crash가 발생할 수도 있으며, crash가 밣생하지 않았지만 데이터가 제대로 처리되지 않을 수도 있다.</p> <p>두 번째로, Go 컴파일러에서는 모든 변수가 반드시 한 번씩은 레퍼런스가 되어야 한다.
+그래서 <code>error</code>를 리턴값으로 받으면 언더스코어(<code>_</code>)를 사용하여 명시적으로 에러를 무시하는 게 아닌 이상, 반드시 에러를 체크해야 한다.
+이러한 반드시 에러를 체크해야 한다는 점 때문에 개발자들에게 좋은 버릇을 들이게 되는 것 같다.</p> <br/> <p>Exception Handling의 방식은 코드 길이는 확연히 짧아질 수 있지만, 그것이 코드를 이해하거나 유지보수 하기 쉽다는 뜻은 아니다.
+반면 Go의 에러 처리 방식이 라인 수는 다소 길 지언정 이해하기는 쉽다.</p> <p>Go의 에러 핸들링은 <code>if</code>문 내부에서 인덴트되며, 나머지 비즈니스 로직은 인덴트 바깥에 있다.
+그래서 시각적으로도 에러 조건을 확인하기가 더 용이하다고 한다.</p> <br/><br/> <h3 id="use-strings-for-simple-errors"><a aria-hidden="true" tabindex="-1" href="#use-strings-for-simple-errors"><span class="icon icon-link"></span></a>Use Strings for Simple Errors</h3> <p>Go의 표준 라이브러리는 두 가지 방식으로 <code>string</code>을 통해 에러를 생성할 수 있다.
+한 가지 방식은 앞서 보았듯, <code>errors.New()</code> 함수를 사용하는 것이다. <code>errors.New()</code>는 파라미터로 <code>string</code>을 받고 <code>error</code>를 리턴한다.
+이 때 보낸 <code>string</code>은 나중에 <code>fmt.Println()</code> 등으로 <code>error</code>를 출력할 때 <code>Error()</code> 메소드를 출력하면서 반환된다.</p> <pre class="language-go"><!></pre> <br/> <p>또 다른 방식은 <code>fmt.Errorf()</code> 함수를 사용하는 것이다.
+이 함수는 <code>fmt.Printf()</code> 함수와 유사하게 <code>%d</code> 등 서식 기호를 사용하여 에러 메세지를 포매팅할 수 있다.
+함수를 호출하면 <code>errors.New()</code>처럼 <code>error</code>가 생성된다.</p> <pre class="language-go"><!></pre> <br/><br/> <h3 id="sentinel-errors"><a aria-hidden="true" tabindex="-1" href="#sentinel-errors"><span class="icon icon-link"></span></a>Sentinel Errors</h3> <p><strong>Sentinel Error</strong>는 패키지 레벨에서 정의되어 있는 에러로, 현 상태에서 특정한 문제로 인해 더 이상 프로세스의 진행이 불가능함을 나타낸다.
+대체로 <code>Err</code>로 시작하는 이름을 가지며(예외로 <code>io.EOF</code>가 있다), 읽기 전용이다.</p> <p><code>.zip</code> 파일을 처리하는 <code>archive/zip</code> 라이브러리에 존재하는 센티넬 에러 중에 <code>ErrFormat</code>이란 것이 있는데,
+이는 <code>.zip</code> 파일 형태가 아닌 데이터가 넘겨졌음을 나타낸다.</p> <pre class="language-go"><!></pre> <br/> <p>Sentinel Error의 또 다른 예는 <code>crypto/rsa</code> 패키지의 <code>rsa.ErrMessageTooLong</code>이다.
+현재 public key를 가지고 암호화하기에는 메시지의 크기가 너무 크다는 것을 나타낸다.
+그 이외에도 <code>context.Canceled</code>라는 센티넬 에러가 있는데, 12장에서 보게 될 것이다.</p> <p>Sentinel Error를 정의하기 이전에, 정의할 Sentinel Error가 정말 필요한 것인지 확실히 하는 것이 좋다.
+일단 에러를 정의하고 해당 버전을 커밋하면, 그 이후의 모든 릴리즈에서 이전 버전들과도 호환이 되도록 에러를 유지해야 한다.
+그러니 그냥 표준 라이브러리를 재사용하거나, 에러를 일으킨 원인에 대한 정보를 포함하는 <code>error</code> 타입을 정의한 후 이를 리턴하는 것이 나을 것이다.</p> <p>반면 Sentinel Error가 분명히 필요한 상황도 존재한다.
+더이상 프로세스를 진행할 수 없고, 에러 상태를 설명하기 위해 맥락에 대한 정보를 제공할 필요가 없으면, Sentinel Error를 선택하는 것이 좋다.</p> <p>앞선 예제에서 보았듯, <code>==</code>를 통해 Sentinel Error를 테스트할 수 있다.
+함수의 리턴값으로 받은 에러를, document에 명시된 Sentinel Error와 일치하는지 확인하는 것이다.</p> <br/><br/> <h3 id="constant-errors"><a aria-hidden="true" tabindex="-1" href="#constant-errors"><span class="icon icon-link"></span></a>Constant Errors</h3> <p>아래 예제와 같은 방식으로 Sentinel Error를 생성할 수 있다.</p> <pre class="language-go"><!></pre> <p>위 <code>Sentinel</code> 타입은 <code>error</code> 인터페이스를 지원하는 타입으로, <code>string</code> 리터럴을 <code>error</code>로써 사용할 수 있게 해준다.
+마치 함수 호출처럼 Sentinel Error를 생성할 수 있다는 장점이 있다. 아래 예제처럼 사용할 수 있다.</p> <pre class="language-go"><!></pre> <p>이 방식이 언뜻 보기에는 좋은 방법이라고 생각할 수 있지만, Go에서 이상적인 코드는 아니다.
+이렇게 생성한 에러 타입은 실질적으로는 <code>string</code>이며,
+만약 <span style="background-color: #FFF5B1">에러 메시지가 동일하다면 동일한 에러로 인식</span>한다.
+설령 다른 패키지에 존재하는 에러라도, 동일한 에러 메시지를 가진다면 동일한 에러로 인식해버리고 마는 것이다. <code>errors.New()</code>로 생성한 에러 타입이 에러 메시지가 동일하더라도 서로 다른 에러로 인식하는 것과는 대조적이라고 할 수 있다.</p> <p>Go의 설계 철학상, Sentinel Error를 많이 만들어야 할 이유는 없다.
+애초에 프로세스를 진행하다 보면 빠질 수 있는 에러 상황을 나타내는 게 얘네들의 존재 의의인데,
+그런 상황이 몇 가지 안될 테니 많을 이유가 없는 것이 당연하다.</p> <p>Sentinel Error는 패키지 레벨에서 선언되는 public 변수일 수밖에 없는 이유는 자명하다.
+유저가 모든 상황에 대한 에러 변수를 생성하게끔 하기 보다는 그냥 이미 정의된 Sentinel Error를 가져다 쓰는 것이 더 편하기 때문이며,
+그러는 편이 언어가 더 단순해진다고 볼 수 있다.</p> <br/><br/> <h3 id="errors-are-values"><a aria-hidden="true" tabindex="-1" href="#errors-are-values"><span class="icon icon-link"></span></a>Errors Are Values</h3> <p><code>error</code>는 인터페이스이므로, 로깅이나 에러 핸들링을 위한 새로운 에러 타입을 직접 정의할 수 있다.
+이를테면 유저의 에러 리포트를 확인하기 위해 <em>status code</em>를 추가할 수 있다.
+그렇게 하면 에러 메시지만을 가지고 에러를 확인하는 것보단 훨씬 나을 것이다.</p> <p>직접 <em>status code</em>가 추가된 에러 타입을 만들어보자.</p> <p>먼저, <code>iota</code>로 각 <em>status code</em>를 정의해보자.</p> <pre class="language-go"><!></pre> <p>이제 이 <code>Status</code>들이 추가된 에러 타입을 정의해보자.</p> <pre class="language-go"><!></pre> <p>이렇게 정의된 <code>StatusErr</code> 타입을 사용하면 에러에 대해 더 정확한 정보를 기록하고 확인할 수 있다.</p> <br/> <pre class="language-go"><!></pre> <p>위 예제는 <code>StatusErr</code> 에러 타입을 사용하는 예제 코드이다.</p> <p>주의해야 할 점이 있는데, <code>StatusErr</code>와 같이 직접 정의한 에러 타입을 사용할 때에도 리턴할 타입으로는 반드시 <code>error</code>를 사용해주어야 한다.
+이렇게 해야 함수를 호출할 때 특정 에러 타입에 종속되지 않으며, 함수에서 사용하는 여러 타입의 에러들을 모두 리턴할 수 있다.</p> <br/> <p>에러 타입을 직접 정의해서 사용하는 경우 주의해야 할 것이 있다. 초기화되지 않은 에러 변수를 사용하면 안된다.
+다시 말해 에러 변수를 선언만 하고 초기화하지 않은 상태로 이를 리턴하면 안된다.</p> <p>하지 말라는데 굳이 해본 예제를 확인해보자.</p> <pre class="language-go"><!></pre> <pre class="language-bash"><!></pre> <p>위 예제의 <code>err = GenerateError(false)</code>라인에서 파라미터로 <code>false</code>를 넘겨주었기 때문에, 리턴되는 에러 변수는 초기화되지 않았다.
+그럼에도 <code>err != nil</code>는 <code>true</code>로 처리되며, 이는 설령 <code>GenerateError()</code>의 <code>genErr</code>의 타입을 <code>*StatusErr</code>로 변경하더라도 마찬가지이다.</p> <p>원인을 떠올려 보자면, <code>error</code>는 인터페이스이니까 인터페이스가 <code>nil</code>이 되는 조건에 대해 생각해보면 된다.
+인터페이스가 <code>nil</code>이려면 가리키는 대상의 타입과 값이 모두 <code>nil</code>이어야 한다.
+위 경우 가리키는 대상의 값은 <code>nil</code>이지만, 타입이 <code>StatusErr</code> 또는 <code>*StatusErr</code>이기 때문에 <code>nil</code>이 아닌 것이다.</p> <br/> <p>이런 코드는 두 가지 방법으로 고칠 수 있다. 하나는 <code>nil</code>을 직접 리턴하는 것이다.</p> <pre class="language-go"><!></pre> <p>이와 같은 방식은 <code>return</code>문 옆에 붙어있는 에러 변수가 제대로 초기화되었는지 굳이 확인해볼 필요가 없다는 장점이 있다.</p> <p>또 한가지 방식은 변수를 <code>error</code>로 선언하는 것이다.</p> <pre class="language-go"><!></pre> <p>어차피 <code>error</code>는 인터페이스니까, 초기화 안한 상태로 리턴하면 <code>nil</code>로 리턴될 것이다.</p> <p>첫 번째와 두 번째 예제의 공통점은, 변수를 선언할 때 우리가 정의하였던 에러 타입으로 선언하지 않는다는 것이다.
+그렇게 하면 앞서 본 예제처럼, 문제를 일으킬 수 있다.</p> <br/> <p>그리고 <code>error</code>가 인터페이스이기는 하지만, 직접 정의한 에러에 Type Assertion이나 Type Swtich를 사용하지 말자.
+대신 <code>errors.As()</code>를 사용한다. 사용하는 예제는 이후 다룰 것이다.</p> <br/><br/> <h2 id="wrapping-errors"><a aria-hidden="true" tabindex="-1" href="#wrapping-errors"><span class="icon icon-link"></span></a>Wrapping Errors</h2> <hr/> <p>에러가 코드에서 코드로 전달되는데, 이때 각 맥락 정보를 에러에 추가하고 싶을 수 있다.
+이러한 맥락 정보는 이를테면, 어떤 함수인지나 어떤 라인에서 발생한 에러인지를 포함한다.
+이처럼 Go에서는 기존 에러에 맥락 정보를 추가하는 것을, 에러를 <em>Wrapping</em>한다고 한다.
+또한 이렇게 받은 여러 겹의 에러를 <em>error chain</em>이라고 한다.</p> <p>Go에 표준 라이브러리에도 Error Wrapping에 대한 함수가 있다. <code>fmt.Errorf()</code>가 바로 그것인데, 이 함수의 서식 문자 중 <code>%w</code>는 기존 에러가 포함하고 있던 에러 메시지를 의미한다.
+일반적으로는 에러 메시지의 끝에 <code>: %w</code>라고 적어서 기존 에러에 대한 정보도 함께 출력하는 것이 일반적이다.</p> <p>표준 라이브러리에는 에러를 Unwrapping하는 함수인 <code>errors.Unwrap()</code>도 있다.
+이 함수에 에러 타입을 보내면 Wrapping된 에러를 반환한다. 만약 더 이상 Wrapping된 에러가 없으면 <code>nil</code>을 반환한다.</p> <pre class="language-go"><!></pre> <p>위 코드를 실횅시, 아래와 같은 결과를 확인할 수 있다.</p> <pre class="language-bash"><!></pre> <p>위처럼 <code>fileChecker()</code>에서 에러를 Wrapping하여 두 겹의 에러를 생성하였고, <code>errors.Unwrap()</code>으로 Wrapping된 에러를 확인할 수 있다.</p> <p>다만 <code>errors.Unwrap()</code> 함수보다는 <code>errors.Is()</code>나 <code>errors.As()</code>를 사용하는 것이 일반적이라고 한다. 이 두 함수에 대해서는 다음 섹션에서 다룬다.</p> <br/> <p>이제 우리가 만든 에러 타입도 Wrapping이 가능하도록 만들어보자.
+Wrapping이 가능하려면 Unwrap() 메소드를 추가해주어야 한다. 코드는 다음과 같다.</p> <pre class="language-go"><!></pre> <p>StatusErr에 <code>error</code> 타입의 <code>Err</code>라는 필드가 추가되었으며, <code>Unwrap()</code>이라는 메소드가 추가되었다.</p> <pre class="language-go"><!></pre> <p>이렇게 에러 타입을 Wrapping이 가능하게 설계할 수 있다.</p> <p>다만 모든 상황에서 에러를 Wrapping해야 하는 것은 아니다.
+외부 라이브러리의 에러는 프로그램에서 굳이 필요하지 않은 내용까지 포함하는 경우가 있다.
+그럴 때는 그냥 에러를 새로 생성하여도 괜찮긴 하다.</p> <p>이전에 본 <code>fmt.Errorf()</code> 함수의 기능 중 그러한 기능이 있는데,
+서식 문자로 <code>%w</code> 대신 <code>%v</code>를 사용하면 기존 에러의 에러 메시지만 가져오고, 에러를 Wrapping하지는 않는다.</p> <br/><br/> <h3 id="is"><a aria-hidden="true" tabindex="-1" href="#is"><span class="icon icon-link"></span></a>Is</h3> <p>Wrapping하는 것은 에러에 정보를 추가적으로 담을 수 있다는 점에서 유용하지만, 문제를 야기할 수 있다.
+가령 Wrapping된 에러가 Sentinel Error라면, <code>==</code>로 에러를 체크하거나 Type Switch, Type Assertion을 사용할 수 없다.
+이와 같은 상황을 위해 존재하는 함수가 바로 <code>errors.Is()</code>와 <code>errors.As()</code>이다.</p> <p>먼저 <code>errors.Is()</code>는 에러가 어떤 Sentinel Error 인스턴스를 Wrapping하고 있는지 확인하기 위해 사용된다. <code>errors.Is()</code>는 체크할 에러와 비교 대상이 되는 Sentinel Error, 두 개의 에러를 파라미터로 받는다.
+만약 첫 번째 파라미터의 Error Chain 안에 일치하는 Sentinel Error가 있다면 <code>true</code>, 찾을 수 없다면 <code>false</code>를 반환한다.</p> <pre class="language-go"><!></pre> <p>위 예제를 실행하면 다음의 결과를 얻을 수 있다.</p> <pre class="language-bash"><!></pre> <br/> <p>기본적으로 <code>errors.Is()</code>는 <code>==</code> 연산을 통해 각 Wrapping된 에러들을 검사한다.
+그래서 직접 정의한 에러가 <code>==</code>연산을 통해 비교할 수 없는 경우, <code>Is()</code> 메소드를 추가해주어야 한다.</p> <pre class="language-go"><!></pre> <p>예제에서는 Type Assertion을 통해 먼저 에러가 <code>MyErr</code> 타입인지 확인하고, 맞다면 <code>reflect.DeepEqual()</code>을 통해 비교를 진행한다. <code>slice</code>는 <code>==</code>로 비교 연산이 불가능하므로 <code>reflect.DeepEqual()</code>를 사용한다.</p> <br/> <p>서로 다른 에러 인스턴스끼리 비교를 할 수 있도록 <code>Is()</code> 메소드를 추가하기도 한다.
+이를테면 특정한 에러들과 일치하는 패턴을 만드는 작업이라고 할 수 있는데,
+특정 필드값이 동일한지 검사하는 필터 역할의 필터 인스턴스를 만드는 것이다.</p> <pre class="language-go"><!></pre> <p>위와 같은 <code>ResourceErr</code>에서, <code>Is()</code> 메소드를 직접 정의해보자.</p> <pre class="language-go"><!></pre> <p>정의된 <code>Is()</code> 메소드는 먼저 에러 타입이 ResourceErr인지 확인하고, <code>Code</code>와 <code>Resource</code> 중 필드값이 하나라도 설정되면 그에 대하여 비교를 진행한다.</p> <p>이렇게 <code>Is()</code> 메소드를 직접 설정해주면, 아래 예제처럼 사용할 수 있다.</p> <pre class="language-go"><!></pre> <p>위 코드의 실행 결과는 어렵지 않게 짐작할 수 있을 것이다.</p> <pre class="language-bash"><!></pre> <br/><br/> <h3 id="as"><a aria-hidden="true" tabindex="-1" href="#as"><span class="icon icon-link"></span></a>As</h3> <p><code>errors.As()</code>는 반환된 에러(또는 error chain중의 어느 에러)가 특정 타입과 일치하는지 확인하는 함수이다.</p> <p>이 함수는 두 개의 파라미터를 받는데, 각각 검사할 에러와, 특정 타입의 변수를 가리키는 포인터이다.
+만약 해당 첫 번째 파라미터의 error chain 안에 두 번째 파라미터와 일치하는 타입이 존재한다면 <code>true</code>를 반환하며,
+일치하지 않는다면 <code>false</code>를 반환한다.</p> <p>사용 예제는 아래와 같다.</p> <pre class="language-go"><!></pre> <p>위처럼 <code>var</code> 키워드를 사용하여 Zero value인 에러를 선언하고, 이를 <code>errors.As()</code>에 pass by pointer로 넘길 수 있다.</p> <p>또한 두 번째 파라미터로 변수가 아니라 인터페이스를 넘길 수도 있는데, 이렇게 하면 해당 인터페이스를 충족시키는 에러 타입이 있는지 찾아낼 수 있다.</p> <pre class="language-go"><!></pre> <p>위 예제에서는 익명 인터페이스를 사용하였는데, 어떤 인터페이스 타입이든 상관 없다.</p> <p><code>errors.As()</code>의 두 번째 파라미터는 에러 타입이나 인터페이스에 대한 포인터만 올 수 있으며, 그 외에 것은 panic이 발생한다.</p> <p><code>errors.Is()</code>처럼, <code>As()</code> 메소드를 오버라이딩하면 <code>errors.As()</code>도 커스터마이징하여 사용할 수 있다.
+다만 <em>reflection</em>이 필요하며, 특수한 상황에서만 사용한다고 한다.</p> <br/><br/> <h3 id="wrapping-errors-with-defer"><a aria-hidden="true" tabindex="-1" href="#wrapping-errors-with-defer"><span class="icon icon-link"></span></a>Wrapping Errors with defer</h3> <p>아래와 같은 코드가 있다고 가정해보자.</p> <pre class="language-go"><!></pre> <p>딱 봐도 <code>if</code>절이 반복되고 있는데, 이와 같은 반복은 <code>defer</code>를 통해 리팩토링할 수 있다.</p> <pre class="language-go"><!></pre> <p>비록 어느 정도 반복되는 구문이 여전히 남아있기는 하지만, 그래도 훨씬 더 보기 좋다.</p> <p><code>defer</code>를 썼기 때문에 반환할 named return value가 변경되고, 변경된 값을 그대로 반환한다.
+주목할 점은 첫 번째 리턴 변수의 이름을 <code>_</code>로 설정함으로써,
+해당 파라미터는 named return value를 사용하지 않는다는 것을 명시적으로 선언하였다는 점이다.</p> <p><code>defer</code>의 closure에서는 에러가 리턴되었는지 체크하며,
+만약 그렇다면 해당 에러에 어느 함수에서 에러를 확인했는지 정보를 추가하여 Wrapping한 새로운 에러를 반환한다.</p> <p>이러한 패턴은 모든 에러에 동일한 메시지를 출력하는 경우 용이하다. <code>fmt.Errorf()</code>와 서식 문자 <code>%w</code>를 사용하여, 에러가 발생한 맥락에 대해 추가적인 정보를 제공할 수 있다는 점은 기억할 수 있을 것 같다.</p> <br/><br/> <h2 id="panic-and-recover"><a aria-hidden="true" tabindex="-1" href="#panic-and-recover"><span class="icon icon-link"></span></a>panic and recover</h2> <hr/> <p>Go에서는, 런타임에서 이 다음에 무슨 일이 일어날 지 밝혀낼 수 없는 상황일 때 <em>panic</em>을 발생시킨다.
+프로그래밍 에러(slice의 out of index)나 환경적인 요인(running out of memory) 등의 원인이 있다.</p> <p>Go에서는 <em>panic</em>이 발생하자마자 현재 실행중인 함수를 즉시 끝내고 현재 함수에 붙어있는 <code>defer</code>를 즉시 실행한다. <code>defer</code>가 끝나면 현재 함수를 실행한 또 다른 함수의 <code>defer</code>를 끝내고, <code>main()</code>함수에 도달할 때까지 이를 반복한다.
+그러면 프로그램이 종료되며, stack trace를 출력한다.</p> <p>우리가 짠 프로그램이 회복할 수 없는 상태에 빠진다면 <em>panic</em>을 일으킬 수 있다. <code>panic()</code> 함수는 에러 메세지 하나를 파라미터로 받아서 출력한다(보통 <code>string</code>이다).</p> <p>직접 <em>panic</em>을 일으키는 예제를 확인해보자</p> <pre class="language-go"><!></pre> <p>위 예제를 실행하면 아래와 같은 결과를 얻는다.</p> <pre class="language-bash"><!></pre> <p><em>panic</em>을 발생시킬 때 보냈던 메세지와, 어느 goroutine에서 발생한 패닉인지(goroutine은 나중에 나온다!),
+그리고 stacktrace가 나오는 것을 확인할 수 있다.</p> <br/> <p>Go에는 <em>panic</em>을 캡쳐하여 프로그램을 조금 더 예쁘게 셧다운하거나, 혹은 셧다운하지 않게 해주는 빌트인 함수 <code>recover()</code>가 존재한다. <code>recover()</code> 함수가 <code>defer</code>의 closure에서 호출되면 <em>panic</em>이 발생했는지 확인한다.
+만약 <em>panic</em>이 발생하였으면 <code>recover()</code>의 리턴값은 panic에 할당된 값(아마 에러 메세지인듯?)이 되며,
+프로그램은 termination을 멈추고 계속 동작한다.</p> <p>아래 예제에서 <code>recover()</code>문을 사용하는 패턴을 확인할 수 있다.</p> <pre class="language-go"><!></pre> <p>panic이 발생하면 모두 건너뛰고 <code>defer</code>가 실행되기 때문에, <code>recover()</code>는 반드시 <code>defer</code>문 내에서만 호출되어야 한다. <code>if</code>문 내에서 <code>recover()</code>를 호출하는데, 이때 panic이 발생하였다면 <code>nil</code>이 아닌 값을 리턴받으므로 <code>if</code>문 내부를 실행한다.</p> <pre class="language-bash"><!></pre> <p>만약 위 예제의 <code>div60()</code>함수에 <code>defer~recover</code> 구문이 없었다면 <code>div60(0)</code>이 실행될 때 panic이 발생하여 프로세스가 종료되었을 것이다.
+하지만 panic이 <code>recover()</code>문에 걸려 <code>runtime error: integer divide by zero</code>를 출력한 뒤,
+프로세스가 끝나지 않고 그 다음 호출인 <code>div60(6)</code>까지 호출한 것을 확인할 수 있다.</p> <p>panic과 recover는 다른 언어에서 Exception Handling을 하는 패턴과 유사하지만, 그런 패턴대로 사용하는 것은 별로 좋은 생각이 아니다.
+panic은 심각한 에러 상황에만 사용하고, recover로 그러한 예제를 처리할 떄는 매우 조심스럽게 접근해야 한다.</p> <p>특히 panic이 발생했을 때 recover를 이용하여 프로그램을 계속 실행시키려면, 많은 주의를 기울여야 한다.
+일반적으로 panic이 발생한 상황에서 프로그램을 계속 실행해야 하는 경우는 드물다.
+가령 메모리나 디스크 공간 부족 등의 이유로 panic이 발생한 경우,
+recover로 현 상태를 기록하고 os.Exit(1)로 프로그램을 종료하는 게 최선의 방법이다.</p> <p>프로그래밍 에러로 인해 panic이 발생한 경우라면 프로그램을 계속 실행시킬 수는 있겠으나, 동일한 panic을 다시 겪게 될 가능성이 높다.
+따라서 위 예제의 경우에서라면 division by zero로 인해 panic이 발생하지 않게끔,
+먼저 파라미터 값이 0인지 확인하여 맞다면 <code>error</code>를 리턴하는 것이 좋을 것이다.</p> <p>panic과 recover에 의존하는 것을 권장하지 않는 이유는, recover의 한정적인 기능 때문이다.
+어떤 종류든 panic이 발생하면 recover로 메시지를 출력하고 프로그램을 계속 실행시킬 수 있지만, 특정 종류의 panic만 처리할 수는 없다.
+Go에서는 모든 것을 처리할 수 있는 짧은 코드보다는, 가능한 에러 조건들을 명시하는 코드를 더 이상적이라고 생각한다.</p> <p><code>recover</code>가 권장되는 한 가지 상황이 있다.
+서드 파티 라이브러리를 작성하는 경우인데, 이 경우 panic이 API 밖으로 벗어나면 안되기 때문이다.
+따라서 함수에서 <code>panic</code>을 처리하고, 이를 <code>error</code>로 변경하여 리턴하는 코드를 작성해 주어야 한다.</p> <br/><br/> <h3 id="getting-a-stack-trace-from-an-error"><a aria-hidden="true" tabindex="-1" href="#getting-a-stack-trace-from-an-error"><span class="icon icon-link"></span></a>Getting a Stack Trace from an Error</h3> <p><code>panic</code>과 <code>recover</code>는 Stack Trace를 제공하지 않는다.
+기본적으로는 Error Wrapping을 통해 직접 Error Stack을 쌓아나가는 방식을 택할 수 있지만,
+이러한 <a href="https://github.com/pkg/errors" rel="nofollow">Error Stack을 자동으로 생성해주는 서드파티 라이브러리</a>가 존재한다.
+이 라이브러리는 stack trace를 할 수 있게 해주는 Error Wrapping 함수를 제공하는 것 같다.
+위 라이브러리를 임포트하여 <code>fmt.Printf()</code> 함수에서 서식 문자로 <code>%+v</code>를 사용하면 stack trace를 확인할 수 있을 것이다.</p> <br/><br/> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <center><p>[</p> <!> ](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br/> [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)</center> <br/><br/>`,1);function On(L){var M=Rn(),t=n(hn(M),15),Z=s(t);p(Z,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">calcRemainderAndMod</span><span class="token punctuation">(</span>numerator<span class="token punctuation">,</span> denomiator <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> denomiator <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"denimiator is 0"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> numerator <span class="token operator">/</span> denomiator<span class="token punctuation">,</span> numerator <span class="token operator">%</span> denomiator<span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	numerator<span class="token punctuation">,</span> denomiator <span class="token operator">:=</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">3</span>
+	remainder<span class="token punctuation">,</span> mod<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">calcRemainderAndMod</span><span class="token punctuation">(</span>numerator<span class="token punctuation">,</span> denomiator<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		os<span class="token punctuation">.</span><span class="token function">Exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>remainder<span class="token punctuation">,</span> mod<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(t);var o=n(t,10),B=s(o);p(B,()=>`<code class="language-go"><span class="token keyword">type</span> <span class="token builtin">error</span> <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span></code>`),a(o);var e=n(o,23),O=s(e);p(O,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">doubleEven1</span><span class="token punctuation">(</span>i <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> i<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"only even numbers are processed"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),a(e);var c=n(e,6),H=s(c);p(H,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">doubleEven1</span><span class="token punctuation">(</span>i <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> i<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"only even numbers are processed"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">doubleEven2</span><span class="token punctuation">(</span>i <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> i<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"%d isn't an even number"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),a(c);var u=n(c,11),q=s(u);p(q,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    data <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"This is not a zip file"</span><span class="token punctuation">)</span>
+    notAZipFile <span class="token operator">:=</span> bytes<span class="token punctuation">.</span><span class="token function">NewReader</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+    <span class="token boolean">_</span><span class="token punctuation">,</span> err <span class="token operator">:=</span> zip<span class="token punctuation">.</span><span class="token function">NewReader</span><span class="token punctuation">(</span>notAZipFile<span class="token punctuation">,</span> <span class="token function">int64</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">==</span> zip<span class="token punctuation">.</span>ErrFormat <span class="token punctuation">&#123;</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Told you so"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(u);var r=n(u,19),j=s(r);p(j,()=>`<code class="language-go"><span class="token keyword">type</span> Sentinel <span class="token builtin">string</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s Sentinel<span class="token punctuation">)</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">(</span>
+	ErrFoo <span class="token operator">=</span> <span class="token function">Sentinel</span><span class="token punctuation">(</span><span class="token string">"foo error"</span><span class="token punctuation">)</span>
+	ErrBar <span class="token operator">=</span> <span class="token function">Sentinel</span><span class="token punctuation">(</span><span class="token string">"bar error"</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code>`),a(r);var l=n(r,4),V=s(l);p(V,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">doubleEven1</span><span class="token punctuation">(</span>i <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> i<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> ErrFoo
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	i<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">doubleEven1</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">==</span> ErrFoo <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(l);var i=n(l,19),J=s(i);p(J,()=>`<code class="language-go"><span class="token keyword">type</span> Status <span class="token builtin">int</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">(</span>
+	InvalidLogin Status <span class="token operator">=</span> <span class="token boolean">iota</span> <span class="token operator">+</span> <span class="token number">1</span>
+	NotFound
+<span class="token punctuation">)</span></code>`),a(i);var k=n(i,4),K=s(k);p(K,()=>`<code class="language-go"><span class="token keyword">type</span> StatusErr <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Status  Status
+	Message <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>se StatusErr<span class="token punctuation">)</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%d - %s"</span><span class="token punctuation">,</span> se<span class="token punctuation">.</span>Status<span class="token punctuation">,</span> se<span class="token punctuation">.</span>Message<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(k);var d=n(k,6),Q=s(d);p(Q,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">LoginAndGetData</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> pwd<span class="token punctuation">,</span> file <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    err <span class="token operator">:=</span> <span class="token function">login</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> pwd<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> StatusErr<span class="token punctuation">&#123;</span>
+            Status<span class="token punctuation">:</span>    InvalidLogin<span class="token punctuation">,</span>
+            Message<span class="token punctuation">:</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"invalid credentials for user %s"</span><span class="token punctuation">,</span> uid<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    data<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">getData</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> StatusErr<span class="token punctuation">&#123;</span>
+            Status<span class="token punctuation">:</span>    NotFound<span class="token punctuation">,</span>
+            Message<span class="token punctuation">:</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"file %s not found"</span><span class="token punctuation">,</span> file<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> data<span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),a(d);var g=n(d,12),X=s(g);p(X,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">GenerateWrongError</span><span class="token punctuation">(</span>flag <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> genErr StatusErr
+	<span class="token keyword">if</span> flag <span class="token punctuation">&#123;</span>
+		genErr <span class="token operator">=</span> StatusErr<span class="token punctuation">&#123;</span>
+			Status<span class="token punctuation">:</span> NotFound<span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> genErr
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	err <span class="token operator">:=</span> <span class="token function">GenerateError</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err <span class="token operator">!=</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
+	err <span class="token operator">=</span> <span class="token function">GenerateError</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err <span class="token operator">!=</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(g);var f=n(g,2),Y=s(f);p(Y,()=>`<code class="language-bash"><span class="token boolean">true</span>
+<span class="token boolean">true</span></code>`),a(f);var b=n(f,10),$=s(b);p($,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">GenerateError1</span><span class="token punctuation">(</span>flag <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> flag <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> StatusErr<span class="token punctuation">&#123;</span>
+			Status<span class="token punctuation">:</span> NotFound<span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),a(b);var m=n(b,6),nn=s(m);p(nn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">GenerateError2</span><span class="token punctuation">(</span>flag <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> genErr <span class="token builtin">error</span>
+	<span class="token keyword">if</span> flag <span class="token punctuation">&#123;</span>
+		genErr <span class="token operator">=</span> StatusErr<span class="token punctuation">&#123;</span>
+			Status<span class="token punctuation">:</span> NotFound<span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> genErr
+<span class="token punctuation">&#125;</span></code>`),a(m);var w=n(m,23),sn=s(w);p(sn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">fileChecker</span><span class="token punctuation">(</span>name <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"in fileChecker: %w"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">defer</span> f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	err <span class="token operator">:=</span> <span class="token function">fileChecker</span><span class="token punctuation">(</span><span class="token string">"nonExistFile.txt"</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token keyword">if</span> wrappedErr <span class="token operator">:=</span> errors<span class="token punctuation">.</span><span class="token function">Unwrap</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span> wrappedErr <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>wrappedErr<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(w);var y=n(w,4),an=s(y);p(an,()=>`<code class="language-bash"><span class="token keyword">in</span> fileChecker: <span class="token function">open</span> nonExistFile.txt: no such <span class="token function">file</span> or directory
+<span class="token function">open</span> nonExistFile.txt: no such <span class="token function">file</span> or directory</code>`),a(y);var v=n(y,10),pn=s(v);p(pn,()=>`<code class="language-go"><span class="token keyword">type</span> StatusErr <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Status  Status
+	Message <span class="token builtin">string</span>
+	Err     <span class="token builtin">error</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>se StatusErr<span class="token punctuation">)</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> se<span class="token punctuation">.</span>Message
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>se StatusErr<span class="token punctuation">)</span> <span class="token function">Unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> se<span class="token punctuation">.</span>Err
+<span class="token punctuation">&#125;</span></code>`),a(v);var E=n(v,4),tn=s(E);p(tn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">LoginAndGetData</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> pwd<span class="token punctuation">,</span> file <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	err <span class="token operator">:=</span> <span class="token function">login</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> pwd<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> StatusErr<span class="token punctuation">&#123;</span>
+			Status<span class="token punctuation">:</span>  InvalidLogin<span class="token punctuation">,</span>
+			Message<span class="token punctuation">:</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"Invalid Credentials for user %s"</span><span class="token punctuation">,</span> uid<span class="token punctuation">)</span><span class="token punctuation">,</span>
+			Err<span class="token punctuation">:</span>     err<span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+
+	data<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">getData</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> StatusErr<span class="token punctuation">&#123;</span>
+			Status<span class="token punctuation">:</span>  NotFound<span class="token punctuation">,</span>
+			Message<span class="token punctuation">:</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"file %s is not found"</span><span class="token punctuation">,</span> file<span class="token punctuation">)</span><span class="token punctuation">,</span>
+			Err<span class="token punctuation">:</span>     err<span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">return</span> data<span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),a(E);var h=n(E,17),on=s(h);p(on,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">fileChecker</span><span class="token punctuation">(</span>name <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"in fileChecker: %w"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">defer</span> f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	err <span class="token operator">:=</span> <span class="token function">fileChecker</span><span class="token punctuation">(</span><span class="token string">"nonExistFile.txt"</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">Is</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> os<span class="token punctuation">.</span>ErrNotExist<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(h);var S=n(h,4),en=s(S);p(en,()=>'<code class="language-bash"><span class="token keyword">in</span> fileChecker: <span class="token function">open</span> nonExistFile.txt: no such <span class="token function">file</span> or directory</code>'),a(S);var _=n(S,6),cn=s(_);p(cn,()=>`<code class="language-go"><span class="token keyword">type</span> MyErr <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Codes <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>me MyErr<span class="token punctuation">)</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"codes: %v"</span><span class="token punctuation">,</span> me<span class="token punctuation">.</span>Codes<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>me MyErr<span class="token punctuation">)</span> <span class="token function">Is</span><span class="token punctuation">(</span>target <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> me2<span class="token punctuation">,</span> ok <span class="token operator">:=</span> target<span class="token punctuation">.</span><span class="token punctuation">(</span>MyErr<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> reflect<span class="token punctuation">.</span><span class="token function">DeepEqual</span><span class="token punctuation">(</span>me<span class="token punctuation">,</span> me2<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token boolean">false</span></code>`),a(_);var C=n(_,8),un=s(C);p(un,()=>`<code class="language-go"><span class="token keyword">type</span> ResourceErr <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Resource <span class="token builtin">string</span>
+	Code     <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>re ResourceErr<span class="token punctuation">)</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%s: %d"</span><span class="token punctuation">,</span> re<span class="token punctuation">.</span>Resource<span class="token punctuation">,</span> re<span class="token punctuation">.</span>Code<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(C);var x=n(C,4),rn=s(x);p(rn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token punctuation">(</span>re ResourceErr<span class="token punctuation">)</span> <span class="token function">Is</span><span class="token punctuation">(</span>target <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> other<span class="token punctuation">,</span> ok <span class="token operator">:=</span> target<span class="token punctuation">.</span><span class="token punctuation">(</span>ResourceErr<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">&#123;</span>
+		ignoreResource <span class="token operator">:=</span> other<span class="token punctuation">.</span>Resource <span class="token operator">==</span> <span class="token string">""</span>
+		ignoreCode <span class="token operator">:=</span> other<span class="token punctuation">.</span>Code <span class="token operator">==</span> <span class="token number">0</span>
+		matchResource <span class="token operator">:=</span> other<span class="token punctuation">.</span>Resource <span class="token operator">==</span> re<span class="token punctuation">.</span>Resource
+		matchCode <span class="token operator">:=</span> other<span class="token punctuation">.</span>Code <span class="token operator">==</span> re<span class="token punctuation">.</span>Code
+
+		<span class="token keyword">return</span> matchCode <span class="token operator">&amp;&amp;</span> matchResource <span class="token operator">||</span>
+			matchCode <span class="token operator">&amp;&amp;</span> ignoreResource <span class="token operator">||</span>
+			ignoreCode <span class="token operator">&amp;&amp;</span> matchResource
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token boolean">false</span>
+<span class="token punctuation">&#125;</span></code>`),a(x);var R=n(x,6),ln=s(R);p(ln,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	err <span class="token operator">:=</span> <span class="token function">fileChecker</span><span class="token punctuation">(</span><span class="token string">"nonExistFile.txt"</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">Is</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> os<span class="token punctuation">.</span>ErrNotExist<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"---------------------------"</span><span class="token punctuation">)</span>
+
+	err1 <span class="token operator">:=</span> ResourceErr<span class="token punctuation">&#123;</span>
+		Resource<span class="token punctuation">:</span> <span class="token string">"Database"</span><span class="token punctuation">,</span>
+		Code<span class="token punctuation">:</span>     <span class="token number">123</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+
+	err2 <span class="token operator">:=</span> ResourceErr<span class="token punctuation">&#123;</span>
+		Resource<span class="token punctuation">:</span> <span class="token string">"Network"</span><span class="token punctuation">,</span>
+		Code<span class="token punctuation">:</span>     <span class="token number">456</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">Is</span><span class="token punctuation">(</span>err1<span class="token punctuation">,</span> ResourceErr<span class="token punctuation">&#123;</span>Resource<span class="token punctuation">:</span> <span class="token string">"Database"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"The database is broken:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">Is</span><span class="token punctuation">(</span>err2<span class="token punctuation">,</span> ResourceErr<span class="token punctuation">&#123;</span>Resource<span class="token punctuation">:</span> <span class="token string">"Database"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"The database is broken:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">Is</span><span class="token punctuation">(</span>err1<span class="token punctuation">,</span> ResourceErr<span class="token punctuation">&#123;</span>Code<span class="token punctuation">:</span> <span class="token number">123</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Code 123 is triggered:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">Is</span><span class="token punctuation">(</span>err2<span class="token punctuation">,</span> ResourceErr<span class="token punctuation">&#123;</span>Code<span class="token punctuation">:</span> <span class="token number">123</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Code 123 is triggered:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">Is</span><span class="token punctuation">(</span>err1<span class="token punctuation">,</span> ResourceErr<span class="token punctuation">&#123;</span>Resource<span class="token punctuation">:</span> <span class="token string">"Database"</span><span class="token punctuation">,</span> Code<span class="token punctuation">:</span> <span class="token number">123</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Database is broken and Code 123 is triggered"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">Is</span><span class="token punctuation">(</span>err1<span class="token punctuation">,</span> ResourceErr<span class="token punctuation">&#123;</span>Resource<span class="token punctuation">:</span> <span class="token string">"Network"</span><span class="token punctuation">,</span> Code<span class="token punctuation">:</span> <span class="token number">123</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Network is broken and Code 123 is triggered"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(R);var G=n(R,4),kn=s(G);p(kn,()=>`<code class="language-bash">The database is broken: Database: <span class="token number">123</span>
+Code <span class="token number">123</span> is triggered: Database: <span class="token number">123</span>
+Database is broken and Code <span class="token number">123</span> is triggered Database: <span class="token number">123</span></code>`),a(G);var I=n(G,13),dn=s(I);p(dn,()=>`<code class="language-go">err <span class="token operator">:=</span> <span class="token function">AFunctionThatReturnsAnError</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> myErr MyErr
+<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">As</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> <span class="token operator">&amp;</span>myErr<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>myErr<span class="token punctuation">.</span>Code<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(I);var P=n(I,6),gn=s(P);p(gn,()=>`<code class="language-go">err2 <span class="token operator">:=</span> <span class="token function">AFunctionThatReturnsAnError</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> coder <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">Code</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">if</span> errors<span class="token punctuation">.</span><span class="token function">As</span><span class="token punctuation">(</span>err2<span class="token punctuation">,</span> <span class="token operator">&amp;</span>coder<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>coder<span class="token punctuation">.</span><span class="token function">Code</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(P);var T=n(P,15),fn=s(T);p(fn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">doSomeThings_before</span><span class="token punctuation">(</span>val1<span class="token punctuation">,</span> val2 <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	val3<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">doThing1</span><span class="token punctuation">(</span>val1<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"in DoSomeThings: %w"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	val4<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">doThing2</span><span class="token punctuation">(</span>val2<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"in DoSomeThings: %w"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	res<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">doThing3</span><span class="token punctuation">(</span>val3<span class="token punctuation">,</span> val4<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"in DoSomeThings: %w"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> res<span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),a(T);var A=n(T,4),bn=s(A);p(bn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">doSomeThings_after</span><span class="token punctuation">(</span>val1<span class="token punctuation">,</span> val2 <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token boolean">_</span> <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			err <span class="token operator">=</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"in DoSomeThings: %w"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	val3<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">doThing1</span><span class="token punctuation">(</span>val1<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> err
+	<span class="token punctuation">&#125;</span>
+
+	val4<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">doThing2</span><span class="token punctuation">(</span>val2<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> err
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">return</span> <span class="token function">doThing3</span><span class="token punctuation">(</span>val3<span class="token punctuation">,</span> val4<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(A);var F=n(A,25),mn=s(F);p(mn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">doPanic</span><span class="token punctuation">(</span>msg <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">doPanic</span><span class="token punctuation">(</span><span class="token string">"응애앵"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(F);var W=n(F,4),wn=s(W);p(wn,()=>`<code class="language-bash">panic: 응애앵
+
+goroutine <span class="token number">1</span> <span class="token punctuation">[</span>running<span class="token punctuation">]</span>:
+main.doPanic<span class="token punctuation">(</span><span class="token punctuation">..</span>.<span class="token punctuation">)</span>
+        /home/junhyuk/Programming/Golang/8-errors/panic.go:6
+main.main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        /home/junhyuk/Programming/Golang/8-errors/panic.go:10 +0x45
+<span class="token builtin class-name">exit</span> status <span class="token number">2</span></code>`),a(W);var N=n(W,10),yn=s(N);p(yn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">div60</span><span class="token punctuation">(</span>i <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> v <span class="token operator">:=</span> <span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> v <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token number">60</span> <span class="token operator">/</span> i<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> val <span class="token operator">:=</span> <span class="token keyword">range</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">&#125;</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">div60</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(N);var D=n(N,4),vn=s(D);p(vn,()=>`<code class="language-bash"><span class="token number">60</span>
+<span class="token number">30</span>
+runtime error: integer divide by zero
+<span class="token number">10</span></code>`),a(D);var z=n(D,28),En=n(s(z),2);Cn(En,{alt:"Learning Go Book Cover",src:"https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/"}),U(3),a(z),U(3),_n(L,M)}export{On as default,xn as metadata};

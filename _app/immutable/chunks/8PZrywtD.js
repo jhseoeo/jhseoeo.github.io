@@ -1,0 +1,312 @@
+import"./Bzak7iHL.js";import"./69_IOA4Y.js";import{s as a,f as B,c as s,r as t,n as j}from"./CVx5jffJ.js";import{f as u,a as c}from"./2cXyNWGb.js";import{h as p}from"./D6IIVJDJ.js";import{C as i}from"./BQl3WXse.js";import{I as T}from"./BVXqo7x9.js";const Z={title:"엔티티, 밸류 오브젝트, 애그리거트",date:"2023-07-13T00:00:00.000Z",excerpt:"Entities, Value Objects, and Aggregates",categories:["Golang","Backend","Architecture","Domain Driven Design"],coverImage:"/post_img/Backend/Architecture/DDD/cover.png",coverWidth:16,coverHeight:9,indexed:!1,exposed:!0},{title:pn,date:on,excerpt:en,categories:cn,coverImage:un,coverWidth:ln,coverHeight:kn,indexed:rn,exposed:dn}=Z;var F=u('<pre class="language-go"><!></pre>'),q=u('<pre class="language-go"><!></pre>'),z=u('<pre class="language-go"><!></pre>'),H=u('<pre class="language-go"><!></pre>'),Q=u('<pre class="language-go"><!></pre>'),V=u('<pre class="language-go"><!></pre>'),J=u(`<h2 id="엔티티"><a aria-hidden="true" tabindex="-1" href="#엔티티"><span class="icon icon-link"></span></a>엔티티</h2> <p>Domain Driven Design에서, <strong>엔티티</strong>는 ID로 정의된다. 그들의 속성이 변하더라도, 식별자는 변하지 않는다.
+엔티티가 처음과 비교하여 많이 달라져서 구분이 불가능하더라도, 식별자가 같다면 같은 엔티티이다.</p> <p>예를 들며 살펴보자.
+이베이에서는 유저로 회원가입을 할 수 있다. 만약 무언가를 판매하고자 한다면, 판매자가 된다.
+또한 항목에 입찰을 할 수도 있다. 이러한 서비스의 도메인 모델은 다음 사진과 같다.</p> <!> <p>시스템에서는 다음과 같은 동작이 일어날 수 있다.</p> <ul><li>유저가 주소를 변경한다.</li> <li>유저가 이메일 주소를 변경한다.</li> <li>경매 종료 시각이 변경된다.</li></ul> <p>이러한 동작은 엔티티의 식별자를 변경하지 않는다. 동일한 ID를 참조하지만, 그들의 속성은 변경될 수 있다.</p> <p>이와 같은 경매 시스템의 엔티티를 구현하면 다음과 같다.</p> <pre class="language-go"><!></pre> <p>위 예제에서, <code>int</code> 타입의 <code>ID</code>는 엔티티의 식별자를 나타낸다.
+엔티티 ID는 반드시 시스템에서 생성되어야 하는 것은 아니며, 엔티티 속성의 일부를 나타낼 수도 있다.
+이를테면 대부분의 국가에서, 사람들을 구분하기 위해 주민등록번호를 사용한다.</p> <br/> <h3 id="좋은-식별자-생성하기"><a aria-hidden="true" tabindex="-1" href="#좋은-식별자-생성하기"><span class="icon icon-link"></span></a>좋은 식별자 생성하기</h3> <p>엔티티에 대한 고유하고 적절한 생성자를 생성하는 것은 의외로 어렵다.
+이전 예제에서의 ID는 <code>int</code> 타입이었다. 대부분의 간단한 시스템에서는 이렇게 사용해도 무방하지만, 규모가 큰 시스템에서는 문제가 생기게 된다.</p> <p>예를 들어 다음과 같은 코드가 있다고 해보자.</p> <pre class="language-go"><!></pre> <p>이를 실행하면 다음과 같은 결과를 얻게 된다.</p> <pre class="language-text"><!></pre> <p>하지만 이러한 코드를 작성하면, 다음과 같은 문제가 발생한다.</p> <pre class="language-go"><!></pre> <pre class="language-text"><!></pre> <p>정수를 모두 다 써렸다! 만약 이처럼 정수를 식별자로 사용했다면, 시스템을 다시 설계해야 하는 문제가 발생했을 것이다.
+따라서 엔티티의 식별자를 정할 때는 미래에 발생할 수 있는 문제를 고려하여야 한다.
+일반적으로 가장 많이 고려되는 방식은 <strong>UUID(Universally Unique Identifier)</strong>를 사용하는 것이다.
+UUID는 128비트 레이블로, 실질적으로 중복될 가능성이 없다.</p> <p>UUID는 Go의 표준 라이브러리는 아니지만, 구글에서 제공하는 라이브러리가 있다.
+다음과 같은 예제처럼 UUID를 사용할 수 있다.</p> <pre class="language-go"><!></pre> <p>PostgreSQL과 같은 데이터베이스의 경우, 자체적인 UUID 타입을 사용할 수도 있다</p> <h3 id="엔티티를-정의할-때-주의해야-할-점"><a aria-hidden="true" tabindex="-1" href="#엔티티를-정의할-때-주의해야-할-점"><span class="icon icon-link"></span></a>엔티티를 정의할 때 주의해야 할 점</h3> <p>엔티티는 식별자에 중점을 두기 때문에, 데이터베이스 설계 구조가 도메인 모델 구조를 결정하게 되는 현상이 일어날 수 있다.
+이러한 현상은 <strong>Anemic Domain Model</strong>이라고도 하는 현상으로 이어질 수도 있다.</p> <p>Anemic Model은 도메인의 동작이 거의 없거나 없는 모델을 의미한다. 이런 경우, DDD의 이점을 얻을 수 없다.
+엔티티는 Anemic Model이 될 수 있는 유력한 후보이다.
+만약 그들이 애초부터 잘 식별된다면, Anemic Model을 진단하고 해결하기 쉽다.
+모델이 대부분 공개 getter 및 setter 함수로 구성되어 있거나, 비즈니스 로직이 거의 없거나, 혹은 비즈니스 로직을 구현하기 위해 다양한 클라이언트에 의존하는 경우, Anemic Model이라고 볼 수 있다.</p> <p>아래 코드는 우리의 경매 시스템에 대한 Anemic Entity의 예제이다. 코드가 좀 길어져서 따로 뺐다.</p> <!> <p>이런 코드가 잘못되었다고 할 수 있는 것은 아니며, 이런 느낌의 코드를 여기저기서 많이 볼 수 있다.
+하지만 이런 코드는 Domain Driven Design의 모든 이점을 얻을 수 없다. <code>AnemicAuction</code>를 사용하는 다른 구성은 잠재적으로 일부 속성이 무엇인지 가정하고 있다.
+또한, 도메인 전문가가 의도하지 않은 대로 비즈니스 로직을 구현될 수 있다.</p> <p>따라서, 다음과 같이 리팩토링되어야 한다.</p> <!> <p>간단한 예제임에도 엔티티가 비즈니스 로직을 가지고 있는 경우의 이점을 확인할 수 있다.
+특히, 시간대의 일관성을 위해 UTC로 강제하는 로직이 에러 처리를 통해 잘 드러나 있다.
+또한 경매 경과 시간에 대한 일관적인 정의를 위해 <code>GetAuctionElapsedDuration</code> 함수를 사용하고 있다.</p> <p>그렇다면 데이터베이스에 동일한 모델을 사용할 수는 없을까?
+시스템이 복잡해짐에 따라 경매에 대한 추가적인 메타데이터를 저장해야 할 수도 있다.
+이를테면 경매를 본 사용자의 수, 광고를 클릭해서 들어온 사용자의 수, 사용자의 경매 기록 등이다.
+이러한 모든 정보는 유용하지만, 도메인 모델에 속하지는 않는다.</p> <br/> <h3 id="orm을-사용할-때-주의할-점"><a aria-hidden="true" tabindex="-1" href="#orm을-사용할-때-주의할-점"><span class="icon icon-link"></span></a>ORM을 사용할 때 주의할 점</h3> <p>ORM(Object Relational Mapping)은 데이터베이스 영속성을 관리하기 위해 사용되는 방식으로, DDD의 개념은 아니지만 널리 사용되고 있다.
+Golang에서는 GORM이라는 ORM 라이브러리가 가장 유명하다.
+ORM을 사용함으로써 발생하는 문제점이 있긴 하지만, ORM을 처리하면 쿼리 생성 및 처리에 대한 제어 권한을 위임하게 된다.</p> <p>ORM을 DDD와 함께 사용하려면 ORM이 DDD 컨텍스트에서 엔티티를 작성하는 것을 제어할 수 없게 해야 한다. 그렇지 않으면 Anemic Model이 될 수 있다.
+또한 엔티티와 ORM의 결합도를 낮추기 위해, ORM 계층과 엔티티 계층 사이에 이전 포스트에서 다루었던 어댑터 계층을 추가하는 것이 좋다.</p> <br/><br/> <h2 id="밸류-오브젝트"><a aria-hidden="true" tabindex="-1" href="#밸류-오브젝트"><span class="icon icon-link"></span></a>밸류 오브젝트</h2> <p>밸류 오브젝트는 엔티티와 다르게 식별자가 없고, 풍부한 도메인 모델을 만들기 위해 엔티티, 애그리거트와 함께 사용된다.
+일반적으로 도메인에 대한 것을 측정, 정량화, 설명하는 데 사용된다.</p> <p>밸류 오브젝트를 이해하는데 도움이 되는 Golang 코드를 작성해보고자 한다.
+먼저, <code>Point</code>라는 구조체와 생성 함수를 정의한다.</p> <!> <p>그리고 같은 좌표를 가진 두 점이 같은지 확인하는 테스트도 함께 작성한다.</p> <!> <p>직관적으로 두 점은 동일하다는 사실을 알 수 있지만, 이 테스트는 실패한다.</p> <pre class="language-bash"><!></pre> <p>이 테스트는 왜 실패할까?
+Go에서 <code>&</code> 기호를 사용하는 경우, A와 B가 저장되는 메모리 주소를 가리키는 포인터가 생성된다.
+따라서 <code>a</code>와 <code>b</code>는 서로 다른 메모리 주소를 가리키고 있기 때문에 동일하지 않다고 판단한다.</p> <p>그렇다면 포인터 생성 함수를 이렇게 변경해보자</p> <pre class="language-go"><!></pre> <p>이제 테스트를 실행하면 통과하는 것을 알 수 있다. 이제 포인터의 메모리 주소값이 아닌 구조체의 값을 비교하기 때문이다.
+이러한 경우 이들은 밸류 오브젝트라고 볼 수 있다. 동일한 값을 가지는 경우 동일하다고 판단된다.</p> <p><code>Point</code> 구조체에서 <code>x</code>와 <code>y</code>는 소문자로 시작하는데, 이는 <code>Point</code>가 패키지 외부에서 사용되지 않게 하기 위함이다.
+밸류 오브젝트에서도 또한 마찬가지로, 필드값이 변경되지 않도록 하는 것이 좋다.</p> <p>밸류 오브젝트는 대체 가능성이 있다. 우리가 게임을 작성하고, 플레이어의 현재 위치를 나타내기 위해 <code>Point</code>를 사용한다고 가정해보자.
+다음과 같이 플레이어가 이동하는 코드를 작성할 수 있다.</p> <!> <p>여기서 <code>Point</code>는 플레이어의 위치를 나타낸다.
+밸류 오브젝트의 교체 가능성을 이용하여, 플레이어가 움직일 때마다 플레이어의 위치를 나타내는 지점을 완전히 새로운 값으로 업데이트할 수 있다.
+또한 <code>move</code> 함수는 side effect가 존재하지 않는 함수임을 알 수 있다.</p> <p>불변성과 side effect가 없는 함수를 작성하였기 때문에, 값을 추론하고 유닛 테스트를 작성하기가 쉬워진다.
+따라서, 장기적인 시스템의 유지보수성을 높일 수 있다.</p> <br/> <h3 id="언제-엔티티를-사용하고-언제-밸류-오브젝트를-사용해야-할까"><a aria-hidden="true" tabindex="-1" href="#언제-엔티티를-사용하고-언제-밸류-오브젝트를-사용해야-할까"><span class="icon icon-link"></span></a>언제 엔티티를 사용하고, 언제 밸류 오브젝트를 사용해야 할까?</h3> <p>도메인을 모델링할 때, 가능한 한 밸류 오브젝트를 사용하는 것이 좋다.
+밸류 오브젝트는 제대로 구현되었을 때, 가장 안전한 구조체이기 때문이다.
+의도하지 않은 방식으로 인스턴스를 잘못 수정하는 사용자들을 걱정할 필요가 없어진다.</p> <p>또한 객체의 값에만 관심이 있다면 밸류 오브젝트를 사용해야 한다.
+밸류 오브젝트가 적절한 경우이려면, 다음과 같은 조건을 모두 충족시켜야 한다.</p> <ul><li>객체를 불변적으로 취급해야 할 때</li> <li>도메인 개념을 나타내거나, 측정하거나, 정량화해야 할 때</li> <li>값으로 동일한 타입의 다른 객체와 비교할 수 있을 때</li></ul> <p>모든 조건이 충족된다면 밸류 오브젝트가 적절한 선택이 될 것이다.</p> <p>마치 모든 것이 밸류 오브젝트가 되어야 한다고 말하는 것처럼 보일 수 있지만, 실제로 그게 나쁜 아이디어는 아니다.
+부적합한게 아니라면 최대한 많은 것들을 밸류 오브젝트로 만드는 것이 좋다.
+부적합하다고 판단이 들면 그 때 엔티티로 변경한다</p> <br/><br/> <h3 id="애그리거트"><a aria-hidden="true" tabindex="-1" href="#애그리거트"><span class="icon icon-link"></span></a>애그리거트</h3> <p>애그리거트는 Domain Driven Design에서 가장 어려운 개념 중 하나로, 잘못 구현되는 경우가 많다.
+코드를 조직화하는데 도움이 된다면 좋지만, 잘못 구현되면 개발 속도를 늦추고 일관성을 해치는 요소가 될 수 있다.</p> <p>애그리거트는 일부 동작에 대해 한 그룹으로 묶을 수 있는 도메인의 집합이다.
+예를 들면, 각각의 직원들에 대한 도메인 오브젝트가 있지만 이들을 팀으로 묶는다면 부서 구성과 같은 상황에서 유용할 것이다.
+또한, 다양한 통화나 카드, 가상화폐를 묶어 지갑으로 관리할 수도 있으며, 이 경우 지갑이 애그리거트가 된다.</p> <p>애그리거트는 array, map, slice 등 데이터 컬렉션 타입과 헷갈리기도 하는데, 이들은 동일한 개념이 아니다.
+애그리거트는 컬렉션을 사용할 수도 있지만, 애그리거트는 DDD 개념이기 때문에 일반적으로 여러 컬렉션, 필드, 함수, 메서드 등을 포함한다.</p> <p>애그리거트의 주된 역할은 포함된 도매인 개체끼리의 트랜잭션 경계를 정의하는 것이다.
+개체에 대한 CRUD는 애그리거트 전체에 걸쳐 일어나거나, 또는 전혀 일어나지 않아야 한다.
+이를테면 새로운 직원이 팀에 입사하면, 직속 관리자 구조를 업데이트해야 할 수 있다.
+그리고 사용자가 지갑에 새로운 카드를 추가하면, 해당 카드의 잔액이 지갑의 전체 잔액에 반영되어야 한다.</p> <p>애그리거트는 다음과 같이 구현할 수 있다.</p> <!> <p>위 코드에서 <code>Wallet</code> 구조체의 <code>id</code>는 애그리거트 루트이며, 지갑의 식별자이다. <code>ownerId</code>는 지갑을 소유하는 엔티티의 식별자이다. 소유자에 대한 모든 정보를 포함할 필요는 없으며, 필요할 때 가져올 수 있게끔 소유자의 식별자만 있으면 된다. <code>walletItems</code>는 <code>WalletItem</code>의 집합이며, <code>WalletItem</code>은 다른 곳에서 정의한 엔티티이므로 여기서는 인터페이스로 정의한다.</p> <br/> <h3 id="애그리거트-찾기"><a aria-hidden="true" tabindex="-1" href="#애그리거트-찾기"><span class="icon icon-link"></span></a>애그리거트 찾기</h3> <p>Domain Driven Design에서 가장 어려운 작업 중 하나는 어떤 타임을 언제 쓸 지 결정하는 것이다.
+도메인 모델을 애그리거트로 클러스터링 하려면, 먼저 제한된 컨텍스트의 불변성을 이해해야 한다.
+불변성은 도메인에서 반드시 참이어야 하는 규칙이다.
+이를테면 시스템에서 주문을 생성하려면 상품의 재고가 충분해야 한다.
+이는 비즈니스적인 불변성이며, 재고가 없는 경우 고객에게 약속할 수 없다.</p> <p>애그리거트에서는 eventually consistency가 아닌 transactional consistency가 필요하다.
+애그리거트에 대한 변경 사항은 즉각적이고 atomic해야 한다.
+따라서 애그리거트를 <em>transactional consistency boundary</em>라고 봐도 무방하다.
+도메인 내에서 변경 사항이 생길 때마다, 이상적으로는 트랜잭션당 단 하나의 애그리거트만 수정해야 한다.</p> <br/> <h3 id="애그리거트-디자인"><a aria-hidden="true" tabindex="-1" href="#애그리거트-디자인"><span class="icon icon-link"></span></a>애그리거트 디자인</h3> <p>일반적으로 애그리거트는 작을수록 좋다.
+애그리거트가 작을수록 시스템의 유연성이 높아지고, 성능이 향상되며, 트랜잭션의 성공률이 높아진다.</p> <p>여러 명의 사용자가 동시에 동일한 주문을 하려 하는 상황을 떠올려보자.
+먼저, <em>주문</em> 애그리거트를 다음과 같이 정의할 수 있다.</p> <pre class="language-go"><!></pre> <p>이 <code>Order</code> 구조체는 보기엔 괜찮아 보이고, 일반적인 주문 흐름과 유사해 보인다.
+하지만, 이 애그리거트에 <code>marketingOptIn</code> 필드를 추가하는 것은 부적절하다.
+제한된 컨텍스트 관점에서 이 애그리거트에 <code>marketingOptIn</code>은 주문 객체와 관련이 없고,
+사용자가 주문 시작과 완료 사이에 마케팅을 거부하면 주문이 완료되지 않길 원하기 때문이다.
+따라서 <code>marketingOptIn</code> 필드를 제거하는 것이 바람직하다.</p> <p>물론 UI에서 마케팅 선택 확인란 자체를 제거하라는 게 아니라, 단지 애그리거트와 트랜잭션 흐름에서 디커플링되어야 한다는 것이다.</p> <br/> <h3 id="한-개-이상의-제한된-컨텍스트에-걸친-애그리거트"><a aria-hidden="true" tabindex="-1" href="#한-개-이상의-제한된-컨텍스트에-걸친-애그리거트"><span class="icon icon-link"></span></a>한 개 이상의 제한된 컨텍스트에 걸친 애그리거트</h3> <p>비즈니스 규모에서 제한된 컨텍스트가 변경되거나, 하위 시스템에 대한 알림이 필요한 상황이 있을 수 있다.
+여러 제한된 컨텍스트에 걸치는 경우에는 eventual consistency를 목표로 해야 한다.
+즉, 다른 시스템이 우리가 보낸 이벤트를 적절히 잘 받아서 처리할 것이라고 기대할 뿐, 제한된 컨텍스트 안에서 하는 것처럼 atomic하게 처리하는 것을 기대하면 안된다.
+이를 통해 더 강력한 복원력과 확장 가능성을 가진 분리된 시스템으로 발전할 수 있다(마이크로서비스!).</p> <br/><br/> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <center><p>[</p> <!> ](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/) <br/> [Matthew Boyle, Domain-Driven Design with Golang』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/domain-driven-design-with/9781804613450/)</center>`,1);function mn(U){var b=J(),D=a(B(b),6);T(D,{alt:"Alt text",src:"/post_img/Backend/Architecture/DDD/3/1.png"});var k=a(D,10),M=s(k);p(M,()=>`<code class="language-go"><span class="token keyword">package</span> chapter3
+
+<span class="token keyword">import</span> <span class="token string">"time"</span>
+
+<span class="token keyword">type</span> Money <span class="token operator">=</span> <span class="token builtin">int</span>
+
+<span class="token keyword">type</span> Auction <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	ID            <span class="token builtin">int</span>
+	startingPrice Money
+	sellerID      <span class="token builtin">int</span>
+	createdAt     time<span class="token punctuation">.</span>Time
+	auctionStart  time<span class="token punctuation">.</span>Time
+	auctionEnd    time<span class="token punctuation">.</span>Time
+<span class="token punctuation">&#125;</span></code>`),t(k);var r=a(k,12),E=s(r);p(E,()=>'<code class="language-go">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>math<span class="token punctuation">.</span>MaxInt<span class="token punctuation">)</span></code>'),t(r);var d=a(r,4),$=s(d);p($,()=>'<code class="language-text">9223372036854775807</code>'),t(d);var m=a(d,4),G=s(m);p(G,()=>'<code class="language-go">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>math<span class="token punctuation">.</span>MaxInt <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span></code>'),t(m);var g=a(m,2),R=s(g);p(R,()=>'<code class="language-text">cannot use math.MaxInt + 1 (untyped int constant 9223372036854775808) as int value in argument to fmt.Println (overflows)</code>'),t(g);var y=a(g,6),O=s(y);p(O,()=>`<code class="language-go"><span class="token keyword">package</span> chapter3
+
+<span class="token keyword">import</span> <span class="token string">"github.com/google/uuid"</span>
+
+<span class="token keyword">type</span> SomeEntity <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	id uuid<span class="token punctuation">.</span>UUID
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">NewSomeEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>SomeEntity <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>SomeEntity<span class="token punctuation">&#123;</span>
+		id<span class="token punctuation">:</span> uuid<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),t(y);var v=a(y,12);i(v,{children:(o,l)=>{var n=F(),e=s(n);p(e,()=>`<code class="language-go"><span class="token keyword">package</span> chapter3
+
+<span class="token keyword">import</span> <span class="token string">"time"</span>
+
+<span class="token keyword">type</span> AnemicAuction <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	id            <span class="token builtin">int</span>
+	startingPrice Money
+	sellerID      <span class="token builtin">int</span>
+	createdAt     time<span class="token punctuation">.</span>Time
+	auctionStart  time<span class="token punctuation">.</span>Time
+	auctionEnd    time<span class="token punctuation">.</span>Time
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">GetID</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>id
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">StartingPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Money <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>startingPrice
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">SetStartingPrice</span><span class="token punctuation">(</span>startingPrice Money<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	a<span class="token punctuation">.</span>startingPrice <span class="token operator">=</span> startingPrice
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">GetSellerID</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>sellerID
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">SetSellerID</span><span class="token punctuation">(</span>sellerID <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	a<span class="token punctuation">.</span>sellerID <span class="token operator">=</span> sellerID
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">GetCreatedAt</span><span class="token punctuation">(</span><span class="token punctuation">)</span> time<span class="token punctuation">.</span>Time <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>createdAt
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">SetCreatedAt</span><span class="token punctuation">(</span>createdAt time<span class="token punctuation">.</span>Time<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	a<span class="token punctuation">.</span>createdAt <span class="token operator">=</span> createdAt
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">GetAuctionStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span> time<span class="token punctuation">.</span>Time <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>auctionStart
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">SetAuctionStart</span><span class="token punctuation">(</span>auctionStart time<span class="token punctuation">.</span>Time<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	a<span class="token punctuation">.</span>auctionStart <span class="token operator">=</span> auctionStart
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">GetAuctionEnd</span><span class="token punctuation">(</span><span class="token punctuation">)</span> time<span class="token punctuation">.</span>Time <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>auctionEnd
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AnemicAuction<span class="token punctuation">)</span> <span class="token function">SetAuctionEnd</span><span class="token punctuation">(</span>auctionEnd time<span class="token punctuation">.</span>Time<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	a<span class="token punctuation">.</span>auctionEnd <span class="token operator">=</span> auctionEnd
+<span class="token punctuation">&#125;</span></code>`),t(n),c(o,n)},$$slots:{default:!0}});var A=a(v,6);i(A,{children:(o,l)=>{var n=q(),e=s(n);p(e,()=>`<code class="language-go"><span class="token keyword">package</span> chapter3
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"errors"</span>
+	<span class="token string">"github.com/google/uuid"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> AuctionRefactored <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	id            uuid<span class="token punctuation">.</span>UUID
+	startingPrice Money
+	sellerID      uuid<span class="token punctuation">.</span>UUID
+	createdAt     time<span class="token punctuation">.</span>Time
+	auctionStart  time<span class="token punctuation">.</span>Time
+	auctionEnd    time<span class="token punctuation">.</span>Time
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AuctionRefactored<span class="token punctuation">)</span> <span class="token function">GetAuctionElapsedDuration</span><span class="token punctuation">(</span><span class="token punctuation">)</span> time<span class="token punctuation">.</span>Duration <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>auctionStart<span class="token punctuation">.</span><span class="token function">Sub</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>auctionEnd<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AuctionRefactored<span class="token punctuation">)</span> <span class="token function">GetAuctionEndTimeInUTC</span><span class="token punctuation">(</span><span class="token punctuation">)</span> time<span class="token punctuation">.</span>Time <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>auctionEnd
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AuctionRefactored<span class="token punctuation">)</span> <span class="token function">SetAuctionEnd</span><span class="token punctuation">(</span>auctionEnd time<span class="token punctuation">.</span>Time<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	err <span class="token operator">:=</span> a<span class="token punctuation">.</span><span class="token function">validateTimeZone</span><span class="token punctuation">(</span>auctionEnd<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> err
+	<span class="token punctuation">&#125;</span>
+	a<span class="token punctuation">.</span>auctionEnd <span class="token operator">=</span> auctionEnd
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AuctionRefactored<span class="token punctuation">)</span> <span class="token function">GetAuctionStartTimeInUTC</span><span class="token punctuation">(</span><span class="token punctuation">)</span> time<span class="token punctuation">.</span>Time <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>auctionStart
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AuctionRefactored<span class="token punctuation">)</span> <span class="token function">SetAuctionStartTimeInUTC</span><span class="token punctuation">(</span>auctionStart time<span class="token punctuation">.</span>Time<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	err <span class="token operator">:=</span> a<span class="token punctuation">.</span><span class="token function">validateTimeZone</span><span class="token punctuation">(</span>auctionStart<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> err
+	<span class="token punctuation">&#125;</span>
+	a<span class="token punctuation">.</span>auctionStart <span class="token operator">=</span> auctionStart
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AuctionRefactored<span class="token punctuation">)</span> <span class="token function">GetId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> uuid<span class="token punctuation">.</span>UUID <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>id
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a <span class="token operator">*</span>AuctionRefactored<span class="token punctuation">)</span> <span class="token function">validateTimeZone</span><span class="token punctuation">(</span>t time<span class="token punctuation">.</span>Time<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	tz<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> t<span class="token punctuation">.</span><span class="token function">Zone</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> tz <span class="token operator">!=</span> time<span class="token punctuation">.</span>UTC<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"time zone must be UTC"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token boolean">nil</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),t(n),c(o,n)},$$slots:{default:!0}});var I=a(A,23);i(I,{children:(o,l)=>{var n=z(),e=s(n);p(e,()=>`<code class="language-go"><span class="token keyword">package</span> chapter3
+
+<span class="token keyword">type</span> Point <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	x intpackage chapter3
+
+<span class="token keyword">type</span> Point <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	x <span class="token builtin">int</span>
+	y <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">NewPoint</span><span class="token punctuation">(</span>x <span class="token builtin">int</span><span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">*</span>Point <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>Point<span class="token punctuation">&#123;</span>x<span class="token punctuation">,</span> y<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+</code>`),t(n),c(o,n)},$$slots:{default:!0}});var _=a(I,4);i(_,{children:(o,l)=>{var n=H(),e=s(n);p(e,()=>`<code class="language-go"><span class="token keyword">package</span> chapter3_test
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"github.com/jhseoeo/Golang-DDD/chapter3"</span>
+	<span class="token string">"testing"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">Test_Point</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	a <span class="token operator">:=</span> chapter3<span class="token punctuation">.</span><span class="token function">NewPoint</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+	b <span class="token operator">:=</span> chapter3<span class="token punctuation">.</span><span class="token function">NewPoint</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">if</span> a <span class="token operator">!=</span> b <span class="token punctuation">&#123;</span>
+		t<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span><span class="token string">"a and b were not equal"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),t(n),c(o,n)},$$slots:{default:!0}});var w=a(_,4),L=s(w);p(L,()=>`<code class="language-bash">$ go <span class="token builtin class-name">test</span>
+--- FAIL: Test_Point <span class="token punctuation">(</span><span class="token number">0</span>.00s<span class="token punctuation">)</span>
+    value_object_test.go:13: a and b were not equal
+FAIL
+<span class="token builtin class-name">exit</span> status <span class="token number">1</span>
+FAIL    github.com/jhseoeo/Golang-DDD/chapter3  <span class="token number">0</span>.001s</code>`),t(w);var f=a(w,6),N=s(f);p(N,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">NewPoint</span><span class="token punctuation">(</span>x <span class="token builtin">int</span><span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> Point <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> Point<span class="token punctuation">&#123;</span>x<span class="token punctuation">,</span> y<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),t(f);var P=a(f,8);i(P,{children:(o,l)=>{var n=Q(),e=s(n);p(e,()=>`<code class="language-go"><span class="token keyword">package</span> chapter3
+
+<span class="token keyword">type</span> Point <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	x <span class="token builtin">int</span>
+	y <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">NewPoint</span><span class="token punctuation">(</span>x <span class="token builtin">int</span><span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> Point <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> Point<span class="token punctuation">&#123;</span>x<span class="token punctuation">,</span> y<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">(</span>
+	directionUnkonwn <span class="token operator">=</span> <span class="token boolean">iota</span>
+	directionNorth
+	directionSouth
+	directionEast
+	directionWest
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">TrackPlayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	currLocation <span class="token operator">:=</span> <span class="token function">NewPoint</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+	currLocation <span class="token operator">=</span> <span class="token function">move</span><span class="token punctuation">(</span>currLocation<span class="token punctuation">,</span> directionNorth<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">move</span><span class="token punctuation">(</span>currLocation Point<span class="token punctuation">,</span> direction <span class="token builtin">int</span><span class="token punctuation">)</span> Point <span class="token punctuation">&#123;</span>
+	<span class="token keyword">switch</span> direction <span class="token punctuation">&#123;</span>
+	<span class="token keyword">case</span> directionNorth<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token function">NewPoint</span><span class="token punctuation">(</span>currLocation<span class="token punctuation">.</span>x<span class="token punctuation">,</span> currLocation<span class="token punctuation">.</span>y<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token keyword">case</span> directionSouth<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token function">NewPoint</span><span class="token punctuation">(</span>currLocation<span class="token punctuation">.</span>x<span class="token punctuation">,</span> currLocation<span class="token punctuation">.</span>y<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token keyword">case</span> directionEast<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token function">NewPoint</span><span class="token punctuation">(</span>currLocation<span class="token punctuation">.</span>x<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> currLocation<span class="token punctuation">.</span>y<span class="token punctuation">)</span>
+	<span class="token keyword">case</span> directionWest<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token function">NewPoint</span><span class="token punctuation">(</span>currLocation<span class="token punctuation">.</span>x<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> currLocation<span class="token punctuation">.</span>y<span class="token punctuation">)</span>
+	<span class="token keyword">default</span><span class="token punctuation">:</span>
+		<span class="token comment">// :D</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">return</span> currLocation
+<span class="token punctuation">&#125;</span></code>`),t(n),c(o,n)},$$slots:{default:!0}});var x=a(P,35);i(x,{children:(o,l)=>{var n=V(),e=s(n);p(e,()=>`<code class="language-go"><span class="token keyword">package</span> chapter3
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"errors"</span>
+	<span class="token string">"github.com/google/uuid"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> WalletItem <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">GetBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Money<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Wallet <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	id          uuid<span class="token punctuation">.</span>UUID
+	ownerId     uuid<span class="token punctuation">.</span>UUID
+	walletItems <span class="token punctuation">[</span><span class="token punctuation">]</span>WalletItem
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>w Wallet<span class="token punctuation">)</span> <span class="token function">GetWalletBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span>Money<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> result Money
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> w<span class="token punctuation">.</span>walletItems <span class="token punctuation">&#123;</span>
+		itemBal<span class="token punctuation">,</span> err <span class="token operator">:=</span> v<span class="token punctuation">.</span><span class="token function">GetBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"failed to get balance"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+		result <span class="token operator">+=</span> itemBal
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>result<span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),t(n),c(o,n)},$$slots:{default:!0}});var h=a(x,20),C=s(h);p(C,()=>`<code class="language-go"><span class="token keyword">type</span> item <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	name <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Order <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	items          <span class="token punctuation">[</span><span class="token punctuation">]</span>item
+	taxAmount      Money
+	discount       Money
+	paymentCard    uuid<span class="token punctuation">.</span>UUID
+	customerId     uuid<span class="token punctuation">.</span>UUID
+	marketingOptIn <span class="token builtin">bool</span>
+<span class="token punctuation">&#125;</span></code>`),t(h);var S=a(h,19),W=a(s(S),2);T(W,{alt:"Domain-Driven Design with Golang Cover",src:"https://learning.oreilly.com/covers/urn:orm:book:9781804613450/400w/"}),j(3),t(S),c(U,b)}export{mn as default,Z as metadata};

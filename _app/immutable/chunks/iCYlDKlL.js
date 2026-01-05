@@ -1,0 +1,673 @@
+import"./Bzak7iHL.js";import"./69_IOA4Y.js";import{s as n,f as Vn,c as s,r as a,n as Q}from"./CVx5jffJ.js";import{f as Xn,a as Jn}from"./2cXyNWGb.js";import{h as t}from"./D6IIVJDJ.js";import{I as Kn}from"./BVXqo7x9.js";const Zn={title:"타입, 메소드, 인터페이스",date:"2022-08-11T00:00:00.000Z",excerpt:"Types, Methods, Interfaces",categories:["Golang","Basic Golang"],coverImage:"/post_img/Go/Golang_basics/cover.png",coverWidth:16,coverHeight:9,indexed:!1,exposed:!0},{title:ps,date:os,excerpt:es,categories:cs,coverImage:us,coverWidth:ls,coverHeight:is,indexed:ks,exposed:rs}=Zn;var Qn=Xn(`<br/> <p>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 20.04 LTS 기준으로 작성되었습니다.</p> <br/><br/> <h2 id="types"><a aria-hidden="true" tabindex="-1" href="#types"><span class="icon icon-link"></span></a>Types</h2> <hr/> <p>Go에는 Class나 상속과 같은 개념이 개념이 존재하지 않는다. 대신 타입을 정의하고자 하는 경우, <code>type</code> 키워드를 사용하여 정의한다.</p> <pre class="language-go"><!></pre> <p>위처럼 정의된 타입들은 이들이 정의된 스코프 내에서만 정의 가능하다.</p> <br/> <p>한 가지 짚고 넘어가야 할 점은, 위 예제의 <code>Score</code> 타입의 경우 사실상 <code>int</code>와 동일한 타입이다.
+그럼에도 위와 같이 타입명을 지정해준 것은 타입명 자체를 일종의 <strong>documentation</strong>으로 볼 수 있기 때문이다.</p> <p>이러한 타입 지정은 해당 타입의 변수 또는 인스턴스가 코드 내에서 어떠한 역할을 하며,
+어떠한 데이터를 저장할 지에 대한 정보를 제공할 수 있다.
+위 예제에서 <code>Score</code>는 <code>int</code>와 똑같은 정수 타입이기는 해도, 무식하게 큰 정수나 음수인 값에 대해서는 유효하지 않은 값임을 파악할 수 있을 것이다.</p> <p>위 예제의 <code>Employee</code>은 유저가 정의한 타입을 다시 정의한 경우인데, 이 또한 같은 맥락에서 바라볼 수 있다.
+저장하고 있는 데이터의 종류는 같을지라도, 이들이 사용되어야 할 적합한 맥락에 대해서 정보를 제공할 수 있다.</p> <br/><br/> <h3 id="inheritance-in-go"><a aria-hidden="true" tabindex="-1" href="#inheritance-in-go"><span class="icon icon-link"></span></a>Inheritance in Go?</h3> <p>Go에는 객체지향과 상속 개념이 없다. type을 선언할 수 있지만, 이는 말 그대로 어디까지나 선언만 할 수 있는 것이다.</p> <pre class="language-go"><!></pre> <p>위와 같은 <code>type</code> 선언은 상속처럼 보일 수는 있지만, 엄연히 다르다. 실질적으로는 이름만 다른 동일한 타입이 두 개 선언되는 것.
+이들 사이에는 어떠한 계층 구조도 존재하지 않는다.</p> <p>객체지향에서 <em>child class</em>는 <em>parent class</em>가 가진 모든 메소드와 값들을 사용할 수 있어야 하며, parent class가 사용되는 곳 어디에든 사용될 수 있어야 한다.
+반면 Go에서는, 위 예제의 <code>Score</code> 인스턴스가 사용되는 상황에서 <code>HighScore</code> 인스턴스를 사용하려면 타입 변환을 해주어야 한다.</p> <pre class="language-go"><!></pre> <br/><br/> <h3 id="enumeration-in-go---iota"><a aria-hidden="true" tabindex="-1" href="#enumeration-in-go---iota"><span class="icon icon-link"></span></a>Enumeration in Go - iota</h3> <p>여러 프로그래밍 언어에 존재하는 <em>Enumeration</em>에 대한 개념 대신, Go에는 <code>iota</code>가 존재한다. 바로 예제를 확인해보자.</p> <pre class="language-go"><!></pre> <pre class="language-bash"><!></pre> <p>위 예제의 실행 결과를 확인해보면, 0부터 4까지의 수가 순서대로 할당되었음을 알 수 있다.
+이는 <code>iota</code>가 첫 번째 상수인 <code>Uncategorized</code>에 0, 두 번째 상수인 <code>Personal</code>에 1, 이런 식으로 점점 증가되게끔 값을 할당하였기 때문이다.
+또한, 만일 새로운 <code>const</code> 선언 블록이 존재할 경우, iota는 0이 될 것이다.</p> <br/> <pre class="language-go"><!></pre> <p><code>_</code>를 이용하면 iota로 할당되는 값을 건너뛸 수 있다.
+또한 <code>iota</code>를 사용할 때 위와 같은 표현식을 사용하여 값들을 할당할 수도 있다.
+다만 이런 경우, 무슨 목적으로 이런 코드를 짰는지 잘 명시해주는 것이 좋겠다.</p> <br/> <p>단 <code>iota</code>를 사용하려면 <code>iota</code>에 의해서 할당되는 값이 큰 의미가 없는 경우여야 한다.
+0, 1, 2, … 등 <code>iota</code>에 의해 할당되는 값들은 단순히 서로를 구분하기 위해서 사용되는 값일 뿐이며, 이 값을 직접적으로 사용해선 안된다.
+만일 <code>iota</code>를 사용하는 <code>const</code> 블록 중간에 새로운 상수를 추가하면 값들이 전체적으로 바뀔 것이다.
+이 때 <code>iota</code>에 의해 할당되는 값을 직접적으로 사용한다면 이에 영향을 받을 것이다.</p> <p>특정 인터페이스와 직접적으로 관련되어있지 않은 내부적인 로직에서 사용하는 것이 좋다.
+만약 어느 <code>struct</code> 타입에 <code>iota</code>를 사용하는 Enumeration 필드가 존재하고, 해당 인스턴스들이 DB에 저장되어있다고 가정해보자.
+그런데 <code>iota</code>를 사용하는 <code>const</code> 블록 중간에 새로운 상수를 추가하면 DB에 저장된 값들이 완전히 다른 값을 가리키게 될 것이다.</p> <p>따라서 상수의 값이 중요한 경우이거나 내부적인 로직에서 사용하는 것이 아니라면 <code>iota</code>를 쓰지 말고 그냥 값을 직접 할당해주는 편이 좋다.
+그게 아니라면 문서를 잘 써놓자.</p> <br/><br/> <h2 id="methods"><a aria-hidden="true" tabindex="-1" href="#methods"><span class="icon icon-link"></span></a>Methods</h2> <hr/> <p>Go에서는 <em>User-defined type</em>에 대해 메소드를 생성할 수 있다.
+일반적인 함수 선언과 유사하지만, <code>func</code>와 메소드명 사이에 <strong>receiver</strong>를 명시해준다.
+보통의 변수 선언처럼 변수명을 먼저 적고 타입을 뒤에 적는다.
+일반적으로는 타입명의 맨 앞글자를 소문자로 적는다고 한다.</p> <pre class="language-go"><!></pre> <p>Go에서는 함수 오버로딩을 지원하지 않으며, 메소드도 동일하다.
+동일한 타입에서 두개 이상의 동일한 이름을 가진 메소드를 선언할 수 없다.</p> <p>또한 타입과 이에 대한 메소드가 선언된 파일을 서로 분리할 수는 있지만, 같은 파일 에서 함께 선언하는 것이 권장된다고 한다.</p> <br/><br/> <h3 id="pointer-receivers"><a aria-hidden="true" tabindex="-1" href="#pointer-receivers"><span class="icon icon-link"></span></a>Pointer Receivers</h3> <p>함수에서 포인터 파라미터를 사용할 때처럼, <em>Receiver</em>에도 포인터를 사용할 수 있다.
+이 때 <em>Value Receiver</em>를 사용할 때와의 차이점은 <em>Receiver</em>로 패스한 값이 변경될 수 있다는 것이다.</p> <p><em>Pointer Reciver</em>에 대한 몇 가지 규칙이 존재한다.</p> <ol><li>메소드가 <em>Reciver</em> 값을 변경한다면, 반드시 <em>Pointer Reciver</em>를 사용한다.</li> <li>메소드가 <code>nil</code> 인스턴스를 다뤄야 한다면, 반드시 <em>Pointer Reciver</em>를 사용한다.</li> <li>메소드가 <em>Reciver</em> 값을 변경하지 않는다면, <em>Value Reciver</em>를 사용할 수 있다.</li></ol> <p><em>Reciver</em> 값을 변경하지 않는 메소드에 대해서도 <em>Pointer Reciver</em>를 사용하는 것이 국룰이라고 한다.
+다만 난 잘 모르겠다. 개인적으로는 값을 변경하지 않는다면 명시적으로 <em>Value Reciver</em>를 써도 되는 거 아닌가 싶다.</p> <br/> <pre class="language-go"><!></pre> <p>함수에 포인터 파라미터를 넘길 때와는 달리, Receiver에 <code>&</code>를 붙이지 않아도 된다.
+위 <code>c.Increment()</code> 부분은 자동으로 <code>(&c).Increment()</code>로 변환된다.
+아래 코드는 예제의 실행 결과이다.</p> <pre class="language-bash"><!></pre> <br/> <p>이러한 규칙들에 대해 잘 이해하면, 아래 예제의 실행 결과도 알 수 있을 것이다.</p> <pre class="language-go"><!></pre> <p><code>doUpdateWrong()</code> 함수의 스코프 내에서 <code>c.Increment()</code>를 호출시 <code>c</code>가 변경되고, 그 결과가 이후 출력에서 반영된다.
+하지만 <code>doUpdateWrong()</code> 함수는 파라미터인 <code>Counter</code>를 <em>pass by value</em>로 받았기 때문에 <code>main()</code> 함수로 되돌아왔을 때 변경사항이 유지되지 않는다.
+반면 <code>doUpdateWrong()</code> 함수는 파라미터를 <em>pass by pointer</em>로 받았기에, 변경사항이 유지된다.</p> <p>위 예제의 실행 결과는 아래와 같다.</p> <pre class="language-bash"><!></pre> <br/> <p>이렇게 유저가 정의한 타입에 Method를 통해 <em>Getter</em>나, <em>Pointer Reciver</em>를 이용하여 <em>Setter</em>를 정의할 수는 있다.
+다만 필드에 직접 값을 할당하는 경우가 아니거나, 여러 필드를 한 번의 오퍼레이션으로 처리해야 하는 경우가 아니라면,
+Go에서는 되도록이면 필드값에 직접 접근하는 것을 권장한다.</p> <br/><br/> <p><em>Pointer Reciver</em>는 <code>nil</code> 인스턴스를 다뤄야 할 때 사용할 수 있다.</p> <p>다른 언어들의 경우 <code>null</code>이나 <code>None</code> 인스턴스에서 메소드를 호출하면 에러가 발생한다.
+Go에서도 <code>nil</code> 인스턴스에서 메소드를 호출할 때 <em>Value Reciver</em>인 경우에는 <em>panic</em>이 발생하지만, <em>Pointer Reciver</em>인 경우 메소드가 정상적으로 호출된다.
+이 경우, 메소드가 <code>nil</code> 인스턴스를 처리할 수 있게끔 작성되어 있어야 한다.</p> <pre class="language-go"><!></pre> <p>위 예제는 <code>nil</code> 인스턴스를 핸들링할 수 있는 정수형 바이너리 트리의 예제이다.</p> <p><code>IntTree.Contains()</code> 메소드는 현재 receiver가 <code>nil</code>인지에 따라 해당 값이 포함되어 있는가의 여부를 판단하며 <code>IntTree.Insert()</code> 메소드는 현재 receiver가 <code>nil</code>일 경우 현 위치에 값을 추가한 값을 반환한다.
+단, 이때는 포인터 파라미터를 사용할 때처럼 receiver에 특정 주소값을 할당하여도, 원본 포인터가 변경되지는 않는다.</p> <br/><br/> <h3 id="methods-and-functions"><a aria-hidden="true" tabindex="-1" href="#methods-and-functions"><span class="icon icon-link"></span></a>Methods and Functions</h3> <p>Go에서 메소드는 함수와 유사한 점이 많다.</p> <pre class="language-go"><!></pre> <p>함수를 변수에 할당하여 사용할 수 있듯, 위 예제의 <code>f1</code>처럼 메소드도 변수에 할당하여 사용할 수 있다.
+이 때 이 메소드의 타입은 <code>func(int)int</code>가 되며, 이를 <em>method value</em>라 한다.</p> <p><em>method value</em>는 <em>closure</em>처럼 파라미터로 넘기거나 할 수도 있다. <em>method value</em>를 선언할 때 붙어있던 <em>receiver</em>가 고정되어 있기 때문에, 이를 호출할 경우 해당 <em>receiver</em>가 영향을 받는다.</p> <p>위 예제의 <code>f2</code>처럼 그냥 타입명에 메소드를 붙인 것을 변수에 할당할 수도 있다.
+이를 <em>method expression</em>이라 한다. 이 때 이 메소드의 타입은 <code>func(Adder, int) int</code>가 되며, 첫 번째 파라미터가 <em>receiver</em>가 된다.</p> <p>이렇게 Go에서는 메소드를 함수처럼 사용할 수 있기에 큰 차이가 없기에 어느 것을 사용해야 할지 혼동이 올 수 있다.
+만약 작성하고자 하는 로직이 입력 파라미터에 의해서만 영향을 받는다면 함수를 사용하는 것이 옳다.
+반면 프로그램이 실행되며 설정되고, 실행 중 계속 바뀌는 어떤 값에 의해 로직이 영향을 받을 수 있다.
+그러한 경우 이 값들은 <code>struct</code>에 저장되어야 하고 메소드를 사용하는 것이 좋다.</p> <br/><br/> <h2 id="embedding"><a aria-hidden="true" tabindex="-1" href="#embedding"><span class="icon icon-link"></span></a>Embedding</h2> <hr/> <p>Go에는 상속이 없지만 <strong>Embedding</strong>을 통해 구조화된 <code>struct</code> 타입을 구성할 수 있다.</p> <p>기본적인 예제는 다음과 같다.</p> <pre class="language-go"><!></pre> <p><code>Manager</code>를 정의할 때 <code>Employee</code>를 필드명 없이 선언해줌으로써, <code>Employee</code>는 <code>Manager</code>의 <strong>Embedded Field</strong>가 된다. <code>Manager</code>에서는 <code>Employee</code>의 필드에 접근할 수 있다.</p> <br/> <pre class="language-go"><!></pre> <p>위 예제처럼 <em>Embedding</em>된 구조체의 내부와 외부 양쪽에 동일한 필드명을 가진 상황이 생길 수 있다.</p> <p>이러한 경우, <code>Outer</code>에 있는 <code>Inner</code> 내부에 위치한 X에 접근하려고 할 때는 <code>Inner</code>를 명시해줘야 한다.</p> <br/><br/> <p><em>Embedding</em>은 다른 언어에서 찾기 힘든, 흔치 않은 개념이다. 그래서 구조적으로 비슷한 상속과 연관지어서 생각하곤 하는데, <em>Embedding</em>은 상속과는 명백하게 다르다.</p> <br/> <p>위 <code>Manager</code>와 <code>Employee</code> 예제에 이어서, 아래 예제도 살펴보자.</p> <pre class="language-go"><!></pre> <p>만약 상속이었다면 위 <code>var eFail Employee = m</code> 라인이 정상적으로 컴파일되었을 것이다. <code>Manager</code>를 <code>Employee</code>의 하위 개념으로 보기 때문.
+하지만 <em>Embedding</em>은 상속과는 차이가 있기 때문에 에러가 발생한다.</p> <br/> <p>Go는 상속을 지원하지 않기 때문에 폴리모피즘과는 거리가 있고, <strong>Dynamic Dispatch</strong>(동적 디스패치)도 존재하지 않는다.</p> <pre class="language-go"><!></pre> <pre class="language-bash"><!></pre> <p>위 예제에서 <code>o.Double()</code>를 호출하면 겹치는 메소드명이 없기 때문에 <code>o.Inner.Double()</code>가 자동 호출된다.
+이 때 <code>o.Inner.Double()</code> 내부에서는 <code>o.Inner.IntPrinter()</code>를 호출하기 때문에, <code>Inner: 20</code>가 출력된 것이다.
+이렇듯 Go에서 메소드는 전혀 오버라이딩되지 않는다.</p> <br/><br/> <h2 id="interface"><a aria-hidden="true" tabindex="-1" href="#interface"><span class="icon icon-link"></span></a>Interface</h2> <hr/> <p>책에서는 Go의 진정한 꽃이 Goroutine을 위시한 Concurrency가 아니라, 이 <em>Interface</em>라고 하는데, 대체 얼마나 맛집이기에..</p> <p>설명에 앞서 인터페이스는 아래와 같이 정의할 수 있다.</p> <pre class="language-go"><!></pre> <p><code>struct</code>를 정의하는 것과 큰 차이는 없는 것 같다.
+암묵적인 룰이 하나 있는데, 인터페이스의 이름은 대개 “er”로 끝난다.
+그 예로 <code>fmt.Stringer</code>, <code>io.Reader</code>, <code>io.Closer</code>, <code>io.ReadCloser</code>, <code>json.Marshaler</code>, <code>http.Handler</code> 등등이 있다.</p> <br/> <p><em>Interface</em>는 객체지향의 <em>Abstract Class</em>와 유사하지만, 차이점이 있다.
+다른 객체지향 언어에서는 <em>Abstract Class</em>에서 선언된 메소드 등을 <em>Concrete Class</em>에서 구현한다.</p> <p>반면 Go의 인터페이스는 <span style="background-color: #FFF5B1">암묵적</span>인 개념이다. <em>Concrete Type</em>에서는 인터페이스를 구현한다고 선언하지 않는다.
+만약 <em>Concrete Type</em>에서 구현하는 메소드들이 인터페이스에서 선언된 모든 메소드들을 포함한다면,
+그 때 <em>Concrete Type</em>가 인터페이스를 구현한다고 할 수 있으며, 이래서 암묵적이라는 표현을 사용하는 듯 하다.
+그래서 Go에서는 <em>Concrete Type</em>을 인터페이스에 할당한다는 느낌으로 받아들여야 하는 것 같다.</p> <p><em>Interface</em> 덕에 Type-Safe, 디커플링, 정적/동적 언어에서 기능을 연결하는 것이 가능해진다고 하는데, 이건 좀 더 해봐야 알 듯 하다.</p> <p>Javascript, Python 등의 동적 타입 언어에서는 인터페이스가 없는 대신 <em>Duck Typing</em>이란 것을 사용한다. <em>Duck Typing</em>은 어떤 인스턴스가 원하는 메소드(또는 필드)들을 가지고 있다면, 내가 원하는 타입으로 간주한다는 뜻이다.
+프로젝트의 규모가 너무 크거나, 프로젝트가 너무 오래되어서 의존성을 추적하기 어려운 경우 이런 방식을 사용한다.</p> <p>주로 정적 타입 언어를 사용하는 개발자라면 이런 방식에 대해 회의적이다.
+인스턴스의 타입을 명시하지 않으면 어떤 타입인지 확인하기도 어려울 것이며, 어떤 기능을 할 수 있을지 예측할 수 없으리라 생각한다.</p> <p>반면 Java에서는 다소 패턴이 다르다. 인터페이스의 정의와 구현이 각각 존재하지만, 인터페이스의 정의만 참조된다.
+주로 동적 타입 언어를 사용하는 개발자들은 이 방식에 대해, 인터페이스가 바뀔 때마다 코드를 다시 짜야 하는 불편한 방식이라고 생각한다.</p> <br/> <p>만약 어플리케이션이 잠정적으로 개선될 여지가 있다면 코드에 유연성이 필요하다.
+하지만 코드가 하고 있는 일이 무엇인지에 대해 사람들이 이해할 수 있도록 하는 것도 중요하기에, 코드의 역할과 의존성 등을 명시할 필요도 있다.
+Go의 인터페이스는 양쪽 모두의 입장을 받아들인다.</p> <p>아래 예제에서 Interface가 사용된 예시를 확인할 수 있다.</p> <pre class="language-go"><!></pre> <p><em>Concrete Type</em> 역할을 하는 <code>LogicProvider</code>가 정의될 때, 이것이 <code>Logic</code>이라는 인터페이스에 관련된 것이라고 선언된 것은 없다. <code>Logic</code>과 <code>LogicProvider</code>이 연결되는 것은, <code>Client</code> 인스턴스인 <code>c</code>가 생성될 때이며, <code>LogicProvider</code>에는 <code>Logic</code>에서 정의된 것과 동일한 이름의 메소드인 <code>Process()</code>가 존재할 뿐이다.
+따라서 <code>LogicProvider</code>가 <code>Logic</code>이라는 인터페이스를 위한 <em>Concrete Type</em>임을 알 수 있도록, 잘 문서화할 필요가 있다.</p> <br/> <p>Go에서는 <code>io.Reader</code>나 <code>io.Writer</code> 등, 스탠다드 인터페이스도 존재한다.
+스탠다드 인터페이스를 사용하는 것은 <em>decorator</em> 패턴과 유사한데,
+특정 인터페이스의 인스턴스를 받아서 동일한 인터페이스의 다른 인스턴스를 반환하는 <em>Factory Function</em>(객체를 반환하는 함수)를 자주 사용하기 때문.</p> <p>아래 예제를 확인하자.</p> <pre class="language-go"><!></pre> <p>위 코드에서 <code>os.Open()</code>에 의해 반환된 <code>os.File</code> 인스턴스는 <code>io.Reader</code> 인터페이스를 충족시킨다.
+따라서 <code>process()</code> 함수 내에서 파일의 데이터를 읽을 수 있다.</p> <p>아래 예제는 <code>gzip</code>을 통해 파일을 압축 해제할 수 있는 경우에, <code>gzip</code> 라이브러리를 사용하여 압축 해제하는 예제이다.</p> <pre class="language-go"><!></pre> <p>위처럼 스탠다드 라이브러리의 인터페이스가 코드에 잘 어울릴 것 같으면, 사용하는 것이 좋다.</p> <p>예제에서는 <code>gzip</code>으로 압축 해제된 <code>io.Reader</code> 인터페이스의 인스턴스가 <code>gz</code>에 할당되고,
+그 <code>gz</code>가 다시 한번 <code>process()</code>함수에서 <code>io.Reader</code>의 인스턴스가 된다.</p> <p>어느 타입의 메소드들이 특정 인터페이스를 충족시키고도 남는 경우,
+즉 인터페이스에 명시된 것 외의 메소드들이 존재한다고 해도 그 타입은 인터페이스를 충족시킨다.
+이 때문에 한 타입이 두 개 이상의 인터페이스를 동시에 충족시킬 수 있다. 이 때 명시된 것 외의 메소드들은 무시한다.
+이를테면 <code>io.File</code> 타입은 <code>io.Reader</code>와 <code>io.Writer</code>를 동시에 충족시킨다.
+즉, <code>io.File</code> 한 가지 타입으로 읽고 쓰기가 동시에, 각각 지원되는 것이다.</p> <br/><br/> <h3 id="embedding-and-interfaces"><a aria-hidden="true" tabindex="-1" href="#embedding-and-interfaces"><span class="icon icon-link"></span></a>Embedding and Interfaces</h3> <p><code>struct</code> 타입을 Embedding하는 것처럼, 인터페이스도 인터페이스 안에 Embedding할 수 있다.
+스탠다드 라이브러리의 <code>io.ReadCloser</code>도 <code>io.Reader</code>와 <code>io.Closer</code>가 임베딩된 것이다.
+아래의 예제와 유사하다.</p> <pre class="language-go"><!></pre> <br/><br/> <h3 id="accept-interfaces-return-structs"><a aria-hidden="true" tabindex="-1" href="#accept-interfaces-return-structs"><span class="icon icon-link"></span></a>Accept Interfaces, Return Structs</h3> <p>Go의 빡고수들이 버릇처럼 읊는 말이 <strong>Accept Interfaces, Return Structs</strong>라고 한다.
+이는 함수에 의해 호출되는 로직은 반드시 인터페이스를 통해 호출되어야 하며,
+함수의 결과값은 반드시 concrete type(struct)이어야 한다는 것이다.
+함수의 파라미터로 인터페이스를 받으면 어떤 기능을 사용할 것인지 명시적으로 선언하면서도, flexible함을 동시에 챙길 수 있다.</p> <p>만약 API가 (암묵적이어야 할) 인터페이스를 리턴한다면, 디커플링이라는 인터페이스의 장점을 잃는다.
+만약 그렇게 된다면 서드 파티 모듈의 인터페이스에 코드가 종속되는 결과를 낳게 된다.
+대개 서드 파티 인터페이스에 대한 클라이언트의 의존성을 줄이고자 하기 마련이다.
+이를 위해 또다른 인터페이스를 작성한 뒤, 타입 변환을 하는데(의존성 주입, Dependency Injection),
+이는 어플리케이션의 기능을 제약할 수도 있기에 좋은 방법은 아니다.</p> <p>인터페이스를 리턴하지 말아야 하는 또 다른 이유는 버전에 관련된 것이다.
+Concrete Type을 리턴하는 경우에는 기존 코드에 새로운 메소드나 필드가 별 문제 없이 추가될 수 있다.
+반면 인터페이스의 경우에는 새로운 메소드를 추가하려면 기존에 존재하는 모든 메소드들의 구현을 업데이트해야 한다.
+따라서 API를 롤백해야 하는 경우에도, major version number를 증가시켜야 한다.</p> <p>인터페이스가 정해져 있고 파라미터에 따라서 다른 인스턴스가 나오는 factory function을 짜는 것보다는,
+타입들을 분리하여 concrete type이 반환되는 각각의 함수를 작성하는 것이 좋다.</p> <p>웬만하면 인터페이스를 반환하지 않는 것이 좋긴 한데, 가끔 어쩔 수 없이 하는 경우가 있다. 대표적인 예시가 바로 에러이다.
+Go에서는 <code>error</code> 인터페이스를 반환하도록 선언되는 경우가 많다.
+이는 인터페이스가 Go에서 유일하게 사용할 수 있는 추상 유형이며. <code>error</code> 인터페이스의 다른 구현을 사용해야 하는 경우가 많기 때문이다.
+따라서 가능한 모든 옵션을 처리하기 위해 인터페이스를 사용해야 한다.</p> <p>다만 이러한 패턴의 잠재적인 문제점이 존재한다.
+concrete type을 반환하는 경우 Heap 할당이 줄어들기에 가비지 콜렉터의 워크로드가 줄어든다.
+반면 인터페이스를 파라미터로 사용하는 함수의 경우, 각 인터페이스마다 Heap 할당되므로, 가비지 콜렉터가 힘들어한다.
+결국은 더 좋은 성능과 더 좋은 추상화 사이에 trade-off가 존재하는 셈이다.</p> <p>그렇기 때문에 되도록이면 코드를 예쁘게, 고치기 편하게 작성하는 것이 좋다.
+그래야 인터페이스로 인한 잠재적인 성능 문제가 발생하여도, 이를 concrete type으로 변경하는 등의 작업을 하기가 쉬워진다.</p> <br/><br/> <h3 id="interfaces-and-nil"><a aria-hidden="true" tabindex="-1" href="#interfaces-and-nil"><span class="icon icon-link"></span></a>Interfaces and nil</h3> <p>많이 봐왔듯, <code>nil</code>은 포인터의 Zero value이다.
+마찬가지로 <code>nil</code>은 인터페이스의 Zero value이긴 하지만, Concrete Type들에 비해 간단하지만은 않다.</p> <pre class="language-go"><!></pre> <pre class="language-bash"><!></pre> <p>Go의 인터페이스는 내부적으로 두 쌍의 포인터로 구성되며, 각각 타입, 값을 가리킨다.
+만약 타입을 가리키는 포인터가 <code>nil</code>이 아니라면, 인터페이스는 <code>nil</code>이 아닌 것이다. 출력 결과의 세 번째 라인이 저 모양인 것이 이 때문.</p> <p>인터페이스에 할당된 concrete type에 따라 호출되는 메소드가 달라지듯, 인터페이스에서 <code>nil</code>은 메소드를 호출할 수 있는지 여부를 나타낸다.
+만약 인터페이스가 <code>nil</code>임에도 메소드를 호출하였다면, <em>panic</em>이 발생한다.
+만약 인터페이스가 <code>nil</code>이 아닌데 메소드를 호출하였다면, 메소드를 호출하려고 시도할 것이다.
+(다만 위 예제와 같은 경우 인터페이스에 연결된 값이 <code>nil</code>이기 때문에, 곧바로 <em>panic</em>이 발생할 것이다.)</p> <p>인터페이스 인스턴스의 타입을 나타내는 포인터가 <code>nil</code>이 아니라면, 이는 <code>nil</code>이 아닌 것이다.
+그렇다고 해서 이 인터페이스의 값이 <code>nil</code>인지는 확실하게 알 수 없기 때문에, 나중에 나올 <em>Reflection</em>을 사용해야 한다.</p> <br/><br/> <h3 id="the-empty-interface-says-nothing"><a aria-hidden="true" tabindex="-1" href="#the-empty-interface-says-nothing"><span class="icon icon-link"></span></a>The Empty Interface Says Nothing</h3> <p>정적 타입 언어에서도 아무 타입이나 다 집어넣을 수 있는 변수가 필요할 때가 있다.
+그러한 경우, Go에서는 <code>interface&#123;&#125;</code>를 사용할 수 있다.</p> <pre class="language-go"><!></pre> <p>비어 있는 인터페이스는 말 그대로 아무 값이나 다 저장할 수 있다.
+인터페이스가 비어 있다는 말은 0개 이상의 메소드가 있는 타입들을 가리킬 수 있다는 뜻이며,
+그래서 메소드가 없는 <code>int</code>, <code>string</code> 등의 Primitive Type들도 저장이 가능해진다.</p> <br/> <p>비어 있는 인터페이스가 사용되는 예 중 하나는, JSON처럼 외부 소스에서 읽어온 불분명한 스키마의 placeholder로 사용하는 것이다.</p> <pre class="language-go"><!></pre> <p>위 코드를 실행하면 JSON 데이터가 <code>data</code> 변수에 저장된다.</p> <br/> <p>또 다른 경우에는, 유저가 만든 자료구조에서 다양한 타입의 값을 저장하기 위해 사용된다.
+Go의 <code>slice</code>, <code>map</code> 등 타입들은 한 가지 타입밖에 저장하지 못하는데 비해, <code>interface&#123;&#125;</code>는 여러 타입을 가리킬 수 있기 때문.</p> <pre class="language-go"><!></pre> <p>위 코드는 러프한 예시니까 실제로 사용하지는 말자.</p> <p>또 다른 사용예로는 함수의 파라미터로 <code>interface&#123;&#125;</code>를 받는 경우인데, <em>reflection</em>을 하기 위해 사용한다고 하는 것 같다. <em>reflection</em>은 나중에 나온다!</p> <br/> <p>근데 <code>interface&#123;&#125;</code>를 되도록이면 사용하지 않는 게 좋다.
+Go는 기본적으로 정적 타입 언어로 디자인된 언어인 만큼, <code>interface&#123;&#125;</code>로 여러 타입들을 쑤시고 다니는 건 좋지 않다. <code>interface&#123;&#125;</code>를 사용하여 값들을 저장해야 할 상황에서, 값을 다시 읽어오려면 어떻게 해야 할까?
+그럴 때 바로 아래에서 설명할 <em>Type Assertions</em> 및 <em>Type Switches</em>를 사용해 보자.</p> <br/><br/> <h3 id="type-assertions-and-type-switches"><a aria-hidden="true" tabindex="-1" href="#type-assertions-and-type-switches"><span class="icon icon-link"></span></a>Type Assertions and Type Switches</h3> <p>Go에는 어떤 변수의 인터페이스가 가리키는 타입이 특정한 Concrete Type인지,
+혹은 Concrete Type이 또 다른 인터페이스를 구현하는지 확인할 수 있는 두 가지 방법이 있다.</p> <p>한 가지가 바로 <strong>Type Assertion</strong>이다.
+이는 어떤 인터페이스를 구현하는 Concrete Type에 이름을 붙이거나,
+또는 이 인터페이스를 구현하고 있는 Concrete Type이 구현하는 또 다른 인터페이스에 이름을 붙인다.</p> <pre class="language-go"><!></pre> <p>이렇게 <em>Type Assertion</em>을 사용하여 <code>i</code>가 가리키고 있는 타입을 <code>MyInt</code>로 한정할 수 있다.
+위 예제에서 변수 <code>i2</code>의 타입은 <code>MyInt</code>가 된다.</p> <br/> <p>만약 잘못된 타입으로 <em>Type Assertion</em>을 하면 <em>panic</em>이 발생한다.</p> <pre class="language-go"><!></pre> <br/> <p><code>int</code>와 <code>MyInt</code>는 본질적으론 같은 타입이지만, Go는 타입에 엄격하기 때문에 <em>Type Assertion</em>을 사용할 때 Concrete Type끼리 일치시켜주어야 한다.
+따라서 아래와 같은 예제는 <em>panic</em>이 발생한다.</p> <pre class="language-go"><!></pre> <br/> <p><code>map</code>을 사용할 때 보았던 <em>comma ok idiom</em>을 사용하여 panic을 회피할 수 있다.</p> <pre class="language-go"><!></pre> <p><code>map</code>에서 봤던 패턴과 유사하다. <em>Type Assertion</em>에 성공하면 변수 <code>ok</code>는 <code>true</code>가 되며, 나머지 변수는 인터페이스가 가리키는 값으로 초기화된다.<br/> 반면 실패하면 <code>ok</code>는 <code>false</code>가 되며, 나머지 변수는 해당 타입의 Zero value로 초기화된다.</p> <p>그렇게 얻은 <code>ok</code> 변수값을 통해 이를 <code>if</code>문으로 처리할 수는 있지만
+Go에서는 에러 핸들링을 통해 처리하는 것을 더 지향한다는 것 같다. 에러 핸들링은 다음 챕터에서 나온다!</p> <p>어찌 됐든, 인터페이스가 가리키고 있는 데이터의 타입이 확실하다고 생각해도 되도록이면 <em>comma ok idiom</em>를 쓰는 것이 좋다.
+다른 사람이나 미래의 내가 언제 이 코드를 다시 사용할 지도 모르는 일이며, 코드를 조금 수정했는데 런타임 에러가 날 수도 있으니 말이다.</p> <br/><br/> <p>어느 인터페이스의 타입에 여러 개의 후보군이 있다면, <em>Type Switch</em>를 써보도록 하자.</p> <pre class="language-go"><!></pre> <pre class="language-bash"><!></pre> <p>기본적으로 형태는 boolean 표현식이 사용되지 않는 일반적인 <code>switch</code>문의 형태와 유사하다.
+다만 switch문 이후에 <code>i.(type)</code>로, 인터페이스의 타입을 나타내어 주면 된다.
+이렇게 각 case문에 타입을 할당함으로써, 인터페이스의 타입에 따라 처리할 수 있다.</p> <p>실행 결과를 보면 대충 알 수 있겠지만, 3번째 줄의 경우 주의해야 할 것 같다.
+변수 <code>c</code>는 값이 <code>nil</code>인 것이지, 타입은 <code>nil</code>이 아니라 <code>*string</code>이다.
+실제로 <code>switch</code>문에서 <code>case nil</code>에 걸리는 경우는, 변수 <code>f</code>처럼 인터페이스가 가리키는 대상이 아무 것도 없을 때이다.</p> <p>인터페이스가 가리키는 타입에 대해 전혀 모를 경우, <em>reflection</em>을 사용하면 된다고 한다.
+나중에 나온다. 나중에…</p> <p><em>Type Assertion</em>과 <em>Type Switch</em>가 꽤나 유용한 기술처럼 보이는데, 자주 사용하면 안된다고 한다.
+웬만하면 함수의 파라미터나 리턴값은 특정한 몇 가지의 타입으로만 지정하는 것이 좋으며, 나머지 다른 타입들은 가능은 하더라도 안되게 해야 한다.
+그렇지 않으면 우리가 짜는 함수가 어떤 타입들을 지원하는지에 대해 정확히 명시하지 못할 수 있다.
+대충 <code>interface&#123;&#125;</code>를 사용하는 걸 지양하라는 말과 일맥상통하는 것 같다. <code>interface&#123;&#125;</code>를 안 쓰면 특정한 타입을 명시할 수밖에 없을 테니 말이다.</p> <br/> <p><em>Type Assertion</em>과 <em>Type Switch</em>가 유용하게 사용되는 예제에 대해 알아보자.</p> <p>가장 일반적인 경우, 한 인터페이스가 가리키고 있는 concrete type을 보기 위해 사용되는데,
+이 concrete type은 다른 인터페이스에서도 가리킬 수 있는 경우이다.
+이를테면 <code>io</code> 라이브러리의 <code>io.File</code> 등 여러 타입들은 <code>io.Reader</code>와 <code>io.Writer</code> 두 가지 인터페이스를 모두 만족시킨다.
+그 때 <code>io.Reader</code>가 가리키고 있는 타입이 어떤 타입인지 확인하기 위해 사용할 수 있을 것이다.</p> <p><code>io.Copy()</code> 함수는 <code>io.Reader</code>와 <code>io.Writer</code> 인터페이스들을 파라미터로 받아, <code>io.copyBuffer()</code>함수를 실행한다.
+다만 이때 <code>io.Reader</code>의 파라미터가 <code>io.ReaderFrom</code>에서도 사용할 수 있거나, <code>io.Writer</code>의 파라미터가 <code>io.WriterTo</code>에서도 사용할 수 있다면,
+함수 내용 대부분이 생략될 수 있다.</p> <pre class="language-go"><!></pre> <br/> <p>인터페이스는 API를 업그레이드할때도 사용된다고 한다.
+챕터 12에서 <em>context</em>에 대해 알아볼 텐데, <em>context</em>란 취소를 관리하는 표준적인 방법을 제시하는 파라미터이다.
+Go 버전 1.7부터 생긴 기능인지라, 이전 버전의 데이터베이스 드라이버 등에서는 지원하지 않는다.</p> <p>Go 1.8부터는 <code>database/sql/driver</code> 패키지에 기존에 존재하는 인터페이스에 대한 새로운 컨텍스트 인식 유사체가 정의되었다.
+이를테면 <code>StmtExecContext</code> 인터페이스에는 <code>ExecContext</code>라는 메소드가 있다.
+스탠다드 라이브러리 데이터베이스 코드에 <code>Stmt</code> 인터페이스의 타입이 통과될 경우,
+이 타입이 <code>StmtExecContext</code>에도 사용할 수 있는지 확인한다. 만약 그렇다면 <code>ExecContext</code>를 호출한다.
+만약 그렇지 않다면, fallback code를 실행한다.</p> <pre class="language-go"><!></pre> <br/> <p>이런 optional interface 기능에는 한 가지 단점이 존재한다.
+한 인터페이스로 여러 가지 타입을 사용하여 계층적 구조를 만드는 decorator 패턴을 사용하기 위해 인터페이스가 많이들 사용된다.
+이 때, 어느 optional interface가 이 타입들 중 한 가지라도 사용할 수 있다면, <em>Type Assertion</em>과 <em>Type Switch</em>으로 이를 감지할 수 없다.</p> <p>그 예로 <code>bufio</code>라는 표준 라이브러리는 buffered reader를 제공한다.
+이 때 <code>bufio.NewReader()</code> 함수에 <code>io.Reader</code>를 지원하는 타입을 파라미터로 통과시키면, <code>*bufio.Reader</code>를 리턴받는다.
+만약 파라미터로 넘겨진 <code>io.Reader</code>의 타입이 <code>io.ReaderFrom</code>도 지원하는 경우, 이를 buffered reader로 감싸게 되면 최적화가 되지 않는다.</p> <p>에러 핸들링 할때도 본 현상인데, 에러는 다른 에러를 감싸는 것을 통해 추가적인 정보를 포함할 수 있다. <em>Type Assertion</em>과 <em>Type Switch</em>로는 감싸진 에러를 확인할 수 없기 때문에,
+제대로 핸들링하기 위해 감싸진 에러에 접근하려면 <code>errors.Is()</code>나 <code>errors.As()</code>같은 함수를 사용해야 한다.</p> <br/> <p><em>Type Switch</em>는 인터페이스를 지원하는 타입들이 여러 개 있고, 각 타입마다 다르게 처리해줘야 하는 경우 유용하다.
+그중 가장 유용한 경우는, 유효한 타입이 딱 한 개만 존재하는 경우이다.</p> <p>웬만하면 <code>switch</code>문에 <code>default</code>를 반드시 넣어주는 게 좋다.
+인터페이스를 지원하는 타입을 추가했는데 <code>switch</code>문을 업데이트하는 것을 까먹은 경우 <code>default</code> 블록에 걸리므로, 문제를 추적하기 쉬워질 것이다.</p> <br/><br/> <h3 id="function-types-are-a-bridge-to-interfaces"><a aria-hidden="true" tabindex="-1" href="#function-types-are-a-bridge-to-interfaces"><span class="icon icon-link"></span></a>Function Types Are a Bridge to Interfaces</h3> <p>Go에서는 함수를 비롯하여 유저가 정의한 타입이라면 어떠한 타입이든 메소드를 추가할 수 있으며, 이는 굉장히 유용하다.</p> <p>가장 일반적인 사례는 HTTP 요청을 처리하는 HTTP 핸들러이다. 이는 아래와 같이 인터페이스로 정의되어 있다.</p> <pre class="language-go"><!></pre> <p><code>http.ResponseWriter</code>, <code>*http.Request</code>를 파라미터로 받는 함수들은 <code>HandlerFunc</code>로 타입 변환을 할 수 있다.
+그러면 <code>ServeHTTP()</code>를 호출할 수 있게 되며, <code>http.Handler</code> 인터페이스를 사용할 수 있게 된다.</p> <pre class="language-go"><!></pre> <p>이러한 방식을 통해 <code>http.Handler</code>의 인터페이스를 충족시키기만 하면 함수, 메소드, Closure를 HTTP 핸들러로 사용할 수 있다.</p> <br/> <p>Go에서 함수는 가장 중요한 개념인 만큼, 또 다른 함수의 파라미터로 전달된다.
+한편으로, Go에서는 작은 인터페이스를 권장하며, 메소드가 하나 뿐인 인터페이스는 함수의 파라미터로 전달되는 함수를 대체할 수 있다.
+그렇다면 이런 질문이 생길 수 있다. 파라미터인 함수의 타입을 언제 명시해줘야 하며, 언제 인터페이스를 써야 할까?</p> <p>만약 함수가 다른 함수들이나, 파라미터가 아닌 state에 의존한다면,
+인터페이스 파라미터를 사용하고 인터페이스에 대한 bridge로써 함수 타입을 정의하는 것이 좋다고 한다.
+이를테면 이는 <code>http</code> 패키지에서 사용하는 방식이다. http 핸들러는 설정해주어야 하는 연쇄적인 함수 호출의 진입점일 가능성이 높다.
+반면 함수가 <code>sort.Slice()</code>처럼 간단한 함수일 경우, 인터페이스보단 그냥 함수를 넘기는 게 좋다고 한다.</p> <br/><br/> <h3 id="implicit-interfaces-make-dependency-injection-easier"><a aria-hidden="true" tabindex="-1" href="#implicit-interfaces-make-dependency-injection-easier"><span class="icon icon-link"></span></a>Implicit Interfaces Make Dependency Injection Easier</h3> <p><strong>Dependency Injection</strong>이란 코드가 수행하는 기능과 작업을 분명하게 명시해야 한다는 개념이다.
+Go의 인터페이스는 디커플링을 맛깔나게 잘 해줘서 Dependency Injection이 엄청 잘 된다고 한다.
+그래서 다른 언어에서 Dependency Injection를 위해 복잡한 프레임워크를 사용하는 반면,
+Go는 어떠한 외부 라이브러리도 사용하지 않는다.</p> <p>Dependency Injection이 어떻게 이루어지는지 보기 위해, 간단한 웹 서버 예제를 만들어보자.</p> <pre class="language-go"><!></pre> <p>간단한 로깅 함수와 저장을 위한 데이터 타입, 및 데이터 탐색 메소드를 정의하였다. <code>SimpleDataStore</code> 인스턴스를 생성하는 factory function을 정의해보자.</p> <pre class="language-go"><!></pre> <br/> <p>이제 유저에게 “hello” 또는 “good bye”라고 날리는 로직을 작성해 볼 것이다.
+이 로직은 유저에게 접근해야 하므로 접근 대상이 되는 자료구조와, 로깅을 하는 함수에 대한 의존성이 존재한다.
+하지만 우리는 <code>LogOutput()</code>이나 <code>SimpleDataStore</code>에 대한 직접적인 의존성을 만들고 싶지 않다.
+미래에 다른 자료구조나 로깅 함수를 사용할 수도 있기 때문이다.</p> <p>바로 이러한 경우, 인터페이스가 적절한 해법이 된다.</p> <pre class="language-go"><!></pre> <p><code>LoggerAdapter</code>를 선언해 <code>LogOutput()</code>함수를 <code>Logger</code>에 연결해 주었다.
+이제 우리의 비즈니스 로직은 인터페이스들을 사용하여 자료구조에 접근하고, 로깅을 할 수 있다.</p> <p>의존성이 정의되었으니, 비즈니스 로직을 완성해보자.</p> <pre class="language-go"><!></pre> <p><code>Logger</code>와 <code>DataStore</code>를 필드로 갖는 <code>SimpleLogic</code>이라는 <code>struct</code>와, factory function을 정의해주었다.
+이 <code>SimpleLogic</code> 내의 메소드는 다른 concrete type을 레퍼런스하지 않기 때문에, 의존성이 없다.
+그래서 차후 라이브러리를 교체하더라도 인터페이스는 라이브러리와 관련이 없기 때문에 문제가 발생하지 않는다.</p> <br/> <p>이제 <code>/hello</code>라는 엔드포인트를 정의해볼 것이다. 이 엔드포인트에서는 유저의 ID가 같이 오면 인사를 할 것이다. <em>Controller</em>에게 인사를 할 로직을 쥐어주기 위해 인터페이스를 만들어주자.</p> <pre class="language-go"><!></pre> <p>이 인터페이스는 <code>SimpleLogic</code>을 가리킬 수 있다.
+인터페이스는 클라이언트 코드에서 정의되기 때문에, 수정이 필요하다면 클라이언트 코드에서 수정하면 그만이다.
+따라서 <code>SimpleLogic</code>이 나중에 변경되거나, 혹은 새로운 로직이 추가되더라도 별다른 문제 없이 사용할 수 있다.</p> <pre class="language-go"><!></pre> <br/> <p>마지막으로, <code>main</code> 함수에서 모든 컴포넌트를 연결하고 서버를 열어보자.</p> <pre class="language-go"><!></pre> <p>파일을 실행하여 서버를 연 뒤, 브라우저에서 <code>http://localhost:8080/hello?user_id=1</code> 및 <code>http://localhost:8080/hello?user_id=5</code> 등으로 접속해보자.</p> <p><code>http.HandleFunc("/hello", c.SayHello)</code> 라인을 잘 살펴보면, 두 번째 <code>http.HandleFunc()</code>의 두 번째 파라미터로 <code>c.SayHello()</code> 메소드를 보냈다.
+이때 보내진 메소드는 <code>http.Handler</code> 인터페이스를 충족시키는 <code>http.HandlerFunc</code> 타입으로 변환이 된다. <code>NewController</code>의 메소드임을 유지한 채로 말이다.</p> <p><code>main</code> 함수는 concrete type들이 실제로 선언되는 유일한 영역이다.
+어느 타입 하나를 다른 타입으로 변경하고 싶다면, <code>main</code>에서만 변경해주면 된다.
+이렇게 Dependency Injection을 통해 의존성을 Externalizing함으로써, 코드를 업데이트 할 때 변경해야 할 내용을 최소화할 수 있다.</p> <p>Dependency Injection은 테스트를 더 쉽게 할 수 있도록 해주기도 한다.
+환경이 다르더라도, 입출력이 제한된 상황에서 unit test를 하는 것은 코드를 효과적으로 재사용한다.
+이를테면 위 예제에서 logger의 출력을 테스트하려고 한다면, logger의 출력을 capture하는 타입을 주입하고 인터페이스를 충족시켜주기만 하면 된다.</p> <br/> <p>개인적으로는 Dependency Injection이 일단 짜놓으면 편하긴 한데, 직접 짜기에는 너무 복잡하고 양이 많아 보였다.
+그럴 때에는 구글님들이 <a href="https://github.com/google/wire" rel="nofollow">Wire</a>라는, Dependency Injection을 도와주는 유틸리티가 있는데,
+자동적으로 concrete type 선언 코드를 만들어준다고 하니 필요하다면 잘 사용해보도록 하자.</p> <br/><br/> <h3 id="go-isnt-particularly-object-oriented"><a aria-hidden="true" tabindex="-1" href="#go-isnt-particularly-object-oriented"><span class="icon icon-link"></span></a>Go Isn’t Particularly Object-Oriented</h3> <p>Go라는 언어를 특정 스타일로 구분짓기는 어렵다.
+일단 절차지향은 아닌 듯 한데, 메소드 오버라이딩이나 상속도 없어서 객체지향이라기에도 애매하다.
+함수 타입과 closure가 있지만 함수형 언어도 아니다.
+만약 이러한 방법론에 맞춰서 Go 코드를 짜면, 아마 그게 이상적인 Go 코드는 아닐 것이다.</p> <br/><br/> <h2 id="refereces"><a aria-hidden="true" tabindex="-1" href="#refereces"><span class="icon icon-link"></span></a>Refereces</h2> <hr/> <center><p>[</p> <!> ](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br/> [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)</center> <br/> <p>이번 포스트는 의역이 너무 많아용</p> <p>원문 참조하시는 게 좋을듯함</p> <br/><br/>`,1);function ds(Y){var K=Qn(),p=n(Vn(K),13),$=s(p);t($,()=>`<code class="language-go"><span class="token keyword">type</span> Person <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    FirstName <span class="token builtin">string</span>
+    LastName  <span class="token builtin">string</span>
+    Age       <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">type</span> Score <span class="token builtin">int</span>
+<span class="token keyword">type</span> Converter <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span> Score
+<span class="token keyword">type</span> TeamScores <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span>Score
+<span class="token keyword">type</span> Employee Person</code>`),a(p);var o=n(p,19),nn=s(o);t(nn,()=>`<code class="language-go"><span class="token keyword">type</span> HighScore Score
+<span class="token keyword">type</span> Employee Person</code>`),a(o);var e=n(o,6),sn=s(e);t(sn,()=>`<code class="language-go"><span class="token comment">// assigning untyped constants is valid</span>
+<span class="token keyword">var</span> i <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">300</span>
+<span class="token keyword">var</span> s Score <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token keyword">var</span> hs HighScore <span class="token operator">=</span> <span class="token number">200</span>
+hs <span class="token operator">=</span> s                  <span class="token comment">// compilation error!</span>
+s <span class="token operator">=</span> i                   <span class="token comment">// compilation error!</span>
+s <span class="token operator">=</span> <span class="token function">Score</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>            <span class="token comment">// ok</span>
+hs <span class="token operator">=</span> <span class="token function">HighScore</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>       <span class="token comment">// ok</span></code>`),a(e);var c=n(e,9),an=s(c);t(an,()=>`<code class="language-go">	<span class="token keyword">type</span> MailCategory <span class="token builtin">int</span>
+	<span class="token keyword">const</span> <span class="token punctuation">(</span>
+		Uncategorized MailCategory <span class="token operator">=</span> <span class="token boolean">iota</span> <span class="token comment">// 0</span>
+		Personal                          <span class="token comment">// 1</span>
+		Spam                              <span class="token comment">// 2</span>
+		Social                            <span class="token comment">// 3</span>
+		Advertisement                     <span class="token comment">// 4</span>
+	<span class="token punctuation">)</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>Uncategorized<span class="token punctuation">,</span> Personal<span class="token punctuation">,</span> Spam<span class="token punctuation">,</span> Social<span class="token punctuation">,</span> Advertisement<span class="token punctuation">)</span></code>`),a(c);var u=n(c,2),tn=s(u);t(tn,()=>'<code class="language-bash"><span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span></code>'),a(u);var l=n(u,6),pn=s(l);t(pn,()=>`<code class="language-go">	<span class="token keyword">type</span> BitField <span class="token builtin">int</span>
+	<span class="token keyword">const</span> <span class="token punctuation">(</span>
+		Field1 BitField <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token boolean">iota</span> <span class="token comment">// assigned 1</span>
+		Field2                      <span class="token comment">// assigned 2</span>
+		Field3                      <span class="token comment">// assigned 4</span>
+		Field4                      <span class="token comment">// assigned 8</span>
+		<span class="token boolean">_</span>                           <span class="token comment">// passed 16</span>
+		Field6                      <span class="token comment">// assigned 32</span>
+	<span class="token punctuation">)</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>Field1<span class="token punctuation">,</span> Field2<span class="token punctuation">,</span> Field3<span class="token punctuation">,</span> Field4<span class="token punctuation">,</span> Field6<span class="token punctuation">)</span></code>`),a(l);var i=n(l,21),on=s(i);t(on,()=>`<code class="language-go"><span class="token keyword">type</span> Person <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	FirstName <span class="token builtin">string</span>
+	LastName  <span class="token builtin">string</span>
+	Age       <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// defining methods for user-defined type</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>p Person<span class="token punctuation">)</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span> <span class="token comment">// The receiver appears between the keyword func and the name of the method</span>
+	<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%s %s, age %d"</span><span class="token punctuation">,</span> p<span class="token punctuation">.</span>FirstName<span class="token punctuation">,</span> p<span class="token punctuation">.</span>LastName<span class="token punctuation">,</span> p<span class="token punctuation">.</span>Age<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	p <span class="token operator">:=</span> Person<span class="token punctuation">&#123;</span>
+		FirstName<span class="token punctuation">:</span> <span class="token string">"Fred"</span><span class="token punctuation">,</span>
+		LastName<span class="token punctuation">:</span>  <span class="token string">"Fredson"</span><span class="token punctuation">,</span>
+		Age<span class="token punctuation">:</span>       <span class="token number">52</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+    <span class="token comment">// method invocations look familiar to those who have used methods in other languages</span>
+	output <span class="token operator">:=</span> p<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(i);var k=n(i,21),en=s(k);t(en,()=>`<code class="language-go"><span class="token keyword">type</span> Counter <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	total       <span class="token builtin">int</span>
+	lastUpdated time<span class="token punctuation">.</span>Time
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// pointer receiver should be used when the method modifies the receiver or handles nil instances</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>c <span class="token operator">*</span>Counter<span class="token punctuation">)</span> <span class="token function">Increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	c<span class="token punctuation">.</span>total<span class="token operator">++</span>
+	c<span class="token punctuation">.</span>lastUpdated <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// value receiver can be used when the method doesn't modify the receiver</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>c Counter<span class="token punctuation">)</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"total: %d, last updated: %v"</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>total<span class="token punctuation">,</span> c<span class="token punctuation">.</span>lastUpdated<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> c Counter
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token comment">// Go automatically converts it to a pointer type.</span>
+	c<span class="token punctuation">.</span><span class="token function">Increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//c.Increment() is converted to (&amp;c).Increment()</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(k);var r=n(k,4),cn=s(r);t(cn,()=>`<code class="language-bash">total: <span class="token number">0</span>, last updated: 0001-01-01 00:00:00 +0000 UTC
+total: <span class="token number">1</span>, last updated: <span class="token number">2022</span>-08-10 <span class="token number">17</span>:54:27.046864964 +0900 KST <span class="token assign-left variable">m</span><span class="token operator">=</span>+0.000053109</code>`),a(r);var d=n(r,6),un=s(d);t(un,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">doUpdateWrong</span><span class="token punctuation">(</span>c Counter<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    c<span class="token punctuation">.</span><span class="token function">Increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"in doUpdateWrong:"</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">doUpdateRight</span><span class="token punctuation">(</span>c <span class="token operator">*</span>Counter<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    c<span class="token punctuation">.</span><span class="token function">Increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"in doUpdateRight:"</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> c Counter
+    <span class="token function">doUpdateWrong</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"in main:"</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token function">doUpdateRight</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"in main:"</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(d);var m=n(d,6),ln=s(m);t(ln,()=>`<code class="language-bash"><span class="token keyword">in</span> doUpdateWrong: total: <span class="token number">1</span>, last updated: <span class="token number">2022</span>-08-11 01:35:23.983808201 +0900 KST <span class="token assign-left variable">m</span><span class="token operator">=</span>+0.000097936
+<span class="token keyword">in</span> main: total: <span class="token number">0</span>, last updated: 0001-01-01 00:00:00 +0000 UTC
+<span class="token keyword">in</span> doUpdateRight: total: <span class="token number">1</span>, last updated: <span class="token number">2022</span>-08-11 01:35:23.983813841 +0900 KST <span class="token assign-left variable">m</span><span class="token operator">=</span>+0.000103576
+<span class="token keyword">in</span> main: total: <span class="token number">1</span>, last updated: <span class="token number">2022</span>-08-11 01:35:23.983813841 +0900 KST <span class="token assign-left variable">m</span><span class="token operator">=</span>+0.000103576</code>`),a(m);var g=n(m,13),kn=s(g);t(kn,()=>`<code class="language-go"><span class="token keyword">type</span> IntTree <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	val         <span class="token builtin">int</span>
+	left<span class="token punctuation">,</span> right <span class="token operator">*</span>IntTree
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>it <span class="token operator">*</span>IntTree<span class="token punctuation">)</span> <span class="token function">Insert</span><span class="token punctuation">(</span>val <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">*</span>IntTree <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> it <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span> <span class="token comment">// case that handles when the receiver is a nil instance</span>
+		<span class="token keyword">return</span> <span class="token operator">&amp;</span>IntTree<span class="token punctuation">&#123;</span>val<span class="token punctuation">:</span> val<span class="token punctuation">&#125;</span> <span class="token comment">// cannot assign its address into receiver directly</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">if</span> val <span class="token operator">&lt;</span> it<span class="token punctuation">.</span>val <span class="token punctuation">&#123;</span>
+		it<span class="token punctuation">.</span>left <span class="token operator">=</span> it<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> val <span class="token operator">></span> it<span class="token punctuation">.</span>val <span class="token punctuation">&#123;</span>
+		it<span class="token punctuation">.</span>right <span class="token operator">=</span> it<span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> it
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>it <span class="token operator">*</span>IntTree<span class="token punctuation">)</span> <span class="token function">Contains</span><span class="token punctuation">(</span>val <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">switch</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">case</span> it <span class="token operator">==</span> <span class="token boolean">nil</span><span class="token punctuation">:</span> <span class="token comment">// case that handles when the receiver is a nil instance</span>
+		<span class="token keyword">return</span> <span class="token boolean">false</span>
+	<span class="token keyword">case</span> val <span class="token operator">&lt;</span> it<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> it<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+	<span class="token keyword">case</span> val <span class="token operator">></span> it<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> it<span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+	<span class="token keyword">default</span><span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token boolean">true</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> it <span class="token operator">*</span>IntTree
+	it <span class="token operator">=</span> it<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+	it <span class="token operator">=</span> it<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+	it <span class="token operator">=</span> it<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+	it <span class="token operator">=</span> it<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">// true</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// false</span>
+<span class="token punctuation">&#125;</span></code>`),a(g);var f=n(g,13),rn=s(f);t(rn,()=>`<code class="language-go"><span class="token keyword">type</span> Adder <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	start <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>a Adder<span class="token punctuation">)</span> <span class="token function">AddTo</span><span class="token punctuation">(</span>val <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> a<span class="token punctuation">.</span>start <span class="token operator">+</span> val
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	myAdder <span class="token operator">:=</span> Adder<span class="token punctuation">&#123;</span>start<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>myAdder<span class="token punctuation">.</span><span class="token function">AddTo</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// prints 15</span>
+
+	f1 <span class="token operator">:=</span> myAdder<span class="token punctuation">.</span>AddTo           <span class="token comment">// We can also assign the method to a variable or pass it to a parameter of type func(int)int</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">f1</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>           <span class="token comment">// prints 20</span>
+
+	f2 <span class="token operator">:=</span> Adder<span class="token punctuation">.</span>AddTo
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">f2</span><span class="token punctuation">(</span>myAdder<span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// prints 25</span>
+<span class="token punctuation">&#125;</span></code>`),a(f);var y=n(f,21),dn=s(y);t(dn,()=>`<code class="language-go"><span class="token keyword">type</span> Employee <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Name <span class="token builtin">string</span>
+	ID   <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>e Employee<span class="token punctuation">)</span> <span class="token function">Description</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%s (%s)"</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>Name<span class="token punctuation">,</span> e<span class="token punctuation">.</span>ID<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Manager <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// Employee as an embedded field</span>
+	Employee <span class="token comment">// no name assigned to this filed. only type.</span>
+	Reports  <span class="token punctuation">[</span><span class="token punctuation">]</span>Employee
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m Manager<span class="token punctuation">)</span> <span class="token function">FindNewEmployees</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Employee <span class="token punctuation">&#123;</span>
+	<span class="token comment">// do business logic</span>
+	<span class="token keyword">return</span> m<span class="token punctuation">.</span>Reports
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	m <span class="token operator">:=</span> Manager<span class="token punctuation">&#123;</span>
+		Employee<span class="token punctuation">:</span> Employee<span class="token punctuation">&#123;</span>
+			Name<span class="token punctuation">:</span> <span class="token string">"Bob Bobson"</span><span class="token punctuation">,</span>
+			ID<span class="token punctuation">:</span>   <span class="token string">"12345"</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+		Reports<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Employee<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span>ID<span class="token punctuation">)</span>            <span class="token comment">// prints 12345</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span><span class="token function">Description</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// prints Bob Bobson (12345)</span>
+<span class="token punctuation">&#125;</span></code>`),a(y);var b=n(y,6),mn=s(b);t(mn,()=>`<code class="language-go"><span class="token keyword">type</span> Inner <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    X <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Outer <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Inner
+    X <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	o <span class="token operator">:=</span> Outer<span class="token punctuation">&#123;</span>
+		Inner<span class="token punctuation">:</span> Inner<span class="token punctuation">&#123;</span>
+			X<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+		X<span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>X<span class="token punctuation">)</span>       <span class="token comment">// prints 20</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>Inner<span class="token punctuation">.</span>X<span class="token punctuation">)</span> <span class="token comment">// prints 10</span>
+<span class="token punctuation">&#125;</span></code>`),a(b);var w=n(b,15),gn=s(w);t(gn,()=>`<code class="language-go"><span class="token keyword">var</span> m Manager <span class="token operator">:=</span> <span class="token punctuation">&#123;</span><span class="token comment">/*fields*/</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">var</span> eFail Employee <span class="token operator">=</span> m			<span class="token comment">// complie error</span>
+<span class="token keyword">var</span> eOk Employee <span class="token operator">=</span> m<span class="token punctuation">.</span>Employee   <span class="token comment">// successfully compiled</span></code>`),a(w);var h=n(w,8),fn=s(h);t(fn,()=>`<code class="language-go"><span class="token keyword">type</span> Inner <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	A <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>i Inner<span class="token punctuation">)</span> <span class="token function">IntPrinter</span><span class="token punctuation">(</span>val <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"Inner: %d"</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span> <span class="token comment">// This always call Inner.IntPrinter()</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>i Inner<span class="token punctuation">)</span> <span class="token function">Double</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> i<span class="token punctuation">.</span><span class="token function">IntPrinter</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>A <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Outer <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Inner
+	S <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>o Outer<span class="token punctuation">)</span> <span class="token function">IntPrinter</span><span class="token punctuation">(</span>val <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"Outer: %d"</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	o <span class="token operator">:=</span> Outer<span class="token punctuation">&#123;</span>
+		Inner<span class="token punctuation">:</span> Inner<span class="token punctuation">&#123;</span>
+			A<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+		S<span class="token punctuation">:</span> <span class="token string">"Hello"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span><span class="token function">Double</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(h);var v=n(h,2),yn=s(v);t(yn,()=>'<code class="language-bash">Inner: <span class="token number">20</span></code>'),a(v);var I=n(v,15),bn=s(I);t(bn,()=>`<code class="language-go"><span class="token keyword">type</span> Stringer <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span></code>`),a(I);var S=n(I,24),wn=s(S);t(wn,()=>`<code class="language-go"><span class="token keyword">type</span> LogicProvider <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>lp LogicProvider<span class="token punctuation">)</span> <span class="token function">Process</span><span class="token punctuation">(</span>data <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// do some business logic</span>
+	<span class="token keyword">return</span> data <span class="token operator">+</span> <span class="token string">"!"</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Logic <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">Process</span><span class="token punctuation">(</span>data <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Client <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	L Logic
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>c Client<span class="token punctuation">)</span> <span class="token function">Program</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// get data from somewhere</span>
+	data <span class="token operator">:=</span> <span class="token string">"hello world"</span>
+	refinedData <span class="token operator">:=</span> c<span class="token punctuation">.</span>L<span class="token punctuation">.</span><span class="token function">Process</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>refinedData<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	c <span class="token operator">:=</span> Client<span class="token punctuation">&#123;</span>
+		L<span class="token punctuation">:</span> LogicProvider<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token comment">// concrete type assigned into Client's interface</span>
+	<span class="token punctuation">&#125;</span>
+	c<span class="token punctuation">.</span><span class="token function">Program</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(S);var _=n(S,10),hn=s(_);t(hn,()=>`<code class="language-go">
+<span class="token keyword">func</span> <span class="token function">process</span><span class="token punctuation">(</span>r io<span class="token punctuation">.</span>Reader<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// do something</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">openfile</span><span class="token punctuation">(</span>fileName <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	r<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> err
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">defer</span> r<span class="token punctuation">.</span><span class="token function">CLose</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token function">process</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(_);var P=n(_,6),vn=s(P);t(vn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">openfile</span><span class="token punctuation">(</span>fileName <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	r<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	r	eturn err
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">defer</span> r<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	gz<span class="token punctuation">,</span> err <span class="token operator">=</span> gzip<span class="token punctuation">.</span><span class="token function">NewReader</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> err
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">defer</span> gz<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token function">process</span><span class="token punctuation">(</span>gz<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(P);var T=n(P,15),In=s(T);t(In,()=>`<code class="language-go"><span class="token keyword">type</span> Reader <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">Read</span><span class="token punctuation">(</span>p <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Closer <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> ReadCloser <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	Reader
+	Closer
+<span class="token punctuation">&#125;</span></code>`),a(T);var C=n(T,28),Sn=s(C);t(Sn,()=>`<code class="language-go">	<span class="token keyword">var</span> s <span class="token operator">*</span><span class="token builtin">string</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s <span class="token operator">==</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
+	<span class="token keyword">var</span> i <span class="token keyword">interface</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
+	i <span class="token operator">=</span> s
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> i <span class="token operator">==</span> <span class="token boolean">nil</span><span class="token punctuation">)</span></code>`),a(C);var L=n(C,2),_n=s(L);t(_n,()=>`<code class="language-bash"><span class="token operator">&lt;</span>nil<span class="token operator">></span> <span class="token boolean">true</span>
+<span class="token operator">&lt;</span>nil<span class="token operator">></span> <span class="token boolean">true</span>
+<span class="token operator">&lt;</span>nil<span class="token operator">></span> <span class="token boolean">false</span></code>`),a(L);var R=n(L,15),Pn=s(R);t(Pn,()=>`<code class="language-go"><span class="token keyword">var</span> i <span class="token keyword">interface</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token comment">// empty interfece variable can store a value of any type</span>
+
+i <span class="token operator">=</span> <span class="token number">20</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+
+i <span class="token operator">=</span> <span class="token string">"hello"</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+
+i <span class="token operator">=</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	FirstName <span class="token builtin">string</span>
+	LastName  <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span><span class="token string">"Fred"</span><span class="token punctuation">,</span> <span class="token string">"Fredson"</span><span class="token punctuation">&#125;</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span></code>`),a(R);var D=n(R,8),Tn=s(D);t(Tn,()=>`<code class="language-go">data <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token keyword">interface</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+contents<span class="token punctuation">,</span> err <span class="token operator">:=</span> ioutil<span class="token punctuation">.</span><span class="token function">ReadFile</span><span class="token punctuation">(</span><span class="token string">"testdata/sample.json"</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> err
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">defer</span> contents<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+json<span class="token punctuation">.</span><span class="token function">Unmarshal</span><span class="token punctuation">(</span>contents<span class="token punctuation">,</span> <span class="token operator">&amp;</span>data<span class="token punctuation">)</span></code>`),a(D);var x=n(D,8),Cn=s(x);t(Cn,()=>`<code class="language-go"><span class="token keyword">type</span> LinkedList <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Value <span class="token keyword">interface</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+    Next    <span class="token operator">*</span>LinkedList
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>ll <span class="token operator">*</span>LinkedList<span class="token punctuation">)</span> <span class="token function">Insert</span><span class="token punctuation">(</span>pos <span class="token builtin">int</span><span class="token punctuation">,</span> val <span class="token keyword">interface</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token operator">*</span>LinkedList <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> ll <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token operator">||</span> pos <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token operator">&amp;</span>LinkedList<span class="token punctuation">&#123;</span>
+            Value<span class="token punctuation">:</span> val<span class="token punctuation">,</span>
+            Next<span class="token punctuation">:</span>    ll<span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    ll<span class="token punctuation">.</span>Next <span class="token operator">=</span> ll<span class="token punctuation">.</span>Next<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span>pos<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> ll
+<span class="token punctuation">&#125;</span></code>`),a(x);var F=n(x,19),Ln=s(F);t(Ln,()=>`<code class="language-go"><span class="token keyword">type</span> MyInt <span class="token builtin">int</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> i <span class="token keyword">interface</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+    <span class="token keyword">var</span> mine MyInt <span class="token operator">=</span> <span class="token number">20</span>
+    i <span class="token operator">=</span> mine
+    i2 <span class="token operator">:=</span> i<span class="token punctuation">.</span><span class="token punctuation">(</span>MyInt<span class="token punctuation">)</span> <span class="token comment">// using type assertion, we can confine the type of concrete type that the interface indicates</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i2 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(F);var G=n(F,8),Rn=s(G);t(Rn,()=>`<code class="language-go">i3 <span class="token operator">:=</span> i<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token comment">// this line occurs a panic</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i3<span class="token punctuation">)</span></code>`),a(G);var A=n(G,6),Dn=s(A);t(Dn,()=>`<code class="language-go">i4 <span class="token operator">:=</span> i<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token comment">// this line also occurs a panic</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i4<span class="token punctuation">)</span></code>`),a(A);var E=n(A,6),xn=s(E);t(xn,()=>`<code class="language-go"><span class="token comment">// ok is set to true if the type conversion was successful.</span>
+<span class="token comment">// if it was not, ok is set to false and the other value is set to its zero value</span>
+i5<span class="token punctuation">,</span> ok <span class="token operator">:=</span> i<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token comment">// i5 is set to 0, ok is set to false</span>
+<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">&#123;</span>
+	msg <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"unexpected type for %v"</span><span class="token punctuation">,</span> i5<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+i6<span class="token punctuation">,</span> ok <span class="token operator">:=</span> i<span class="token punctuation">.</span><span class="token punctuation">(</span>MyInt<span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">&#123;</span> <span class="token comment">// i6 is set to 20, ok is set to true</span>
+	<span class="token comment">// this block is not reached</span>
+	msg <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"unexpected type for %v"</span><span class="token punctuation">,</span> i6<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(E);var N=n(E,13),Fn=s(N);t(Fn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">typeSwitch</span><span class="token punctuation">(</span>i <span class="token keyword">interface</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">switch</span> i<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">case</span> <span class="token boolean">nil</span><span class="token punctuation">:</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"nil"</span><span class="token punctuation">)</span>
+	<span class="token keyword">case</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"int"</span><span class="token punctuation">)</span>
+	<span class="token keyword">case</span> MyInt<span class="token punctuation">:</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"MyInt"</span><span class="token punctuation">)</span>
+	<span class="token keyword">case</span> <span class="token builtin">string</span><span class="token punctuation">:</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"string"</span><span class="token punctuation">)</span>
+	<span class="token keyword">case</span> <span class="token builtin">bool</span><span class="token punctuation">,</span> <span class="token builtin">rune</span><span class="token punctuation">:</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"bool or rune"</span><span class="token punctuation">)</span>
+	<span class="token keyword">default</span><span class="token punctuation">:</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"what is this"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">12</span>
+	<span class="token keyword">var</span> b MyInt <span class="token operator">=</span> <span class="token number">23</span>
+	<span class="token keyword">var</span> c <span class="token operator">*</span><span class="token builtin">string</span>
+	d <span class="token operator">:=</span> <span class="token string">"asdasd"</span>
+	e <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">&#123;</span>
+		<span class="token string">"hi"</span><span class="token punctuation">:</span> <span class="token string">"there"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">var</span> f <span class="token keyword">interface</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+	<span class="token function">typeSwitch</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+	<span class="token function">typeSwitch</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+	<span class="token function">typeSwitch</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+	<span class="token function">typeSwitch</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span>
+	<span class="token function">typeSwitch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+	<span class="token function">typeSwitch</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(N);var H=n(N,2),Gn=s(H);t(Gn,()=>`<code class="language-bash">int
+MyInt
+what is this
+string
+what is this
+nil</code>`),a(H);var M=n(H,18),An=s(M);t(An,()=>`<code class="language-go"><span class="token comment">// copyBuffer is the actual implementation of Copy and CopyBuffer.</span>
+<span class="token comment">// if buf is nil, one is allocated.</span>
+<span class="token keyword">func</span> <span class="token function">copyBuffer</span><span class="token punctuation">(</span>dst Writer<span class="token punctuation">,</span> src Reader<span class="token punctuation">,</span> buf <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>written <span class="token builtin">int64</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// If the reader has a WriteTo method, use it to do the copy.</span>
+    <span class="token comment">// Avoids an allocation and a copy.</span>
+    <span class="token keyword">if</span> wt<span class="token punctuation">,</span> ok <span class="token operator">:=</span> src<span class="token punctuation">.</span><span class="token punctuation">(</span>WriterTo<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> wt<span class="token punctuation">.</span><span class="token function">WriteTo</span><span class="token punctuation">(</span>dst<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// Similarly, if the writer has a ReadFrom method, use it to do the copy.</span>
+    <span class="token keyword">if</span> rt<span class="token punctuation">,</span> ok <span class="token operator">:=</span> dst<span class="token punctuation">.</span><span class="token punctuation">(</span>ReaderFrom<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> rt<span class="token punctuation">.</span><span class="token function">ReadFrom</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// function continues...</span>
+<span class="token punctuation">&#125;</span></code>`),a(M);var W=n(M,8),En=s(W);t(En,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">ctxDriverStmtExec</span><span class="token punctuation">(</span>ctx context<span class="token punctuation">.</span>Context<span class="token punctuation">,</span> si driver<span class="token punctuation">.</span>Stmt<span class="token punctuation">,</span>
+                       nvdargs <span class="token punctuation">[</span><span class="token punctuation">]</span>driver<span class="token punctuation">.</span>NamedValue<span class="token punctuation">)</span> <span class="token punctuation">(</span>driver<span class="token punctuation">.</span>Result<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> siCtx<span class="token punctuation">,</span> is <span class="token operator">:=</span> si<span class="token punctuation">.</span><span class="token punctuation">(</span>driver<span class="token punctuation">.</span>StmtExecContext<span class="token punctuation">)</span><span class="token punctuation">;</span> is <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> siCtx<span class="token punctuation">.</span><span class="token function">ExecContext</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> nvdargs<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// fallback code is here</span>
+<span class="token punctuation">&#125;</span></code>`),a(W);var U=n(W,25),Nn=s(U);t(Nn,()=>`<code class="language-go"><span class="token keyword">type</span> Handler <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">ServeHTTP</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(U);var O=n(U,4),Hn=s(O);t(Hn,()=>`<code class="language-go"><span class="token keyword">type</span> HandlerFunc <span class="token keyword">func</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>f HandlerFunc<span class="token punctuation">)</span> <span class="token function">ServeHTTP</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">f</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(O);var j=n(O,19),Mn=s(j);t(Mn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">LogOutput</span><span class="token punctuation">(</span>message <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> SimpleDataStore <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    userData <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>sds SimpleDataStore<span class="token punctuation">)</span> <span class="token function">UserNameForID</span><span class="token punctuation">(</span>userID <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    name<span class="token punctuation">,</span> ok <span class="token operator">:=</span> sds<span class="token punctuation">.</span>userData<span class="token punctuation">[</span>userID<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> name<span class="token punctuation">,</span> ok
+<span class="token punctuation">&#125;</span></code>`),a(j);var B=n(j,4),Wn=s(B);t(Wn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">NewSimpleDataStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span> SimpleDataStore <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> SimpleDataStore<span class="token punctuation">&#123;</span>
+		userData<span class="token punctuation">:</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">&#123;</span>
+			<span class="token string">"1"</span><span class="token punctuation">:</span> <span class="token string">"Fred"</span><span class="token punctuation">,</span>
+			<span class="token string">"2"</span><span class="token punctuation">:</span> <span class="token string">"Mary"</span><span class="token punctuation">,</span>
+			<span class="token string">"3"</span><span class="token punctuation">:</span> <span class="token string">"Pat"</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(B);var z=n(B,8),Un=s(z);t(Un,()=>`<code class="language-go"><span class="token keyword">type</span> DataStore <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">UserNameForID</span><span class="token punctuation">(</span>userID <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">bool</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Logger <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">Log</span><span class="token punctuation">(</span>message <span class="token builtin">string</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> LoggerAdapter <span class="token keyword">func</span><span class="token punctuation">(</span>message <span class="token builtin">string</span><span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>lg LoggerAdapter<span class="token punctuation">)</span> <span class="token function">Log</span><span class="token punctuation">(</span>message <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">lg</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(z);var q=n(z,6),On=s(q);t(On,()=>`<code class="language-go"><span class="token keyword">type</span> SimpleLogic <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	l  Logger
+	ds DataStore
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>sl SimpleLogic<span class="token punctuation">)</span> <span class="token function">SayHello</span><span class="token punctuation">(</span>userID <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	sl<span class="token punctuation">.</span>l<span class="token punctuation">.</span><span class="token function">Log</span><span class="token punctuation">(</span><span class="token string">"in say hello for "</span> <span class="token operator">+</span> userID<span class="token punctuation">)</span>
+	name<span class="token punctuation">,</span> ok <span class="token operator">:=</span> sl<span class="token punctuation">.</span>ds<span class="token punctuation">.</span><span class="token function">UserNameForID</span><span class="token punctuation">(</span>userID<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token string">""</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"unknown user"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token string">"Hello, "</span> <span class="token operator">+</span> name<span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>sl SimpleLogic<span class="token punctuation">)</span> <span class="token function">SayGoodbye</span><span class="token punctuation">(</span>userID <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	sl<span class="token punctuation">.</span>l<span class="token punctuation">.</span><span class="token function">Log</span><span class="token punctuation">(</span><span class="token string">"in say goodbye for "</span> <span class="token operator">+</span> userID<span class="token punctuation">)</span>
+	name<span class="token punctuation">,</span> ok <span class="token operator">:=</span> sl<span class="token punctuation">.</span>ds<span class="token punctuation">.</span><span class="token function">UserNameForID</span><span class="token punctuation">(</span>userID<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token string">""</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"unknown user"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token string">"Goodbye, "</span> <span class="token operator">+</span> name<span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">NewSimpleLogic</span><span class="token punctuation">(</span>l Logger<span class="token punctuation">,</span> ds DataStore<span class="token punctuation">)</span> SimpleLogic <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> SimpleLogic<span class="token punctuation">&#123;</span>
+        l<span class="token punctuation">:</span>    l<span class="token punctuation">,</span>
+        ds<span class="token punctuation">:</span> ds<span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">NewSimpleLogic</span><span class="token punctuation">(</span>l Logger<span class="token punctuation">,</span> ds DataStore<span class="token punctuation">)</span> SimpleLogic <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> SimpleLogic<span class="token punctuation">&#123;</span>
+		l<span class="token punctuation">:</span>  l<span class="token punctuation">,</span>
+		ds<span class="token punctuation">:</span> ds<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(q);var V=n(q,8),jn=s(V);t(jn,()=>`<code class="language-go"><span class="token keyword">type</span> Logic <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">SayHello</span><span class="token punctuation">(</span>userID <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(V);var X=n(V,4),Bn=s(X);t(Bn,()=>`<code class="language-go"><span class="token keyword">type</span> Controller <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	l     Logger
+	logic Logic
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>c Controller<span class="token punctuation">)</span> <span class="token function">SayHello</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	c<span class="token punctuation">.</span>l<span class="token punctuation">.</span><span class="token function">Log</span><span class="token punctuation">(</span><span class="token string">"In sayhello"</span><span class="token punctuation">)</span>
+	userID <span class="token operator">:=</span> r<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">Query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"user_id"</span><span class="token punctuation">)</span>
+	message<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span>logic<span class="token punctuation">.</span><span class="token function">SayHello</span><span class="token punctuation">(</span>userID<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		w<span class="token punctuation">.</span><span class="token function">WriteHeader</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusBadRequest<span class="token punctuation">)</span>
+		w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span>
+	<span class="token punctuation">&#125;</span>
+	w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">NewController</span><span class="token punctuation">(</span>l Logger<span class="token punctuation">,</span> logic Logic<span class="token punctuation">)</span> Controller <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> Controller<span class="token punctuation">&#123;</span>
+		l<span class="token punctuation">:</span>     l<span class="token punctuation">,</span>
+		logic<span class="token punctuation">:</span> logic<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(X);var J=n(X,6),zn=s(J);t(zn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	l <span class="token operator">:=</span> <span class="token function">LoggerAdapter</span><span class="token punctuation">(</span>LogOutput<span class="token punctuation">)</span>
+	ds <span class="token operator">:=</span> <span class="token function">NewSimpleDataStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	logic <span class="token operator">:=</span> <span class="token function">NewSimpleLogic</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> ds<span class="token punctuation">)</span>
+	c <span class="token operator">:=</span> <span class="token function">NewController</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> logic<span class="token punctuation">)</span>
+	http<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>SayHello<span class="token punctuation">)</span>
+	http<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token string">":8080"</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(J);var Z=n(J,28),qn=n(s(Z),2);Kn(qn,{alt:"Learning Go Book Cover",src:"https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/"}),Q(3),a(Z),Q(9),Jn(Y,K)}export{ds as default,Zn as metadata};

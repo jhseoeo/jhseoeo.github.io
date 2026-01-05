@@ -1,0 +1,475 @@
+import"./Bzak7iHL.js";import"./69_IOA4Y.js";import{s,f as an,c as t,r as o,n as pn}from"./CVx5jffJ.js";import{f as u,a as c}from"./2cXyNWGb.js";import{h as e}from"./D6IIVJDJ.js";import{C as l}from"./BQl3WXse.js";import{I as r}from"./BVXqo7x9.js";const tn={title:"Worker Pool 및 Pipeline",date:"2023-09-09T00:00:00.000Z",excerpt:"동시성 프로그래밍에서 워커 풀과 파이프라인 패턴을 Go로 구현해보자",categories:["Golang","Concurrency in Go"],coverImage:"/post_img/Go/Concurrency in Go/cover.png",coverWidth:16,coverHeight:9,indexed:!1,exposed:!0},{title:Pn,date:qn,excerpt:xn,categories:Sn,coverImage:Tn,coverWidth:Gn,coverHeight:On,indexed:Nn,exposed:jn}=tn;var on=u('<pre class="language-go"><!></pre>'),en=u('<pre class="language-go"><!></pre>'),cn=u('<pre class="language-go"><!></pre>'),un=u('<pre class="language-go"><!></pre>'),ln=u('<pre class="language-go"><!></pre>'),kn=u('<pre class="language-go"><!></pre>'),rn=u('<pre class="language-go"><!></pre>'),dn=u('<pre class="language-go"><!></pre>'),fn=u('<pre class="language-go"><!></pre>'),wn=u('<pre class="language-go"><!></pre>'),gn=u('<pre class="language-go"><!></pre>'),yn=u('<pre class="language-go"><!></pre>'),hn=u('<pre class="language-go"><!></pre>'),mn=u('<pre class="language-go"><!></pre>'),bn=u(`<h2 id="worker-pool"><a aria-hidden="true" tabindex="-1" href="#worker-pool"><span class="icon icon-link"></span></a>Worker Pool</h2> <hr/> <p>Worker Pool은 동일한 작업을 여러 인스턴스로 분배하여 병렬적으로 처리하는 패턴이다. Go에서는 동일한 작업을 하는 여러 고루틴에 입력을 달리하여 작업을 분배하는 방식으로 구현된다.
+특히 채널의 존재가 Worker Pool을 구현하는데 큰 도움이 된다.</p> <p>필요할 때마다 고루틴을 생성하는 것보다 Worker Pool을 사용하는 것이 효율적인 이유는 작업자 고루틴의 Initialize 비용을 아끼고 생성된 고루틴을 재사용하기 때문이다.
+또한 잠재적으로 생성될 수 있는 고루틴의 수를 제한하여 성능상의 이점을 얻을 수 있다.</p> <p>만약 서버에서 요청이 도착할 때마다 고루틴을 생성한다면, 요청이 많아질수록 고루틴의 수도 증가하게 된다.
+요청이 burst 형태로 발생한다면 파일을 열고 있는 고루틴이 수천개 생성될 수도 있다.
+Worker Pool을 통해 고루틴의 수를 제한하면 이러한 문제를 해결할 수 있다.</p> <p>간단한 예제를 통해 Worker Pool에 대해 알아보려 한다. 이 예제는 디렉토리를 순회하며 정규식 일치 여부를 확인하는 프로그램이다.</p> <!> <p>대부분의 시스템에서 열 수 있는 파일의 수는 제한되어 있기 때문에 고루틴의 수를 제한하는 것이 좋다.
+위의 예제에서는 3개의 고루틴을 생성하고, <code>sync.WaitGroup</code>을 사용하여 처리가 완료될 때까지 기다리도록 한다.
+또한 익명 함수를 통해 실제 작업 함수를 <code>sync.WaitGroup</code>의 로직으로부터 분리하였다.</p> <!> <p><code>main</code> 함수의 나머지 부분에서는 디렉토리를 순회하며 파일을 읽어들이고, <code>jobs</code> 채널을 통해 worker에게 작업을 전송한다.
+이후 <code>close</code> 함수를 통해 <code>jobs</code> 채널을 닫고, <code>wg.Wait()</code> 함수를 통해 모든 고루틴이 종료될 때까지 기다린다.</p> <!> <p>프로그램이 실행되면 <code>main</code> 함수에서 3개의 worker 고루틴이 생성된다.
+이후 각 파일을 순회하며 파일 정보가 <code>jobs</code> 채널로 전송되고, <code>worker</code> 함수는 <code>jobs</code> 채널을 통해 전달받은 작업을 처리한다.
+이 때 <code>worker</code> 함수는 한 시점에 최대 3개 존재할 수 있으며, 동시에 처리되기 때문에 작업은 인터리빙된다.</p> <br/> <p>현재 작업의 결과를 <code>worker</code> 함수가 직접 출력하고 있지만, 일반적으로 그보다는 Worker Pool에서 작업 결과를 다시 가져오는 경우가 많다.
+이를 구현하는 방법 중 하나로 <code>Work</code> 구조체 자체에 결과를 반환할 채널을 포함시키는 방법이 있다.</p> <pre class="language-go"><!></pre> <p>그렇다면 <code>worker</code> 함수가 작업 결과물을 결과 채널에 전송하도록 수정해야 한다.</p> <!> <p>이렇게 하면 인터리빙된 작업 결과의 출력을 다시 하나의 고루틴에서 처리할 수 있다.</p> <p>이 때 주의할 점은 Worker Pool에 작업을 전달하는 고루틴과 작업 결과를 수신하는 고루틴이 서로 다른 고루틴어야 한다는 것이다.
+만약 같은 고루틴에서 작업을 전달하고 작업 결과를 수신하면 데드락이 발생할 수 있다.
+가령 위 예제의 <code>main</code> 함수에서 작업 결과를 수신하려 한다면 데드락이 발생할 것이다.
+따라서 디렉토리를 순회하는 코드를 별도의 고루틴으로 분리하고, 메인 고루틴에서 작업 결과를 수신하도록 할 것이다.</p> <p>그렇다면 작업 결과를 수신하는 고루틴은 결과 채널에 대해 알 수 있을까?
+조금 복잡해지지만 결과 채널 자체를 채널로 감싸서 전달하는 방식을 사용하면 된다.</p> <pre class="language-go"><!></pre> <p>worker 고루틴은 채널을 생성하여 <code>allResults</code> 채널에 전달한 뒤 그 채널에 작업 결과를 전달한다.
+메인 고루틴은 <code>allResults</code> 채널로부터 결과 채널을 전달받은 뒤, 해당 채널을 이터레이트하여 작업 결과를 수신한다.
+worker 고루틴이 전송을 완료하면 해당 채널을 닫을 것이고, 이를 통해 메인 고루틴의 이터레이션도 종료될 것이다. 그렇다면 메인 고루틴은 <code>allResults</code> 채널에서 다음 결과 채널을 전달받아 이터레이션을 다시 시작할 것이다.</p> <p>디렉토리 순회가 분리된 메인 고루틴으로부터 분리되고, 채널을 수신받아 결과를 출력한다. 이 내용이 반영된 <code>main</code>함수는 다음과 같다.</p> <!> <br/> <p>Worker Pool을 통해, javascript의 Promise처럼 결과가 나중에 사용될 작업을 수행할 수도 있다.</p> <pre class="language-go"><!></pre> <br/><br/> <h2 id="pipeline"><a aria-hidden="true" tabindex="-1" href="#pipeline"><span class="icon icon-link"></span></a>Pipeline</h2> <hr/> <p>많은 경우 작업은 여러 단계로 나누어지고 각 단계의 결과를 변환 및 강화하는 과정을 거친다.
+그리고 일반적으로 일련의 데이터를 획득하는 초기 단계가 존재하며, 단계를 거칠수록 원본 데이터와 거리가 멀어진다.
+대표적인 예가 이미지 처리 파이프라인이다. 원본 이미지가 디코딩, 변환, 크롭, 리사이징, 인코딩 등을 거쳐 새로운 이미지가 생성된다.</p> <p>대부분의 데이터 프로세싱 애플리케이션은 많은 양의 데이터를 처리하므로, 성능상의 이점을 위해 동시성을 지원하는 파이프라인을 사용한다.</p> <p>이 챕터에서는 CSV파일을 읽고 처리하는 파이프라인 예제를 작성해보려 한다.
+CSV 파일 안의 사람들의 키, 몸무게가 인치, 파운드 단위로 저장되어 있다고 가정하자.
+우리는 이를 센티미터, 킬로그램 단위로 변환하고 JSON 형태로 출력할 것이다.</p> <br/> <p>먼저 <code>Record</code> 구조체를 정의한다.</p> <pre class="language-go"><!></pre> <p>파이프라인은 세 단계로 구성된다. 첫 번째 단계는 CSV 파일에서 데이터를 읽어 <code>Record</code> 구조체로 변환하는 단계이다.</p> <!> <p>두 번째 단계는 <code>Record</code> 구조체를 받아 센티미터, 킬로그램 단위로 변환한다.</p> <pre class="language-go"><!></pre> <p>마지막 단계는 <code>Record</code> 구조체를 받아 JSON 형태로 변환한다.</p> <pre class="language-go"><!></pre> <p>이제 파이프라인을 조립하면 되는데, 가장 직관적인 방식은 동기 파이프라인(Synchronous Pipeline)을 구성하는 것이다.</p> <!> <p>그런데 이 동기 파이프라인은 문제가 있다.
+파이프라인 전체가 한 단위로 실행되기 때문에, 파이프라인의 각 단계가 동시에 실행되지 않는다.
+각 단계가 인터리빙되지 않기 때문에 파이프라인의 성능은 전체 단계의 성능에 의존하게 된다.</p> <!> <h3 id="비동기-파이프라인"><a aria-hidden="true" tabindex="-1" href="#비동기-파이프라인"><span class="icon icon-link"></span></a>비동기 파이프라인</h3> <p>비동기 파이프라인에서는 각 단계가 별도의 고루틴에서 실행되며, 각 단계는 채널을 통해 데이터를 전달한다.
+또한 입력 채널이 닫히면 출력 채널도 닫히도록 하여 연쇄적으로 채널이 닫히도록 하여 파이프라인을 종료한다.</p> <p>각각의 단계가 별도의 고루틴에서 실행되기 때문에, 각 단계는 동시에 실행될 수 있다.
+따라서 파이프라인의 성능은 가장 느린 단계의 성능에 의존하며, 전체 단계의 성능에 의존하지 않기 때문에 동기 파이프라인보다 더 좋은 성능을 보인다.</p> <!> <br/> <p>파이프라인의 각 단계를 연결하는 제네릭 함수를 작성한다.</p> <pre class="language-go"><!></pre> <p>각각 <code>IN</code> 및 <code>OUT</code> 타입 파라미터가 채널 및 함수 입출력과 어떻게 매칭되어 있는지 확인하자.</p> <p>이어서 비동기 파이프라인을 구성한다. 각 단계가 채널을 통해 데이터를 전달하기 때문에, 동기 파이프라인 함수보다는 좀 더 복잡하다.</p> <!> <p>파이프라인은 Worker Pool이 채널을 통해 연결된 형태라고도 볼 수 있다.
+실제로 각 단계는 Worker Pool로 구현이 가능하기 때문에, 오래 걸리는 특정 단계의 Worker 수를 늘리는 등의 최적화가 가능하다.</p> <br/><br/> <h2 id="fan-out-fan-in"><a aria-hidden="true" tabindex="-1" href="#fan-out-fan-in"><span class="icon icon-link"></span></a>Fan-out, Fan-in</h2> <hr/> <p>가령 다음과 같이 파이프라이닝된 작업이 있다고 가정하자.</p> <!> <p>모든 worker가 병렬적으로 실행되며, 각 단계마다 두 개의 worker가 실행되고 있다.</p> <p>이 디자인에서 파이프라인의 각 단계는 Shared Channel을 통해 통신한다.
+따라서 여러 고루틴이 동일한 입력 채널에서 읽고(Fan-out), 출력 채널을 통해 데이터를 전달한다(Fan-in).</p> <p>이와 같은 파이프라인을 설계하려면 이전에 작성한 제네릭 함수를 수정해야 한다.
+이전의 함수는 입력 채널이 닫히면 출력 채널도 닫히도록 구현되어 있어, 입력 채널이 닫히면 순서대로 출력 채널도 닫히게 된다.
+하지만 worker의 수가 늘어나면 이미 닫은 출력 채널을 다시 닫으려고 하기 때문에 panic이 발생할 것이다.
+따라서 모든 worker가 종료될 때까지 출력 채널을 닫지 않도록 <code>sync.WaitGroup</code>을 사용하게끔 수정해야 한다.</p> <!> <p>입력 채널이 닫히면 각 파이프라인 단계의 worker가 종료될 것이고, WaitGroup에 의해 모든 worker가 종료될 때까지 기다린 뒤 출력 채널을 닫는다.</p> <p>파라미터가 추가되었으니, 파이프라인 설정 함수에서 변경된 사항을 반영해야 한다.</p> <pre class="language-go"><!></pre> <p>이제 이 파이프라인을 실행해보자.</p> <pre class="language-text"><!></pre> <p>출력 순서가 뒤죽박죽이다. 이는 각 단계의 worker가 병렬적으로 실행되기 때문이다.
+즉, 비동기 파이프라이닝이 잘 동작하고 있다는 것을 의미한다!</p> <br/> <p>지금의 파이프라인은 각 단계의 worker가 공유된 채널을 통해 통신하고 있다. 따라서 결과가 인터리빙되서 출력되므로 정렬된 순서를 보장할 수 없다.
+각 단계의 고루틴이 전용 채널을 사용한다면 정렬된 순서를 보장할 수 있다.
+이러한 디자인은 파이프라인의 일부 단계가 특히 처리량이 많이 필요하여, worker를 여러 개 두고 싶을 때 유용하다.</p> <!> <p>위 그림처럼 특정 단계의 결과가 전용 채널을 통해 전달되므로, 데이터를 fan-in 및 정렬하는 단계가 필요하다.
+따라서 입력 채널과 done 채널을 받고 출력 채널을 반환하는 제네릭 함수를 작성한다. 이를 통해 한 고루틴의 출력을 다른 고루틴의 입력으로 전달할 수 있다.</p> <!> <p>또한 제네릭 fan-in 함수를 작성한다.</p> <!> <p><code>fanIn</code> 함수는 여러 채널에서 받은 데이터를 병럴적으로 출력 채널에 전달한다. 이 때 아직까지는 입력 순서대로 출력 채널에 전달되지는 않는다.</p> <blockquote><p><code>select</code>문을 사용하는 경우 고정된 개수의 채널을 사용해야 한다.
+반면 위의 경우처럼 채널의 Slice를 select하는 경우에는 <code>reflect.Select</code>를 사용할 수 있다.
+찾아보니 <code>reflect.Select</code>는 reflect 패키지 특성상 어쩔 수 없이 성능이 좀 떨어지는 모양이니, 위 방법을 사용하는 것이 좋을 것 같다.</p></blockquote> <p>파이프라인을 설정하는 함수도 다음과 같이 변경해준다.</p> <!> <p>이제 파이프라인의 변환 단계에서 worker가 두 개 돌 것이다.</p> <h3 id="순서-보장"><a aria-hidden="true" tabindex="-1" href="#순서-보장"><span class="icon icon-link"></span></a>순서 보장</h3> <p>순서를 보장하면서 fan-in을 구현하는 방법의 핵심은 순서를 벗어난 데이터를 버퍼링하는 것이다.</p> <p>fan-in을 처리하는 고루틴은 여러 고루틴으로부터 채널을 통해 데이터를 읽고, 이를 출력 채널에 전달한다.
+이때 한 고루틴으로부터 순서에서 벗어난 데이터를 읽으면, 다른 고루틴에서 순서가 맞는 데이터가 언젠가 읽힐 것을 알 수 있다.
+따라서 순서에서 벗어난 데이터를 버퍼링하고, 순서가 맞는 데이터가 읽힐 때까지 기다린 뒤 버퍼링된 데이터를 순서에 맞춰 출력 채널에 전달하면 된다.</p> <p>순서에서 벗어난 데이터를 받으면 해당 데이터를 전송한 고루틴을 일시적으로 정지시킬 필요가 있는데, 이는 <code>pause</code>라는 추가적인 채널을 통해 구현한다.</p> <p>먼저 <code>Record</code>의 순서를 얻기 위한 인터페이스와 메소드를 작성한다.</p> <pre class="language-go"><!></pre> <p>또한 데이터의 정렬 및 고루틴 일시 정지를 위한 구조체를 작성한다.</p> <pre class="language-go"><!></pre> <p>이후 각 입력 채널에 대해 고루틴을 생성하고, 해당 고루틴은 채널에서 데이터를 읽어들인 뒤 <code>fanInRecord</code> 인스턴스를 생성하여 다시 채널로 전송한다.
+전송하는 데이터의 정렬 여부는 해당 고루틴에서 판단하지 않고, 다음 단계에서 판단한다.
+pause 채널에 의해 고루틴이 일시 정지될 것이고, 판단 결과에 따라 블로킹된 고루틴을 다시 시작시킬 것이다.
+또한 이전 예제들과 마찬가지로 입력 채널이 닫히면 출력 채널도 닫히도록 구현한다.</p> <!> <p><code>orderedFanIn</code> 함수의 나머지 부분은 정렬 로직이 작성된다.
+채널로부터 순서를 벗어난 데이터를 읽으면, 해당 데이터를 큐에 저장해두고 일시 정지시킨다.
+그리고 채널로부터 순서가 맞는 데이터를 읽으면 큐에 저장된 데이터를 꺼내 출력 채널에 전달한다.</p> <!> <br/> <p>이와 같이 파이프라인은 특정한 요구사항에 따라 다양한 방식으로 구현되며, 모든 요구사항을 만족하는 하나의 범용적인 구현은 존재하지 않는다.
+필요에 따라 적절한 방식의 파이프라인을 구현하고, 보틀넥이 발생하는 단계를 fan-on, fan-out 및 worker pool 조절 등으로 최적화하는 것이 중요하다.
+하지만 동시성 코드와 계산 로직을 분리하여 설계하는 것이 중요하다는 것은 변함이 없다.</p> <br/><br/> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <center><p>[</p> <!> ](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br/> [Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)</center>`,1);function Fn(B){var C=bn(),I=s(an(C),12);l(I,{children:(a,k)=>{var n=on(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">type</span> Work <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	file    <span class="token builtin">string</span>
+	pattern <span class="token operator">*</span>regexp<span class="token punctuation">.</span>Regexp
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	jobs <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Work<span class="token punctuation">)</span>
+	wg <span class="token operator">:=</span> sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+		wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+		<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token function">worker</span><span class="token punctuation">(</span>jobs<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+    <span class="token operator">...</span>
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var R=s(I,4);l(R,{children:(a,k)=>{var n=en(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token operator">...</span>
+
+    rex<span class="token punctuation">,</span> err <span class="token operator">:=</span> regexp<span class="token punctuation">.</span><span class="token function">Compile</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	filepath<span class="token punctuation">.</span><span class="token function">Walk</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>path <span class="token builtin">string</span><span class="token punctuation">,</span> d fs<span class="token punctuation">.</span>FileInfo<span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> err
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">if</span> <span class="token operator">!</span>d<span class="token punctuation">.</span><span class="token function">IsDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			jobs <span class="token operator">&lt;-</span> Work<span class="token punctuation">&#123;</span>path<span class="token punctuation">,</span> rex<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">return</span> <span class="token boolean">nil</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+	<span class="token function">close</span><span class="token punctuation">(</span>jobs<span class="token punctuation">)</span>
+	wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var W=s(R,4);l(W,{children:(a,k)=>{var n=cn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">worker</span><span class="token punctuation">(</span>jobs <span class="token keyword">chan</span> Work<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span> work <span class="token operator">:=</span> <span class="token keyword">range</span> jobs <span class="token punctuation">&#123;</span>
+		f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>work<span class="token punctuation">.</span>file<span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+			<span class="token keyword">continue</span>
+		<span class="token punctuation">&#125;</span>
+
+		scn <span class="token operator">:=</span> bufio<span class="token punctuation">.</span><span class="token function">NewScanner</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+		lineNum <span class="token operator">:=</span> <span class="token number">1</span>
+		<span class="token keyword">for</span> scn<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			result <span class="token operator">:=</span> work<span class="token punctuation">.</span>pattern<span class="token punctuation">.</span><span class="token function">Find</span><span class="token punctuation">(</span>scn<span class="token punctuation">.</span><span class="token function">Bytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+				fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%s:#%d: %s&#92;n"</span><span class="token punctuation">,</span> work<span class="token punctuation">.</span>file<span class="token punctuation">,</span> lineNum<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token punctuation">&#125;</span>
+			lineNum<span class="token operator">++</span>
+		<span class="token punctuation">&#125;</span>
+		f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var i=s(W,8),V=t(i);e(V,()=>`<code class="language-go"><span class="token keyword">type</span> Work <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	file    <span class="token builtin">string</span>
+	pattern <span class="token operator">*</span>regexp<span class="token punctuation">.</span>Regexp
+	result  <span class="token keyword">chan</span> Result
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Result <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	fileName <span class="token builtin">string</span>
+	lineNum  <span class="token builtin">int</span>
+	text     <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span></code>`),o(i);var $=s(i,4);l($,{children:(a,k)=>{var n=un(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">worker</span><span class="token punctuation">(</span>jobs <span class="token operator">&lt;-</span><span class="token keyword">chan</span> Work<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span> work <span class="token operator">:=</span> <span class="token keyword">range</span> jobs <span class="token punctuation">&#123;</span>
+		f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>work<span class="token punctuation">.</span>file<span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+			<span class="token keyword">continue</span>
+		<span class="token punctuation">&#125;</span>
+
+		scn <span class="token operator">:=</span> bufio<span class="token punctuation">.</span><span class="token function">NewScanner</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+		lineNum <span class="token operator">:=</span> <span class="token number">1</span>
+		<span class="token keyword">for</span> scn<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			result <span class="token operator">:=</span> work<span class="token punctuation">.</span>pattern<span class="token punctuation">.</span><span class="token function">Find</span><span class="token punctuation">(</span>scn<span class="token punctuation">.</span><span class="token function">Bytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+				work<span class="token punctuation">.</span>result <span class="token operator">&lt;-</span> Result<span class="token punctuation">&#123;</span>
+					fileName<span class="token punctuation">:</span> work<span class="token punctuation">.</span>file<span class="token punctuation">,</span>
+					lineNum<span class="token punctuation">:</span>  lineNum<span class="token punctuation">,</span>
+					text<span class="token punctuation">:</span>     <span class="token function">string</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">,</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span>
+			lineNum<span class="token operator">++</span>
+		<span class="token punctuation">&#125;</span>
+		f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var d=s($,8),J=t(d);e(J,()=>'<code class="language-go">allResults <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">chan</span> Result<span class="token punctuation">)</span></code>'),o(d);var P=s(d,6);l(P,{children:(a,k)=>{var n=ln(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	jobs <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Work<span class="token punctuation">)</span>
+	wg <span class="token operator">:=</span> sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+		wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+		<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token function">worker</span><span class="token punctuation">(</span>jobs<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	rex<span class="token punctuation">,</span> err <span class="token operator">:=</span> regexp<span class="token punctuation">.</span><span class="token function">Compile</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	allResults <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">chan</span> Result<span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>allResults<span class="token punctuation">)</span>
+		filepath<span class="token punctuation">.</span><span class="token function">Walk</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>path <span class="token builtin">string</span><span class="token punctuation">,</span> d fs<span class="token punctuation">.</span>FileInfo<span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">return</span> err
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">if</span> <span class="token operator">!</span>d<span class="token punctuation">.</span><span class="token function">IsDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Result<span class="token punctuation">)</span>
+				jobs <span class="token operator">&lt;-</span> Work<span class="token punctuation">&#123;</span>path<span class="token punctuation">,</span> rex<span class="token punctuation">,</span> ch<span class="token punctuation">&#125;</span>
+				allResults <span class="token operator">&lt;-</span> ch
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">return</span> <span class="token boolean">nil</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">for</span> resultCh <span class="token operator">:=</span> <span class="token keyword">range</span> allResults <span class="token punctuation">&#123;</span>
+		<span class="token keyword">for</span> result <span class="token operator">:=</span> <span class="token keyword">range</span> resultCh <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%s:%d:%s&#92;n"</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span>fileName<span class="token punctuation">,</span> result<span class="token punctuation">.</span>lineNum<span class="token punctuation">,</span> result<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token function">close</span><span class="token punctuation">(</span>jobs<span class="token punctuation">)</span>
+	wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var f=s(P,6),z=t(f);e(z,()=>`<code class="language-go">resultCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Result<span class="token punctuation">)</span>
+jobs <span class="token operator">&lt;-</span> Work<span class="token punctuation">&#123;</span>
+    file<span class="token punctuation">:</span> <span class="token string">"someFile"</span><span class="token punctuation">,</span>
+    pattern<span class="token punctuation">:</span> somePattern<span class="token punctuation">,</span>
+    ch<span class="token punctuation">:</span> resultCh<span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// do something else</span>
+
+<span class="token keyword">for</span> result <span class="token operator">:=</span> <span class="token keyword">range</span> <span class="token operator">&lt;-</span>reseultCh <span class="token punctuation">&#123;</span>
+    <span class="token comment">// do something with result</span>
+<span class="token punctuation">&#125;</span></code>`),o(f);var w=s(f,19),M=t(w);e(M,()=>`<code class="language-go"><span class="token keyword">type</span> Record <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Row    <span class="token builtin">int</span>
+	Height <span class="token builtin">float64</span>
+	Weight <span class="token builtin">float64</span>
+<span class="token punctuation">&#125;</span></code>`),o(w);var q=s(w,4);l(q,{children:(a,k)=>{var n=kn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">newRecord</span><span class="token punctuation">(</span>in <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Record<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	row<span class="token punctuation">,</span> err <span class="token operator">:=</span> strconv<span class="token punctuation">.</span><span class="token function">Atoi</span><span class="token punctuation">(</span>in<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> Record<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> err
+	<span class="token punctuation">&#125;</span>
+
+	height<span class="token punctuation">,</span> err <span class="token operator">:=</span> strconv<span class="token punctuation">.</span><span class="token function">ParseFloat</span><span class="token punctuation">(</span>in<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> Record<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> err
+	<span class="token punctuation">&#125;</span>
+
+	weight<span class="token punctuation">,</span> err <span class="token operator">:=</span> strconv<span class="token punctuation">.</span><span class="token function">ParseFloat</span><span class="token punctuation">(</span>in<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> Record<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> err
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">return</span> Record<span class="token punctuation">&#123;</span>
+		Row<span class="token punctuation">:</span>    row<span class="token punctuation">,</span>
+		Height<span class="token punctuation">:</span> height<span class="token punctuation">,</span>
+		Weight<span class="token punctuation">:</span> weight<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">parse</span><span class="token punctuation">(</span>input <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> Record <span class="token punctuation">&#123;</span>
+	record<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">newRecord</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> record
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var g=s(q,4),Z=t(g);e(Z,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">convert</span><span class="token punctuation">(</span>input Record<span class="token punctuation">)</span> Record <span class="token punctuation">&#123;</span>
+	input<span class="token punctuation">.</span>Height <span class="token operator">=</span> input<span class="token punctuation">.</span>Height <span class="token operator">*</span> <span class="token number">2.54</span>
+	input<span class="token punctuation">.</span>Weight <span class="token operator">=</span> input<span class="token punctuation">.</span>Weight <span class="token operator">*</span> <span class="token number">0.45359237</span>
+	<span class="token keyword">return</span> input
+<span class="token punctuation">&#125;</span></code>`),o(g);var y=s(g,4),K=t(y);e(K,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">encode</span><span class="token punctuation">(</span>input Record<span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span> <span class="token punctuation">&#123;</span>
+	data<span class="token punctuation">,</span> err <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">Marshal</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> data
+<span class="token punctuation">&#125;</span></code>`),o(y);var x=s(y,4);l(x,{children:(a,k)=>{var n=rn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">syncPipeline</span><span class="token punctuation">(</span>input <span class="token operator">*</span>csv<span class="token punctuation">.</span>Reader<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	input<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// skip header</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+		rec<span class="token punctuation">,</span> err <span class="token operator">:=</span> input<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">==</span> io<span class="token punctuation">.</span>EOF <span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+
+		out <span class="token operator">:=</span> <span class="token function">encode</span><span class="token punctuation">(</span><span class="token function">convert</span><span class="token punctuation">(</span><span class="token function">parse</span><span class="token punctuation">(</span>rec<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>out<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var S=s(x,4);r(S,{alt:"Alt text",src:"/post_img/Go/Concurrency%20in%20Go/CIGO5/0.png"});var T=s(S,8);r(T,{alt:"Alt text",src:"/post_img/Go/Concurrency%20in%20Go/CIGO5/1.png"});var h=s(T,6),L=t(h);e(L,()=>`<code class="language-go"><span class="token keyword">func</span> pipelineStage<span class="token punctuation">[</span>IN any<span class="token punctuation">,</span> OUT any<span class="token punctuation">]</span><span class="token punctuation">(</span>input <span class="token operator">&lt;-</span><span class="token keyword">chan</span> IN<span class="token punctuation">,</span> output <span class="token keyword">chan</span><span class="token operator">&lt;-</span> OUT<span class="token punctuation">,</span> process <span class="token keyword">func</span><span class="token punctuation">(</span>IN<span class="token punctuation">)</span> OUT<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> data <span class="token operator">:=</span> <span class="token keyword">range</span> input <span class="token punctuation">&#123;</span>
+		output <span class="token operator">&lt;-</span> <span class="token function">process</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),o(h);var G=s(h,6);l(G,{children:(a,k)=>{var n=dn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">asyncPipeline</span><span class="token punctuation">(</span>input <span class="token operator">*</span>csv<span class="token punctuation">.</span>Reader<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	parseInputCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span>
+	convertInputCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Record<span class="token punctuation">)</span>
+	encodeInputCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Record<span class="token punctuation">)</span>
+	outputCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span>
+	done <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">go</span> <span class="token function">pipelineStage</span><span class="token punctuation">(</span>parseInputCh<span class="token punctuation">,</span> convertInputCh<span class="token punctuation">,</span> parse<span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token function">pipelineStage</span><span class="token punctuation">(</span>convertInputCh<span class="token punctuation">,</span> encodeInputCh<span class="token punctuation">,</span> convert<span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token function">pipelineStage</span><span class="token punctuation">(</span>encodeInputCh<span class="token punctuation">,</span> outputCh<span class="token punctuation">,</span> encode<span class="token punctuation">)</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">for</span> data <span class="token operator">:=</span> <span class="token keyword">range</span> outputCh <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token function">close</span><span class="token punctuation">(</span>done<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	input<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// skip header</span>
+	<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+		rec<span class="token punctuation">,</span> err <span class="token operator">:=</span> input<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">==</span> io<span class="token punctuation">.</span>EOF <span class="token punctuation">&#123;</span>
+			<span class="token function">close</span><span class="token punctuation">(</span>parseInputCh<span class="token punctuation">)</span>
+			<span class="token keyword">break</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+		parseInputCh <span class="token operator">&lt;-</span> rec
+	<span class="token punctuation">&#125;</span>
+	<span class="token operator">&lt;-</span>done
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var O=s(G,13);r(O,{alt:"Alt text",src:"/post_img/Go/Concurrency%20in%20Go/CIGO5/2.png"});var N=s(O,8);l(N,{children:(a,k)=>{var n=fn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> workerPoolpipelineStage<span class="token punctuation">[</span>IN any<span class="token punctuation">,</span> OUT any<span class="token punctuation">]</span><span class="token punctuation">(</span>input <span class="token operator">&lt;-</span><span class="token keyword">chan</span> IN<span class="token punctuation">,</span> output <span class="token keyword">chan</span><span class="token operator">&lt;-</span> OUT<span class="token punctuation">,</span> process <span class="token keyword">func</span><span class="token punctuation">(</span>IN<span class="token punctuation">)</span> OUT<span class="token punctuation">,</span> numWorkers <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span>
+
+	wg <span class="token operator">:=</span> sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numWorkers<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+		wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+		<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token keyword">for</span> data <span class="token operator">:=</span> <span class="token keyword">range</span> input <span class="token punctuation">&#123;</span>
+				output <span class="token operator">&lt;-</span> <span class="token function">process</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var m=s(N,6),Q=t(m);e(Q,()=>`<code class="language-go">	<span class="token keyword">const</span> numWorkers <span class="token operator">=</span> <span class="token number">2</span>
+	<span class="token keyword">go</span> <span class="token function">workerPoolpipelineStage</span><span class="token punctuation">(</span>parseInputCh<span class="token punctuation">,</span> convertInputCh<span class="token punctuation">,</span> parse<span class="token punctuation">,</span> numWorkers<span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token function">workerPoolpipelineStage</span><span class="token punctuation">(</span>convertInputCh<span class="token punctuation">,</span> encodeInputCh<span class="token punctuation">,</span> convert<span class="token punctuation">,</span> numWorkers<span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token function">workerPoolpipelineStage</span><span class="token punctuation">(</span>encodeInputCh<span class="token punctuation">,</span> outputCh<span class="token punctuation">,</span> encode<span class="token punctuation">,</span> numWorkers<span class="token punctuation">)</span></code>`),o(m);var b=s(m,4),X=t(b);e(X,()=>`<code class="language-text">$ go run csv.go
+...
+&#123;&quot;Row&quot;:66,&quot;Height&quot;:142.24,&quot;Weight&quot;:101.15109851000001&#125;
+&#123;&quot;Row&quot;:65,&quot;Height&quot;:172.72,&quot;Weight&quot;:97.52235955&#125;
+&#123;&quot;Row&quot;:68,&quot;Height&quot;:152.4,&quot;Weight&quot;:80.28584949&#125;
+&#123;&quot;Row&quot;:67,&quot;Height&quot;:162.56,&quot;Weight&quot;:104.77983747&#125;
+&#123;&quot;Row&quot;:69,&quot;Height&quot;:139.7,&quot;Weight&quot;:86.63614267&#125;
+...</code>`),o(b);var j=s(b,8);r(j,{alt:"Alt text",src:"/post_img/Go/Concurrency%20in%20Go/CIGO5/3.png"});var F=s(j,4);l(F,{children:(a,k)=>{var n=wn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> cancelablePipelineStage<span class="token punctuation">[</span>IN any<span class="token punctuation">,</span> OUT any<span class="token punctuation">]</span><span class="token punctuation">(</span>input <span class="token operator">&lt;-</span><span class="token keyword">chan</span> IN<span class="token punctuation">,</span> output <span class="token keyword">chan</span><span class="token operator">&lt;-</span> OUT<span class="token punctuation">,</span> done <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> process <span class="token keyword">func</span><span class="token punctuation">(</span>IN<span class="token punctuation">)</span> OUT<span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> OUT <span class="token punctuation">&#123;</span>
+	outputCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> OUT<span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">case</span> data<span class="token punctuation">,</span> ok <span class="token operator">:=</span> <span class="token operator">&lt;-</span>input<span class="token punctuation">:</span>
+				<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">&#123;</span>
+					<span class="token function">close</span><span class="token punctuation">(</span>outputCh<span class="token punctuation">)</span>
+					<span class="token keyword">return</span>
+				<span class="token punctuation">&#125;</span>
+				outputCh <span class="token operator">&lt;-</span> <span class="token function">process</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+			<span class="token keyword">case</span> <span class="token operator">&lt;-</span>done<span class="token punctuation">:</span>
+				<span class="token keyword">return</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> outputCh
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var D=s(F,4);l(D,{children:(a,k)=>{var n=gn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> fanIn<span class="token punctuation">[</span>T any<span class="token punctuation">]</span><span class="token punctuation">(</span>done <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> channels <span class="token operator">...</span><span class="token operator">&lt;-</span><span class="token keyword">chan</span> T<span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> T <span class="token punctuation">&#123;</span>
+	outputCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> T<span class="token punctuation">)</span>
+	wg <span class="token operator">:=</span> sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> ch <span class="token operator">:=</span> <span class="token keyword">range</span> channels <span class="token punctuation">&#123;</span>
+		wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+		<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span>input <span class="token operator">&lt;-</span><span class="token keyword">chan</span> T<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">case</span> data<span class="token punctuation">,</span> ok <span class="token operator">:=</span> <span class="token operator">&lt;-</span>input<span class="token punctuation">:</span>
+					<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">&#123;</span>
+						<span class="token keyword">return</span>
+					<span class="token punctuation">&#125;</span>
+					outputCh <span class="token operator">&lt;-</span> data
+				<span class="token keyword">case</span> <span class="token operator">&lt;-</span>done<span class="token punctuation">:</span>
+					<span class="token keyword">return</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token function">close</span><span class="token punctuation">(</span>outputCh<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> outputCh
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var A=s(D,8);l(A,{children:(a,k)=>{var n=yn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">fanInPipeline</span><span class="token punctuation">(</span>input <span class="token operator">*</span>csv<span class="token punctuation">.</span>Reader<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	parseInputCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span>
+	done <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	convertInputCh <span class="token operator">:=</span> <span class="token function">cancelablePipelineStage</span><span class="token punctuation">(</span>parseInputCh<span class="token punctuation">,</span> done<span class="token punctuation">,</span> parse<span class="token punctuation">)</span>
+
+	<span class="token keyword">const</span> numWorkers <span class="token operator">=</span> <span class="token number">2</span>
+	fanInCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&lt;-</span><span class="token keyword">chan</span> Record<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numWorkers<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+		convertOutputCh <span class="token operator">:=</span> <span class="token function">cancelablePipelineStage</span><span class="token punctuation">(</span>convertInputCh<span class="token punctuation">,</span> done<span class="token punctuation">,</span> convert<span class="token punctuation">)</span>
+		fanInCh <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>fanInCh<span class="token punctuation">,</span> convertOutputCh<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	convertOutputCh <span class="token operator">:=</span> <span class="token function">fanIn</span><span class="token punctuation">(</span>done<span class="token punctuation">,</span> fanInCh<span class="token operator">...</span><span class="token punctuation">)</span>
+	outputCh <span class="token operator">:=</span> <span class="token function">cancelablePipelineStage</span><span class="token punctuation">(</span>convertOutputCh<span class="token punctuation">,</span> done<span class="token punctuation">,</span> encode<span class="token punctuation">)</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">for</span> data <span class="token operator">:=</span> <span class="token keyword">range</span> outputCh <span class="token punctuation">&#123;</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token function">close</span><span class="token punctuation">(</span>done<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	input<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// skip header</span>
+	<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+		rec<span class="token punctuation">,</span> err <span class="token operator">:=</span> input<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">==</span> io<span class="token punctuation">.</span>EOF <span class="token punctuation">&#123;</span>
+			<span class="token function">close</span><span class="token punctuation">(</span>parseInputCh<span class="token punctuation">)</span>
+			<span class="token keyword">break</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+		parseInputCh <span class="token operator">&lt;-</span> rec
+	<span class="token punctuation">&#125;</span>
+	<span class="token operator">&lt;-</span>done
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var v=s(A,14),Y=t(v);e(Y,()=>`<code class="language-go"><span class="token keyword">type</span> sequenced <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">Sequence</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>r Record<span class="token punctuation">)</span> <span class="token function">Sequence</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> r<span class="token punctuation">.</span>Row
+<span class="token punctuation">&#125;</span></code>`),o(v);var _=s(v,4),nn=t(_);e(nn,()=>`<code class="language-go"><span class="token keyword">type</span> fanInRecord<span class="token punctuation">[</span>T sequenced<span class="token punctuation">]</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	index <span class="token builtin">int</span>
+	data  T
+	pause <span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),o(_);var U=s(_,4);l(U,{children:(a,k)=>{var n=hn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> orderedFanIn<span class="token punctuation">[</span>T sequenced<span class="token punctuation">]</span><span class="token punctuation">(</span>done <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> channels <span class="token operator">...</span><span class="token operator">&lt;-</span><span class="token keyword">chan</span> T<span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> T <span class="token punctuation">&#123;</span>
+	fanInCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> fanInRecord<span class="token punctuation">[</span>T<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	wg <span class="token operator">:=</span> sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> channels <span class="token punctuation">&#123;</span>
+		wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+		pauseCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+		<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span>pause <span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> index <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">var</span> ok <span class="token builtin">bool</span>
+				<span class="token keyword">var</span> data T
+
+				<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">case</span> data<span class="token punctuation">,</span> ok <span class="token operator">=</span> <span class="token operator">&lt;-</span>channels<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">:</span>
+					<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">&#123;</span>
+						<span class="token keyword">return</span>
+					<span class="token punctuation">&#125;</span>
+					fanInCh <span class="token operator">&lt;-</span> fanInRecord<span class="token punctuation">[</span>T<span class="token punctuation">]</span><span class="token punctuation">&#123;</span>index<span class="token punctuation">:</span> index<span class="token punctuation">,</span> data<span class="token punctuation">:</span> data<span class="token punctuation">,</span> pause<span class="token punctuation">:</span> pause<span class="token punctuation">&#125;</span>
+				<span class="token keyword">case</span> <span class="token operator">&lt;-</span>done<span class="token punctuation">:</span>
+					<span class="token keyword">return</span>
+				<span class="token punctuation">&#125;</span>
+
+				<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">case</span> <span class="token operator">&lt;-</span>pause<span class="token punctuation">:</span>
+				<span class="token keyword">case</span> <span class="token operator">&lt;-</span>done<span class="token punctuation">:</span>
+					<span class="token keyword">return</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">(</span>pauseCh<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token function">close</span><span class="token punctuation">(</span>fanInCh<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token operator">...</span>
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var H=s(U,4);l(H,{children:(a,k)=>{var n=mn(),p=t(n);e(p,()=>`<code class="language-go"><span class="token keyword">func</span> orderedFanIn<span class="token punctuation">[</span>T sequenced<span class="token punctuation">]</span><span class="token punctuation">(</span>done <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> channels <span class="token operator">...</span><span class="token operator">&lt;-</span><span class="token keyword">chan</span> T<span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> T <span class="token punctuation">&#123;</span>
+	<span class="token operator">...</span>
+
+	outputCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> T<span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>outputCh<span class="token punctuation">)</span>
+		expected <span class="token operator">:=</span> <span class="token number">1</span>
+		queuedData <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>fanInRecord<span class="token punctuation">[</span>T<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>channels<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">for</span> in <span class="token operator">:=</span> <span class="token keyword">range</span> fanInCh <span class="token punctuation">&#123;</span>
+			<span class="token comment">// 순서가 맞는 데이터는 바로 전달</span>
+			<span class="token keyword">if</span> in<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">Sequence</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> expected <span class="token punctuation">&#123;</span>
+				<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+				<span class="token keyword">case</span> outputCh <span class="token operator">&lt;-</span> in<span class="token punctuation">.</span>data<span class="token punctuation">:</span>
+					in<span class="token punctuation">.</span>pause <span class="token operator">&lt;-</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+					expected<span class="token operator">++</span>
+					allDone <span class="token operator">:=</span> <span class="token boolean">false</span>
+					<span class="token comment">// 큐에 저장된 다음 데이터가 있는지 확인</span>
+					<span class="token keyword">for</span> <span class="token operator">!</span>allDone <span class="token punctuation">&#123;</span>
+						allDone <span class="token operator">=</span> <span class="token boolean">true</span>
+						<span class="token keyword">for</span> i<span class="token punctuation">,</span> d <span class="token operator">:=</span> <span class="token keyword">range</span> queuedData <span class="token punctuation">&#123;</span>
+							<span class="token keyword">if</span> d <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">&amp;&amp;</span> d<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">Sequence</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> expected <span class="token punctuation">&#123;</span>
+								<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+								<span class="token keyword">case</span> outputCh <span class="token operator">&lt;-</span> d<span class="token punctuation">.</span>data<span class="token punctuation">:</span>
+									queuedData<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">nil</span>
+									d<span class="token punctuation">.</span>pause <span class="token operator">&lt;-</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+									expected<span class="token operator">++</span>
+									allDone <span class="token operator">=</span> <span class="token boolean">false</span>
+								<span class="token keyword">case</span> <span class="token operator">&lt;-</span>done<span class="token punctuation">:</span>
+									<span class="token keyword">return</span>
+								<span class="token punctuation">&#125;</span>
+							<span class="token punctuation">&#125;</span>
+						<span class="token punctuation">&#125;</span>
+					<span class="token punctuation">&#125;</span>
+				<span class="token keyword">case</span> <span class="token operator">&lt;-</span>done<span class="token punctuation">:</span>
+					<span class="token keyword">return</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+				<span class="token comment">// 순서가 맞지 않는 데이터는 큐에 일시 저장</span>
+				in <span class="token operator">:=</span> in
+				queuedData<span class="token punctuation">[</span>in<span class="token punctuation">.</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">&amp;</span>in
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> outputCh
+<span class="token punctuation">&#125;</span></code>`),o(n),c(a,n)},$$slots:{default:!0}});var E=s(H,13),sn=s(t(E),2);r(sn,{alt:"Effective Concurrency in Go",src:"https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/"}),pn(3),o(E),c(B,C)}export{Fn as default,tn as metadata};

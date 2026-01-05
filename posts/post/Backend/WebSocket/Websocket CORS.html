@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		
+		<link href="../../../../_app/immutable/assets/0.CWEFMGw7.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.DOA6KAmR.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start._ykarBe4.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/A4kHFXCN.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CVx5jffJ.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DIeogL5L.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DMgF1Uhx.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D0iwhpLH.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/ByF348JK.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.Bg9oACF-.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dp1pzeXC.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D_kqQSo5.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/2cXyNWGb.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bzak7iHL.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Ca2j7qFz.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BmVC6lTd.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BnZK2-eX.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/C0t2u1D1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.DWOaqez1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D7leeM5l.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DKQVeb5P.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CP-r3QU3.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bp7YhWCs.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DkPbIObf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/69_IOA4Y.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D2vXKg8d.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DJh_0fka.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dg0EvQHI.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/12.p0gh8pNe.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DF2T1Nhr.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CxRPdVhl.js"><!--1y1qu0s--><meta data-key="description" name="description" content="???: 내 웹소켓은 부끄럼쟁이인가봐요"/> <meta property="og:type" content="article"/> <meta property="og:title" content="WebSocket에 CORS를 적용하려면"/> <meta property="og:description" content="???: 내 웹소켓은 부끄럼쟁이인가봐요"/><!----><title>WebSocket에 CORS를 적용하려면</title>
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte"><!--[--><!--[--><!----><div class="layout"><header><a class="skip-to-content-link" href="#main">Skip to main content</a> <nav class="main-nav"><ul><!--[--><li><a href="/posts" aria-current="false"><!---->Posts<!----></a></li><li><a href="/category" aria-current="false"><!---->Categories<!----></a></li><li><a href="/about" aria-current="false"><!---->About<!----></a></li><li><a href="/api/rss.xml" aria-current="false"><!---->RSS<!----></a></li><li><a href="/#" aria-current="false"><!---->Home<!----></a></li><!--]--></ul> <button aria-pressed="false" class="menu-button" tabindex="-1"><span class="sr-only">Toggle hamburger menu</span> <!--[--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M64,48.496l-48.496,-48.496l-15.504,15.504l48.496,48.496l-48.496,48.496l15.504,15.504l48.496,-48.496l48.496,48.496l15.504,-15.504l-48.496,-48.496l48.496,-48.496l-15.504,-15.504l-48.496,48.496Z"></path></svg><!--]--></button><!----></nav><!----> <button aria-pressed="false" class="menu-button" tabindex="0"><span class="sr-only">Toggle hamburger menu</span> <!--[!--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><rect x="0" y="12.48" width="128" height="18.688"></rect></g><g><rect x="0" y="96.832" width="128" height="18.688"></rect></g><g><rect x="0" y="54.656" width="128" height="18.688"></rect></g></svg><!--]--></button><!----> <a href="/" class="site-title">집밥서선생</a> <button class="toggle-theme"><!--[-->☀️<!--]--></button><!----></header><!----> <main id="main" tabindex="-1"><!----><div class="content"><!----><article class="post"><img class="cover-image" src="/post_img/Backend/Architecture/DDD/cover.png" alt="" style="aspect-ratio: 16 / 9;" width="16" height="9"/> <h1>WebSocket에 CORS를 적용하려면</h1> <div class="meta"><b>Published:</b> 2023-11-11</div> <!----><p>Fiber 프레임워크를 사용하는 경우 CORS를 적용하려면 일반적으로 다음과 같이 하면 된다.</p> <pre class="language-go"><!----><code class="language-go">app <span class="token operator">:=</span> fiber<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">...</span>
+app<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>cors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>cors<span class="token punctuation">.</span>ConfigDefault<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">...</span>
+app<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">":3000"</span><span class="token punctuation">)</span></code><!----></pre> <p>이렇게 cors 미들웨어를 사용하면 다른 Origin에서 날린 요청도 받아줄 수 있다.
+보통의 REST API라면 이걸로 CORS 요청을 받아서 처리하는 게 가능하지만, WebSocket의 경우는 다르다.</p> <br/><br/> <p><a href="https://docs.gofiber.io/api/middleware/cors/" rel="nofollow">Fiber CORS 미들웨어 문서</a>를 보면, 기본 CORS 설정 사용시 <code>GET,POST,HEAD,PUT,DELETE,PATCH</code> 메서드에 대해서만 CORS가 적용된다.</p> <p>GET, POST 요청 같은 단순 요청(Simple Requests)은 CORS Preflight 요청을 보내지 않고 바로 요청을 보낸다.
+그러나 WebSocket의 경우 Preflight 요청을 보내며, Preflight 요청의 메서드는 OPTIONS이다.
+따라서 OPTIONS 메서드에 대해서도 CORS를 적용해주어야 한다.</p> <p>Fiber에서는 다음과 같이 CORS 설정을 변경할 수 있다.</p> <pre class="language-go"><!----><code class="language-go">app <span class="token operator">:=</span> fiber<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">...</span>
+app<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>cors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>cors<span class="token punctuation">.</span>Config<span class="token punctuation">&#123;</span>
+    AllowOrigins<span class="token punctuation">:</span> <span class="token string">"*"</span><span class="token punctuation">,</span>
+    AllowMethods<span class="token punctuation">:</span> <span class="token string">"GET,POST,HEAD,PUT,DELETE,PATCH,OPTIONS"</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">...</span>
+app<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">":3000"</span><span class="token punctuation">)</span></code><!----></pre> <p>만약 미들웨어를 사용하지 않고 직접 CORS를 적용하고 싶다면 다음과 같이 하면 된다.</p> <pre class="language-go"><!----><code class="language-go">app<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>c <span class="token operator">*</span>fiber<span class="token punctuation">.</span>Ctx<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+    c<span class="token punctuation">.</span><span class="token function">Set</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Origin"</span><span class="token punctuation">,</span> <span class="token string">"*"</span><span class="token punctuation">)</span>
+    c<span class="token punctuation">.</span><span class="token function">Set</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Methods"</span><span class="token punctuation">,</span> <span class="token string">"GET,POST,HEAD,PUT,DELETE,PATCH,OPTIONS"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> c<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></code><!----></pre> <br/> <p>아니 파이버야 당연히 OPTIONS도 해주는 줄 알았지…<br/> 그래도 덕분에 Preflight Request에 대해 다시 한번 공부했다.</p> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <ul><li><a href="https://docs.gofiber.io/api/middleware/cors/" rel="nofollow">Fiber CORS</a></li> <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS#%EA%B8%B0%EB%8A%A5%EC%A0%81_%EA%B0%9C%EC%9A%94" rel="nofollow">CORS Preflight</a></li></ul><!----> <!--[--><aside class="post-footer"><h2>Posted in:</h2> <ul><!--[--><li><a href="/category/Golang/">Golang</a></li><li><a href="/category/Fiber/">Fiber</a></li><li><a href="/category/Websocket/">Websocket</a></li><li><a href="/category/CORS/">CORS</a></li><!--]--></ul></aside><!--]--></article> <!--[--><!--[!--><!--]--><!--]--><!----><!----></div><!----> <footer><p>© 2026 JHSeo</p></footer><!----></main></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_9x1lhv = {
+						base: new URL("../../../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../../../_app/immutable/entry/start._ykarBe4.js"),
+						import("../../../../_app/immutable/entry/app.Bg9oACF-.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 12],
+							data: [{type:"data",data:null,uses:{}},null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

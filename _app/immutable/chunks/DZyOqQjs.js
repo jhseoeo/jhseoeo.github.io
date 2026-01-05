@@ -1,0 +1,540 @@
+import"./Bzak7iHL.js";import"./69_IOA4Y.js";import{s as n,f as Jn,c as s,r as a,n as B}from"./CVx5jffJ.js";import{f as Gn,a as In}from"./2cXyNWGb.js";import{h as t}from"./D6IIVJDJ.js";import{I as An}from"./BVXqo7x9.js";const En={title:"표준 라이브러리",date:"2022-09-05T00:00:00.000Z",excerpt:"The Standard Library",categories:["Golang","Basic Golang"],coverImage:"/post_img/Go/Golang_basics/cover.png",coverWidth:16,coverHeight:9,indexed:!1,exposed:!0},{title:Yn,date:Kn,excerpt:Qn,categories:$n,coverImage:ns,coverWidth:ss,coverHeight:as,indexed:ts,exposed:ps}=En;var Ln=Gn(`<br/> <p>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 22.04 LTS 기준으로 작성되었습니다.</p> <br/><br/> <h2 id="introduction"><a aria-hidden="true" tabindex="-1" href="#introduction"><span class="icon icon-link"></span></a>Introduction</h2> <hr/> <p>Go의 표준 라이브러리는 여러 장점이 있다.
+Python의 라이브러리 철학인 <em>“batteries included”</em> 처럼, 서비스를 빌드하기 위해 필요한 다양한 도구를 제공한다.
+Go는 비교적 최신 언어인 만큼, 현대 프로그래밍 환경에서 직면하는 문제에 초점을 맞춘 라이브러리를 제공한다.</p> <p>이 장에서 모든 표준 라이브러리 패키지들을 다룰 수 없고, 그럴 필요도 없다.
+표준 라이브러리에 대한 다양한 정보들과 <a href="https://pkg.go.dev/std" rel="nofollow">문서</a>가 있으니, 여기를 참조하면 될 것이다.
+이 포스트에서는 몇 개의 가장 중요한 패키지, 그리고 이들의 디자인적인 측면이나 사용 방법을 알아볼 것이다. <code>errors</code>, <code>sync</code>, <code>context</code>, <code>testing</code>, <code>reflect</code>, <code>unsafe</code> 등 패키지들은 각각의 챕터에서 집중적으로 다루었거나 다룰 예정이다.
+이 챕터에서는 I/O, 시간, JSON, HTTP 등을 지원하는 패키지에 대해 알아볼 것이다.</p> <br/><br/> <h2 id="io-and-friends"><a aria-hidden="true" tabindex="-1" href="#io-and-friends"><span class="icon icon-link"></span></a>io and Friends</h2> <hr/> <p>실용적인 프로그램을 데이터를 읽고 쓸 수 있어야 한다.
+Go의 입/출력 철학은 <code>io</code> 패키지에서 찾아볼 수 있다.
+특히 이 패키지에 정의된 <code>io.Reader</code>와 <code>io.Writer</code>는 각각 Go에서 두 번째, 세 번째로 많이 사용되는 인터페이스일 것이다. (첫 번째는 <code>error</code>이다)</p> <br/> <p><code>io.Reader</code>와 <code>io.Writer</code>는 모두 한 개의 메소드를 정의한다.</p> <pre class="language-go"><!></pre> <p><code>io.Writer</code>의 <code>Write()</code> 메소드는 바이트 덩어리를 파라미터로 받고, 바이트의 수와 에러 발생 여부를 반환한다. <code>io.Reader</code>의 <code>Read()</code> 메소드는 좀 더 신기하다.
+리턴 파라미터로 값을 반환하기보다는 입력 파라미터로 보낸 값을 변경한다.
+최대 <code>len(p)</code> 바이트만큼의 데이터가 슬라이스에 쓰일 것이고, 기록된 바이트의 수와 에러 여부가 반환된다.</p> <br/> <p>사실 <code>io.Reader</code>의 <code>Read()</code> 메소드는 아래와 같이 정의되는 것이 직관적일 것이다.</p> <pre class="language-go"><!></pre> <p>하지만 <code>io.Reader</code>가 기존 방식으로 정의되는 데에는 이유가 있다. <code>io.Reader</code>를 사용하는 함수를 작성하여 이해해보도록 하자.</p> <pre class="language-go"><!></pre> <p>위 예제에서 주목할 점들이 있다.</p> <ol><li><p>버퍼를 한 번 생성하고 <code>r.Read()</code>를 호출할 때마다 재사용할 것이다.
+이러한 방식을 쓰면 크기가 클 수도 있는 데이터에 대해 한 번의 메모리 할당으로 값을 읽어올 수 있다.
+만약 <code>Read()</code> 메소드가 <code>[]byte</code>를 리턴하게끔 작성되어 있다면, 매번 함수를 호출할 때마다 새롭게 메모리 할당을 할 것이고, 가비지 컬렉터가 할 일이 많아질 것이다.<br/> 추후 이렇게 낭비적인 할당을 줄이고 싶다면, 프로그램이 실행될 때 버퍼 풀을 생성해 놓는 방법도 있다.
+함수가 실행될 때 해당 버퍼 풀에서 버퍼를 가져와 사용하고, 끝나면 되돌려 놓는 식이다. <code>io.Reader</code>에 slice를 보낼 수 있기 떄문에 메모리 할당을 개발자의 몫으로 남겨둘 수 있다.</p></li> <li><p><code>r.Read()</code>에서 반환된 <code>n</code>값을 사용하여 버퍼에 바이트가 얼마나 많이 기록되었는지 확인하고, <code>buf</code> slice의 subslice를 이터레이션하여 읽어온 데이터를 처리할 수 있다.</p></li> <li><p><code>r.Read()</code>의 리턴 타입 중 error로 <code>io.EOF</code>를 반환한 경우(<code>io.EOF</code>는 실제로 에러가 아니다), 읽어올 데이터가 끝났음을 의미한다.
+위 예제에서는 <code>io.EOF</code>가 반환될 시 처리를 끝내고 결과물을 리턴한다.</p></li> <li><p><code>io.Reader</code>에는 특이사항이 있다. 대부분의 함수 또는 메소드에 error 리턴값이 있다면, 오류가 아닌 값을 처리하기 전에 에러를 먼저 확인할 것이다. <code>Read()</code>를 사용할때는 데이터 스트림의 끝 또는 예기치 않은 오류가 발생하기 전에 반환된 바이트가 있을 수 있기 떄문에 이와 반대로 한다.<br/> 만약 <code>io.Reader</code>가 예상치 못하게 끝난다면 다른 종류의 sentinel error(<code>io.ErrUnexpectedEOF</code>)가 반환될 것이다.
+이처럼 예측하지 못한 상태를 나타내는 에러는 <code>Err</code>로 시작한다.</p></li></ol> <br/> <p>이렇듯 <code>io.Reader</code>와 <code>io.Writer</code> 인터페이스가 간단하기 때문에, 여러 가지 방법으로 충족시킬 수 있다. <code>strings.NewReader()</code> 함수를 사용하여 문자열로부터 <code>io.Reader</code>를 생성시킬 수도 있다.</p> <pre class="language-go"><!></pre> <p><code>countLetters</code> 함수가 파라미터로 <code>io.Reader</code>를 사용하므로, <code>countLetters</code> 함수를 써서 gzip으로 압축된 영문자를 카운트할 수도 있다.
+진짜 되는지 해보자. 먼저 파일명을 파라미터로 받아 <code>*gzip.Reader</code>를 반환하는 함수를 작성해준다.</p> <pre class="language-go"><!></pre> <p>함수의 구조가 그다지 어렵지는 않다.
+먼저 <code>os.Open()</code> 함수로 <code>*os.File</code> 인스턴스를 만들고 에러 검사를 한다.
+그 후 <code>gzip.NewReader()</code> 함수를 호출하여 <code>*gzip.Reader</code> 인스턴스를 생성한다.
+리턴 값들은 <code>*gzip.Reader</code> 인스턴스, 생성된 인스턴스들을 제거하는 closure, 그리고 에러 변수이다.</p> <p><code>*gzip.Reader</code> 인스턴스는 <code>*strings.Reader</code>처럼 <code>io.Reader</code>를 충족시키기 때문에 <code>countLettters()</code> 함수에서 사용할 수 있다.</p> <pre class="language-go"><!></pre> <br/> <p>읽기/쓰기를 위한 표준 인터페이스가 있기 때문에, <code>io.Reader</code>와 <code>io.Writer</code>에서 데이터를 복사하는 표준 함수 <code>io.Copy()</code>도 <code>io</code> 패키지에 존재한다.
+기존 <code>io.Reader</code>와 <code>io.Writer</code>인스턴스에 새로운 기능을 추가하기 위한 다른 표준 함수들도 있다.</p> <ul><li><code>io.MultiReader</code> : 여러 개의 <code>io.Reader</code> 인스턴스로부터 잇따라 데이터를 읽을 수 있는 <code>io.Reader</code> 인스턴스를 반환한다.</li> <li><code>io.LimitReader</code> : 명시된 수 만큼의 바이트만 읽을 수 있는 <code>io.Reader</code> 인스턴스를 반환한다.</li> <li><code>io.MultiWriter</code> : 동시에 여러 <code>io.Writer</code>에 데이터를 쓸 수 있는 <code>io.Writer</code> 인스턴스를 반환한다.</li></ul> <p>표준 라이브러리 내의 다른 패키지에서는 <code>io.Reader</code>와 <code>io.Writer</code>와 같이 사용할 수 있는 타입이나 함수들을 제공한다.
+몇 개는 이미 봤지만 압축 알고리즘, 아카이브, 암호화, 버퍼, byte slice, 문자열 등 다양하게 제공하고 있다.</p> <br/> <p><code>io</code> 패키지에는 <code>io.Closer</code>나 <code>io.Seeker</code>등, 또다른 단일 메소드 인터페이스가 있다.</p> <pre class="language-go"><!></pre> <p><code>os.File</code>과 같이, 읽기나 쓰기가 끝나면 정리를 해줘야 하는 타입들은 <code>io.Closer</code>를 충족시킨다.
+일반적으로 <code>Close()</code> 메소드는 <code>defer</code>를 통해 호출된다.</p> <pre class="language-go"><!></pre> <p>만약 리소스를 반복문 내에서 여는 경우, <code>defer</code>를 이용하지 않는 것이 좋다.
+반복문 내에서 열린 리소스는 이터레이션의 끝에서 닫아주는 게 좋겠지만, <code>defer</code>는 함수가 끝날 때 실행된다.
+따라서 이터레이션의 끝 부분이나 함수가 끝날 수도 있는 에러가 발생할 만한 부분에 <code>Close()</code>를 호출해 주는 게 좋다.</p> <p><code>io.Seeker</code> 인터페이스는 리소스에 임의 접근(random access) 하기 위해 사용된다.
+이 때 파라미터 <code>whence</code>에 유효한 값은 상수 <code>io.SeekStart</code>, <code>io.SeekCurrent</code>, <code>io.SeekEnd</code>이다.
+사실 이건 제작자 실수인게, <code>whence</code>는 타입을 새로 생성하여 명확히 해줬어야 하는데 <code>whence</code>는 int 타입이다.</p> <br/> <p><code>io</code> 패키지는 앞서 보았던 <code>io.Reader</code>, <code>io.Writer</code>, <code>io.Closer</code>, <code>io.Seeker</code>, 이렇게 네 개의 인터페이스를 여러 방식으로 합친 인터페이스를 정의한다. <code>io.ReadCloser</code>, <code>io.ReadSeeker</code>, <code>io.ReadWriteCloser</code>, <code>io.ReadWriteSeeker</code>, <code>io.ReadWriter</code>, <code>io.WriteCloser</code>, <code>io.WriteSeeker</code> 등이 있다.
+이런 인터페이스들은 함수가 데이터에 대해 어떤 프로세스를 하는지 정확히 명시하기 위해 사용된다.</p> <p>이를테면 파라미터의 타입으로 <code>os.File</code>를 써주는 것보다는, 그 파라미터를 가지고 뭘 할건지 명시하기 위헤 인터페이스를 사용하는 것이 좋다.
+또한 자체 데이터 소스나 싱크를 작성하는 경우, 코드가 이러한 인터페이스와 호환되도록 하는 것이 좋다.</p> <p><code>ioutil</code> 패키지는 <code>io.Reader</code> 인스턴스에 대한 다양한 도구들을 제공한다.
+byte slice로 한 번에 읽기, 파일 읽기 및 쓰기, 임시 파일 작업 등 보다 간단한 도구들이 포함된다.
+이를테면 <code>io.Reader</code>, <code>io.Writer</code>, <code>bufio.Scanner</code> 등은 크기가 큰 데이터를 처리하는데 용이한 편이지만, <code>ioutil.ReadAll</code>, <code>ioutil.ReadFile</code>, <code>ioutil.WriteFile</code>은 보다 작은 데이터를 처리하는데 유용하다.</p> <p><code>ioutil</code> 패키지에는 유용한 함수들이 더 있다.
+가령 <code>io.Reader</code>는 충족하지만 <code>io.Closer</code>는 충족하지 않는 인스턴스(<code>strings.Reader</code> 등)가 있고,
+이를 <code>io.ReadCloser</code>를 파라미터로 받는 함수에 넘겨야 한다고 가정해보자.
+이 때 <code>io.Reader</code>를 <code>ioutil.NopCloser()</code> 함수로 보내면 <code>io.ReadCloser()</code> 타입을 반환할 것이고, 이걸 해당 함수의 파라미터로 넘기면 된다.</p> <p>실제로 <code>ioutil.NopCloser()</code>의 구현을 들여다보면 생각보다 단순하다.</p> <pre class="language-go"><!></pre> <p>위 구현을 보면 Go에서 타입에 메소드를 추가하는 패턴을 확인할 수 있다.
+인터페이스를 충족할 수 있게끔 타입에 메소드를 추가해주고 싶다면, 이렇게 Embedded type 패턴을 사용해주면 된다.</p> <blockquote><p>함수에서 인터페이스를 리턴하지 않는다는 규칙이 기억날 것이다. <code>ioutil.NopCloser()</code> 함수는 이를 위반하긴 한다.
+하지만 표준 라이브러리에 속하는 인터페이스끼리의 변환을 해주는 간단한 어댑터 역할만 하기 때문에 예외로 두고 넘어가 주자.</p></blockquote> <br/><br/> <h2 id="time"><a aria-hidden="true" tabindex="-1" href="#time"><span class="icon icon-link"></span></a>time</h2> <hr/> <p>다른 언어들처럼 Go에도 시간 연산을 하는 라이브러리인 <code>time</code> 패키지가 있다.
+시간을 나타내는 주요 타입이 두 가지 있는데, 바로 <code>time.Duration</code>과 <code>time.Time</code>이다.</p> <p>시각 사이의 시간은 <code>time.Duration</code>으로 표현되며, 이는 <code>int64</code> 기반이다.
+Go의 시간 최소단위는 나노초(ns)이고, <code>time</code> 패키지에서는 <code>time.Duration</code> 타입의
+나노초(nanosecond), 마이크로초(microsecond), 밀리초(milisecond), 초(second), 분(minute), 시간(hour) 상수를 정의한다.</p> <p>예를 들어, 2시간 30분은 아래와 같이 정의한다.</p> <pre class="language-go"><!></pre> <p>이러한 상수들을 사용하면 <code>time.Duration</code> 타입을 readable하고 type-safe하게 만들어준다.</p> <br/> <p>Go는 <code>time,ParseDuration()</code> 함수에 특정한 스트링 포맷이나 숫자들의 배열을 넘겨서 <code>time.Duration</code> 타입으로 파싱할 수 있다.
+이에 대한 설명은 <a href="https://pkg.go.dev/time#ParseDuration" rel="nofollow">표준 라이브러리 문서</a>에 작성되어 있다.
+아래 내용은 원문인데, 번역하는 것보다 영어로 읽는게 더 편할것 같아서 따로 번역하지는 않았다.</p> <blockquote><p>A duration string is a possibly signed sequence of decimal numbers,
+each with optional fraction and a unit suffix, such as “300ms”, “-1.5h” or “2h45m”.
+Valid time units are “ns”, “us” (or “µs”), “ms”, “s”, “m”, “h”.</p></blockquote> <p><code>time.Duration</code>에는 여러 가지 메소드들이 정의되어 있고, <code>fmt.Stringer</code> 인터페이스를 충족시킨다.
+따라서 <code>fmt.Stringer</code>에 정의된 <code>String()</code> 메소드를 호출하면 formatted string을 반환받는다.
+또한 <code>Truncate</code>나 <code>Round</code> 메소드를 쓰면 <code>time.Duration</code>을 지정된 <code>time.Duration</code> 단위만큼 반올림하거나 자른다.</p> <br/> <p>특정한 시각의 경우 <code>time.Time</code> 타입으로 표현되는데, 시간대(time zone)를 명시해 주어야 한다.
+또한 <code>Time.Now()</code> 함수로 현재 로컬 시간인 <code>time.Time()</code> 인스턴스를 얻을 수 있다.</p> <p><code>time.Time</code> 인스턴스는 시간대에 대한 정보까지 포함하기 때문에,
+두 개의 <code>time.Time</code> 인스턴스가 같은 시간대를 나타내더라도 <code>==</code> 연산자를 사용하면 제대로 된 결과가 나타나지 않을 수 있다. <code>Equal()</code> 메소드를 사용하면, 표준 시간대를 기준으로 비교해준다.</p> <p><code>time.Parse()</code> 함수는 <code>string</code>을 <code>time.Time</code> 타입으로 변환해주고, <code>Format()</code> 메소드는 <code>time.Time</code> 타입을 <code>string</code>으로 변환해준다.</p> <pre class="language-go"><!></pre> <p>출력 결과는 다음과 같다.</p> <pre class="language-bash"><!></pre> <p>이러한 날짜나 시간 포맷은 유용하게 사용되게끔 의도되었지만, 기억하기 힘들기 때문에 사용하려 할 때마다 찾아봐야 한다는 단점이 있다.
+다행히도 주로 사용되는 날짜 및 시각 포맷은 <code>time</code> 패키지에서 상수로 주어진다.</p> <p><code>time.Duration</code>처럼, <code>time.Time</code>에도 <code>Day</code>, <code>Month</code>, <code>Year</code>, <code>Hour</code>, <code>Minute</code>, <code>Second</code>, <code>Weekday</code>, <code>Clock</code> 등 시각의 일부분을 추출할 수 있는 메소드가 존재한다.
+이 중 <code>Clock()</code> 메소드는 시, 분, 초를 각각의 <code>int</code>로 반환하고, <code>Date()</code>는 연, 월, 일을 각각의 <code>int</code>로 반환한다.
+또한 <code>time.Time</code> 인스턴스는 <code>After</code>, <code>Before</code>, <code>Equal</code> 메소드를 통해 다른 인스턴스와 비교할 수 있다.</p> <p><code>time.Time</code>의 <code>Sub()</code> 메소드는 두 시각 사이의 경과 시간을 <code>time.Duration</code>으로 반환하며, <code>time.Time</code>의 <code>Add()</code> 메소드는 <code>time.Duration</code>을 파라미터로 받아 해당 시간만큼 더해진 시각의 <code>time.Time</code> 인스턴스를 반환한다. <code>time.Time</code>의 <code>AddDate()</code> 메소드는 연, 월, 일을 각각 입력받아 그만큼 더해진 날짜의 <code>time.Time</code> 인스턴스를 반환한다. <code>time.Duration</code> 인스턴스를 인자로 주고, 앞서 언급한 <code>Truncate()</code>와 <code>Round()</code> 메소드를 사용할 수도 있다.</p> <p>이러한 메소드들은 모두 <em>value receiver</em>로 정의되었기 때문에, 원래의 <code>time.Time</code> 인스턴스를 변경하지 않는다.</p> <br/><br/> <h3 id="monotonic-time"><a aria-hidden="true" tabindex="-1" href="#monotonic-time"><span class="icon icon-link"></span></a>Monotonic Time</h3> <p>대부분의 OS에서는 두 종류의 시각을 기록하고 있다.
+그중 <em>wall clock</em>은 말 그대로 현재 시각에 대응하는 것이며, <em>monotonic clock</em>은 컴퓨터가 켜진 시각으로부터 얼마만큼 시간이 흘렀는지를 의미한다.
+두 종류의 시각을 기록하는 이유는, wall clock이 일정하게 증가하는 것이 아니기 때문이다.
+서머타임(Daylight Saving Time), 윤초(leap seconds), Network Time Protocol의 업데이트로 인해 wall clock에는 오차가 생길 수 있으며,
+이로 인해 타이머를 실행하거나 경과된 시간을 얻고자 할 때 문제가 생길 수 있다.</p> <p>이러한 잠재적인 문제점을 해결하기 위해, Go에서는 <code>time.Now()</code>로 <code>time.Time</code> 인스턴스가 생성되거나 타이머가 설정될 때
+monotonic time을 사용하여 경과 시간을 추적한다. <code>Sub()</code> 메소드는 두 <code>time.Time</code> 인스턴스가 모두 monotonic time이 설정된 경우, monotonic time을 이용하여 <code>time.Duration</code>을 계산한다.
+만약 그렇지 않다면 <code>Sub()</code> 메소드는 인스턴스에 지정된 시간을 사용하여 <code>time.Duration</code>을 계산한다.</p> <br/><br/> <h3 id="timers-and-timeout"><a aria-hidden="true" tabindex="-1" href="#timers-and-timeout"><span class="icon icon-link"></span></a>Timers and Timeout</h3> <p>앞선 포스트에서 다루었듯, <code>time</code> 패키지에는 채널을 리턴하여 일정 시간이 지난 후 값이 출력되는 함수가 내장되어 있다. <code>time.After()</code> 함수는 일정 시간이 지나면 값이 단 한번 출력되는 채널을 리턴한다.
+반면 <code>time.Tick()</code> 함수에서 리턴되는 채널은 파라미터로 넘어온 <code>time.Duration</code> 만큼의 시간이 흐를 때마다 값이 출력된다.
+이러한 함수들은 시간 초과 및 반복 작업을 가능하게 함으로써 Go의 동시성을 지원한다.</p> <p>다만 <code>Time.Tick()</code> 함수는 멈출 수 없고, 따라서 가비지 컬렉터에 의해 정리되지도 않는다.
+그래서 <code>Time.NewTicker()</code>를 사용하는데 이 함수는 채널을 닫거나 간격을 재설정하는 메소드를 함께 제공하니, 되도록 이 쪽을 선택하는 게 좋을 것 같다.</p> <p>위 함수들을 사용하는 예제가 따로 없길래 대충 짜보았다.</p> <pre class="language-go"><!></pre> <br/><br/> <h2 id="encodingjson"><a aria-hidden="true" tabindex="-1" href="#encodingjson"><span class="icon icon-link"></span></a>encoding/json</h2> <hr/> <p>REST API는 JSON을 주고받는 통신을 한다. 따라서 Go의 표준 라이브러리는 JSON과 Go 데이터 타입의 상호 변환을 지원한다. <em>marshaling</em>이란 Go 데이터 타입에서 인코딩된 JSON으로 변환하는 것을 의미하며, <em>unmarshaling</em>이란 그 반대를 의미한다.</p> <br/><br/> <h3 id="use-struct-tags-to-add-metadata"><a aria-hidden="true" tabindex="-1" href="#use-struct-tags-to-add-metadata"><span class="icon icon-link"></span></a>Use Struct Tags to Add Metadata</h3> <p>우리가 주문 관리 시스템을 만들고 있다고 가정하고, 아래 JSON 파일을 확인해보자.</p> <pre class="language-json"><!></pre> <p>이제 이 타입과 대응되는 타입을 정의해 보자.</p> <pre class="language-go"><!></pre> <p>JSON으로 변환되는 struct임을 명시하기 위해서는 구조체에 필드를 입력해준 뒤 struct tag를 입력해줘야 한다.
+struct tag는 backtick(<code>\`</code>)으로 문자열을 감싸는 구조이지만, 한 줄 이상 이어서 작성할 수 없다.
+struct tag는 한 개 이상의 tag/value 쌍으로 이루어져 있으며, <code>tagName: "tagValue"</code>의 구조로 작성되며 공백으로 구분한다.</p> <p>struct tag는 그냥 문자열이기 때문에, 컴파일러는 얘네가 제대로 작성되어 있는지 알 수가 없다.
+다만 <code>go vet</code> 명령어를 치면 검증할 수 있으며, 이러한 모든 필드들은 export된다.
+다른 패키지와 마찬가지로, <code>encoding/json</code> 패키지의 코드들은 구조체의 export되지 않은 필드에 접근할 수 없다.</p> <p>JSON을 처리하기 위해서는 태그명을 <code>json</code>으로 지어서 구조체 필드와 연결되어야 하는 JSON 필드의 이름을 지정해주어야 한다.
+만약 <code>json</code> 태그를 지정하지 않으면 기본적으로 JSON 객체의 필드명과 구조체의 필드명을 매칭시킨다.
+하지만 실제로는 필드명이 같다고 하더라도 struct tag를 명시해주는 것이 좋다.</p> <p>JSON을 구조체로 <em>unmarshaling</em>할 때 <code>json</code> 태그가 명시되어있지 않으면, 필드가 매칭될때 대소문자를 구분하지 않는다.
+반대로 구조체를 JSON으로 <em>marshaling</em>할 때 구조체 필드가 export되려면 첫 글자가 대문자일 수 밖에 없기 때문에, JSON 태그도 항상 대문자가 된다.</p> <p>만약 <em>marshaling</em> 또는 <em>unmarshaling</em>을 할 때 무시해야 하는 필드가 있다면 필드명으로 대시(<code>-</code>)를 써주면 된다.
+만약 필드가 비어있을 때 출력에서 제외되어야 하는 경우, 이름 뒤에 <code>,omitempty</code>를 추가한다.
+이 때 필드가 비어있다는 것은 Zero value를 의미하는 것이 아니라, zero-length slice나 map 등이 이에 해당한다.</p> <p>struct tag는 메타데이터를 사용하여 프로그램의 행동을 제어할 수 있게 해준다.
+Java와 같은 다른 언어에서는 개발자들이 프로그램 요소에 주석을 달아
+프로그램이 <em>어떤</em> 처리를 하는 것에 대해 기술하는 것보다는 <em>어떻게</em> 처리되어야 할지 설명하도록 장려한다.</p> <p>Java에서 주석을 달던 사람들은 무언가 잘못됐을 때, 특히 어떤 코드가 주석이 달려있음에도 어떤 역할을 하는지 이해하지 못할 때 당황하는 경향이 있다.
+Go에서는 짧은 코드보단 명시적인 코드를 좋아한다.
+struct tag는 자동으로 evaluate되지 않으며, 구조체 인스턴스가 함수로 전달될 때 처리된다.</p> <br/><br/> <h3 id="unmarshaling-and-marshaling"><a aria-hidden="true" tabindex="-1" href="#unmarshaling-and-marshaling"><span class="icon icon-link"></span></a>Unmarshaling and Marshaling</h3> <hr/> <p><code>encoding/json</code> 패키지의 <code>json.Unmarshal()</code> 함수는 <code>byte</code>의 <code>slice</code>를 <code>struct</code>로 변환해준다.
+아래 예제는 <code>data</code>라는 문자열 변수를 <code>struct</code>를 위에서 확인한 <code>Order</code> 구조체 타입으로 변환하는 예제이다.</p> <pre class="language-go"><!></pre> <p><code>json.Unmarshal()</code> 함수는 <code>io.Reader</code>처럼 데이터를 입력 파라미터에 생성한다.
+이는 두 가지 이유가 있는데, 첫 번째는 쉽게 예상할 수 있듯 동일한 구조체를 재사용하여 효율적으로 메모리를 사용할 수 때문이다.
+두 번째는 달리 다른 방법이 없기 때문이다.
+Go에는 제네릭이 없기 때문에, 인스턴스로 만들 구조체의 타입을 지정할 방법이 달리 없다.
+만약 Go에도 제네릭이 생긴다 해도, 메모리 사용의 이점때문에 이 방식이 그대로 사용되리라 예상된다.</p> <br/> <p><code>encoding/json</code> 패키지의 <code>json.Marshal()</code> 함수는 구조체 인스턴스를 다시 <code>byte</code>의 <code>slice</code>인 JSON으로 변환해준다. <code>json.Marshal()</code></p> <pre class="language-go"><!></pre> <br/><br/> <h3 id="json-readers-and-writers"><a aria-hidden="true" tabindex="-1" href="#json-readers-and-writers"><span class="icon icon-link"></span></a>JSON, Readers, and Writers</h3> <p><code>json.Marshal()</code>와 <code>json.Unmarshal()</code> 함수는 <code>[]byte</code>를 사용한다.
+또한 대부분의 데이터 소스와 싱크가 <code>io.Reader</code>와 <code>io.Writer</code> 인터페이스를 충족시키는 것을 알고 있다.
+그래서 <code>ioutil.ReadAll()</code>을 통해 <code>io.Reader</code>의 모든 내용을 <code>[]byte</code>에 저장하여 <code>json.Unmarshal()</code>을 사용할 수 있지만, 이 방식은 비효율적이다.
+비슷하게 <code>json.Marshal()</code> 함수를 통해 인메모리 <code>[]byte</code> 버퍼에 값을 쓰고, 해당 버퍼의 데이터를 네티워크나 디스크에 쓸 수 있다.
+다만 그 경우 <code>io.Writer</code>에 직접 데이터를 쓰는 편이 더 효율적일 것이다.</p> <p><code>encoding/json</code> 이러한 상황을 다루기 위한 두 가지 타입을 포함하고 있다.
+바로 <code>json.Decoder</code>와 <code>json.Encoder</code> 타입이며, 이 타입들은 <code>io.Reader</code>, <code>io.Writer</code> 인터페이스를 충족시키면서 읽기/쓰기를 할 수 있게 해준다.
+간단한 예제를 확인해보자.</p> <pre class="language-go"><!></pre> <br/> <p><code>os.File</code> 타입은 <code>io.Writer</code>와 <code>io.Reader</code> 인터페이스를 모두 충족시키기 때문에, <code>json.Decoder</code>와 <code>json.Encodeer</code>를 시연하는 데 사용해보자.
+먼저 임시 파일 인스턴스를 만들어 <code>json.NewEncoder()</code> 함수에 넘기면, 임시 파일에 대한 <code>json.Encoder</code> 인스턴스를 생성한다.
+그 후 <code>Encode()</code> 메소드를 호출할 때 <code>toFile</code>을 넘기면 된다.</p> <pre class="language-go"><!></pre> <br/> <p>이렇게 <code>toFile</code>을 임시 파일에 쓴 후 임시 파일을 다시 읽어들여서 <code>json.NewDecoder()</code>로 보내고, <code>Decode()</code> 메소드를 호출하여 <code>Person</code> 타입의 변수로 불러올 것이다.</p> <pre class="language-go"><!></pre> <p>전체 예제는 <a href="https://github.com/jhseoeo/Learning-golang/blob/master/11-standard_library/json/writer_reader.go" rel="nofollow">여기</a>서 확인할 수 있다.</p> <br/><br/> <h3 id="encoding-and-decoding-json-streams"><a aria-hidden="true" tabindex="-1" href="#encoding-and-decoding-json-streams"><span class="icon icon-link"></span></a>Encoding and Decoding JSON Streams</h3> <p>여러 개의 JSON 구조체를 한 번에 읽거나 쓰려면 어떻게 해야 할까?
+이런 상황에서도 <code>json.Decoder</code>와 <code>json.Encoder</code>를 사용할 수 있다.</p> <p>아래와 같은 데이터가 있다고 해보자.</p> <pre class="language-json"><!></pre> <p>우리의 예제에서 이 데이터는 <code>data</code>라는 문자열로 저장되어 있다고 가정할 것이다.
+다만 실제로 이 데이터는 파일이나 HTTP 요청의 데이터일 수도 있다.</p> <p>이 데이터를 <code>t</code>라는 구조체의 타입의 인스턴스로 만들 것이다.</p> <pre class="language-go"><!></pre> <br/> <p>이전처럼 <code>json.Decoder</code>를 데이터 소스로 초기화할 것이다.
+다만 이번에는 <code>json.Decoder</code>의 <code>More()</code> 메소드를 <code>for</code> 루프 조건으로 사용할 것이다.
+이렇게 하면 한 번에 한 개의 JSON 객체를 데이터로 읽어올 수 있게 된다.</p> <pre class="language-go"><!></pre> <p>이 예제의 데이터 스트림에는 배열로 감싸지지 않은 여러 개의 JSON 객체들이 있다.
+이들을 메모리에 한 번에 로드하지 않고, 위 예제처럼 <code>json.Decoder</code>로 단일 객체를 한 개씩 읽으면
+성능이 향상되고 메모리 사용량이 줄어든다는 장점이 있다.</p> <br/> <p><code>json.Encoder</code>로 여러 개의 값을 쓰는 것은 한 개의 값을 쓰는 것과 유사하다.
+예제에서는 <code>bytes.Buffer</code>에 값을 쓸 것이지만, <code>io.Writer</code> 인터페이스를 충족시킨다면 어느 타입이든 사용할 수 있다.</p> <pre class="language-go"><!></pre> <br/><br/> <h3 id="custon-json-parsing"><a aria-hidden="true" tabindex="-1" href="#custon-json-parsing"><span class="icon icon-link"></span></a>Custon JSON Parsing</h3> <p>JSON 파싱 라이브러리의 기본적인 기능으로도 사용하는 데 문제는 없겠지만, 종종 오버라이드하여 사용해야할 때도 있을 것이다. <code>time.Time</code>은 RFC339 포맷은 기본적으로 JSON에서 RFC339 포맷을 사용하는데, 다른 시간 포맷을 사용해야 할 수도 있다.
+그러한 경우 <code>json.Marshaler</code>와 <code>json.Unmarshaler</code> 인터페이스를 충족시키는 새로운 타입을 생성하면 된다.</p> <pre class="language-go"><!></pre> <p><code>time.Time</code> 구조체 타입을 <code>RFC822ZTime</code> 타입에 Embedding하였기 때문에 기존 <code>time.Time</code>의 메소드에 접근할 수 있다.
+또한 value receiver로 선언된 <code>MarshalJSON()</code> 메소드에서는 시간 값을 읽기만 하지만,
+pointer receiver로 선언된 <code>UnmarshalJSON()</code> 메소드에서는 시간 값을 변경한다.</p> <br/> <p>이렇게 하여, 앞선 예제의 <code>Order</code> 타입의 <code>DateOrdered</code> 필드를 RFC822 포맷으로 사용 가능하게끔 수정해주었다.</p> <pre class="language-go"><!></pre> <p>전체 예제는 <a href="https://github.com/jhseoeo/Learning-golang/blob/master/11-standard_library/json/custon_parsing.go" rel="nofollow">여기</a>서 확인할 수 있다.</p> <br/> <p>사실 이러한 방식에는 원칙적으로는 문제가 있다.
+우리는 JSON에 작성된 날짜 포맷을 날짜 자료구조 필드값으로 변환하는데, 이는 <code>encoding/json</code> 방식의 단점이다. <code>RFC822ZTime</code>가 아닌 <code>Order</code>타입이 <code>json.Marshaler</code>나 <code>json.Unmarshaler</code> 인터페이스를 충족시키게끔 할 수도 있었을 것이다.
+다만 그렇게 하면 모든 필드를 직접 처리하도록 코드를 작성해주어야 한다. 직접 처리할 필요가 없는 필드에 대해서도 말이다.
+struct tag는 함수가 특정 필드만 파싱하도록 명시할 수 없기 때문에, 필드에 대한 타입을 직접 생성해주어야 하는 것이다.</p> <p>JSON을 파싱하는 코드의 양을 제한하려면 두 개의 각기 다른 구조체를 정의해야 한다.
+하나는 JSON으로 변환하거나 변환되는 것이며, 다른 하나는 데이터 처리에 관련된 것이다.
+읽기를 할 때는 JSON을 JSON 인식 유형으로 읽은 다음, 이를 다른 유형으로 복사한다.
+반면 JSON으로 쓰기를 하려면 이를 반대로 해주면 된다.
+이 방식은 코드에 중복성이 생기기는 하지만, 비즈니스 로직이 통신 프로토콜에 의존하는 것을 방지해준다.</p> <p><code>json.Marshal()</code>이나 <code>json.Unmarshal()</code> 함수에 <code>map[string]interface&#123;&#125;</code> 타입을 파라미터로 보낼 수도 있다.
+다만 이는 JSON에 무엇이 저장되어 있는지 확인하는 용도로만 쓰고, 확인한 이후에는 concrete type으로 변환해주는 것이 좋다.
+Go에서 타입은 그 자체로 처리할 데이터에 대한 문서 역할도 하니 말이다.</p> <p>Go의 표준 라이브러리는 JSON뿐만 아니라 XML, Base64 등, 다양한 인코더와 디코더를 제공한다.
+만약 인코딩해야 할 데이터 포맷이 있는데 이를 지원하는 표준 또는 서드 파티 라이브러리를 찾을 수 없다면, 직접 작성해주어야 한다.
+직접 작성하는 법은 <em>Reflection</em>을 다루는 포스트에서 추후 다룰 예정이다.</p> <blockquote><p>표준 라이브러리 중 <code>encoding/gob</code> 패키지는 Go의 바이너리 데이터 인코딩으로, Java의 serialization이랑 비슷하다.
+Java serialization을 Java RMI나 Enterprise Java Beans에서 사용하는 것처럼, <code>gob</code> 프로토콜은 Go의 RPC(<code>net/rpc</code> 패키지)에서 사용하는 프로토콜이다.
+다만 <code>encoding/gob</code>나 <code>net/rpc</code> 둘 다 사용하지 않는 것을 권장한다.
+특정 언어에 구애되지 않는 gRPC라는 좋은 프로토콜이 있다.</p></blockquote> <br/><br/> <h2 id="nethttp"><a aria-hidden="true" tabindex="-1" href="#nethttp"><span class="icon icon-link"></span></a>net/http</h2> <hr/> <p>Go에는 HTTP/2 클라이언트 및 서버를 작성하는 표준 라이브러리가 있다.
+클라이언트 및 서버의 코드 작성 예를 알아보자.</p> <br/><br/> <h3 id="the-client"><a aria-hidden="true" tabindex="-1" href="#the-client"><span class="icon icon-link"></span></a>The Client</h3> <p><code>net/http</code> 패키지에는 http request를 생성하고 http response를 받는, <code>Client</code> 타입이 정의되어 있다. <code>net/http</code>에 정의된 가장 기본적인 클라이언트 인스턴스(<code>DefaultClient</code>)가 있지만, 릴리즈될 어플리케이션에서는 이를 사용하지 않는 것이 좋다.
+기본적으로 <code>DefaultClient</code>에는 타임아웃이 없다. 따라서 직접 인스턴스 하나를 생성해 주는 것이 좋다.
+기억해야 할 점은 프로그램 전체에서 단 한 개의 <code>http.Client</code> 인스턴스만 생성하면,
+여러 개의 고루틴이 돌아간다고 해도 요청들을 충분히 처리할 수 있다는 것이다.</p> <pre class="language-go"><!></pre> <br/> <p>새로운 요청을 생성하려면 <code>http.NewRequsetWithContext()</code> 함수에 context, requset method, URL을 넘겨서 <code>*http.Requset</code> 인스턴스를 생성해준다.
+만약 request method가 <code>PUT</code>, <code>POST</code>, <code>PATCH</code>라면, 마지막 파라미터로 <code>io.Reader</code> 타입의 request body를 작성해줘야 한다.
+만약 request body가 없다면, <code>nil</code>을 쓰면 된다.</p> <p>또한 이렇게 생성한 <code>*http.Requset</code> 인스턴스의 <code>Header</code> 필드의 메소드들을 호출하여 request header를 설정할 수 있다.
+아래 예제에서는 <code>Add()</code> 메소드로 request header를 추가해주었다.</p> <pre class="language-go"><!></pre> <br/> <p><code>*http.Requset</code> 인스턴스의 설정을 마쳤다면, 이제 요청을 전송해보자. <code>http.Client</code>의 <code>Do()</code> 메소드를 호출하면 요청이 전송되고, 요청에 대한 응답에 해당하는 <code>http.Response</code> 인스턴스를 리턴 값으로 받을 것이다.</p> <pre class="language-go"><!></pre> <br/> <p>이렇게 전송받은 <code>http.Response</code> 인스턴스의 필드값들은 요청에 대한 정보를 담고 있다.
+response status code는 <code>StatusCode</code> 필드에 저장되며, response status message는 <code>Status</code> 필드에 저장된다.
+또한 response header는 <code>Header</code> 필드에, response body는 <code>Body</code> 필드에 <code>io.ReadCloser</code> 타입으로 저장된다.
+따라서 <code>json.Decoder</code>를 이용해서 REST API 응답을 처리할 수 있다.</p> <pre class="language-go"><!></pre> <p>위 예제의 실행 결과는 다음과 같다.</p> <pre class="language-bash"><!></pre> <br/> <blockquote><p><code>net/http</code> 패키지에는 <code>http.Get()</code>, <code>http.Head()</code>, <code>http.Post()</code>등 요청을 보내는 함수가 있다.
+이 함수들은 <code>DefaultClient</code>로 요청을 보내기 때문에 사용하지 않는 것이 좋다(얘네 타임아웃이 없다).</p></blockquote> <br/><br/> <h3 id="the-server"><a aria-hidden="true" tabindex="-1" href="#the-server"><span class="icon icon-link"></span></a>The Server</h3> <p>HTTP 서버는 <code>http.Server</code>와 <code>http.Handler</code> 인터페이스의 개념에 기반하여 구축한다. <code>http.Client</code>는 http request를 전송하는 역할을 하듯, <code>http.Server</code>는 TLS를 지원하며, http request를 핸들링하는 성능 좋은 HTTP/2 서버이다.</p> <p>서버에 대한 요청은 <code>http.Handler</code> 인터페이스를 충족시키는 타입에 의해 핸들링된다.
+이 인터페이스는 단일 메소드를 정의한다.</p> <pre class="language-go"><!></pre> <br/> <p><code>ServeHTTP()</code>의 파라미터 중 <code>*http.Request</code>는 <code>http.Client</code>로 요청을 보낼 때 사용했던 타입과 동일한 것이다. <code>http.ResponseWriter</code> 인터페이스는 아래처럼 세 개의 메소드를 정의한다.</p> <pre class="language-go"><!></pre> <p>이 세 개의 메소드는 반드시 일정한 순서대로 호출된다.</p> <p>가장 먼저 호출되는 것은 <code>Header()</code>로, <code>http.Header</code> 인스턴스를 리턴받아서 response header를 설정하기 위해 사용된다.
+특별히 response header를 설정할 필요가 없다면 <code>Header()</code>를 반드시 호출할 필요는 없다.</p> <p>그 다음으로는 response status code를 설정하기 위해 <code>WriteHeader()</code>를 호출한다.
+이때 모든 status code는 <code>net/http</code>에 상수로 정의되어 있다.
+(패키지 레벨에서 status code에 대한 특정한 타입이 정의되었으면 좋았을 텐데, 그렇지 않다.
+실제로 status code들은 특별한 타입이 없는 그냥 정수형이다.)
+만약 status code 200을 보내려고 한다면 <code>WriteHeader()</code>를 굳이 호출해줄 필요는 없다.</p> <p>마지막으로 <code>Write()</code>를 호출하여, response body를 설정해준다.</p> <br/> <p>가장 기본적인 형태의 handler를 작성해보자.</p> <pre class="language-go"><!></pre> <p>어차피 구조체의 필드는 그렇게 중요하지 않으니 비워 두었고, 필요한 <code>ServeHTTP()</code> 메소드만 정의해 주었다.</p> <br/> <p>새로운 <code>http.Server</code> 인스턴스를 생성하여, 서버를 열어보자.</p> <pre class="language-go"><!></pre> <p><code>http.Server</code>의 <code>Addr</code> 필드는 서버가 열릴 호스트 주소와 포트를 지정한다.
+따로 지정해주지 않으면 모든 호스트 주소에 대해 HTTP 표준 포트인 80으로 서버를 열 것이다.</p> <p><code>ReadTimeout</code>, <code>WriteTimeout</code>, <code>IdleTimeout</code> 필드는 서버의 읽기, 쓰기, 유휴 상태의 타임아웃을 <code>time.Duration</code>값으로 명시할 수 있다.
+기본적으로 타임아웃을 두지 않기 때문에, 이 필드를 지정해주지 않으면 잘못된 요청을 적절히 핸들링하지 못할 것이다.</p> <p><code>Hander</code> 필드에 <code>http.Handler</code>를 충족시키는 타입을 지정해주면 된다.</p> <br/> <p>단일 종류의 요청만 받는 서버는 별로 쓸데가 없을 것이다.
+Go 표준 라이브러리에는 요청 라우터인, <code>*http.ServeMux</code>를 포함하고 있다. <code>http.NewServerMux()</code> 함수로 새로운 <code>*http.ServeMux</code> 인스턴스를 생성할 수 있으며,
+이는 <code>http.Handler</code> 인터페이스를 충족시키기 때문에 <code>http.Server</code>의 <code>Handler</code> 필드에 할당될 수 있다.</p> <p>또한, <code>*http.ServeMux</code>는 요청을 분류할 수 있는 두 개의 메소드를 포함하고 있다.
+첫 번째 메소드는 두 개의 파라미터를 받는 <code>Handle()</code>로, 두 개의 파라미터는 각각 주소 경로와 <code>http.Handler</code> 인스턴스이다.
+만약 주소가 일치한다면 <code>http.Handler</code>가 호출될 것이다.
+또 다른 방법은 더 일반적으로 사용하는 <code>HandleFunc()</code> 메소드이다.</p> <pre class="language-go"><!></pre> <p>이 메소드에서 볼 수 있듯 파라미터로 주소 경로와, <code>http.Handler</code>의 <code>ServeHTTP()</code>를 만족시키는 closure를 작성해 주었다.
+해당 패턴은 인터페이스 포스트의 <a href="https://learning.oreilly.com/library/view/learning-go/9781492077206/ch07.html#function_type_interface" rel="nofollow">Function Types Are a Bridge to Interfaces</a>에서 소개하였으니, 확인할 수 있다.</p> <p>다만 핸들러가 다른 비즈니스 로직을 사용하여 더 복잡해질 경우, 구조체 타입에 메소드를 정의하여 사용해주는 것이 좋다.
+이에 관련된 내용도 인터페이스 포스트의 <a href="https://learning.oreilly.com/library/view/learning-go/9781492077206/ch07.html#dependency_injection" rel="nofollow">Implicit Interfaces Make Dependency Injection Easier</a>에서 소개하였다.</p> <br/> <blockquote><p><code>net/http</code>에는 패키지 레벨 함수인 <code>http.Handle</code>, <code>http.HandleFunc</code>, <code>http.ListenAndServe</code>, <code>http.ListenAndServeTLS</code> 함수가 있으며,
+이들은 <code>*http.ServeMux</code>의 패키지 레벨 인스턴스인 <code>http.DefaultServeMux</code>를 기준으로 동작한다.
+예상되겠지만, 이 함수들은 릴리즈될 어플리케이션에서는 사용이 권장되지 않는다.</p> <p><code>http.Server</code> 인스턴스가 <code>http.ListenAndServe</code>나 <code>http.ListenAndServeTLS</code>에서 생성되기 때문에, 타임아웃과 같은 설정을 지정해줄 수 없다.
+뿐만 아니라 서드 파티 라이브러리가 <code>http.DefaultServeMux</code>에 자체 핸들러를 등록해버릴 수 있기 때문에,
+모든 의존성들을 스캔하지 않고는 이를 알 수 없다.
+어플리케이션이 shared state로 인해 통제되는 상황은 되도록 피해야 한다.</p></blockquote> <br/> <p><code>*http.ServeMux</code>는 <code>http.Handler</code>에 요청을 보내고 <code>http.Handler</code> 인터페이스를 충족시키기 때문에,
+여러 관련된 요청에 대한 <code>*http.ServeMux</code> 인스턴스를 생성하고, 부모 <code>*http.ServeMux</code>에 등록할 수 있다.</p> <pre class="language-go"><!></pre> <p>위 예제의 구조를 이해하는 것이 그렇게 어렵진 않을 것이다.</p> <p><code>/person/greet</code>로 요청을 보내면 <code>person</code>에 붙어있는 핸들러로 처리되며, <code>/dog/greet</code>로 요청을 보내면 <code>dog</code>에 붙어있는 핸들러로 처리가 된다.</p> <p><code>person</code>과 <code>dog</code>를 <code>mux</code>에 등록할 때 <code>http.StripPrefix()</code> 함수를 사용하여,
+주소에서 <code>mux</code>에 의해 이미 처리된 부분을 제거해주었다.</p> <br/><br/> <h3 id="middleware"><a aria-hidden="true" tabindex="-1" href="#middleware"><span class="icon icon-link"></span></a>Middleware</h3> <p>HTTP 서버의 또 다른 중요한 요소 중 하나는 로그인 여부 확인, 요청 시간 체크, 요청 헤더 체크 등 여러 동작을 수행하는 것이다.
+Go에서는 이러한 연관된 기능들을 <em>미들웨어</em>를 사용하여 구현한다.
+미들웨어는 특별한 타입을 사용하지 않고, <code>http.Handler</code>를 파라미터로 받아 <code>http.Handler</code>를 반환하는 함수를 작성하여 사용한다.
+대개 반환된 <code>http.Handler</code>는 <code>http.HandlerFunc</code>로 반환될 수 있는 closure가 된다.</p> <br/> <p>아래 예제에는 두 개의 미들웨어 생성기가 있다.
+하나는 요청의 시간을 재는 것이고, 또 하나는 액세스 제어의 나쁜 예라고 할 수 있다.</p> <pre class="language-go"><!></pre> <p>이 두 개의 미들웨어 구현을 보면 미들웨어가 무슨 역할을 하는지 알 수 있을 것이다.
+먼저 연산이나 조건 검사를 하기 위한 셋업을 한 후,
+조건을 만족하지 않으면 보통 미들웨어에서 error status code와 함께 <code>Write()</code>로 출력을 한 후 함수를 리턴한다.
+만약 문제가 없다면, 다음 핸들러의 <code>ServeHTTP()</code> 메소드를 호출한다.
+그 후 정리 작업을 수행한다.</p> <p><code>TerribleSecurityProvider()</code>는 직접 설정 가능한 미들웨어를 생성하는 예제라고 할 수 있다.
+설정 정보(예제에서는 비밀번호)를 <code>TerribleSecurityProvider()</code>의 파라미터로 보내면, 해당 정보를 사용하는 미들웨어를 반환한다.
+다만 closure를 반환하는 closure를 반환하기 때문에(쓰기도 어려움;), 살짝 마음에 걸리는 것이다.</p> <br/> <blockquote><p>미들웨어 레이어에서의 값의 전달은 context를 통해 이루어진다.</p></blockquote> <br/> <p>미들웨어를 연결하여 request handler에 추가해보자.</p> <pre class="language-go"><!></pre> <p>위 예제에서 우리는 <code>TerribleSecurityProvider()</code>로부터 미들웨어를 생성하고, 핸들러를 각각의 함수 호출로 감싸주었다.
+구조적으로 <code>terribleSecurity()</code> closure가 먼저 호출되고, 그 다음으로 <code>RequestTimer</code>, 그 다음으로 원래의 request handler가 호출된다.</p> <p><code>*http.ServeMux</code>는 <code>http.Handler</code> 인터페이스를 충족시킨다.
+아래처럼 적용하면 미들웨어들을 request router에 등록된 모든 핸들러에 적용할 수 있다.</p> <pre class="language-go"><!></pre> <br/><br/> <h3 id="use-idiomatic-third-party-modules-to-enhance-the-server"><a aria-hidden="true" tabindex="-1" href="#use-idiomatic-third-party-modules-to-enhance-the-server"><span class="icon icon-link"></span></a>Use idiomatic third-party modules to enhance the server</h3> <p>서버에 서드파티 라이브러리를 사용하여 기능을 개선할 수 있다.
+위 예제에서 보았던 미들웨어의 chain이 마음에 들지 않는다면, alice라는 서드파티 라이브러리를 사용할 수 있다.</p> <pre class="language-go"><!></pre> <br/> <p>표준 라이브러리를 사용하여 HTTP 서버를 구축하는 것의 가장 큰 문제점은 <code>*http.ServeMux</code>를 request router로 사용한다는 점이다.
+이 request router는 HTTP 메소드나 헤더를 기준으로 구분할 수 없으며, Query parameter도 처리할 수 없다.
+게다가 <code>*http.ServeMux</code> 인스턴스가 중첩되면 너무 거대해지기도 한다.</p> <p>이를 대체하기 위한 프로젝트는 되게 많은데, 대표적인 게 바로 <a href="https://github.com/gorilla/mux" rel="nofollow">gorilla mux</a>와 [https://github.com/go-chi/chi]이다.
+이 두 라이브러리가 이상적이라 여겨지는 이유는 <code>http.Handler</code>나 <code>http.HandlerFunc</code> 인스턴스와 함께 사용할 수 있기 때문이며,
+표준 라이브러리와 잘 어우러질 수 있는 라이브러리를 사용하는 Go의 철학을 보여준다.
+또한 관용적인 미들웨어들을 사용할 수 있으며, 주로 사용되는 미들웨어의 구현체를 제공한다.</p> <br/><br/> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <center><p>[</p> <!> ](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br/> [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)</center> <br/><br/>`,1);function os(X){var z=Ln(),p=n(Jn(z),28),V=s(p);t(V,()=>`<code class="language-go"><span class="token keyword">type</span> Reader <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Read</span><span class="token punctuation">(</span>p <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Writer <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Write</span><span class="token punctuation">(</span>p <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(p);var o=n(p,8),Y=s(o);t(Y,()=>`<code class="language-go"><span class="token keyword">type</span> NotHowReaderIsDefined <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>p <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(o);var e=n(o,4),K=s(e);t(K,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">countLetters</span><span class="token punctuation">(</span>r io<span class="token punctuation">.</span>Reader<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	buf <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">2048</span><span class="token punctuation">)</span>
+	out <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+		n<span class="token punctuation">,</span> err <span class="token operator">:=</span> r<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+		<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> b <span class="token operator">:=</span> <span class="token keyword">range</span> buf<span class="token punctuation">[</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>b <span class="token operator">>=</span> <span class="token char">'A'</span> <span class="token operator">&amp;&amp;</span> b <span class="token operator">&lt;=</span> <span class="token char">'Z'</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>b <span class="token operator">>=</span> <span class="token char">'a'</span> <span class="token operator">&amp;&amp;</span> b <span class="token operator">&lt;=</span> <span class="token char">'z'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				out<span class="token punctuation">[</span><span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">++</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">if</span> err <span class="token operator">==</span> io<span class="token punctuation">.</span>EOF <span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> out<span class="token punctuation">,</span> <span class="token boolean">nil</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> err
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(e);var c=n(e,10),Q=s(c);t(Q,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	s <span class="token operator">:=</span> <span class="token string">"The quick brown fox jumped over the lazy dog"</span>
+	sr <span class="token operator">:=</span> strings<span class="token punctuation">.</span><span class="token function">NewReader</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+	counts<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">countLetters</span><span class="token punctuation">(</span>sr<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>counts<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(c);var u=n(c,4),$=s(u);t($,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">buildGZipReader</span><span class="token punctuation">(</span>filename <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span>gzip<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	r<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> err
+	<span class="token punctuation">&#125;</span>
+
+	gr<span class="token punctuation">,</span> err <span class="token operator">:=</span> gzip<span class="token punctuation">.</span><span class="token function">NewReader</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> err
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">return</span> gr<span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		gr<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		r<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),a(u);var l=n(u,6),nn=s(l);t(nn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	r<span class="token punctuation">,</span> closer<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">buildGZipReader</span><span class="token punctuation">(</span><span class="token string">"my_data.txt.gz"</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">defer</span> <span class="token function">closer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	counts<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">countLetters</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>counts<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(l);var i=n(l,14),sn=s(i);t(sn,()=>`<code class="language-go"><span class="token keyword">type</span> Closer <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Seeker <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Seek</span><span class="token punctuation">(</span>offset <span class="token builtin">int64</span><span class="token punctuation">,</span> whence <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int64</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(i);var r=n(i,4),an=s(r);t(an,()=>`<code class="language-go">f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> err
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">defer</span> f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code>`),a(r);var k=n(r,18),tn=s(k);t(tn,()=>`<code class="language-go"><span class="token keyword">type</span> nopCloser <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    io<span class="token punctuation">.</span>Reader
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>nopCloser<span class="token punctuation">)</span> <span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token boolean">nil</span> <span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">NopCloser</span><span class="token punctuation">(</span>r io<span class="token punctuation">.</span>Reader<span class="token punctuation">)</span> io<span class="token punctuation">.</span>ReadCloser <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> nopCloser<span class="token punctuation">&#123;</span>r<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(k);var d=n(k,19),pn=s(d);t(pn,()=>'<code class="language-go">d <span class="token operator">:=</span> <span class="token number">2</span><span class="token operator">*</span>time<span class="token punctuation">.</span>Hour <span class="token operator">+</span> <span class="token number">30</span><span class="token operator">*</span>time<span class="token punctuation">.</span>Minute</code>'),a(d);var g=n(d,20),on=s(g);t(on,()=>`<code class="language-go">t<span class="token punctuation">,</span> err <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token string">"2006-02-01 15:04:05 -0700"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token function">Format</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">"January 2, 2006 at 3:04:05PM MST"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code>`),a(g);var m=n(g,4),en=s(m);t(en,()=>'<code class="language-bash">March <span class="token number">13</span>, <span class="token number">2016</span> at <span class="token number">12</span>:00:00AM +0000</code>'),a(m);var f=n(m,30),cn=s(f);t(cn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	dura <span class="token operator">:=</span> time<span class="token punctuation">.</span>Second <span class="token operator">*</span> <span class="token number">2</span>
+	timer <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">NewTicker</span><span class="token punctuation">(</span>dura<span class="token punctuation">)</span>
+	<span class="token keyword">defer</span> timer<span class="token punctuation">.</span><span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// shutdown ticker</span>
+	after <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">After</span><span class="token punctuation">(</span>dura <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span>
+
+	time<span class="token punctuation">.</span><span class="token function">AfterFunc</span><span class="token punctuation">(</span>dura<span class="token operator">*</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"응애"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+loop1<span class="token punctuation">:</span>
+	<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">case</span> <span class="token operator">&lt;-</span>timer<span class="token punctuation">.</span>C<span class="token punctuation">:</span> <span class="token comment">// channel that listens ticking</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"야옹"</span><span class="token punctuation">)</span>
+			timer<span class="token punctuation">.</span><span class="token function">Reset</span><span class="token punctuation">(</span>dura <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// reconfirguration tick interval</span>
+		<span class="token keyword">case</span> <span class="token operator">&lt;-</span>after<span class="token punctuation">:</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"끝"</span><span class="token punctuation">)</span>
+			<span class="token keyword">break</span> loop1
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(f);var h=n(f,18),un=s(h);t(un,()=>`<code class="language-json"><span class="token punctuation">&#123;</span>
+	<span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"12345"</span><span class="token punctuation">,</span>
+	<span class="token property">"date_ordered"</span><span class="token operator">:</span> <span class="token string">"2020-05-01T13:01:02Z"</span><span class="token punctuation">,</span>
+	<span class="token property">"customer_id"</span><span class="token operator">:</span> <span class="token string">"3"</span><span class="token punctuation">,</span>
+	<span class="token property">"items"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token punctuation">&#123;</span> <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"xyz123"</span><span class="token punctuation">,</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Thing 1"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#123;</span> <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"abc789"</span><span class="token punctuation">,</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Thing 2"</span> <span class="token punctuation">&#125;</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span></code>`),a(h);var b=n(h,4),ln=s(b);t(ln,()=>`<code class="language-go"><span class="token keyword">type</span> Order <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	ID          <span class="token builtin">string</span>    <span class="token string">&#96;json:"id"&#96;</span>
+	DateOrdered time<span class="token punctuation">.</span>Time <span class="token string">&#96;json:"date_ordered"&#96;</span>
+	CustomerID  <span class="token builtin">string</span>    <span class="token string">&#96;json:"customer_id"&#96;</span>
+	Items       <span class="token punctuation">[</span><span class="token punctuation">]</span>Item    <span class="token string">&#96;json:"items"&#96;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Item <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	ID   <span class="token builtin">string</span> <span class="token string">&#96;json:"id"&#96;</span>
+	Name <span class="token builtin">string</span> <span class="token string">&#96;json:"name"&#96;</span>
+<span class="token punctuation">&#125;</span></code>`),a(b);var y=n(b,25),rn=s(y);t(rn,()=>`<code class="language-go">data <span class="token operator">:=</span> <span class="token string">&#96;&#123;
+	"id":"12345",
+	"date_ordered":"2020-05-01T13:01:02Z",
+	"customer_id":"3",
+	"items":[&#123;"id":"xyz123","name":"Thing 1"&#125;,&#123;"id":"abc789","name":"Thing 2"&#125;]
+&#125;&#96;</span>
+
+<span class="token keyword">var</span> o Order
+err <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">Unmarshal</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>o<span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span></code>`),a(y);var w=n(y,8),kn=s(w);t(kn,()=>`<code class="language-go">	out<span class="token punctuation">,</span> err <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">Marshal</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>out<span class="token punctuation">)</span><span class="token punctuation">)</span></code>`),a(w);var v=n(w,11),dn=s(v);t(dn,()=>`<code class="language-go"><span class="token keyword">type</span> Person <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Name <span class="token builtin">string</span> <span class="token string">&#96;json:"name"&#96;</span>
+	Age  <span class="token builtin">int</span>    <span class="token string">&#96;json:"age"&#96;</span>
+<span class="token punctuation">&#125;</span>
+
+toFile <span class="token operator">:=</span> Person<span class="token punctuation">&#123;</span>
+	Name<span class="token punctuation">:</span> <span class="token string">"Fred"</span><span class="token punctuation">,</span>
+	Age<span class="token punctuation">:</span>  <span class="token number">40</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span></code>`),a(v);var S=n(v,6),gn=s(S);t(gn,()=>`<code class="language-go">tmpFile<span class="token punctuation">,</span> err <span class="token operator">:=</span> ioutil<span class="token punctuation">.</span><span class="token function">TempFile</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span><span class="token function">TempDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"sample-"</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">defer</span> os<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>tmpFile<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+err <span class="token operator">=</span> json<span class="token punctuation">.</span><span class="token function">NewEncoder</span><span class="token punctuation">(</span>tmpFile<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Encode</span><span class="token punctuation">(</span>toFile<span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+err <span class="token operator">=</span> tmpFile<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(S);var R=n(S,6),mn=s(R);t(mn,()=>`<code class="language-go">tmpFile2<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>tmpFile<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">var</span> fromFile Person
+err <span class="token operator">=</span> json<span class="token punctuation">.</span><span class="token function">NewDecoder</span><span class="token punctuation">(</span>tmpFile2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Decode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>fromFile<span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+err <span class="token operator">=</span> tmpFile2<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%+v&#92;n"</span><span class="token punctuation">,</span> fromFile<span class="token punctuation">)</span></code>`),a(R);var T=n(R,13),fn=s(T);t(fn,()=>`<code class="language-json"><span class="token punctuation">&#123;</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Fred"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">40</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Mary"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">21</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Pat"</span><span class="token punctuation">,</span> <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">30</span> <span class="token punctuation">&#125;</span></code>`),a(T);var _=n(T,6),hn=s(_);t(hn,()=>`<code class="language-go"><span class="token keyword">var</span> t <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	Name <span class="token builtin">string</span> <span class="token string">&#96;json:"name"&#96;</span>
+	Age  <span class="token builtin">int</span>    <span class="token string">&#96;json:"age"&#96;</span>
+<span class="token punctuation">&#125;</span></code>`),a(_);var H=n(_,6),bn=s(H);t(bn,()=>`<code class="language-go">dec <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">NewDecoder</span><span class="token punctuation">(</span>strings<span class="token punctuation">.</span><span class="token function">NewReader</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> dec<span class="token punctuation">.</span><span class="token function">More</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	err <span class="token operator">:=</span> dec<span class="token punctuation">.</span><span class="token function">Decode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>t<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(H);var j=n(H,8),yn=s(j);t(yn,()=>`<code class="language-go"><span class="token keyword">var</span> allInputs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Person<span class="token punctuation">&#123;</span>
+	<span class="token punctuation">&#123;</span>Name<span class="token punctuation">:</span> <span class="token string">"Fred"</span><span class="token punctuation">,</span> Age<span class="token punctuation">:</span> <span class="token number">40</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#123;</span>Name<span class="token punctuation">:</span> <span class="token string">"Mary"</span><span class="token punctuation">,</span> Age<span class="token punctuation">:</span> <span class="token number">21</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#123;</span>Name<span class="token punctuation">:</span> <span class="token string">"Pat"</span><span class="token punctuation">,</span> Age<span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">var</span> b bytes<span class="token punctuation">.</span>Buffer
+enc <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">NewEncoder</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span>
+<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> input <span class="token operator">:=</span> <span class="token keyword">range</span> allInputs <span class="token punctuation">&#123;</span>
+	t <span class="token operator">:=</span> <span class="token function">process</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+	err <span class="token operator">:=</span> enc<span class="token punctuation">.</span><span class="token function">Encode</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+out <span class="token operator">:=</span> b<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>out<span class="token punctuation">)</span></code>`),a(j);var x=n(j,9),wn=s(x);t(wn,()=>`<code class="language-go"><span class="token keyword">type</span> RFC822ZTime <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	time<span class="token punctuation">.</span>Time
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>rt RFC822ZTime<span class="token punctuation">)</span> <span class="token function">MarshalJSON</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	out <span class="token operator">:=</span> rt<span class="token punctuation">.</span>Time<span class="token punctuation">.</span><span class="token function">Format</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>RFC822Z<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>&#96;<span class="token string">"&#96; + out + &#96;"</span><span class="token string">&#96;), nil
+&#125;
+
+func (rt *RFC822ZTime) UnmarshalJSON(b []byte) error &#123;
+	if string(b) == "null" &#123;
+		return nil
+	&#125;
+
+	t, err := time.Parse(&#96;</span><span class="token string">"&#96;+time.RFC822Z+&#96;"</span>&#96;<span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> err
+	<span class="token punctuation">&#125;</span>
+
+	<span class="token operator">*</span>rt <span class="token operator">=</span> RFC822ZTime<span class="token punctuation">&#123;</span>t<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span></code>`),a(x);var N=n(x,8),vn=s(N);t(vn,()=>`<code class="language-go"><span class="token keyword">type</span> Item <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	ID   <span class="token builtin">string</span> <span class="token string">&#96;json:"id"&#96;</span>
+	Name <span class="token builtin">string</span> <span class="token string">&#96;json:"name"&#96;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Order <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	ID           <span class="token builtin">string</span>      <span class="token string">&#96;json:"id"&#96;</span>
+	DateOrdereds RFC822ZTime <span class="token string">&#96;json:"date_ordered"&#96;</span>
+	CustomerID   <span class="token builtin">string</span>      <span class="token string">&#96;json:"customer_id"&#96;</span>
+	Items        <span class="token punctuation">[</span><span class="token punctuation">]</span>Item      <span class="token string">&#96;json:"items"&#96;</span>
+<span class="token punctuation">&#125;</span></code>`),a(N);var C=n(N,32),Sn=s(C);t(Sn,()=>`<code class="language-go">client <span class="token operator">:=</span> <span class="token operator">&amp;</span>http<span class="token punctuation">.</span>Client<span class="token punctuation">&#123;</span>
+	Timeout<span class="token punctuation">:</span> <span class="token number">10</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span></code>`),a(C);var P=n(C,8),Rn=s(P);t(Rn,()=>`<code class="language-go">req<span class="token punctuation">,</span> err <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">NewRequestWithContext</span><span class="token punctuation">(</span>
+	context<span class="token punctuation">.</span><span class="token function">Background</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	http<span class="token punctuation">.</span>MethodGet<span class="token punctuation">,</span>
+	<span class="token string">"https://jsonplaceholder.typicode.com/todos/1"</span><span class="token punctuation">,</span>
+	<span class="token boolean">nil</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+req<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"X-My-Client"</span><span class="token punctuation">,</span> <span class="token string">"Learning Go"</span><span class="token punctuation">)</span></code>`),a(P);var W=n(P,6),Tn=s(W);t(Tn,()=>`<code class="language-go">res<span class="token punctuation">,</span> err <span class="token operator">:=</span> client<span class="token punctuation">.</span><span class="token function">Do</span><span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(W);var D=n(W,6),_n=s(D);t(_n,()=>`<code class="language-go"><span class="token keyword">defer</span> res<span class="token punctuation">.</span>Body<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> res<span class="token punctuation">.</span>StatusCode <span class="token operator">!=</span> http<span class="token punctuation">.</span>StatusOK <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"unexpected status: got %v"</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span>Status<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> data <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+	UserID    <span class="token builtin">int</span>    <span class="token string">&#96;json:"userId"&#96;</span>
+	ID        <span class="token builtin">int</span>    <span class="token string">&#96;json:"id"&#96;</span>
+	Title     <span class="token builtin">string</span> <span class="token string">&#96;json:"title"&#96;</span>
+	Completed <span class="token builtin">bool</span>   <span class="token string">&#96;json:"completed"&#96;</span>
+<span class="token punctuation">&#125;</span>
+err <span class="token operator">=</span> json<span class="token punctuation">.</span><span class="token function">NewDecoder</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>Body<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Decode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>data<span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%+v&#92;n"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span></code>`),a(D);var F=n(D,4),Hn=s(F);t(Hn,()=>`<code class="language-bash">application/json<span class="token punctuation">;</span> <span class="token assign-left variable">charset</span><span class="token operator">=</span>utf-8
+<span class="token punctuation">&#123;</span>UserID:1 ID:1 Title:delectus aut autem Completed:false<span class="token punctuation">&#125;</span></code>`),a(F);var O=n(F,15),jn=s(O);t(jn,()=>`<code class="language-go"><span class="token keyword">type</span> Handler <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">ServeHTTP</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(O);var q=n(O,6),xn=s(q);t(xn,()=>`<code class="language-go"><span class="token keyword">type</span> ResponseWriter <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">Header</span><span class="token punctuation">(</span><span class="token punctuation">)</span> http<span class="token punctuation">.</span>Header
+	<span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+	<span class="token function">WriterHeader</span><span class="token punctuation">(</span>statusCode <span class="token builtin">int</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(q);var M=n(q,14),Nn=s(M);t(Nn,()=>`<code class="language-go"><span class="token keyword">type</span> HelloHandler <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>hh HelloHandler<span class="token punctuation">)</span> <span class="token function">ServeHTTP</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"Hello!&#92;n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code>`),a(M);var J=n(M,8),Cn=s(J);t(Cn,()=>`<code class="language-go">s <span class="token operator">:=</span> http<span class="token punctuation">.</span>Server<span class="token punctuation">&#123;</span>
+	Addr<span class="token punctuation">:</span>         <span class="token string">":8080"</span><span class="token punctuation">,</span>
+	ReadTimeout<span class="token punctuation">:</span>  <span class="token number">3</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+	WriteTimeout<span class="token punctuation">:</span> <span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+	IdleTimeout<span class="token punctuation">:</span>  <span class="token number">100</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+	Handler<span class="token punctuation">:</span>      HelloHandler<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+err <span class="token operator">:=</span> s<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> http<span class="token punctuation">.</span>ErrServerClosed <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(J);var G=n(J,14),Pn=s(G);t(Pn,()=>`<code class="language-go">mux<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"Hello!&#92;n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></code>`),a(G);var I=n(G,14),Wn=s(I);t(Wn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	person <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">NewServeMux</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	person<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">"/greet"</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"greetings!&#92;n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+	dog <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">NewServeMux</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	dog<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">"/greet"</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"good puppy!&#92;n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+	mux <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">NewServeMux</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	mux<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token string">"/person/"</span><span class="token punctuation">,</span> http<span class="token punctuation">.</span><span class="token function">StripPrefix</span><span class="token punctuation">(</span><span class="token string">"/person"</span><span class="token punctuation">,</span> person<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	mux<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token string">"/dog/"</span><span class="token punctuation">,</span> http<span class="token punctuation">.</span><span class="token function">StripPrefix</span><span class="token punctuation">(</span><span class="token string">"/dog"</span><span class="token punctuation">,</span> dog<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	s <span class="token operator">:=</span> http<span class="token punctuation">.</span>Server<span class="token punctuation">&#123;</span>
+		Addr<span class="token punctuation">:</span>         <span class="token string">":8080"</span><span class="token punctuation">,</span>
+		ReadTimeout<span class="token punctuation">:</span>  <span class="token number">3</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		WriteTimeout<span class="token punctuation">:</span> <span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		IdleTimeout<span class="token punctuation">:</span>  <span class="token number">100</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		Handler<span class="token punctuation">:</span>      mux<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+
+	err <span class="token operator">:=</span> s<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> http<span class="token punctuation">.</span>ErrServerClosed <span class="token punctuation">&#123;</span>
+			<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(I);var A=n(I,19),Dn=s(A);t(Dn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">RequestTimer</span><span class="token punctuation">(</span>h http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> http<span class="token punctuation">.</span><span class="token function">HandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		start <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		h<span class="token punctuation">.</span><span class="token function">ServeHTTP</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+		end <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"request time for %s: %v"</span><span class="token punctuation">,</span> r<span class="token punctuation">.</span>URL<span class="token punctuation">.</span>Path<span class="token punctuation">,</span> end<span class="token punctuation">.</span><span class="token function">Sub</span><span class="token punctuation">(</span>start<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">var</span> securityMsg <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"You didn't give the secret password&#92;n"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">TerribleSecurityProvider</span><span class="token punctuation">(</span>password <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token keyword">func</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span>h http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> http<span class="token punctuation">.</span><span class="token function">HandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">if</span> r<span class="token punctuation">.</span>Header<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span><span class="token string">"X-Secret-Password"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> password <span class="token punctuation">&#123;</span>
+				w<span class="token punctuation">.</span><span class="token function">WriteHeader</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusUnauthorized<span class="token punctuation">)</span>
+				w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>securityMsg<span class="token punctuation">)</span>
+				<span class="token keyword">return</span>
+			<span class="token punctuation">&#125;</span>
+			h<span class="token punctuation">.</span><span class="token function">ServeHTTP</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(A);var E=n(A,14),Fn=s(E);t(Fn,()=>`<code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	terribleSecurity <span class="token operator">:=</span> <span class="token function">TerribleSecurityProvider</span><span class="token punctuation">(</span><span class="token string">"GOPHER"</span><span class="token punctuation">)</span>
+
+	mux <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">NewServeMux</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	mux<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> http<span class="token punctuation">.</span><span class="token function">StripPrefix</span><span class="token punctuation">(</span><span class="token string">"/person"</span><span class="token punctuation">,</span> <span class="token function">terribleSecurity</span><span class="token punctuation">(</span><span class="token function">RequestTimer</span><span class="token punctuation">(</span>
+		http<span class="token punctuation">.</span><span class="token function">HandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"Hello!&#92;n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	s <span class="token operator">:=</span> http<span class="token punctuation">.</span>Server<span class="token punctuation">&#123;</span>
+		Addr<span class="token punctuation">:</span>         <span class="token string">":8080"</span><span class="token punctuation">,</span>
+		ReadTimeout<span class="token punctuation">:</span>  <span class="token number">3</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		WriteTimeout<span class="token punctuation">:</span> <span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		IdleTimeout<span class="token punctuation">:</span>  <span class="token number">100</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		Handler<span class="token punctuation">:</span>      mux<span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+
+	err <span class="token operator">:=</span> s<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> http<span class="token punctuation">.</span>ErrServerClosed <span class="token punctuation">&#123;</span>
+			<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code>`),a(E);var L=n(E,6),On=s(L);t(On,()=>`<code class="language-go">mux <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">NewServeMux</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+mux<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"greetings!&#92;n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+wrappedMux <span class="token operator">:=</span> <span class="token function">terribleSecurity</span><span class="token punctuation">(</span><span class="token function">RequestTimer</span><span class="token punctuation">(</span>mux<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+s <span class="token operator">:=</span> http<span class="token punctuation">.</span>Server<span class="token punctuation">&#123;</span>
+	Addr<span class="token punctuation">:</span>         <span class="token string">":8080"</span><span class="token punctuation">,</span>
+	ReadTimeout<span class="token punctuation">:</span>  <span class="token number">3</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+	WriteTimeout<span class="token punctuation">:</span> <span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+	IdleTimeout<span class="token punctuation">:</span>  <span class="token number">100</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+	Handler<span class="token punctuation">:</span>      wrappedMux<span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span></code>`),a(L);var U=n(L,9),qn=s(U);t(qn,()=>`<code class="language-go">helloHandler <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">"Hello!&#92;n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+chain <span class="token operator">:=</span> alice<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>terribleSecurity<span class="token punctuation">,</span> RequestTimer<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ThenFunc</span><span class="token punctuation">(</span>helloHandler<span class="token punctuation">)</span>
+mux<span class="token punctuation">.</span><span class="token function">handle</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> chain<span class="token punctuation">)</span></code>`),a(U);var Z=n(U,15),Mn=n(s(Z),2);An(Mn,{alt:"Learning Go Book Cover",src:"https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/"}),B(3),a(Z),B(3),In(X,z)}export{os as default,En as metadata};

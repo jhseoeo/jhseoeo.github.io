@@ -1,76 +1,292 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 		<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 			<channel>
-				<title>YOUR BLOG TITLE</title>
-				<description>YOUR BLOG DESCRIPTION</description>
-				<link>https://YOURNAME.github.io</link>
-				<atom:link href="https://YOURNAME.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+				<title>집밥서선생</title>
+				<description>개발등 이것저것 하는 블로그</description>
+				<link>https://jhseoeo.github.io</link>
+				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 				<item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</guid>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</guid>
 						<title>Driving Content Delivery Efficiency Through Classifying Cache Misses</title>
-						<link>https://YOURNAME.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</link>
+						<link>https://jhseoeo.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</link>
 						<description>subtitle test</description>
 						<pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/Kafka</guid>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Kafka</guid>
 						<title>Kafka</title>
-						<link>https://YOURNAME.github.io/posts/post/Kafka</link>
+						<link>https://jhseoeo.github.io/posts/post/Kafka</link>
 						<description></description>
 						<pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/Distributed_Counter</guid>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Distributed_Counter</guid>
 						<title>Distributed Counter</title>
-						<link>https://YOURNAME.github.io/posts/post/Distributed_Counter</link>
+						<link>https://jhseoeo.github.io/posts/post/Distributed_Counter</link>
 						<description></description>
 						<pubDate>Sat, 08 Nov 2025 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/Timeseries_data_abstraction</guid>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Timeseries_data_abstraction</guid>
 						<title>Timeseries data abstraction</title>
-						<link>https://YOURNAME.github.io/posts/post/Timeseries_data_abstraction</link>
+						<link>https://jhseoeo.github.io/posts/post/Timeseries_data_abstraction</link>
 						<description></description>
 						<pubDate>Sat, 08 Nov 2025 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/r-place</guid>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/r-place</guid>
 						<title>r/place</title>
-						<link>https://YOURNAME.github.io/posts/post/r-place</link>
+						<link>https://jhseoeo.github.io/posts/post/r-place</link>
 						<description></description>
 						<pubDate>Tue, 16 Sep 2025 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/Chaos_Engineering</guid>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Chaos_Engineering</guid>
 						<title>Chaos Engineering</title>
-						<link>https://YOURNAME.github.io/posts/post/Chaos_Engineering</link>
+						<link>https://jhseoeo.github.io/posts/post/Chaos_Engineering</link>
 						<description></description>
 						<pubDate>Sat, 15 Mar 2025 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/readme/updates/updates</guid>
-						<title>업데이트</title>
-						<link>https://YOURNAME.github.io/posts/post/readme/updates/updates</link>
-						<description>블로그 업데이트 내역!</description>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/Oracle Cloud/Install Elasticsearch on Oracle Cloud Instance</guid>
+						<title>Oracle Cloud 프리 티어 인스턴스에 Elasticsearch 설치해보기</title>
+						<link>https://jhseoeo.github.io/posts/post/Cloud/Oracle Cloud/Install Elasticsearch on Oracle Cloud Instance</link>
+						<description>이악물고 돈아끼기라는 뜻</description>
+						<pubDate>Thu, 08 Feb 2024 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/WebSocket/Websocket CORS</guid>
+						<title>WebSocket에 CORS를 적용하려면</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/WebSocket/Websocket CORS</link>
+						<description>???: 내 웹소켓은 부끄럼쟁이인가봐요</description>
+						<pubDate>Sat, 11 Nov 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda with Golang</guid>
+						<title>AWS Lambda 함수를 Golang으로 작성할 때 알아두면 좋은 것들</title>
+						<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/Lambda with Golang</link>
+						<description>AWS Lambda Golang으로 함수를 만들어 보며 알게 된 것들</description>
+						<pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO10</guid>
+						<title>동시성 문제 해결하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO10</link>
+						<description>동시성 문제가 해결하기 그렇게 어렵다던데</description>
+						<pubDate>Tue, 03 Oct 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO9</guid>
+						<title>아토믹 메모리 오퍼레이션</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO9</link>
+						<description>아토믹 메모리 오퍼레이션에 대해 알아보자</description>
+						<pubDate>Sun, 01 Oct 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO8</guid>
+						<title>동시성 프로그래밍과 요청 처리</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO8</link>
+						<description>동시성 프로그래밍과 서버 프로그래밍을 잘 버무려보자.</description>
+						<pubDate>Sat, 16 Sep 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO7</guid>
+						<title>Timer와 Ticker</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO7</link>
+						<description>Go에서 일정 시간이 지난 이후 또는 주기적으로 특정 작업을 수행하려면 어떻게 해야 할지 알아보자.</description>
+						<pubDate>Thu, 14 Sep 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO6</guid>
+						<title>동시성 프로그램의 에러 핸들링</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO6</link>
+						<description>동시성 프로그래밍에서 발생하는 에러 및 panic은 어떻게 핸들링해야 할지 알아보자</description>
+						<pubDate>Mon, 11 Sep 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO5</guid>
+						<title>Worker Pool 및 Pipeline</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO5</link>
+						<description>동시성 프로그래밍에서 워커 풀과 파이프라인 패턴을 Go로 구현해보자</description>
+						<pubDate>Sat, 09 Sep 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Distributed Computing/Spark/RDD</guid>
+						<title>Spark 논문(RDD) 정리</title>
+						<link>https://jhseoeo.github.io/posts/post/Distributed Computing/Spark/RDD</link>
+						<description>Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</description>
+						<pubDate>Wed, 06 Sep 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO3</guid>
+						<title>Go의 메모리 모델</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Concurrency in Go/CIGO3</link>
+						<description>Go의 메모리 모델</description>
+						<pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Computer Science/OS/Concurrency</guid>
+						<title>동시성 관련 개념 정리</title>
+						<link>https://jhseoeo.github.io/posts/post/Computer Science/OS/Concurrency</link>
+						<description>Concepts about concurrency</description>
+						<pubDate>Fri, 18 Aug 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD8</guid>
+						<title>DDD와 함께 TDD, BDD 사용하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD8</link>
+						<description>TDD, BDD, and DDD</description>
+						<pubDate>Fri, 11 Aug 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD7</guid>
+						<title>분산 시스템에 DDD 적용하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD7</link>
+						<description>Applying DDD to a Distributed System</description>
+						<pubDate>Sun, 06 Aug 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD6</guid>
+						<title>마이크로서비스에 DDD 적용하기 (+ wire 사용해보기)</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD6</link>
+						<description>Applying DDD to a Microservice Application (+ Using wire)</description>
+						<pubDate>Thu, 27 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD5</guid>
+						<title>모놀리식 애플리케이션에 DDD 적용하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD5</link>
+						<description>Applying DDD to a Monolithic Application</description>
+						<pubDate>Thu, 20 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD4</guid>
+						<title>팩토리, 레포지토리, 서비스</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD4</link>
+						<description>Factories, Repositories, and Services</description>
+						<pubDate>Sun, 16 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD3</guid>
+						<title>엔티티, 밸류 오브젝트, 애그리거트</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD3</link>
+						<description>Entities, Value Objects, and Aggregates</description>
+						<pubDate>Thu, 13 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/NAT Instance</guid>
+						<title>넘나 비싼 NAT Gateway 대신 NAT Instance를 사용해서 Lambda에서 인터넷에 액세스하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/NAT Instance</link>
+						<description>가장 저렴하게 Lambda에서 인터넷에 액세스하는 방법</description>
+						<pubDate>Sat, 08 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD2</guid>
+						<title>도메인, 유비쿼터스 언어, 제한된 컨텍스트 이해하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD2</link>
+						<description>Understanding Domains, Ubiquitous Language, and Bounded Contexts</description>
+						<pubDate>Fri, 07 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD1</guid>
+						<title>Domain Driven Design의 역사</title>
+						<link>https://jhseoeo.github.io/posts/post/Backend/Architecture/DDD1</link>
+						<description>History of Domain Driven Design</description>
+						<pubDate>Tue, 04 Jul 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Networking/WebRTC/RFC8835</guid>
+						<title>RFC8836: Congestion Control Requirements for Interactive Real-Time Media 정리</title>
+						<link>https://jhseoeo.github.io/posts/post/Networking/WebRTC/RFC8835</link>
+						<description>RFC8836을 정리해보았습니다</description>
+						<pubDate>Mon, 17 Apr 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Networking/WebRTC/RFC8828</guid>
+						<title>RFC8828: WebRTC IP Address Handling Requirements 정리</title>
+						<link>https://jhseoeo.github.io/posts/post/Networking/WebRTC/RFC8828</link>
+						<description>RFC8828을 읽고 WebRTC의 IP주소 처리 정책을 정리해보았습니다</description>
+						<pubDate>Wed, 15 Mar 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO15</guid>
+						<title>Generics in Go</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO15</link>
+						<description>'Learning Go'를 읽고, Go의 제네릭 프로그래밍에 대해 알아보았습니다</description>
 						<pubDate>Wed, 01 Mar 2023 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/readme/readme/readme</guid>
-						<title>README</title>
-						<link>https://YOURNAME.github.io/posts/post/readme/readme/readme</link>
-						<description>블로그를 처음 실행하였다면 봐야 할 README!</description>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/AWS/RDS</guid>
+						<title>RDS로 Postgresql 인스턴스 설정 과정</title>
+						<link>https://jhseoeo.github.io/posts/post/Cloud/AWS/RDS</link>
+						<description>RDS로 Postgresql 인스턴스를 띄우며 정리한 내용들을 써보았습니다</description>
 						<pubDate>Tue, 28 Feb 2023 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/examples/mdsvex/highlight-text</guid>
-						<title>Highlighting text using mdsvex</title>
-						<link>https://YOURNAME.github.io/posts/post/examples/mdsvex/highlight-text</link>
-						<description>This post demonstrates how to include a Svelte component in a Markdown post.</description>
-						<pubDate>Wed, 01 Dec 2021 00:00:00 GMT</pubDate>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO14</guid>
+						<title>Reflect, Unsafe, Cgo</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO14</link>
+						<description>'Learning Go'를 읽고, Go의 런타입 타입 확인을 위한 Reflect, 에 대해 정리해보았습니다</description>
+						<pubDate>Tue, 21 Feb 2023 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/examples/posting/syntax-highlighting-example</guid>
-						<title>Syntax highlighting with mdsvex</title>
-						<link>https://YOURNAME.github.io/posts/post/examples/posting/syntax-highlighting-example</link>
-						<description>This post shows you how syntax highlighting works here.</description>
-						<pubDate>Wed, 01 Dec 2021 00:00:00 GMT</pubDate>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Networking/WebRTC/many to many signaling server</guid>
+						<title>Golang으로 WebRTC Mesh Server 구현하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Networking/WebRTC/many to many signaling server</link>
+						<description>Golang을 통해 M:N WebRTC 시그널링 서버를 만들어보았습니다</description>
+						<pubDate>Sat, 18 Feb 2023 00:00:00 GMT</pubDate>
 					</item><item>
-						<guid isPermaLink="true">https://YOURNAME.github.io/posts/post/examples/posting/heading-links-example</guid>
-						<title>Automatic heading links in mdsvex</title>
-						<link>https://YOURNAME.github.io/posts/post/examples/posting/heading-links-example</link>
-						<description>Check out how heading links work with this starter in this post.</description>
-						<pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO13</guid>
+						<title>테스트 작성</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO13</link>
+						<description>Writing Tests</description>
+						<pubDate>Mon, 06 Feb 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Networking/WebRTC/webrtc</guid>
+						<title>WebRTC에 관하여 정리해보았다</title>
+						<link>https://jhseoeo.github.io/posts/post/Networking/WebRTC/webrtc</link>
+						<description>교내 프로젝트, 교과목, 스터디를 하며 정리한 WebRTC 관련 내용을 기록해보았습니다</description>
+						<pubDate>Sun, 22 Jan 2023 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO12</guid>
+						<title>컨텍스트</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO12</link>
+						<description>The Context</description>
+						<pubDate>Fri, 09 Sep 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO11</guid>
+						<title>표준 라이브러리</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO11</link>
+						<description>The Standard Library</description>
+						<pubDate>Mon, 05 Sep 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO10</guid>
+						<title>Go의 동시성</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO10</link>
+						<description>Concurrency in Go</description>
+						<pubDate>Tue, 30 Aug 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO9</guid>
+						<title>모듈, 패키지, 임포트</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO9</link>
+						<description>Modules, Packages, Imports</description>
+						<pubDate>Wed, 24 Aug 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO8</guid>
+						<title>에러 처리</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO8</link>
+						<description>Errors</description>
+						<pubDate>Fri, 19 Aug 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO7</guid>
+						<title>타입, 메소드, 인터페이스</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO7</link>
+						<description>Types, Methods, Interfaces</description>
+						<pubDate>Thu, 11 Aug 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO6</guid>
+						<title>포인터</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO6</link>
+						<description>Pointer</description>
+						<pubDate>Sun, 07 Aug 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO5</guid>
+						<title>함수</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO5</link>
+						<description>Functions</description>
+						<pubDate>Sun, 31 Jul 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO4</guid>
+						<title>블록, Shadowing, 흐름 제어문</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO4</link>
+						<description>Blocks, Shadows, and Control Structures</description>
+						<pubDate>Wed, 27 Jul 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO3</guid>
+						<title>복합 타입</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO3</link>
+						<description>Composite Types</description>
+						<pubDate>Sat, 23 Jul 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO2</guid>
+						<title>변수와 원시 타입</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO2</link>
+						<description>Primitive Types and Variable Declaration</description>
+						<pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO1</guid>
+						<title>개발환경설정</title>
+						<link>https://jhseoeo.github.io/posts/post/Go/Golang Basics/GO1</link>
+						<description>Setting up Golang development environment</description>
+						<pubDate>Tue, 19 Jul 2022 00:00:00 GMT</pubDate>
 					</item>
 			</channel>
 		</rss>

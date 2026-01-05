@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		
+		<link href="../../../../_app/immutable/assets/0.CWEFMGw7.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.DOA6KAmR.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start._ykarBe4.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/A4kHFXCN.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CVx5jffJ.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DIeogL5L.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DMgF1Uhx.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D0iwhpLH.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/ByF348JK.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.Bg9oACF-.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dp1pzeXC.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D_kqQSo5.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/2cXyNWGb.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bzak7iHL.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Ca2j7qFz.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BmVC6lTd.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BnZK2-eX.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/C0t2u1D1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.DWOaqez1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D7leeM5l.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DKQVeb5P.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CP-r3QU3.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bp7YhWCs.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DkPbIObf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/69_IOA4Y.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D2vXKg8d.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DJh_0fka.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dg0EvQHI.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/12.p0gh8pNe.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DF2T1Nhr.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CxRPdVhl.js"><!--1y1qu0s--><meta data-key="description" name="description" content="Primitive Types and Variable Declaration"/> <meta property="og:type" content="article"/> <meta property="og:title" content="변수와 원시 타입"/> <meta property="og:description" content="Primitive Types and Variable Declaration"/><!----><title>변수와 원시 타입</title>
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte"><!--[--><!--[--><!----><div class="layout"><header><a class="skip-to-content-link" href="#main">Skip to main content</a> <nav class="main-nav"><ul><!--[--><li><a href="/posts" aria-current="false"><!---->Posts<!----></a></li><li><a href="/category" aria-current="false"><!---->Categories<!----></a></li><li><a href="/about" aria-current="false"><!---->About<!----></a></li><li><a href="/api/rss.xml" aria-current="false"><!---->RSS<!----></a></li><li><a href="/#" aria-current="false"><!---->Home<!----></a></li><!--]--></ul> <button aria-pressed="false" class="menu-button" tabindex="-1"><span class="sr-only">Toggle hamburger menu</span> <!--[--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M64,48.496l-48.496,-48.496l-15.504,15.504l48.496,48.496l-48.496,48.496l15.504,15.504l48.496,-48.496l48.496,48.496l15.504,-15.504l-48.496,-48.496l48.496,-48.496l-15.504,-15.504l-48.496,48.496Z"></path></svg><!--]--></button><!----></nav><!----> <button aria-pressed="false" class="menu-button" tabindex="0"><span class="sr-only">Toggle hamburger menu</span> <!--[!--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><rect x="0" y="12.48" width="128" height="18.688"></rect></g><g><rect x="0" y="96.832" width="128" height="18.688"></rect></g><g><rect x="0" y="54.656" width="128" height="18.688"></rect></g></svg><!--]--></button><!----> <a href="/" class="site-title">집밥서선생</a> <button class="toggle-theme"><!--[-->☀️<!--]--></button><!----></header><!----> <main id="main" tabindex="-1"><!----><div class="content"><!----><article class="post"><img class="cover-image" src="/post_img/Go/Golang_basics/cover.png" alt="" style="aspect-ratio: 16 / 9;" width="16" height="9"/> <h1>변수와 원시 타입</h1> <div class="meta"><b>Published:</b> 2022-07-21</div> <!----><br/> <p>본 글은 Golang을 공부하며 주요 내용이라 생각되는 것들을 기록해둔 자료이며, Ubuntu 20.04 LTS 기준으로 작성되었습니다.</p> <br/><br/> <h2 id="variables-and-constants"><a aria-hidden="true" tabindex="-1" href="#variables-and-constants"><span class="icon icon-link"></span></a>Variables and Constants</h2> <hr/> <br/> <h3 id="variables"><a aria-hidden="true" tabindex="-1" href="#variables"><span class="icon icon-link"></span></a>Variables</h3> <p>Go에서 변수는 아래와 같이 선언 및 초기화할 수 있다. 특이사항은 다음과 같다.</p> <ol><li>C/C++과는 달리, 타입이 변수명 뒤에 옴</li> <li>변수를 생성하고 값을 할당하지 않는 C나 C++와는 달리, 변수를 생성하면 기본적으로 할당되는 값인 <span style="background-color: #FFF5B1">zero value</span>가 존재함</li> <li>변수가 선언만 되고 사용되지 않으면 에러가 발생함</li> <li>권장되지는 않지만 전역변수도 됨</li></ol> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">1</span>         <span class="token comment">// variable declaration</span>
+	<span class="token keyword">var</span> b <span class="token builtin">string</span>          <span class="token comment">// declare string variable. it's value would be zero value of string ("")</span>
+	<span class="token keyword">var</span> c<span class="token punctuation">,</span> d <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token string">"456"</span> <span class="token comment">// multiple declaration. their type would be int, string</span>
+	<span class="token keyword">var</span> <span class="token punctuation">(</span>                 <span class="token comment">// inside parentheses, variables can be declared line by line</span>
+		e    <span class="token builtin">int</span>            <span class="token comment">//</span>
+		f    <span class="token operator">=</span> <span class="token number">20</span>           <span class="token comment">// it's type would be int</span>
+		g<span class="token punctuation">,</span> h <span class="token operator">=</span> <span class="token number">1.23</span><span class="token punctuation">,</span> <span class="token string">"4.56"</span> <span class="token comment">// multiple declaration, only specified their values</span>
+		i<span class="token punctuation">,</span> j <span class="token builtin">string</span>         <span class="token comment">// only specified their types</span>
+	<span class="token punctuation">)</span>
+	<span class="token keyword">var</span> 한글개꿀ㅋㅋ <span class="token operator">=</span> <span class="token number">1</span> <span class="token comment">// 한글도 되긴 하는데 이러지 맙시다</span></code><!----></pre> <br/> <p><code>:=</code> 연산자를 활용하여 변수를 선언할 수도 있다. 변수의 타입은 초기화되는 값에 따라 결정된다. c++의 <code>auto</code> 키워드와 비슷한 듯 하다.</p> <pre class="language-go"><!----><code class="language-go">	k <span class="token operator">:=</span> <span class="token number">10</span>        <span class="token comment">// variable declaration by := operator</span>
+	k<span class="token punctuation">,</span> l <span class="token operator">:=</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span> <span class="token comment">// multiple declaration</span></code><!----></pre> <p><code>:=</code> 연산자는 편리하지만 주의해서 사용해야 한다. <span style="background-color: #FFF5B1">Shadowing</span>이 발생할 수도 있기 때문이다.</p> <blockquote><h3 id="shadowing이란"><a aria-hidden="true" tabindex="-1" href="#shadowing이란"><span class="icon icon-link"></span></a>Shadowing이란?</h3> <p><code>var</code> 키워드는 동일한 이름을 가진 변수를 선언할 때 에러가 발생하는데 반해,
+위 예제에서는 <code>k</code>가 선언되고, 그 아래 줄에서 <code>l</code>과 함께 <code>k</code>가 다시 선언된 것을 확인할 수 있다(<code>k</code>만 다시 선언하면 에러가 발생한다).
+이 경우 해당 Block이 끝날 때까지, 앞서 선언한 <code>k</code>의 값인 10에 접근할 수 없게 된다.</p> <p>이런 현상을 Shadowing이라고 하며, <code>:=</code> 연산자를 사용할 때 주의해야 하는 이유이다.
+특히 함수의 파라미터나, <code>fmt</code>같은 패키지 이름이나, 심지어는 <code>nil</code> 또는 <code>false</code> 같은 리터럴들도 Shadowing할 수 있다. <code>var</code> 키워드는 함수의 타입을 명시해주는 효과도 있고 Shadowing의 염려가 없으므로 <code>var</code>가 조금 더 안전한 선택지이다.
+반면 <code>if</code>, <code>switch</code>, <code>for</code>문이나 에러 핸들링 등에서는 <code>:=</code>을 주로 사용한다.</p></blockquote> <br/> <p>변수가 선언만 되고 사용되지 않으면 에러가 발생하니, <code>fmt.Println()</code> 함수를 활용하여 모두 출력해주자.</p> <pre class="language-go"><!----><code class="language-go">	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f<span class="token punctuation">,</span> g<span class="token punctuation">,</span> h<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> k<span class="token punctuation">,</span> l<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>asd<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>한글개꿀ㅋㅋ<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <br/><br/> <h3 id="constants"><a aria-hidden="true" tabindex="-1" href="#constants"><span class="icon icon-link"></span></a>Constants</h3> <p>상수의 선언은 변수와 유사하다. <code>const</code> 키워드를 사용한다</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">const</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">1</span>         <span class="token comment">// typed</span>
+	<span class="token keyword">const</span> b<span class="token punctuation">,</span> c <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token string">"456"</span> <span class="token comment">// untyped, multiple declaration</span>
+	<span class="token keyword">const</span> <span class="token punctuation">(</span>                 <span class="token comment">// decalaration constants using parentheses</span>
+		d    <span class="token operator">=</span> <span class="token number">20</span>           <span class="token comment">// inside parentheses, constants can be declared line by line</span>
+		e<span class="token punctuation">,</span> f <span class="token operator">=</span> <span class="token number">1.23</span><span class="token punctuation">,</span> <span class="token string">"4.56"</span> <span class="token comment">// multiple decalaration</span>
+	<span class="token punctuation">)</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f<span class="token punctuation">)</span></code><!----></pre> <br/> <p>상수로 선언된 값을 변수에 할당할 때, 타입이 다르면 에러가 발생한다.</p> <pre class="language-go"><!----><code class="language-go">	<span class="token keyword">var</span> i <span class="token builtin">int</span> <span class="token operator">=</span> a <span class="token comment">// constants can be value of variables when their types are same</span>
+	<span class="token comment">// var f float64 = a // if types are different, it occurs error</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <br/><br/> <h2 id="primitive-types"><a aria-hidden="true" tabindex="-1" href="#primitive-types"><span class="icon icon-link"></span></a>Primitive Types</h2> <hr/> <p>Go의 타입들에는 아래와 같은 특징이 존재한다.</p> <br/><br/> <h3 id="bool"><a aria-hidden="true" tabindex="-1" href="#bool"><span class="icon icon-link"></span></a>bool</h3> <p>bool은 다른 언어와 크게 다르지 않다. Zero value는 <code>false</code>이다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">var</span> flag <span class="token builtin">bool</span> <span class="token comment">// initial value is false</span>
+<span class="token keyword">var</span> isAwesome <span class="token operator">=</span> <span class="token boolean">true</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>flag<span class="token punctuation">,</span> isAwesome<span class="token punctuation">)</span></code><!----></pre> <br/><br/> <h3 id="int"><a aria-hidden="true" tabindex="-1" href="#int"><span class="icon icon-link"></span></a>int</h3> <p>int는 C/C++와 유사하다. Zero value는 0이며, signed와 unsigned로 구분된다.
+또한 8bit, 16bit, 32bit, 64bit중 변수의 크기를 결정할 수 있으며, (u)int 뒤에 크기를 붙임으로써 나타낸다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">var</span> i8 <span class="token builtin">int8</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">128</span>                  <span class="token comment">// 8-bit signed integer</span>
+<span class="token keyword">var</span> i64 <span class="token builtin">int64</span> <span class="token operator">=</span> <span class="token number">9223372036854775807</span> <span class="token comment">// 64-bit signed integer</span>
+<span class="token keyword">var</span> u32 <span class="token builtin">uint32</span> <span class="token operator">=</span> <span class="token number">4294967295</span>         <span class="token comment">// 32-bit unsigned integer</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i8<span class="token punctuation">,</span> i64<span class="token punctuation">,</span> u32<span class="token punctuation">)</span></code><!----></pre> <br/> <p>이 중 <code>byte</code>라는 자료형은 <code>uint8</code>과 동일한 것으로 처리된다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">var</span> b <span class="token builtin">byte</span> <span class="token operator">=</span> <span class="token number">123</span> <span class="token comment">// byte: 8-bit unsigned integer</span>
+<span class="token keyword">var</span> uint8_ <span class="token builtin">uint8</span> <span class="token operator">=</span> <span class="token number">234</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>b <span class="token operator">==</span> uint8_<span class="token punctuation">)</span> <span class="token comment">// doesn't occur error</span></code><!----></pre> <br/> <p>크기를 붙이지 않은 <code>int</code>라는 자료형도 존재하는데, 32bit와 64bit중에서 정해진다. 이는 어떤 하드웨어를 사용하는지에 따라, 실행할때 결정된다.<br/> 다만 컴퓨터가 64bit를 사용하는 경우라고 해도, int와 int64끼리의 연산은 에러가 발생한다. int는 플랫폼마다, 하드웨어마다 실행시 크기가 다르기 때문이다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">var</span> i <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">9223372036854775807</span> <span class="token comment">// signed int. its size(32 or 64bits) is decided at compile time, determined by its hardware</span>
+<span class="token keyword">var</span> ui <span class="token builtin">uint</span> <span class="token operator">=</span> <span class="token number">0</span>                 <span class="token comment">// unsigned int</span>
+<span class="token comment">// fmt.Println(i == i64) occurs error</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> ui<span class="token punctuation">)</span></code><!----></pre> <br/> <p>일반적인 경우 <code>(u)int</code> 타입을 선택하는 것이 권장되지만,
+바이너리 파일 처리나 네트워크 통신 등, 정수 자료형의 특정한 크기를 사용해야 하는 경우라면 <code>(u)int8</code>~<code>(u)int64</code> 에서 타입을 선택한다.
+또는 라이브러리 함수를 작성하는 경우, 함수의 파라미터나 변수로 <code>(u)int64</code>를 선택하는 것이 좋다고 한다.</p> <br/> <p>정수를 표기할 때 언더바(_)로 구분할 수 있다. 또한 앞에 <code>0x</code>, <code>0o</code>, <code>0b</code>를 붙여 각각 16, 8, 2진수로 표현할 수 있다.</p> <pre class="language-go"><!----><code class="language-go">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token number">1_2_3_4</span><span class="token punctuation">,</span> <span class="token number">123_456_789_123123_456</span><span class="token punctuation">)</span> <span class="token comment">// numbers can distinguished by underbar(_)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token number">0x1234</span><span class="token punctuation">,</span> <span class="token number">0o1234</span><span class="token punctuation">,</span> <span class="token number">0b1101</span><span class="token punctuation">)</span>          <span class="token comment">// hexadecimal, octal, binary representation</span></code><!----></pre> <br/><br/> <h3 id="float"><a aria-hidden="true" tabindex="-1" href="#float"><span class="icon icon-link"></span></a>float</h3> <p>실수를 표현하는 타입은 32bit인 <code>float32</code>와 64bit인 <code>float64</code> 두 가지로 구분된다. C/C++와 유사하게 부동소숫점(Floating point) 방식을 사용한다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">var</span> f32 <span class="token builtin">float32</span> <span class="token operator">=</span> <span class="token number">0.5</span>   <span class="token comment">// f32 : 32-bits floating point number</span>
+<span class="token keyword">var</span> f64 <span class="token builtin">float32</span> <span class="token operator">=</span> <span class="token number">0.524</span> <span class="token comment">// f64 : 64-bits floating point number</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>f32<span class="token punctuation">,</span> f64<span class="token punctuation">)</span></code><!----></pre> <br/> <p>또한 복소수를 표현하는 <code>complex</code> 타입도 존재한다. 다만 복소수가 필요한 수학, 물리 관련된 코드를 굳이 Go를..?</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">var</span> c64 <span class="token builtin">complex64</span> <span class="token operator">=</span> <span class="token function">complex</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">// c64 : 복소수(float32 + float32)</span>
+c128 <span class="token operator">:=</span> <span class="token function">complex</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>             <span class="token comment">// c128 : 복소수(float64 + float64)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>c64<span class="token punctuation">,</span> c128<span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">real</span><span class="token punctuation">(</span>c128<span class="token punctuation">)</span><span class="token punctuation">)</span>      <span class="token comment">// 실수부</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">imag</span><span class="token punctuation">(</span>c128<span class="token punctuation">)</span><span class="token punctuation">)</span>      <span class="token comment">// 허수부</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>cmplx<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>c128<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 절댓값..?</span></code><!----></pre> <br/><br/> <h3 id="string"><a aria-hidden="true" tabindex="-1" href="#string"><span class="icon icon-link"></span></a>string</h3> <p>문자열을 표현하는 <code>string</code> 타입이 존재한다. 아래 코드는 기본적인 선언과 연산자들이다. Zero value는 <code>""</code>이다. 또한 Go의 기본 문자열 인코딩은 UTF-8이다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">var</span> s1 <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">"qwe"</span>
+<span class="token keyword">var</span> s2 <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">"asd"</span>
+
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s1 <span class="token operator">==</span> s2<span class="token punctuation">)</span> <span class="token comment">// comparison operators between string</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s1 <span class="token operator">></span> s2<span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s1 <span class="token operator">+</span> s2<span class="token punctuation">)</span></code><!----></pre> <br/> <p><code>string</code>을 구성하는 각 문자들은 <code>rune</code> 타입이다. <code>byte</code>가 <code>uint8</code>과 동의어인 것처럼, <code>rune</code>은 <code>int32</code>와 동의어이다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">var</span> character <span class="token builtin">rune</span> <span class="token operator">=</span> <span class="token char">'a'</span> <span class="token comment">// rune represents a single character</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>character<span class="token punctuation">)</span></code><!----></pre> <br/><br/> <h3 id="type-conversion"><a aria-hidden="true" tabindex="-1" href="#type-conversion"><span class="icon icon-link"></span></a>Type Conversion</h3> <p>Go에서는 서로 다른 타입들간의 변환이 가능하다. 함수처럼 타입명에 괄호를 붙이면 된다. 이를테면 <code>int16</code>에서 <code>int32</code>로의 변환부터, <code>int</code>와 <code>float64</code> 사이의 변환 등도 가능하다</p> <pre class="language-go"><!----><code class="language-go"><span class="token comment">// type conversion between int and float</span>
+<span class="token keyword">var</span> x <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token keyword">var</span> y <span class="token builtin">float64</span> <span class="token operator">=</span> <span class="token number">30.2</span>
+<span class="token keyword">var</span> z <span class="token builtin">float64</span> <span class="token operator">=</span> <span class="token function">float64</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> y
+<span class="token keyword">var</span> d <span class="token builtin">int</span> <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token function">int</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>z<span class="token punctuation">,</span> d<span class="token punctuation">)</span></code><!----></pre> <br/><br/> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <center><p>[</p> <img src="https://learning.oreilly.com/covers/urn:orm:book:9781492077206/400w/" alt="Learning Go Book Cover" loading="lazy"/><!----> ](https://learning.oreilly.com/library/view/learning-go/9781492077206/) <br/> [Jon Bodner, 『Learning Go』, O'Reilly Media, Inc.](https://learning.oreilly.com/library/view/learning-go/9781492077206/)</center> <br/><br/><!----> <!--[--><aside class="post-footer"><h2>Posted in:</h2> <ul><!--[--><li><a href="/category/Golang/">Golang</a></li><li><a href="/category/Basic Golang/">Basic Golang</a></li><!--]--></ul></aside><!--]--></article> <!--[--><!--[!--><!--]--><!--]--><!----><!----></div><!----> <footer><p>© 2026 JHSeo</p></footer><!----></main></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_9x1lhv = {
+						base: new URL("../../../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../../../_app/immutable/entry/start._ykarBe4.js"),
+						import("../../../../_app/immutable/entry/app.Bg9oACF-.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 12],
+							data: [{type:"data",data:null,uses:{}},null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

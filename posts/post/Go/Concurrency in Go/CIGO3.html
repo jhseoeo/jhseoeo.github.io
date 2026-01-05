@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		
+		<link href="../../../../_app/immutable/assets/0.CWEFMGw7.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.DOA6KAmR.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start._ykarBe4.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/A4kHFXCN.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CVx5jffJ.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DIeogL5L.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DMgF1Uhx.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D0iwhpLH.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/ByF348JK.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.Bg9oACF-.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dp1pzeXC.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D_kqQSo5.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/2cXyNWGb.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bzak7iHL.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Ca2j7qFz.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BmVC6lTd.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BnZK2-eX.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/C0t2u1D1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.DWOaqez1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D7leeM5l.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DKQVeb5P.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CP-r3QU3.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bp7YhWCs.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DkPbIObf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/69_IOA4Y.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D2vXKg8d.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DJh_0fka.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dg0EvQHI.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/12.p0gh8pNe.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DF2T1Nhr.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CxRPdVhl.js"><!--1y1qu0s--><meta data-key="description" name="description" content="Go의 메모리 모델"/> <meta property="og:type" content="article"/> <meta property="og:title" content="Go의 메모리 모델"/> <meta property="og:description" content="Go의 메모리 모델"/><!----><title>Go의 메모리 모델</title>
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte"><!--[--><!--[--><!----><div class="layout"><header><a class="skip-to-content-link" href="#main">Skip to main content</a> <nav class="main-nav"><ul><!--[--><li><a href="/posts" aria-current="false"><!---->Posts<!----></a></li><li><a href="/category" aria-current="false"><!---->Categories<!----></a></li><li><a href="/about" aria-current="false"><!---->About<!----></a></li><li><a href="/api/rss.xml" aria-current="false"><!---->RSS<!----></a></li><li><a href="/#" aria-current="false"><!---->Home<!----></a></li><!--]--></ul> <button aria-pressed="false" class="menu-button" tabindex="-1"><span class="sr-only">Toggle hamburger menu</span> <!--[--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M64,48.496l-48.496,-48.496l-15.504,15.504l48.496,48.496l-48.496,48.496l15.504,15.504l48.496,-48.496l48.496,48.496l15.504,-15.504l-48.496,-48.496l48.496,-48.496l-15.504,-15.504l-48.496,48.496Z"></path></svg><!--]--></button><!----></nav><!----> <button aria-pressed="false" class="menu-button" tabindex="0"><span class="sr-only">Toggle hamburger menu</span> <!--[!--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><rect x="0" y="12.48" width="128" height="18.688"></rect></g><g><rect x="0" y="96.832" width="128" height="18.688"></rect></g><g><rect x="0" y="54.656" width="128" height="18.688"></rect></g></svg><!--]--></button><!----> <a href="/" class="site-title">집밥서선생</a> <button class="toggle-theme"><!--[-->☀️<!--]--></button><!----></header><!----> <main id="main" tabindex="-1"><!----><div class="content"><!----><article class="post"><img class="cover-image" src="/post_img/Go/Concurrency in Go/cover.png" alt="" style="aspect-ratio: 16 / 9;" width="16" height="9"/> <h1>Go의 메모리 모델</h1> <div class="meta"><b>Published:</b> 2023-08-31</div> <!----><p>어떤 언어든 그 언어를 딥하게 파고 제대로 이해하기 위해서는 그 언어의 메모리 모델을 이해하는 것이 중요하다고 생각한다.
+그만큼 Go를 열심히 공부하는 입장으로서 Go의 메모리 모델을 이해하는 것은 필수적이다.</p> <p>단일 프로세서의 성능 향상에 한계가 오면서 멀티 코어 프로세서가 등장하게 되었고, 대부분의 성능 향상은 멀티 코어 프로세서에서 동작하는 것이 대전제가 되었다.
+한편 현대 컴파일러 또한 극한의 최적화를 위해 코드를 재배치하는 일이 비일비재하다.
+이는 sequantial program에서는 문제가 되지 않지만, concurrent program에서는 문제가 될 수 있다.</p> <p>이러한 문제를 해결하기 위해서 <span style="background-color: var(--highlightYellow)"><!---->메모리 모델<!----></span><!---->이 정의된다.
+메모리 모델은 컴파일러 빌더가 보장해야 하고, 프로그래머가 기대할 수 있는 것들을 정의한다.
+즉, 메모리 모델은 하드웨어에 대한 컴파일러 빌더의 동작이 정의된 것이라고 볼 수 있다.</p> <p>여러 고루틴에서 동시에 엑세스되는 데이터를 수정하는 프로그램은 이러한 액세스를 직렬화해야 함을 언급하며 Go의 메모리 모델 문서가 시작되는데, 이는 쉬운 일이 아니다.
+동시성 프로그램의 모든 가능성을 고려하는 것은 불가능하기 때문이다.
+대신 메모리 모델에 대한 인사이트를 가지고 있다면 동시성 프로그램의 문제를 해결하는 데 도움이 될 수 있다.</p> <p>물론 메모리 모델과 너무 가깝게 작성된 코드를 짜는 것은 좋지 않지만, 알고 하지 않는 것과 모르고 하지 않는 것은 차이가 있다.
+Go의 메모리 모델에 대해 본격적으로 알아보자.</p> <br/><br/> <h2 id="메모리-연산-순서-모델"><a aria-hidden="true" tabindex="-1" href="#메모리-연산-순서-모델"><span class="icon icon-link"></span></a>메모리 연산 순서 모델</h2> <hr/> <h3 id="sequenced-before-relationship"><a aria-hidden="true" tabindex="-1" href="#sequenced-before-relationship"><span class="icon icon-link"></span></a><strong>Sequenced-Before Relationship</strong></h3> <ul><li>만약 <code>A is sequenced before B</code>라면, <code>A</code>가 <code>B</code>보다 먼저 실행되었음을 의미함</li> <li>하지만 Sequenced-Before Relationship은 동시성을 고려하지 않음</li> <li>메모리 read 연산이 변수에 쓰여진 마지막 값을 읽는 한, 컴파일러에 의해 instruction reordering이 발생할 수 있음</li></ul> <h3 id="synchronized-before-relationship"><a aria-hidden="true" tabindex="-1" href="#synchronized-before-relationship"><span class="icon icon-link"></span></a><strong>Synchronized-Before Relationship</strong></h3> <ul><li><p>일반적인 메모리 연산 외에도 동기화 메모리 작업(Synchronizing Memory Operation)이 존재함</p> <ul><li>Syncrhonizing Read Operation: Mutex lock, Channel receive, atomic read, atomic compare-and-swap</li> <li>Synchrornizing Write Operation: Mutex unlock, Channel send, Channel close, atomic write, atomic compare-and-swap</li></ul></li> <li><p>만약 <code>A is synchronized before B</code>라면, 동기화 연산 <code>A</code>가 동기화 연산 <code>B</code>보다 먼저 실행되었음을 의미함</p></li> <li><p>Sequenced-Before Relationship이 단일 고루틴에서의 일반적인 메모리 연산 순서를 정의한다면, Synchronized-Before Relationship은 여러 고루틴에서의 메모리 연산 순서를 정의할 수 있음</p></li></ul> <h3 id="happened-before-relationship"><a aria-hidden="true" tabindex="-1" href="#happened-before-relationship"><span class="icon icon-link"></span></a><strong>Happened-Before Relationship</strong></h3> <ul><li>Sequenced-Before Relationship와 Synchronized-Before Relationship의 조합</li> <li><code>W</code>가 메모리 쓰기 작업이고 <code>R</code>이 메모리 읽기 작업일 때, 만약 <code>W synchronized before R</code>이면, <code>W happened before R</code>임</li> <li><code>X</code>가 메모리 쓰기 작업이고 <code>Y</code>이 메모리 읽기 작업일 때, 만약 <code>X sequenced before W</code>이고 <code>Y is sequenced after R</code>이면, <code>X happened before Y</code>임</li></ul> <p>만약 read 및 write 연산간 happened-before relationship을 정의할 수 없다면, 이들은 동시에 일어남.</p> <br/><br/> <h2 id="golang의-동기화-모델"><a aria-hidden="true" tabindex="-1" href="#golang의-동기화-모델"><span class="icon icon-link"></span></a>Golang의 동기화 모델</h2> <p>앞선 Happened-Before Relationship을 통해 Go의 동기화 모델을 확인할 수 있음.</p> <h3 id="패키지-초기화"><a aria-hidden="true" tabindex="-1" href="#패키지-초기화"><span class="icon icon-link"></span></a>패키지 초기화</h3> <ul><li>패키지 A가 다른 패키지 B를 임포트한다면, 패키지 B의 <code>init()</code> 함수가 패키지 A의 <code>init()</code> 함수보다 먼저 실행됨</li></ul> <h3 id="고루틴"><a aria-hidden="true" tabindex="-1" href="#고루틴"><span class="icon icon-link"></span></a>고루틴</h3> <ul><li><p>프로그램이 고루틴을 생성할 때, <code>go</code> 문은 고루틴 실행 이전에 동기화됨 (<code>go</code> statement is synchronized before the start of goroutine’s execution)</p> <ul><li>다음의 예시 코드는 항상 <code>Before goroutine</code>을 출력함</li></ul> <pre class="language-go"><!----><code class="language-go">a <span class="token operator">:=</span> <span class="token string">"Before goroutine"</span>
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">select</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code><!----></pre> <ul><li>하지만 고루팀이 종료될 때 명시적인 방식으로 통신을 하지 않는 이상, 고루틴의 종료 시점은 동기화되지 않음</li></ul></li></ul> <h3 id="채널"><a aria-hidden="true" tabindex="-1" href="#채널"><span class="icon icon-link"></span></a>채널</h3> <ul><li><p>unbuffered channel을 통해 전송되는 send 및 close 연산은 채널의 receive 연산과 동기화됨 (send or close is synchronized before the receive)</p></li> <li><p>buffered channel을 통해 전송되는 send 및 close 연산은 채널의 receive 연산과 동기화됨(receive is synchronized before the send or close)</p> <ul><li>syncrhonized before이면 happened before임</li></ul></li> <li><p>다음의 예시 코드는 항상 <code>1</code>을 출력함</p> <pre class="language-go"><!----><code class="language-go">  <span class="token keyword">var</span> x <span class="token builtin">int</span>
+  ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span>
+  <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    ch <span class="token operator">&lt;-</span> <span class="token number">0</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  x <span class="token operator">=</span> <span class="token number">1</span>
+  <span class="token operator">&lt;-</span>ch
+  <span class="token keyword">select</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code><!----></pre> <ul><li><code>x = 1</code> is sequenced before <code>&lt;-ch</code></li> <li><code>&lt;-ch</code> is synchronized before <code>ch &lt;- 0</code></li> <li><code>ch &lt;- 0</code> is sequenced before <code>fmt.Println(x)</code></li> <li>따라서, <code>x = 1</code> is happened before <code>fmt.Println(x)</code></li></ul></li></ul> <h3 id="뮤텍스"><a aria-hidden="true" tabindex="-1" href="#뮤텍스"><span class="icon icon-link"></span></a>뮤텍스</h3> <ul><li><p>두 고루틴 A와 B가 있을 때 A가 먼저 획득한 뮤텍스를 unlock하면 B가 뮤텍스를 lock할 수 있음.</p> <ul><li>이 때 unlock은 lock보다 먼저 동기화됨 (unlock is synchronized before the lock)</li> <li>다음의 예시 코드는 항상 <code>1</code>을 출력함</li></ul> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> m sync<span class="token punctuation">.</span>Mutex
+  <span class="token keyword">var</span> a <span class="token builtin">int</span>
+  done <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+  m<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      m<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+      m<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token function">close</span><span class="token punctuation">(</span>done<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      a <span class="token operator">=</span> <span class="token number">1</span>
+      m<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token operator">&lt;-</span>done
+
+<span class="token punctuation">&#125;</span></code><!----></pre></li></ul> <h3 id="atomic-연산"><a aria-hidden="true" tabindex="-1" href="#atomic-연산"><span class="icon icon-link"></span></a>Atomic 연산</h3> <ul><li><p><code>sync/atomic</code> 패키지는 저수준의 원자적 메모리 읽기/쓰기 연산을 제공함</p></li> <li><p>만약 atomic write의 결과가 atomic read에서 확인된다면, atomic write는 atomic read보다 먼저 동기화됨 (atomic write is synchronized before the atomic read)</p></li> <li><p>다음의 코드는 항상 1을 출력함</p> <pre class="language-go"><!----><code class="language-go">  <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">var</span> i <span class="token builtin">int</span>
+      <span class="token keyword">var</span> v atomic<span class="token punctuation">.</span>Value
+      done <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+      <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          i <span class="token operator">=</span> <span class="token number">1</span>
+          v<span class="token punctuation">.</span><span class="token function">Store</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+      <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          <span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+              <span class="token keyword">if</span> val<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> v<span class="token punctuation">.</span><span class="token function">Load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span> val <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">&#123;</span>
+                  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+                  <span class="token function">close</span><span class="token punctuation">(</span>done<span class="token punctuation">)</span>
+                  <span class="token keyword">return</span>
+              <span class="token punctuation">&#125;</span>
+          <span class="token punctuation">&#125;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+      <span class="token operator">&lt;-</span>done
+  <span class="token punctuation">&#125;</span></code><!----></pre></li></ul> <h3 id="map-once-waitgroup"><a aria-hidden="true" tabindex="-1" href="#map-once-waitgroup"><span class="icon icon-link"></span></a>Map, Once, WaitGroup</h3> <ul><li><p><code>sync.Map</code>은 별도로 뮤텍스 로직을 구현하지 않아도 안전하게 사용할 수 있는 thread-safe map 타입임</p> <ul><li>데이터가 한번 write되지만 여러 번 read되는 경우나 여러 고루틴이 각각의 키로 접근하는 경우, 일반 <code>map</code>에 뮤텍스를 사용하여 구현하는 것보다 <code>sync.Map</code>을 사용하는 것이 더 좋은 성능을 보임</li> <li>하지만 <code>sync.Map</code>은 <code>map</code>과 달리 타입 안정성을 보장하지 않음</li> <li>간단하게 캐시같은거 구현할 때 사용하면 좋다고 함</li> <li><code>sync.Map</code>에서 어떤 read 연산이 write 연산의 결과를 확인한다면, write 연산은 read 연산보다 먼저 발생함 (write is happened before the read)</li></ul></li> <li><p><code>sync.Once</code>는 여러 고루틴에서 무언가를 초기화하고자 할 때 유용함</p> <ul><li><code>sync.Once.Do()</code>를 호출하여 함수를 넘기면 초기화가 실행됨</li> <li>여러 고루틴에서 <code>sync.Once.Do()</code>를 호출하더라도, 초기화 함수는 한 번만 실행되고, 다른 고루틴에서는 초기화 함수가 실행되지 않고 block되었다가 초기화 함수가 실행된 후에 unblock됨</li> <li>한 고루틴에서 <code>sync.Once.Do()</code>를 호출하면 다른 고루틴에서 <code>sync.Once.Do()</code>가 끝나기 이전에 그 초기화 함수가 종료됨 (the completion of initialization function is happened before the return from <code>sync.Once.Do()</code>)</li></ul></li> <li><p><code>sync.WaitGroup</code>의 모든 <code>Done()</code> 메소드 호출은 <code>Wait()</code> 메소드의 반환 이전에 동기화됨 (the completion of <code>Done()</code> is happened before the return from <code>Wait()</code>)</p></li></ul> <br/><br/> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <center><p>[</p> <img src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/" alt="Effective Concurrency in Go" loading="lazy"/><!----> ](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br/> [Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)</center><!----> <!--[--><aside class="post-footer"><h2>Posted in:</h2> <ul><!--[--><li><a href="/category/Golang/">Golang</a></li><li><a href="/category/Concurrency in Go/">Concurrency in Go</a></li><!--]--></ul></aside><!--]--></article> <!--[--><!--[!--><!--]--><!--]--><!----><!----></div><!----> <footer><p>© 2026 JHSeo</p></footer><!----></main></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_9x1lhv = {
+						base: new URL("../../../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../../../_app/immutable/entry/start._ykarBe4.js"),
+						import("../../../../_app/immutable/entry/app.Bg9oACF-.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 12],
+							data: [{type:"data",data:null,uses:{}},null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

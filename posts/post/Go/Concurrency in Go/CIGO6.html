@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		
+		<link href="../../../../_app/immutable/assets/0.CWEFMGw7.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/CodeBlockWrapper.DOA6KAmR.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/start._ykarBe4.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/A4kHFXCN.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CVx5jffJ.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DIeogL5L.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DMgF1Uhx.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D0iwhpLH.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/ByF348JK.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/entry/app.Bg9oACF-.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dp1pzeXC.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D_kqQSo5.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/2cXyNWGb.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bzak7iHL.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Ca2j7qFz.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BmVC6lTd.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/BnZK2-eX.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/C0t2u1D1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/0.DWOaqez1.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D7leeM5l.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DKQVeb5P.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CP-r3QU3.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Bp7YhWCs.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DkPbIObf.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/69_IOA4Y.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/D2vXKg8d.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DJh_0fka.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/Dg0EvQHI.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/nodes/12.p0gh8pNe.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/DF2T1Nhr.js">
+		<link rel="modulepreload" href="../../../../_app/immutable/chunks/CxRPdVhl.js"><!--1y1qu0s--><meta data-key="description" name="description" content="동시성 프로그래밍에서 발생하는 에러 및 panic은 어떻게 핸들링해야 할지 알아보자"/> <meta property="og:type" content="article"/> <meta property="og:title" content="동시성 프로그램의 에러 핸들링"/> <meta property="og:description" content="동시성 프로그래밍에서 발생하는 에러 및 panic은 어떻게 핸들링해야 할지 알아보자"/><!----><title>동시성 프로그램의 에러 핸들링</title>
+		<!-- You can replace this block to update the Google fonts used in the project -->
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?&family=Nanum+Gothic&family=Jua&family=Source+Code+Pro:wght@400&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- End Google Fonts block -->
+
+		<!-- You can add global <meta> tags here, but anything not global or dynamic should be a `<svelte:head>` tag on the proper page(s) instead. -->
+	</head>
+	<body>
+		<div id="svelte"><!--[--><!--[--><!----><div class="layout"><header><a class="skip-to-content-link" href="#main">Skip to main content</a> <nav class="main-nav"><ul><!--[--><li><a href="/posts" aria-current="false"><!---->Posts<!----></a></li><li><a href="/category" aria-current="false"><!---->Categories<!----></a></li><li><a href="/about" aria-current="false"><!---->About<!----></a></li><li><a href="/api/rss.xml" aria-current="false"><!---->RSS<!----></a></li><li><a href="/#" aria-current="false"><!---->Home<!----></a></li><!--]--></ul> <button aria-pressed="false" class="menu-button" tabindex="-1"><span class="sr-only">Toggle hamburger menu</span> <!--[--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M64,48.496l-48.496,-48.496l-15.504,15.504l48.496,48.496l-48.496,48.496l15.504,15.504l48.496,-48.496l48.496,48.496l15.504,-15.504l-48.496,-48.496l48.496,-48.496l-15.504,-15.504l-48.496,48.496Z"></path></svg><!--]--></button><!----></nav><!----> <button aria-pressed="false" class="menu-button" tabindex="0"><span class="sr-only">Toggle hamburger menu</span> <!--[!--><svg viewBox="0 0 128 128" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><rect x="0" y="12.48" width="128" height="18.688"></rect></g><g><rect x="0" y="96.832" width="128" height="18.688"></rect></g><g><rect x="0" y="54.656" width="128" height="18.688"></rect></g></svg><!--]--></button><!----> <a href="/" class="site-title">집밥서선생</a> <button class="toggle-theme"><!--[-->☀️<!--]--></button><!----></header><!----> <main id="main" tabindex="-1"><!----><div class="content"><!----><article class="post"><img class="cover-image" src="/post_img/Go/Concurrency in Go/cover.png" alt="" style="aspect-ratio: 16 / 9;" width="16" height="9"/> <h1>동시성 프로그램의 에러 핸들링</h1> <div class="meta"><b>Published:</b> 2023-09-11</div> <!----><h2 id="에러-핸들링"><a aria-hidden="true" tabindex="-1" href="#에러-핸들링"><span class="icon icon-link"></span></a>에러 핸들링</h2> <p>Go는 try-catch 기반의 에러 처리가 아닌 에러 여부 및 정보를 명시적으로 리턴하는 방식으로 에러를 처리한다.
+이러한 방식이 과연 좋은지에 대해서는 의견이 분분하지만, 적어도 동시성 프로그래밍에서는 이러한 방식이 더 적합하다고 한다.
+채널을 통해 다른 고루틴으로 에러 인스턴스를 전달하기 더 용이하기 때문이다.</p> <p>일반적인 함수에서 허용되지 않은 상황이 발생했을 때 에러를 리턴한다.
+하지만 고루틴은 에러를 반환할 수 없다. 따라서 에러를 처리할 수 있는 다른 방법을 찾아야 한다.
+가령 여러 고루틴이 서로 다른 작업을 수행하고 있는데 한 고루틴에서 에러가 발생했다면, 다른 고루틴을 종료시키거나 결과를 폐기해야 한다.
+또는 여러 고루틴이 실패하여 여러 에러 값을 처리해야 할 때도 있다.
+하지만 에러 처리의 대원칙은 <span style="background-color: var(--highlightYellow)"><!---->에러를 무시해서는 안 된다<!----></span><!---->는 것이다.</p> <br/> <p>예제를 통해 살펴보자. 아래 패턴은 여러 작업을 동시에 수행하는 중 에러를 처리하려 할 때 유용한 패턴이다.
+또한 Worker Pool 패턴에서도 유용하게 사용된다.</p> <div class="codeBlockWrapper closed svelte-13tv1p3"><div class="svelte-13tv1p3"><!--[--><pre class="language-go"><!----><code class="language-go"><span class="token keyword">type</span> Result1 <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Result ResultType1
+    Error err
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> Result2 <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Result ResultType2
+    Error err
+<span class="token punctuation">&#125;</span>
+
+<span class="token operator">...</span>
+
+result1Ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Result1<span class="token punctuation">)</span>
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    result<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">handleRequest1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    result1Ch <span class="token operator">&lt;-</span> Result1<span class="token punctuation">&#123;</span>Result<span class="token punctuation">:</span> result<span class="token punctuation">,</span> Error<span class="token punctuation">:</span> err<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+result2Ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Result2<span class="token punctuation">)</span>
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    result<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">handleRequest2</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    result2Ch <span class="token operator">&lt;-</span> Result2<span class="token punctuation">&#123;</span>Result<span class="token punctuation">:</span> result<span class="token punctuation">,</span> Error<span class="token punctuation">:</span> err<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+result1 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>result1Ch
+result2 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>result2Ch
+
+<span class="token keyword">if</span> result1<span class="token punctuation">.</span>Error <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// handle error</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">if</span> result2<span class="token punctuation">.</span>Error <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// handle error</span>
+<span class="token punctuation">&#125;</span></code><!----></pre><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]-->  <!--[!--><div class="btn openBtn svelte-13tv1p3">Show⯆</div><!--]--></div><!----> <p>이 예제에서는 결과 채널에서 받은 결과에 에러가 있는지 확인한다.</p> <p>이 때 한 결과에 에러가 있더라도 바로 함수를 종료하지 않고, 모든 채널에서 결과를 읽어와야 한다.
+그렇지 않으면 고루틴 누수가 발생할 수 있다. 이를테면 다음과 같은 상황이다.</p> <div class="codeBlockWrapper closed svelte-13tv1p3"><div class="svelte-13tv1p3"><!--[--><pre class="language-go"><!----><code class="language-go">result1 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>result1Ch
+<span class="token keyword">if</span> result1<span class="token punctuation">.</span>Error <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// handle error</span>
+    <span class="token keyword">return</span> result1<span class="token punctuation">.</span>Error
+<span class="token punctuation">&#125;</span>
+result2 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>result2Ch <span class="token comment">// 이 채널에서 값을 읽지 않으므로 고루틴 누수 발생</span></code><!----></pre><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]-->  <!--[!--><div class="btn openBtn svelte-13tv1p3">Show⯆</div><!--]--></div><!----> <br/> <p>모든 고루틴이 끝나기까지 기다린 후 에러를 반환하는 경우가 있을 수 있지만, 한 고루틴이 실패하면 다른 고루틴도 종료시켜야 하는 경우도 있다.
+이 경우 <code>context.Context</code>를 사용하는 방법도 있지만 이는 나중에 다루고, 여기서는 <code>canceled</code> 채널을 사용하여 고루틴을 종료하는 방법을 알아보자.</p> <p>채널을 닫으면 해당 채널을 읽고 있는 모든 고루틴에 일회성 브로드캐스팅이 가능하다.
+따라서 특정 고루틴에서 에러가 발생하면 <code>canceled</code> 채널을 닫아 다른 고루틴에 에러가 발생했음을 알릴 수 있다.
+주기적으로 canceled 채널을 읽는 다른 고루틴은 에러가 발생했음을 알게 되고, 종료할 수 있다.</p> <p>다만 이 방법은 잠재적인 문제가 있는데, 바로 오류가 2회 이상 발생하여 이미 닫힌 <code>canceled</code> 채널을 다시 닫는 경우이다.
+이 경우 panic이 발생하므로, 취소 채널을 닫는 대신 취소 채널을 단 한번만 닫을 수 있게끔 별도의 고루틴을 두어야 한다.</p> <div class="codeBlockWrapper closed svelte-13tv1p3"><div class="svelte-13tv1p3"><!--[--><pre class="language-go"><!----><code class="language-go">	resultCh1 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Result1<span class="token punctuation">)</span>
+	resultCh2 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Result2<span class="token punctuation">)</span>
+	canceled <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	cancelCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>cancelCh<span class="token punctuation">)</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		once <span class="token operator">:=</span> sync<span class="token punctuation">.</span>Once<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+		<span class="token keyword">for</span> <span class="token keyword">range</span> cancelCh <span class="token punctuation">&#123;</span>
+			once<span class="token punctuation">.</span><span class="token function">Do</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				<span class="token function">close</span><span class="token punctuation">(</span>canceled<span class="token punctuation">)</span>
+			<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		result<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			cancelCh <span class="token operator">&lt;-</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+			resultCh1 <span class="token operator">&lt;-</span> Result1<span class="token punctuation">&#123;</span>Error<span class="token punctuation">:</span> err<span class="token punctuation">&#125;</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">&#125;</span>
+
+		<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">case</span> <span class="token operator">&lt;-</span>canceled<span class="token punctuation">:</span>
+			<span class="token function">close</span><span class="token punctuation">(</span>resultCh1<span class="token punctuation">)</span>
+			<span class="token keyword">return</span>
+		<span class="token keyword">default</span><span class="token punctuation">:</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// same as above</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    result1<span class="token punctuation">,</span> ok1 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>resultCh1
+    result2<span class="token punctuation">,</span> ok2 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>resultCh2
+
+    <span class="token keyword">if</span> <span class="token operator">!</span>ok1 <span class="token operator">||</span> <span class="token operator">!</span>ok2 <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"canceled"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>result1<span class="token punctuation">.</span>Result<span class="token punctuation">,</span> result1<span class="token punctuation">.</span>Error<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>result2<span class="token punctuation">.</span>Result<span class="token punctuation">,</span> result2<span class="token punctuation">.</span>Error<span class="token punctuation">)</span></code><!----></pre><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]-->  <!--[!--><div class="btn openBtn svelte-13tv1p3">Show⯆</div><!--]--></div><!----> <p>1번 고루틴이 실패하면 2번 고루틴도 종료될것이며, 그 반대도 마찬가지이다.</p> <br/> <p>취소 채널 대신 오류 채널을 사용하는 방법도 있다.</p> <div class="codeBlockWrapper closed svelte-13tv1p3"><div class="svelte-13tv1p3"><!--[--><pre class="language-go"><!----><code class="language-go">	errCh <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+	<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>errCh<span class="token punctuation">)</span>
+	canceled <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+	errs <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">error</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		once <span class="token operator">:=</span> sync<span class="token punctuation">.</span>Once<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+		<span class="token keyword">for</span> err <span class="token operator">:=</span> <span class="token keyword">range</span> errCh <span class="token punctuation">&#123;</span>
+			errs <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>errs<span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+			once<span class="token punctuation">.</span><span class="token function">Do</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+				<span class="token function">close</span><span class="token punctuation">(</span>canceled<span class="token punctuation">)</span>
+			<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	resultCh1 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Result1<span class="token punctuation">)</span>
+	resultCh2 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> Result2<span class="token punctuation">)</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>resultCh1<span class="token punctuation">)</span>
+		result<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			errCh <span class="token operator">&lt;-</span> err
+			<span class="token keyword">return</span>
+		<span class="token punctuation">&#125;</span>
+
+		<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">case</span> <span class="token operator">&lt;-</span>canceled<span class="token punctuation">:</span>
+			<span class="token keyword">return</span>
+		<span class="token keyword">default</span><span class="token punctuation">:</span>
+		<span class="token punctuation">&#125;</span>
+		resultCh1 <span class="token operator">&lt;-</span> Result1<span class="token punctuation">&#123;</span>Result<span class="token punctuation">:</span> result<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token comment">// same as above</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	result1<span class="token punctuation">,</span> ok1 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>resultCh1
+	result2<span class="token punctuation">,</span> ok2 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>resultCh2
+
+	<span class="token keyword">if</span> <span class="token operator">!</span>ok1 <span class="token operator">||</span> <span class="token operator">!</span>ok2 <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"canceled"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>result1<span class="token punctuation">,</span> result2<span class="token punctuation">)</span></code><!----></pre><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]-->  <!--[!--><div class="btn openBtn svelte-13tv1p3">Show⯆</div><!--]--></div><!----> <br/> <p>또 다른 방법은 각 고루틴의 스코프에서 전용 에러 변수를 사용하는 것이다.
+이 방법은 <code>sync.WaitGroup</code>을 사용하며, 한 고루틴이 실패하더라도 다른 고루틴을 종료시킬 수 없다.
+따라서 고루틴들이 굳이 취소할 필요가 없는 연산을 수행하는 경우 유용하다.</p> <p>이 패턴으로 구현하고자 하는 경우 <code>Wait()</code> 메서드를 호출한 이후 에러를 확인해야 한다.
+이는 메모리 모델에 따라 happened-before 관계를 만듦으로써 data race를 방지하기 위함이다.</p> <div class="codeBlockWrapper closed svelte-13tv1p3"><div class="svelte-13tv1p3"><!--[--><pre class="language-go"><!----><code class="language-go">    wg <span class="token operator">:=</span> sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">var</span> err1<span class="token punctuation">,</span> err2 <span class="token builtin">error</span>
+	resultCh1 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> ResultType<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+	resultCh2 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> ResultType<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>resultCh1<span class="token punctuation">)</span>
+		result<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			err1 <span class="token operator">=</span> err
+			<span class="token keyword">return</span>
+		<span class="token punctuation">&#125;</span>
+		resultCh1 <span class="token operator">&lt;-</span> result
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>resultCh2<span class="token punctuation">)</span>
+		result<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			err2 <span class="token operator">=</span> err
+			<span class="token keyword">return</span>
+		<span class="token punctuation">&#125;</span>
+		resultCh2 <span class="token operator">&lt;-</span> result
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err1 <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"1:"</span><span class="token punctuation">,</span> err1<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">if</span> err2 <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"2:"</span><span class="token punctuation">,</span> err2<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	result1<span class="token punctuation">,</span> ok1 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>resultCh1
+	result2<span class="token punctuation">,</span> ok2 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>resultCh2
+
+	<span class="token keyword">if</span> <span class="token operator">!</span>ok1 <span class="token operator">||</span> <span class="token operator">!</span>ok2 <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"channel closed"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>result1<span class="token punctuation">,</span> result2<span class="token punctuation">)</span></code><!----></pre><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]-->  <!--[!--><div class="btn openBtn svelte-13tv1p3">Show⯆</div><!--]--></div><!----> <br/> <h3 id="파이프라인"><a aria-hidden="true" tabindex="-1" href="#파이프라인"><span class="icon icon-link"></span></a>파이프라인</h3> <p>파이프라인은 일반적으로 많은 입력을 받아서 처리하므로, 입력 하나가 실패한다고 해서 파이프라인 전체를 종료시키는 것은 바람직하지 않다.
+따라서 오류를 기록해두거나 로깅하고 계속 처리를 진행하는 것이 좋다.
+이 때 로그를 보고 오류에 대한 인사이트를 확실히 얻을 수 있게끔, 오류 발생에 대한 다양한 정보와 컨텍스트를 기록해야 한다.</p> <p>다음과 같은 원칙을 따르면 파이프라인에서 오류를 처리하는 것이 더 쉬워진다.</p> <ul><li>파이프라인의 각 단계에서는 에러 기록 함수를 호출한다. 이 함수는 파이프라인의 여러 단계에서 호출될 수 있으므로, 동시 호출을 처리할 수 있어야 한다.</li> <li>파이프라인에서 오류가 발생하면, 파일명, 입력, 실패 이유, 해당 단계 등 관련된 정보를 분리된 오류 채널로 전송한다. 해당 채널을 읽는 고루틴은 이 정보를 데이터베이스나 로그에 기록한다.</li> <li>오류를 다음 단계로 전달하여, 각 단계에서 입력에 오류가 있었는지 확인하고 이를 파이프라인이 끝날 때까지 전달해야 한다.</li></ul> <h3 id="서버"><a aria-hidden="true" tabindex="-1" href="#서버"><span class="icon icon-link"></span></a>서버</h3> <p>일반적으로 서버는 HTTP 또는 gRPC 등의 요청을 받아서 처리하며, 보통 각 요청은 별도의 고루틴에서 처리된다.
+따라서 사용자에 대한 응답을 작성하기 위한 에러를 전파하는 것은 요청 처리 스택에 달려있다.
+에러 코드나 추가적인 진단 정보를 포함시키기 위해 커스텀 에러 타입을 정의하는 것도 좋은 방법이다.</p> <div class="codeBlockWrapper closed svelte-13tv1p3"><div class="svelte-13tv1p3"><!--[--><pre class="language-go"><!----><code class="language-go"><span class="token keyword">type</span> Error <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Code <span class="token builtin">int</span>
+    HttpStatus <span class="token builtin">int</span>
+    DiagMsg <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> HTTPError <span class="token keyword">interface</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">HTTPStatus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span>
+    <span class="token function">HTTPMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>e <span class="token operator">*</span>Error<span class="token punctuation">)</span> <span class="token function">HTTPStatus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> e<span class="token punctuation">.</span>HttpStatus
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>e <span class="token operator">*</span>Error<span class="token punctuation">)</span> <span class="token function">HTTPMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%d: %s"</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>Code<span class="token punctuation">,</span> e<span class="token punctuation">.</span>DiagMsg<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">WriteError</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    e<span class="token punctuation">,</span> ok <span class="token operator">:=</span> err<span class="token punctuation">.</span><span class="token punctuation">(</span>HTTPError<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> ok <span class="token punctuation">&#123;</span>
+        http<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">HTTPStatus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">HTTPMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        http<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">,</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+</code><!----></pre><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]-->  <!--[!--><div class="btn openBtn svelte-13tv1p3">Show⯆</div><!--]--></div><!----> <br/><br/> <h2 id="panic"><a aria-hidden="true" tabindex="-1" href="#panic"><span class="icon icon-link"></span></a>Panic</h2> <hr/> <p>패닉은 일반적인 오류와 달리 프로그램 자체를 더 이상 실행할 수 없는 상황을 의미하며, 즉시 프로그램을 종료시킨다.
+따라서 패닉이 발생하는 경우 최대한 많은 진단 정보와 컨텍스트를 개발자에게 전달해야 한다.</p> <p>동시성 프로그램에서 패닉이 발생하면 해당 고루틴을 실행한 함수까지 거슬러 올라가며 모든 중첩 함수 호출이 종료된다.
+이 때 모든 defer 함수가 실행되는데, 이를 통해 panic 상태를 회복하거나 가비지 컬렉터에 수집되지 않은 리소스를 정리할 수 있다.
+함수 체인에서 패닉이 처리되지 않으면 프로그램은 종료되므로, 패닉은 반드시 적절히 처리되어야 한다고 할 수 있다.</p> <p>일반적으로 서버 프로그램에서는 별도의 고루틴이 요청을 처리한다.
+대부분의 프레임워크에서는 패닉이 발생하면 프로그램 전체를 중지시키는 게 아니라 오류 스택을 출력하고 해당 요청만 실패시킨다.
+이 때 프레임워크를 사용하지 않는다면 패닉을 직접 처리해야 한다.</p> <div class="codeBlockWrapper closed svelte-13tv1p3"><div class="svelte-13tv1p3"><!--[--><pre class="language-go"><!----><code class="language-go"><span class="token keyword">type</span> Handler <span class="token keyword">func</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>h Handler<span class="token punctuation">)</span> <span class="token function">ServeHTTP</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token function">h</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">PanicHandler</span><span class="token punctuation">(</span>next Handler<span class="token punctuation">)</span> Handler <span class="token punctuation">&#123;</span>
+	<span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			err <span class="token operator">:=</span> <span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+				fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token function">next</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	handler <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"Panic!"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+
+	http<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span><span class="token string">"/path"</span><span class="token punctuation">,</span> <span class="token function">PanicHandler</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	http<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token string">":8080"</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+</code><!----></pre><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]-->  <!--[!--><div class="btn openBtn svelte-13tv1p3">Show⯆</div><!--]--></div><!----> <p>또는 패닉을 발생시킬 수 있는 고루틴이 있고, 그 패닉이 프로그램 전체를 종료시키지 않아야 한다면 패닉을 처리해야 한다.</p> <pre class="language-go"><!----><code class="language-go"><span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span>errCh <span class="token keyword">chan</span><span class="token operator">&lt;-</span> <span class="token builtin">error</span><span class="token punctuation">,</span> resultCh <span class="token keyword">chan</span><span class="token operator">&lt;-</span> result<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        err <span class="token operator">:=</span> <span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+            errCh <span class="token operator">&lt;-</span> err
+            <span class="token function">close</span><span class="token punctuation">(</span>resultCh<span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// do something</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span>errCh<span class="token punctuation">,</span> resultCh<span class="token punctuation">)</span></code><!----></pre> <br/> <p>파이프라인에서 패닉을 처리하는 것은 보다 방어적이어야 한다.
+에러 처리와 마찬가지로 파이프라인은 장시간 실행되는 프로그램이므로, 패닉이 발생하더라도 프로그램을 무작정 종료시키는 것은 좋은 생각이 아니다.
+일반적으로 파이프라인 처리가 완료되면 모든 패닉과 에러에 대한 로그를 갖고 있어야 한다.
+따라서 패닉 복구가 제대로 이루어졌는지 확실하게 알 수 있어야 한다.</p> <p>다음의 예제는 패닉이 발생하더라도 계속 처리를 진행하는 방법을 보여준다.</p> <div class="codeBlockWrapper closed svelte-13tv1p3"><div class="svelte-13tv1p3"><!--[--><pre class="language-go"><!----><code class="language-go"><span class="token keyword">func</span> pipelineStage<span class="token punctuation">[</span>IN any<span class="token punctuation">,</span> OUT WithError<span class="token punctuation">]</span><span class="token punctuation">(</span>input <span class="token operator">&lt;-</span><span class="token keyword">chan</span> IN<span class="token punctuation">,</span> output <span class="token keyword">chan</span><span class="token operator">&lt;-</span> WithError<span class="token punctuation">,</span> errCh <span class="token keyword">chan</span><span class="token operator">&lt;-</span><span class="token builtin">error</span><span class="token punctuation">,</span> <span class="token function">process</span><span class="token punctuation">(</span>IN<span class="token punctuation">)</span> OUT<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> data <span class="token operator">:=</span> <span class="token keyword">range</span> output <span class="token punctuation">&#123;</span>
+        result<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>res OUT<span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                err <span class="token operator">=</span> <span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">return</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token function">process</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+            errCh <span class="token operator">&lt;-</span> err
+            <span class="token keyword">continue</span>
+        <span class="token punctuation">&#125;</span>
+        output <span class="token operator">&lt;-</span> result
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]-->  <!--[!--><div class="btn openBtn svelte-13tv1p3">Show⯆</div><!--]--></div><!----> <br/><br/> <h2 id="references"><a aria-hidden="true" tabindex="-1" href="#references"><span class="icon icon-link"></span></a>References</h2> <hr/> <center><p>[</p> <img src="https://learning.oreilly.com/covers/urn:orm:book:9781804619070/400w/" alt="Effective Concurrency in Go" loading="lazy"/><!----> ](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)<br/> [Burak Serdar, 『Effective Concurrency in Go』, Packt Publishing](https://learning.oreilly.com/library/view/effective-concurrency-in/9781804619070/)</center><!----> <!--[--><aside class="post-footer"><h2>Posted in:</h2> <ul><!--[--><li><a href="/category/Golang/">Golang</a></li><li><a href="/category/Concurrency in Go/">Concurrency in Go</a></li><!--]--></ul></aside><!--]--></article> <!--[--><!--[!--><!--]--><!--]--><!----><!----></div><!----> <footer><p>© 2026 JHSeo</p></footer><!----></main></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_9x1lhv = {
+						base: new URL("../../../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../../../_app/immutable/entry/start._ykarBe4.js"),
+						import("../../../../_app/immutable/entry/app.Bg9oACF-.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 12],
+							data: [{type:"data",data:null,uses:{}},null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
