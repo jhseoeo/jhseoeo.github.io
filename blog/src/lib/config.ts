@@ -5,13 +5,15 @@
  * PLEASE BE SURE TO UPDATE THEM ALL! Thank you!
  **/
 
-export const siteTitle = 'YOUR BLOG TITLE';
-export const siteDescription = 'YOUR BLOG DESCRIPTION';
-export const siteURL = 'YOURNAME.github.io';
-export const siteLink = 'https://YOURNAME.github.io';
-export const siteAuthor = 'YOUR NAME';
+import type { Mapping } from '@giscus/svelte';
 
-// Controls how many posts are shown per page on the main blog index pages
+export const siteTitle = '집밥서선생';
+export const siteDescription = '개발등 이것저것 하는 블로그';
+export const siteURL = 'jhseoeo.github.io';
+export const siteLink = 'https://jhseoeo.github.io';
+export const siteAuthor = 'JHSeo';
+
+// Controls how many posts are shown per page on thㅊe main blog index pages
 export const postsPerPage = 15;
 
 // Cache duration in seconds for RSS and sitemap
@@ -47,6 +49,6 @@ export const giscusConfig = {
 	repoId: 'YOUR_REPO_ID',
 	category: 'YOUR_CATEGORY',
 	categoryId: 'YOUR_CATEGORY_ID',
-	mapping: 'url',
+	mapping: 'url' as Mapping,
 	lang: 'ko'
 };
