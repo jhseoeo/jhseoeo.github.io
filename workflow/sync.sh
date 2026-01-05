@@ -52,10 +52,20 @@ else
     git checkout -b posts
 fi
 
-# Copy output files to blog/src/posts/
+# Copy output files: .svelte to src/posts/, images to static/
 echo "Copying files..."
 mkdir -p blog/src/posts
-cp -r /root/output/* blog/src/posts/
+mkdir -p blog/static/images
+
+# Copy svelte files to src/posts/
+echo "Copying .svelte files to src/posts/..."
+find /root/output -maxdepth 1 -name "*.svelte" -exec cp {} blog/src/posts/ \;
+
+# Copy images to static/images/
+if [ -d "/root/output/images" ]; then
+    echo "Copying images to static/images/..."
+    cp -r /root/output/images/* blog/static/images/
+fi
 
 # Check for changes
 if [ -z "$(git status --porcelain)" ]; then
