@@ -55,15 +55,20 @@ fi
 # Copy output files: .svelte to src/posts/, images to static/
 echo "Copying files..."
 mkdir -p blog/src/posts
-mkdir -p blog/static/images
 
 # Copy svelte files to src/posts/
 echo "Copying .svelte files to src/posts/..."
 find /root/output -maxdepth 1 -name "*.svelte" -exec cp {} blog/src/posts/ \;
 
-# Copy images to static/images/
+# Clean and copy images to static/images/
 if [ -d "/root/output/images" ]; then
-    echo "Copying images to static/images/..."
+    echo "Removing old images directory..."
+    rm -rf blog/static/images
+
+    echo "Creating fresh images directory..."
+    mkdir -p blog/static/images
+
+    echo "Copying new images to static/images/..."
     cp -r /root/output/images/* blog/static/images/
 fi
 
