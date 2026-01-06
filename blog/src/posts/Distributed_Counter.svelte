@@ -16,13 +16,13 @@
 
 <p></p>
 
-<img src="/images/Distributed_Counter/6cb8c76e3d97fa51.png" alt="" class="responsive-image" />
+<img src="/images/Distributed_Counter/40e49d67d1c4ea11.png" alt="" class="responsive-image" />
 
 <p>을 하려 했는데, 이걸 읽으려면 <a href="https://netflixtechblog.com/introducing-netflix-timeseries-data-abstraction-layer-31552f6326f8">Timeseries Data Abstraction</a>을 먼저 봐야 한다…</p>
 
 <p></p>
 
-<img src="/images/Distributed_Counter/b7beb7774ff6b591.png" alt="" class="responsive-image" />
+<img src="/images/Distributed_Counter/d4f830f38447ff30.png" alt="" class="responsive-image" />
 
 <p>하지만 읽었죠?</p>
 
@@ -68,7 +68,7 @@
 
   <details>
     <summary>잼민아 hedging이 뭐야</summary>
-    <img src="/images/Distributed_Counter/f8c4e9b6a3a703fa.png" alt="" class="responsive-image" />
+    <img src="/images/Distributed_Counter/f70dc7b0143724e9.png" alt="" class="responsive-image" />
 
   </details>
 
@@ -102,7 +102,7 @@
 
 <ol>
 <li>Approach 1: Storing a Single Row per Counter
-  <img src="/images/Distributed_Counter/4c377076de40a3dc.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/5dcbf6edb41f0508.png" alt="" class="responsive-image" />
 
   <ul>
   <li>멱등성도 없고 경합걸리면 성능 떨어져서 구리다</li>
@@ -118,7 +118,7 @@
   <li>각 인스턴스가 주기적으로 메모리에 있는 수를 세어서 디스크로 flush</li>
   <li>flush할 때 Jitter 걸면 경합도 줄일 수 있음</li>
   </ul>
-  <img src="/images/Distributed_Counter/7e13a7dde0f32499.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/ac8f51927f37f076.png" alt="" class="responsive-image" />
 
   <ul>
   <li>인메모리? 서버꺼지면 데이터손실 막을 수가 없음</li>
@@ -131,7 +131,7 @@
   <li>도와줘 카프카형</li>
   <li>여러 개의 토픽 파티션을 만들고 카운터 키를 특정 파티션에 해싱하여, 동일한 카운터가 동일한 컨슈머에 의해 처리</li>
   </ul>
-  <img src="/images/Distributed_Counter/1288562c82ef8582.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/94985786232ee3c4.png" alt="" class="responsive-image" />
 
   <ul>
   <li>하지만 딜레이가 좀 생기고, 처리량이 증가하면 파티션이 리밸런싱되는 것에 맞춰 대응해줘야하는데 상당히 번거로움</li>
@@ -143,7 +143,7 @@
   <li><a href="https://netflixtechblog.com/introducing-netflix-timeseries-data-abstraction-layer-31552f6326f8">Timeseries Data Abstraction</a>을 쓰는 방식</li>
   <li>event_time과 event_id가 있으면 멱등 key도 보장할 수 있다</li>
   </ul>
-  <img src="/images/Distributed_Counter/f23383992178529d.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/35298c74c27aa4dc.png" alt="" class="responsive-image" />
 
 </li>
 </ol>
@@ -163,7 +163,7 @@
 
 <ul>
 <li>Aggregating Count Events
-  <img src="/images/Distributed_Counter/169e1a6083fdc265.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/62b3f59b3a8b3b24.png" alt="" class="responsive-image" />
 
   <ul>
   <li>모든 read 요청마다 개별 increment를 모두 확인하는 건 너무 느리니, 백그라운드에서 aggregate를 돌자</li>
@@ -177,7 +177,7 @@
   </ul>
 </li>
 <li>Rollup Store
-  <img src="/images/Distributed_Counter/faa0bdfbce3d51c2.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/90bd07dbeff005b7.png" alt="" class="responsive-image" />
 
   <ul>
   <li>읽은 것들을 적절히 저장해줍니다</li>
@@ -185,7 +185,7 @@
   </ul>
 </li>
 <li>Rollup Cache
-  <img src="/images/Distributed_Counter/65c16dcc28448ad8.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/d97e78a7d2bc769f.png" alt="" class="responsive-image" />
 
   <ul>
   <li>읽기 성능을 위해 각 캐시의 값은 EVCache에 저장한답니다</li>
@@ -196,9 +196,9 @@
 
 <ul>
 <li>Rollup Pipeline
-  <img src="/images/Distributed_Counter/2759bfd76e3c2963.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/a8b49d3163109751.png" alt="" class="responsive-image" />
 
-  <img src="/images/Distributed_Counter/19381640aabca6c9.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/4631b4bc4550bda9.png" alt="" class="responsive-image" />
 
   <ul>
   <li>카운터에 무슨 요청이든 발생하면 롤업 이벤트를 보냄. 이벤트는 인메모리 큐에 쌓이고 중복을 최대한 제거(주어진 기간 동안 한 번만 aggregate를 실행)</li>
