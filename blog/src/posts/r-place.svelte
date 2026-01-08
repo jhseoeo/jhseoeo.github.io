@@ -24,7 +24,7 @@
 
 <h2>1. 개요</h2>
 
-<img src="/images/r-place/0536064d0831368e.png" alt="" class="responsive-image" />
+<img src="/images/r-place/9bce9611196d151a.png" alt="" class="responsive-image" />
 
 <p>레딧에서 만우절에 이벤트성으로 진행한 온라인 픽셀 아트 이벤트입니다</p>
 
@@ -64,7 +64,7 @@
       <summary>4비트로 한다고....????</summary>
       <p>4비트로 어떻게 색상을 표현하는지에 대한 이미지가 안보임.. 아마 아래와 같은 느낌이 아닐까..</p>
 
-      <img src="/images/r-place/a34162c80ff0d684.png" alt="" class="responsive-image" />
+      <img src="/images/r-place/d6b92d656bbd6870.png" alt="" class="responsive-image" />
 
     </details>
 
@@ -108,7 +108,7 @@
   <summary>카산드라의 consistency level은 QUORUM이라고 함</summary>
   <p>사실 저도 이게 뭔지 잘 몰라서 GPT한테 물어봤습니다. 분산 DB이니 완전히 매칭시키긴 어렵지만, 얼추 READ COMMITTED 수준이라고 하네용</p>
 
-  <img src="/images/r-place/9d69a9e90c0d9889.png" alt="" class="responsive-image" />
+  <img src="/images/r-place/d76219a7be2175b1.png" alt="" class="responsive-image" />
 
 </details>
 
@@ -147,7 +147,7 @@
   </ul>
   <details>
     <summary>캔버스를 실시간으로 png로 만들어 cdn에 올리고, 웹소켓은 png 경로만 알려주는 방식</summary>
-    <img src="/images/r-place/f823f55b4e372cab.png" alt="" class="responsive-image" />
+    <img src="/images/r-place/cadf891fcbf4732e.png" alt="" class="responsive-image" />
 
   </details>
 

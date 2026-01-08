@@ -49,7 +49,7 @@
 
 <h2>Data Model</h2>
 
-<img src="/images/Timeseries_data_abstraction/9c7f07f1f8dfcb9b.png" alt="" class="responsive-image" />
+<img src="/images/Timeseries_data_abstraction/6f41720815a2ca79.png" alt="" class="responsive-image" />
 
 <p>적당한 캡슐화와 효율적인 쿼리가 가능한 모델</p>
 
@@ -224,11 +224,11 @@
     </ul>
     <details>
       <summary>카산드라의 wide partition 문제 해결</summary>
-      <img src="/images/Timeseries_data_abstraction/b4431c63c0102646.png" alt="" class="responsive-image" />
+      <img src="/images/Timeseries_data_abstraction/48989e32119db43d.png" alt="" class="responsive-image" />
 
       <details>
         <summary>기강잡기</summary>
-        <img src="/images/Timeseries_data_abstraction/4c138e431382107e.png" alt="" class="responsive-image" />
+        <img src="/images/Timeseries_data_abstraction/54ff0bb7cfada029.png" alt="" class="responsive-image" />
 
       </details>
 
@@ -236,7 +236,7 @@
 
   </li>
   </ul>
-  <img src="/images/Timeseries_data_abstraction/3e0463e2964c8eb9.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/5a64f9137f526e16.png" alt="" class="responsive-image" />
 
   <ul>
   <li>Time Slice
@@ -261,7 +261,7 @@
   </ul>
 </li>
 <li>Data Table
-  <img src="/images/Timeseries_data_abstraction/9b01306533f8791c.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/e4ea3f23cdc1759e.png" alt="" class="responsive-image" />
 
   <ul>
   <li>time series id, time bucket, event bucket을 파티션 키로 설정하여 hot partition 예방</li>
@@ -271,7 +271,7 @@
   </ul>
 </li>
 <li>Metadata Table
-  <img src="/images/Timeseries_data_abstraction/d3898d4f6b33d11f.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/02dcdd02cca6c4de.png" alt="" class="responsive-image" />
 
   <ul>
   <li>namespace마다 존재하는, 각 time slice에 대한 설정 저장</li>
@@ -319,7 +319,7 @@
 <ul>
 <li>워크로드 관리용. 갑자기 너무 요청이 와바박 들어오면 파티션 키별로 인메모리 큐에 넣고 일정 시간에 걸쳐 분산해주자</li>
 </ul>
-<img src="/images/Timeseries_data_abstraction/4b56a9eef90b4382.png" alt="" class="responsive-image" />
+<img src="/images/Timeseries_data_abstraction/42e6d3b2803add7a.png" alt="" class="responsive-image" />
 
 <ul>
 <li>물론 인스턴스 죽으면 인메모리 큐도 싹 다 증발되니, data loss를 허용하는 유즈케이스에 대해서만 사용이 가능</li>
