@@ -3,13 +3,17 @@
     title: 'Timeseries data abstraction',
     date: '2025-11-08',
     categories: ["Backend"],
-    coverImage: '/images/default-cover.jpg',
+    coverImage: '/images/Timeseries_data_abstraction/4567f0fb4028245e.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
     indexed: false,
     exposed: true
   };
+</script>
+
+<script lang="ts">
+  import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
 </script>
 
 <p><a href="https://netflixtechblog.com/introducing-netflix-timeseries-data-abstraction-layer-31552f6326f8">Introducing Netflix’s TimeSeries Data Abstraction Layer</a></p>
@@ -49,7 +53,7 @@
 
 <h2>Data Model</h2>
 
-<img src="/images/Timeseries_data_abstraction/ef42d33456889094.png" alt="" class="responsive-image" />
+<img src="/images/Timeseries_data_abstraction/4567f0fb4028245e.png" alt="" class="responsive-image" />
 
 <p>적당한 캡슐화와 효율적인 쿼리가 가능한 모델</p>
 
@@ -71,7 +75,8 @@
   </ul>
   <details>
     <summary>요청 JSON</summary>
-    <pre class="language-json"><code class="language-json">&#123;
+    <CodeBlockWrapper>
+      <pre class="language-json"><code class="language-json">&#123;
   "namespace": "my_dataset",
   "events": [
     &#123;
@@ -102,6 +107,7 @@
     &#125;
   ]
 &#125;</code></pre>
+    </CodeBlockWrapper>
 
   </details>
 
@@ -111,7 +117,8 @@
   <li>ReadEventRecords: namespace, timeSeriesId, time range 및 optional filter를 주고 매칭되는 이벤트를 받아옴
     <details>
       <summary>요청 JSON</summary>
-      <pre class="language-json"><code class="language-json">&#123;
+      <CodeBlockWrapper>
+        <pre class="language-json"><code class="language-json">&#123;
   "namespace": "my_dataset",
   "timeSeriesId": "profile100",
   "timeInterval": &#123;
@@ -127,6 +134,7 @@
   "pageSize": 100,
   "totalRecordLimit": 1000
 &#125;</code></pre>
+      </CodeBlockWrapper>
 
     </details>
 
@@ -134,7 +142,8 @@
   <li>SearchEventRecords: 대략 elasticsearch스러운 쿼리 (eventually consistent)
     <details>
       <summary>요청 JSON</summary>
-      <pre class="language-json"><code class="language-json">&#123;
+      <CodeBlockWrapper>
+        <pre class="language-json"><code class="language-json">&#123;
   "namespace": "my_dataset",
   "timeInterval": &#123;
     "start": "2024-10-02T21:00:00.000Z",
@@ -168,6 +177,7 @@
   "pageSize": 100,
   "totalRecordLimit": 1000
 &#125;</code></pre>
+      </CodeBlockWrapper>
 
     </details>
 
@@ -175,7 +185,8 @@
   <li>AggregateEventRecords: Search랑 비슷한데 aggregation 수행 (distinct 등)
     <details>
       <summary>요청 JSON</summary>
-      <pre class="language-json"><code class="language-json">&#123;
+      <CodeBlockWrapper>
+        <pre class="language-json"><code class="language-json">&#123;
   "namespace": "my_dataset",
   "timeInterval": &#123;
     "start": "2024-10-02T21:00:00.000Z",
@@ -189,6 +200,7 @@
     &#125;
   &#125;
 &#125;</code></pre>
+      </CodeBlockWrapper>
 
     </details>
 
@@ -224,11 +236,11 @@
     </ul>
     <details>
       <summary>카산드라의 wide partition 문제 해결</summary>
-      <img src="/images/Timeseries_data_abstraction/8e18ac33d2064466.png" alt="" class="responsive-image" />
+      <img src="/images/Timeseries_data_abstraction/907fc4642094987f.png" alt="" class="responsive-image" />
 
       <details>
         <summary>기강잡기</summary>
-        <img src="/images/Timeseries_data_abstraction/f789ccf7c1f5c3d8.png" alt="" class="responsive-image" />
+        <img src="/images/Timeseries_data_abstraction/5d0920c1ef268594.png" alt="" class="responsive-image" />
 
       </details>
 
@@ -236,7 +248,7 @@
 
   </li>
   </ul>
-  <img src="/images/Timeseries_data_abstraction/3a70a5ac03a8cefd.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/ba0c377bfd804586.png" alt="" class="responsive-image" />
 
   <ul>
   <li>Time Slice
@@ -261,7 +273,7 @@
   </ul>
 </li>
 <li>Data Table
-  <img src="/images/Timeseries_data_abstraction/47841bf58e8b0a80.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/af8fd69eeb9615fa.png" alt="" class="responsive-image" />
 
   <ul>
   <li>time series id, time bucket, event bucket을 파티션 키로 설정하여 hot partition 예방</li>
@@ -271,7 +283,7 @@
   </ul>
 </li>
 <li>Metadata Table
-  <img src="/images/Timeseries_data_abstraction/e4019a1a28b15a48.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/f08171e5ad02dffc.png" alt="" class="responsive-image" />
 
   <ul>
   <li>namespace마다 존재하는, 각 time slice에 대한 설정 저장</li>
@@ -319,7 +331,7 @@
 <ul>
 <li>워크로드 관리용. 갑자기 너무 요청이 와바박 들어오면 파티션 키별로 인메모리 큐에 넣고 일정 시간에 걸쳐 분산해주자</li>
 </ul>
-<img src="/images/Timeseries_data_abstraction/5d1bc591babb887f.png" alt="" class="responsive-image" />
+<img src="/images/Timeseries_data_abstraction/781a54c943916d87.png" alt="" class="responsive-image" />
 
 <ul>
 <li>물론 인스턴스 죽으면 인메모리 큐도 싹 다 증발되니, data loss를 허용하는 유즈케이스에 대해서만 사용이 가능</li>

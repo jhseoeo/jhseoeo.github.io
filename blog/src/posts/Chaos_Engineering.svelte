@@ -12,6 +12,10 @@
   };
 </script>
 
+<script lang="ts">
+  import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
+</script>
+
 <p>우끼끼</p>
 
 <p></p>
