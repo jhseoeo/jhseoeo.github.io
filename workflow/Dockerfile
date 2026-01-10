@@ -24,9 +24,10 @@ RUN apk --no-cache add \
 
 WORKDIR /root/
 
-# Copy binary and sync script from builder
+# Copy binary, sync script, and default cover image from builder
 COPY --from=builder /app/workflow .
 COPY --from=builder /app/sync.sh .
+COPY --from=builder /app/default-cover.jpg .
 
 # Make sync script executable
 RUN chmod +x sync.sh
