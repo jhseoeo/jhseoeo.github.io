@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"os"
 
 	"github.com/jhseoeo/notion-blog/workflow/notion"
@@ -12,6 +13,24 @@ import (
 const (
 	OUTPUT_DIR = "./output"
 )
+
+// copyFile copies a file from src to dst
+func copyFile(src, dst string) error {
+	sourceFile, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer sourceFile.Close()
+
+	destFile, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+	defer destFile.Close()
+
+	_, err = io.Copy(destFile, sourceFile)
+	return err
+}
 
 func main() {
 	logrus.SetLevel(logrus.DebugLevel)
@@ -42,6 +61,16 @@ func main() {
 		if err := os.Mkdir(OUTPUT_DIR, 0755); err != nil {
 			logrus.WithError(err).Fatal("Failed to create output directory")
 		}
+	}
+
+	// Copy default cover image to output/images/
+	logrus.Info("Copying default cover image...")
+	imagesDir := OUTPUT_DIR + "/images"
+	if err := os.MkdirAll(imagesDir, 0755); err != nil {
+		logrus.WithError(err).Fatal("Failed to create images directory")
+	}
+	if err := copyFile("default-cover.jpg", imagesDir+"/default-cover.jpg"); err != nil {
+		logrus.WithError(err).Warn("Failed to copy default cover image (will use posts' images as fallback)")
 	}
 
 	for _, page := range pages {
