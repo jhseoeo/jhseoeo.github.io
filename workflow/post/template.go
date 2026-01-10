@@ -43,5 +43,9 @@ const svelteTmpl = `<script context="module" lang="ts">
   };
 </script>
 
+<script lang="ts">
+  import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
+</script>
+
 {{ .Content }}
 `
