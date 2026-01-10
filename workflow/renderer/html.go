@@ -201,8 +201,10 @@ func RenderBlock(b *model.Block, depth int) string {
 			codeContent = renderContents(b.Content.Code.RichText)
 		}
 
-		builder.WriteString(fmt.Sprintf("%s<pre class=\"language-%s\"><code class=\"language-%s\">%s</code></pre>\n\n",
+		builder.WriteString(fmt.Sprintf("%s<CodeBlockWrapper>\n", indent))
+		builder.WriteString(fmt.Sprintf("%s  <pre class=\"language-%s\"><code class=\"language-%s\">%s</code></pre>\n",
 			indent, lang, lang, codeContent))
+		builder.WriteString(fmt.Sprintf("%s</CodeBlockWrapper>\n\n", indent))
 
 	case model.ContentTypeImage:
 		caption := ""

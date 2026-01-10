@@ -12,6 +12,37 @@ import (
 	"github.com/jhseoeo/notion-blog/workflow/renderer"
 )
 
+// findFirstImage recursively finds the first image in blocks
+func findFirstImage(blocks []*model.Block) string {
+	for _, block := range blocks {
+		if block.Type == model.ContentTypeImage && block.Content.Image != nil {
+			imageURL := block.Content.Image.File.URL
+			if imageURL != "" {
+				return imageURL
+			}
+		}
+		// Search in children recursively
+		if len(block.Children) > 0 {
+			if imageURL := findFirstImage(block.Children); imageURL != "" {
+				return imageURL
+			}
+		}
+	}
+	return ""
+}
+
+// determineCoverImage determines the cover image for a post
+// Priority: 1. First image in post content, 2. Default cover image
+func determineCoverImage(contents []*model.Block) string {
+	// Try to find first image in post content
+	if firstImage := findFirstImage(contents); firstImage != "" {
+		return firstImage
+	}
+
+	// Use default cover image
+	return "/images/default-cover.jpg"
+}
+
 func ExportPost(outputDir string, page *model.Page, contents []*model.Block) error {
 	// new template
 	t, err := template.New("svelte").Parse(svelteTmpl)
@@ -50,6 +81,9 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 		return fmt.Errorf("failed to download images: %w", err)
 	}
 
+	// Determine cover image
+	coverImage := determineCoverImage(contents)
+
 	// Generate HTML content with list grouping
 	htmlContent := renderer.RenderBlocks(contents, 0)
 
@@ -59,7 +93,7 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 		Categories:   categories,
 		CategoriesJS: string(categoriesJS),
 		Excerpt:      page.SubTitle,
-		CoverImage:   "/images/default-cover.jpg", // TODO: Get from Notion
+		CoverImage:   coverImage,
 		Content:      htmlContent,
 	}
 
