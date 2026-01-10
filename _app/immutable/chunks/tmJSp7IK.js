@@ -1,1 +1,0 @@
-import"./Bzak7iHL.js";import"./69_IOA4Y.js";const o={title:"Kafka",date:"2025-11-25",categories:["Backend","논문"],coverImage:"/images/default-cover.jpg",coverWidth:16,coverHeight:9,excerpt:"",indexed:!1,exposed:!0};function r(e){}export{r as default,o as metadata};
