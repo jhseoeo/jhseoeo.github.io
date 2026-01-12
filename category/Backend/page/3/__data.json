@@ -1,0 +1,1 @@
+{"type":"data","nodes":[{"type":"data","data":[null],"uses":{}},{"type":"data","data":[{"posts":1,"page":2,"category":3,"totalPosts":4},[],3,"Backend",50],"uses":{"params":["page","category"]}}]}

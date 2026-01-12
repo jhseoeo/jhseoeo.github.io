@@ -6,16 +6,34 @@
 				<link>https://jhseoeo.github.io</link>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 				<item>
-						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</guid>
-						<title>Driving Content Delivery Efficiency Through Classifying Cache Misses</title>
-						<link>https://jhseoeo.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</link>
-						<description>subtitle test</description>
-						<pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/CDC</guid>
+						<title>CDC</title>
+						<link>https://jhseoeo.github.io/posts/post/CDC</link>
+						<description></description>
+						<pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/HLS</guid>
+						<title>HLS</title>
+						<link>https://jhseoeo.github.io/posts/post/HLS</link>
+						<description></description>
+						<pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
 					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Kafka</guid>
 						<title>Kafka</title>
 						<link>https://jhseoeo.github.io/posts/post/Kafka</link>
 						<description></description>
+						<pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Wasmer</guid>
+						<title>Wasmer</title>
+						<link>https://jhseoeo.github.io/posts/post/Wasmer</link>
+						<description></description>
+						<pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</guid>
+						<title>Driving Content Delivery Efficiency Through Classifying Cache Misses</title>
+						<link>https://jhseoeo.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</link>
+						<description>subtitle test</description>
 						<pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
 					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Distributed_Counter</guid>
