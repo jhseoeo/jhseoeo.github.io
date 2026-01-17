@@ -6,59 +6,59 @@
 				<link>https://jhseoeo.github.io</link>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 				<item>
-						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/CDC</guid>
-						<title>CDC</title>
-						<link>https://jhseoeo.github.io/posts/post/CDC</link>
-						<description></description>
-						<pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-					</item><item>
-						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/HLS</guid>
-						<title>HLS</title>
-						<link>https://jhseoeo.github.io/posts/post/HLS</link>
-						<description></description>
-						<pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-					</item><item>
-						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Kafka</guid>
-						<title>Kafka</title>
-						<link>https://jhseoeo.github.io/posts/post/Kafka</link>
-						<description></description>
-						<pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-					</item><item>
-						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Wasmer</guid>
-						<title>Wasmer</title>
-						<link>https://jhseoeo.github.io/posts/post/Wasmer</link>
-						<description></description>
-						<pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</guid>
 						<title>Driving Content Delivery Efficiency Through Classifying Cache Misses</title>
 						<link>https://jhseoeo.github.io/posts/post/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses</link>
 						<description>subtitle test</description>
-						<pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
+						<pubDate>Sat, 19 Jul 2025 00:00:00 GMT</pubDate>
 					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Distributed_Counter</guid>
 						<title>Distributed Counter</title>
 						<link>https://jhseoeo.github.io/posts/post/Distributed_Counter</link>
 						<description></description>
-						<pubDate>Sat, 08 Nov 2025 00:00:00 GMT</pubDate>
+						<pubDate>Wed, 16 Apr 2025 00:00:00 GMT</pubDate>
 					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Timeseries_data_abstraction</guid>
 						<title>Timeseries data abstraction</title>
 						<link>https://jhseoeo.github.io/posts/post/Timeseries_data_abstraction</link>
 						<description></description>
-						<pubDate>Sat, 08 Nov 2025 00:00:00 GMT</pubDate>
+						<pubDate>Sat, 15 Mar 2025 00:00:00 GMT</pubDate>
 					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/r-place</guid>
 						<title>r/place</title>
 						<link>https://jhseoeo.github.io/posts/post/r-place</link>
 						<description></description>
-						<pubDate>Tue, 16 Sep 2025 00:00:00 GMT</pubDate>
+						<pubDate>Mon, 03 Feb 2025 00:00:00 GMT</pubDate>
 					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Chaos_Engineering</guid>
 						<title>Chaos Engineering</title>
 						<link>https://jhseoeo.github.io/posts/post/Chaos_Engineering</link>
 						<description></description>
-						<pubDate>Sat, 15 Mar 2025 00:00:00 GMT</pubDate>
+						<pubDate>Mon, 06 Jan 2025 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Wasmer</guid>
+						<title>Wasmer</title>
+						<link>https://jhseoeo.github.io/posts/post/Wasmer</link>
+						<description></description>
+						<pubDate>Tue, 26 Nov 2024 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/HLS</guid>
+						<title>HLS</title>
+						<link>https://jhseoeo.github.io/posts/post/HLS</link>
+						<description></description>
+						<pubDate>Mon, 30 Sep 2024 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Kafka</guid>
+						<title>Kafka</title>
+						<link>https://jhseoeo.github.io/posts/post/Kafka</link>
+						<description></description>
+						<pubDate>Mon, 12 Aug 2024 00:00:00 GMT</pubDate>
+					</item><item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/CDC</guid>
+						<title>CDC</title>
+						<link>https://jhseoeo.github.io/posts/post/CDC</link>
+						<description></description>
+						<pubDate>Mon, 22 Jul 2024 00:00:00 GMT</pubDate>
 					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Cloud/Oracle Cloud/Install Elasticsearch on Oracle Cloud Instance</guid>
 						<title>Oracle Cloud 프리 티어 인스턴스에 Elasticsearch 설치해보기</title>
