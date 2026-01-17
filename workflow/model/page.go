@@ -14,6 +14,7 @@ type Page struct {
 	Exportable     bool       `json:"exportable"`
 	Title          string     `json:"title"`
 	SubTitle       string     `json:"subTitle"`
+	Date           string     `json:"date"`
 	Tags           []Tag      `json:"tags"`
 	Properties     Properties `json:"properties"`
 }
@@ -67,6 +68,15 @@ func (p *Page) UnmarshalJSON(data []byte) error {
 			})
 		}
 	}
+	{ // Date 처리
+		prop, err := p.Properties.Find("Date", PropertyTypeDate)
+		if err != nil {
+			return err
+		}
+		if prop.Date != nil {
+			p.Date = prop.Date.Start
+		}
+	}
 
 	return nil
 }
@@ -78,6 +88,7 @@ const (
 	PropertyTypeTitle       PropertyType = "title"
 	PropertyTypeRichText    PropertyType = "rich_text"
 	PropertyTypeMultiSelect PropertyType = "multi_select"
+	PropertyTypeDate        PropertyType = "date"
 )
 
 type Properties map[string]*Property
@@ -97,12 +108,19 @@ type Property struct {
 	Id   string       `json:"id"`
 	Type PropertyType `json:"type"`
 
-	Checkbox    bool     `json:"checkbox,omitempty"`
-	Title       Contents `json:"title,omitempty"`
-	RichText    Contents `json:"rich_text,omitempty"`
+	Checkbox    bool      `json:"checkbox,omitempty"`
+	Title       Contents  `json:"title,omitempty"`
+	RichText    Contents  `json:"rich_text,omitempty"`
+	Date        *DateValue `json:"date,omitempty"`
 	MultiSelect []struct {
 		Id    string      `json:"id"`
 		Name  string      `json:"name"`
 		Color types.Color `json:"color"`
 	} `json:"multi_select,omitempty"`
+}
+
+type DateValue struct {
+	Start    string  `json:"start"`
+	End      *string `json:"end,omitempty"`
+	TimeZone *string `json:"time_zone,omitempty"`
 }

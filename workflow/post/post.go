@@ -51,9 +51,17 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 	}
 
 	// parse params
-	lastEditedTime, err := time.Parse(time.RFC3339, page.LastEditedTime)
-	if err != nil {
-		return err
+	// Use Date field from Notion database instead of LastEditedTime
+	var dateStr string
+	if page.Date != "" {
+		dateStr = page.Date
+	} else {
+		// Fallback to LastEditedTime if Date is not set
+		lastEditedTime, err := time.Parse(time.RFC3339, page.LastEditedTime)
+		if err != nil {
+			return err
+		}
+		dateStr = lastEditedTime.Format("2006-01-02")
 	}
 
 	categories := func() []string {
@@ -89,7 +97,7 @@ func ExportPost(outputDir string, page *model.Page, contents []*model.Block) err
 
 	params := templateParams{
 		Title:        page.Title,
-		Date:         lastEditedTime.Format("2006-01-02"),
+		Date:         dateStr,
 		Categories:   categories,
 		CategoriesJS: string(categoriesJS),
 		Excerpt:      page.SubTitle,
