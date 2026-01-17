@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   export const metadata = {
     title: 'Chaos Engineering',
-    date: '2025-03-15',
+    date: '2025-01-06',
     categories: ["DevOps","논문"],
     coverImage: '/images/default-cover.jpg',
     coverWidth: 16,
