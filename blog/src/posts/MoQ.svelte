@@ -3,7 +3,7 @@
     title: 'MoQ',
     date: '2026-02-03',
     categories: ["Backend","Media"],
-    coverImage: '/images/MoQ/e263b828575b7056.png',
+    coverImage: '/images/MoQ/918834bb39fa5874.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: 'Young하고 MZ한 미디어 프로토콜',
@@ -16,17 +16,22 @@
   import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
 </script>
 
+<p>블로그 구출작전 이후 첫 포스트 👏</p>
+
+<p></p>
+
 <p><a href="https://blog.cloudflare.com/moq/">MoQ: Refactoring the Internet's real-time media stack</a></p>
 
 <p></p>
 
-<h1>미디어 프로토콜의 진화</h1>
+<h2>미디어 프로토콜의 진화</h2>
 
 <h3>RTMP</h3>
 
 <ul>
-<li>거의 처음으로 상용화된 영상 머시기 프로토콜!</li>
-<li>당시엔 혁신적이였던 5초 이내의 레이턴시!</li>
+<li>거의 처음으로 상용화된 영상 스트리밍 프로토콜!</li>
+<li>당시엔 혁신적이였던 5초 이내의 레이턴시! 물론 기술이 발전하면서 이거보다 짧은 프로토콜이 세상에 많이 나왔다</li>
+<li>현재는 거의 데이터 수집 용도로 사용됨</li>
 <li>TCP 종특) HoLB 때문에 레이턴시 상당함</li>
 <li>connection을 계속 유지해줘야 하는 stateful함. CDN이나 스케일링이 복잡하다</li>
 </ul>
@@ -34,7 +39,7 @@
 
 <h3>HLS</h3>
 
-<p><a href="https://jhseoeo.github.io/posts/post/HLS">HLS</a></p>
+<p>과거 정리해두었던 포스트 → <a href="https://jhseoeo.github.io/posts/post/HLS">HLS</a></p>
 
 <ul>
 <li>비디오를 여러 세그먼트로 나누어 http를 통해 전달하는, 애플 형님들이 만든 프로토콜</li>
@@ -56,7 +61,7 @@
 </ul>
 <p></p>
 
-<h1>MOQ</h1>
+<h2>MOQ</h2>
 
 <ul>
 <li>설계 레벨부터 이런 문제를 한번에 해결하기 위한 방법이 고려되었다고 한다</li>
@@ -72,7 +77,7 @@
 
 <h3>아키텍처</h3>
 
-<img src="/images/MoQ/e263b828575b7056.png" alt="" class="responsive-image" />
+<img src="/images/MoQ/918834bb39fa5874.png" alt="" class="responsive-image" />
 
 <ol>
 <li>QUIC / Webtransport: 플레인 QUIC을 쓰거나, 브라우저 위에서는 <a href="https://www.ietf.org/archive/id/draft-ietf-webtrans-http3-02.html">WebTransport</a>를 사용할 수도 있음</li>
@@ -110,7 +115,7 @@
 
 <h3>시퀀스</h3>
 
-<img src="/images/MoQ/2e2b49a539aa4f58.png" alt="" class="responsive-image" />
+<img src="/images/MoQ/9daa308dd2b01895.png" alt="" class="responsive-image" />
 
 <ul>
 <li>연결 수립 과정을 나타낸 시퀀스 다이어그램인데, 사실 특별할 건 없다</li>
@@ -122,8 +127,8 @@
 </li>
 </ul>
 <details>
-  <summary>subcriber 없이 일단 relay에 publish하는 방식도 있다는 듯 하다</summary>
-  <img src="/images/MoQ/a9d6c4daf66fb7d4.png" alt="" class="responsive-image" />
+  <summary>subscriber 없이 일단 relay에 publish하는 방식도 있다는 듯 하다</summary>
+  <img src="/images/MoQ/571c35087932d126.png" alt="" class="responsive-image" />
 
 </details>
 
@@ -148,10 +153,17 @@
 
 <p>생각보다 애매할지도..?</p>
 
-<p>WebRTC 대체한다고는 적혀 있지만 실제로 WebRTC 대체하려고 만든 건 아닌 듯 함 🤔</p>
+<ul>
+<li>WebRTC 대체한다고는 적혀 있지만 실제로 완전 WebRTC 대체하려고 만든 건 아닌 듯 함 🤔
+  <p>얜 본질적으로 서버-클라구조이다 보니 WebRTC의 P2P에서 오는 장점까지 대체하기는 어려울 듯</p>
 
-<p>HLS도 아묻따캐싱을 태울 수 있다는 장점이 워낙 커서 완전 대체는 어려울 듯..?</p>
+  <p>부분적인 케이스(스케일이 커지고 커넥션 수가 많아질 때 WebRTC가 힘들어하는 문제)를 대체하고 싶은 게 아니었을까</p>
 
-<p>클라우드 프로바이더에서 이걸 사용할 수 있는 인터페이스를 어떻게 만들어주느냐가 관건일 듯 한데 쉽지 않아 보였다</p>
+</li>
+<li>HLS도 아묻따무지성캐싱을 태울 수 있다는 장점이 워낙 커서 완전 대체는 어려울 듯..?
+  <p>레이턴시가 크게 중요하지 않은 유즈케이스에서는 그냥 HLS 쓸 것 같음</p>
 
+</li>
+<li>클라우드 프로바이더에서 이걸 사용할 수 있는 인터페이스를 어떻게 만들어주느냐가 관건일 듯 한데 쉽지 않아 보였다</li>
+</ul>
 

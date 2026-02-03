@@ -3,7 +3,7 @@
     title: 'HLS',
     date: '2024-09-30',
     categories: ["Backend"],
-    coverImage: '/images/HLS/a84bdfe594642778.png',
+    coverImage: '/images/HLS/008a2843f4a05b54.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
@@ -16,11 +16,11 @@
   import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
 </script>
 
-<p>애플이 심심했는지 미디어 스트리밍 프로토콜을 만들었다</p>
+<p>애플 형님들이 미디어 스트리밍 프로토콜을 만들었다</p>
 
-<p>용량이 큰 비디오를 여러 개의 세그먼트(보통 8~10초 단위)로 분할해 서빙하고, http 요청을 기반으로 비디오를 스트리밍</p>
+<p>영상을 업로드하는 시점에 용량이 큰 비디오를 여러 개의 비디오 세그먼트(.ts, 보통 8~10초 단위)로 분할 및 메타데이터(.m3u8)로 트랜스코딩하여 업로드한다.</p>
 
-<p>보통 영상을 업로드하는 시점에 비디오 세그먼트(.ts)와 메타데이터(.m3u8)로 트랜스코딩</p>
+<p>시청자는 http 요청을 기반으로 메타데이터 및 비디오 세그먼트를 연속적으로 요청하여 동영상을 재생하게 된다.</p>
 
 <p></p>
 
@@ -85,15 +85,15 @@ high_bandwidth.m3u8</code></pre>
 
 <p>귀여운 댕댕이 영상이 hls로 날아가는 걸 개발자 도구로 까보았다</p>
 
-<img src="/images/HLS/a84bdfe594642778.png" alt="" class="responsive-image" />
+<img src="/images/HLS/008a2843f4a05b54.png" alt="" class="responsive-image" />
 
-<img src="/images/HLS/916f263683ba9550.png" alt="" class="responsive-image" />
+<img src="/images/HLS/428f5981bcd2dc62.png" alt="" class="responsive-image" />
 
 <p>Content-Type: application/vnd.apple.mpegurl</p>
 
 <p>request body에 m3u8이 왔다</p>
 
-<img src="/images/HLS/39917e7b9a5883cb.png" alt="" class="responsive-image" />
+<img src="/images/HLS/fef044c5c875f113.png" alt="" class="responsive-image" />
 
 <p>Content-Type: application/octet-stream</p>
 
@@ -103,7 +103,7 @@ high_bandwidth.m3u8</code></pre>
 
 <p>넷플릭스도 쓰는가보다 안 쓸 리가 없지</p>
 
-<img src="/images/HLS/eed6c75851079436.png" alt="" class="responsive-image" />
+<img src="/images/HLS/f75b7444174a2abe.png" alt="" class="responsive-image" />
 
 <p>m3u8은 잘 숨겨놓은 것인지 못찾았다. 추측컨대 개발자도구에서 안보이게 어느정도 암호화? 걸 수도 있는 듯</p>
 
