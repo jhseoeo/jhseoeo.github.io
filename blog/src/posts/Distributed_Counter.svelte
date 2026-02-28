@@ -3,7 +3,7 @@
     title: 'Distributed Counter',
     date: '2025-04-16',
     categories: ["Backend"],
-    coverImage: '/images/Distributed_Counter/dfd67641b9bcec74.png',
+    coverImage: '/images/Distributed_Counter/b59edc0689cf1b42.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
@@ -20,13 +20,13 @@
 
 <p></p>
 
-<img src="/images/Distributed_Counter/dfd67641b9bcec74.png" alt="" class="responsive-image" />
+<img src="/images/Distributed_Counter/b59edc0689cf1b42.png" alt="" class="responsive-image" />
 
 <p>을 하려 했는데, 이걸 읽으려면 <a href="https://netflixtechblog.com/introducing-netflix-timeseries-data-abstraction-layer-31552f6326f8">Timeseries Data Abstraction</a>을 먼저 봐야 한다…</p>
 
 <p></p>
 
-<img src="/images/Distributed_Counter/c238b8213c39997f.png" alt="" class="responsive-image" />
+<img src="/images/Distributed_Counter/2d1c777584d1f91a.png" alt="" class="responsive-image" />
 
 <p>하지만 읽었죠?</p>
 
@@ -74,7 +74,7 @@
 
   <details>
     <summary>잼민아 hedging이 뭐야</summary>
-    <img src="/images/Distributed_Counter/78ee055992fcfe54.png" alt="" class="responsive-image" />
+    <img src="/images/Distributed_Counter/783ba7ff4c3f8888.png" alt="" class="responsive-image" />
 
   </details>
 
@@ -108,7 +108,7 @@
 
 <ol>
 <li>Approach 1: Storing a Single Row per Counter
-  <img src="/images/Distributed_Counter/a29dfad366478844.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/b68790048540bff9.png" alt="" class="responsive-image" />
 
   <ul>
   <li>멱등성도 없고 경합걸리면 성능 떨어져서 구리다</li>
@@ -124,7 +124,7 @@
   <li>각 인스턴스가 주기적으로 메모리에 있는 수를 세어서 디스크로 flush</li>
   <li>flush할 때 Jitter 걸면 경합도 줄일 수 있음</li>
   </ul>
-  <img src="/images/Distributed_Counter/57b6759eafcb895e.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/6993d6a672d7b3c7.png" alt="" class="responsive-image" />
 
   <ul>
   <li>인메모리? 서버꺼지면 데이터손실 막을 수가 없음</li>
@@ -137,7 +137,7 @@
   <li>도와줘 카프카형</li>
   <li>여러 개의 토픽 파티션을 만들고 카운터 키를 특정 파티션에 해싱하여, 동일한 카운터가 동일한 컨슈머에 의해 처리</li>
   </ul>
-  <img src="/images/Distributed_Counter/3f56078133529656.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/368cfd476b481bca.png" alt="" class="responsive-image" />
 
   <ul>
   <li>하지만 딜레이가 좀 생기고, 처리량이 증가하면 파티션이 리밸런싱되는 것에 맞춰 대응해줘야하는데 상당히 번거로움</li>
@@ -149,7 +149,7 @@
   <li><a href="https://netflixtechblog.com/introducing-netflix-timeseries-data-abstraction-layer-31552f6326f8">Timeseries Data Abstraction</a>을 쓰는 방식</li>
   <li>event_time과 event_id가 있으면 멱등 key도 보장할 수 있다</li>
   </ul>
-  <img src="/images/Distributed_Counter/934775f2dffa262f.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/76d4dad03078371b.png" alt="" class="responsive-image" />
 
 </li>
 </ol>
@@ -169,7 +169,7 @@
 
 <ul>
 <li>Aggregating Count Events
-  <img src="/images/Distributed_Counter/7e2ee750a9f297ad.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/93e023eb95d7db63.png" alt="" class="responsive-image" />
 
   <ul>
   <li>모든 read 요청마다 개별 increment를 모두 확인하는 건 너무 느리니, 백그라운드에서 aggregate를 돌자</li>
@@ -183,7 +183,7 @@
   </ul>
 </li>
 <li>Rollup Store
-  <img src="/images/Distributed_Counter/8316ff6d06d62fe7.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/d7f7ab848e3caa5d.png" alt="" class="responsive-image" />
 
   <ul>
   <li>읽은 것들을 적절히 저장해줍니다</li>
@@ -191,7 +191,7 @@
   </ul>
 </li>
 <li>Rollup Cache
-  <img src="/images/Distributed_Counter/06aca36b41f344b0.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/62b6d893f529031e.png" alt="" class="responsive-image" />
 
   <ul>
   <li>읽기 성능을 위해 각 캐시의 값은 EVCache에 저장한답니다</li>
@@ -202,9 +202,9 @@
 
 <ul>
 <li>Rollup Pipeline
-  <img src="/images/Distributed_Counter/b6954a86f5caad5f.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/6a3f3122987b6726.png" alt="" class="responsive-image" />
 
-  <img src="/images/Distributed_Counter/5d3c2d117497f0af.png" alt="" class="responsive-image" />
+  <img src="/images/Distributed_Counter/feb4def2abeac005.png" alt="" class="responsive-image" />
 
   <ul>
   <li>카운터에 무슨 요청이든 발생하면 롤업 이벤트를 보냄. 이벤트는 인메모리 큐에 쌓이고 중복을 최대한 제거(주어진 기간 동안 한 번만 aggregate를 실행)</li>
