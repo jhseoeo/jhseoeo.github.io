@@ -3,7 +3,7 @@
     title: 'CDC',
     date: '2024-07-22',
     categories: ["Backend","DevOps"],
-    coverImage: '/images/CDC/816cc5a6a5d11009.png',
+    coverImage: '/images/CDC/af1822a670b1d3d4.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
@@ -51,13 +51,13 @@
 <ul>
 <li>Debezium은 Kafka Connect에 붙여서 사용하는 방식을 주로 사용하고, kafka와 독립적으로 사용할 수 있는 Debezium Server가 있어서 AWS Kinesis같은 다른 파이프라인에 붙일 수도 있는 듯 하다.</li>
 <li>대략 <a href="https://debezium.io/documentation/reference/2.7/tutorial.html#starting-zookeeper">튜토리얼</a> 따라서 열심히 쿼리를 날려보면
-  <img src="/images/CDC/816cc5a6a5d11009.png" alt="" class="responsive-image" />
+  <img src="/images/CDC/af1822a670b1d3d4.png" alt="" class="responsive-image" />
 
-  <img src="/images/CDC/cf5ce0192681e54f.png" alt="" class="responsive-image" />
+  <img src="/images/CDC/51ce7879516b6d32.png" alt="" class="responsive-image" />
 
-  <img src="/images/CDC/d984955f2afbe3cc.png" alt="" class="responsive-image" />
+  <img src="/images/CDC/3b6176ed61c1d0f1.png" alt="" class="responsive-image" />
 
-  <img src="/images/CDC/e828cd8ab1232358.png" alt="" class="responsive-image" />
+  <img src="/images/CDC/4b8fcfa0de3f797f.png" alt="" class="responsive-image" />
 
   <p>이렇게 topic에 이벤트가 찍힌다. 각 이벤트에는 칼럼에 대한 정보, before/after, 메타데이터 등의 정보가 저장되어 .있다</p>
 
