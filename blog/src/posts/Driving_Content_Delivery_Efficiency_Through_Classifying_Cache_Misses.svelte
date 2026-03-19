@@ -3,7 +3,7 @@
     title: 'Driving Content Delivery Efficiency Through Classifying Cache Misses',
     date: '2025-07-19',
     categories: ["Backend"],
-    coverImage: '/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/1160305ac9f4f9eb.png',
+    coverImage: '/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/971660d13e62483e.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '넷플릭스의 CDN 관리',
@@ -27,7 +27,7 @@
 
 <h2>캐시 미스</h2>
 
-<img src="/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/1160305ac9f4f9eb.png" alt="" class="responsive-image" />
+<img src="/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/971660d13e62483e.png" alt="" class="responsive-image" />
 
 <ul>
 <li>OCA 상태와 상관 없이, 각 클라이언트 기준으로 최적의 OCA에서 데이터가 제공되지 않을 때
@@ -36,7 +36,7 @@
   <li>IP의 근접성 기준으로 결정 (BGP 경로..?)
     <details>
       <summary>그게 뭔데</summary>
-      <img src="/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/fdcae14931e0ed4a.png" alt="" class="responsive-image" />
+      <img src="/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/66ba664e5849670a.png" alt="" class="responsive-image" />
 
     </details>
 
@@ -100,7 +100,7 @@
 </ul>
 <h2>활용</h2>
 
-<img src="/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/4790417250f9687c.png" alt="" class="responsive-image" />
+<img src="/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/d01e5a4f8c1827b9.png" alt="" class="responsive-image" />
 
 <p>대충 이런 대시보드 만들고 알림 받아서, 캐시 미스 너무 높아지면 장애 대응하거나 잘못 예측된 콘텐츠를 OCA에 신속하게 배포한다던지 등등을 한다고 합니다</p>
 
@@ -110,7 +110,7 @@
 
 <p><a href="https://netflixtechblog.com/behind-the-streams-live-at-netflix-part-1-d23f917c2f40">Behind the Streams: Live at Netflix. Part 1</a></p>
 
-<img src="/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/b73b56b0a9dcb3e0.png" alt="" class="responsive-image" />
+<img src="/images/Driving_Content_Delivery_Efficiency_Through_Classifying_Cache_Misses/dea39604b1f64ba8.png" alt="" class="responsive-image" />
 
 <p>와 가뜩이나 요새 미디어한테 두드려맞고 있는데 이거 완전 좋은 글감이잖아?</p>
 
