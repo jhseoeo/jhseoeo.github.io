@@ -6,6 +6,12 @@
 				<link>https://jhseoeo.github.io</link>
 				<atom:link href="https://jhseoeo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 				<item>
+						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/Claude_hook_기반_daemon_개발하기</guid>
+						<title>Claude hook 기반 daemon 개발하기</title>
+						<link>https://jhseoeo.github.io/posts/post/Claude_hook_기반_daemon_개발하기</link>
+						<description></description>
+						<pubDate>Fri, 01 May 2026 00:00:00 GMT</pubDate>
+					</item><item>
 						<guid isPermaLink="true">https://jhseoeo.github.io/posts/post/MoQ</guid>
 						<title>MoQ</title>
 						<link>https://jhseoeo.github.io/posts/post/MoQ</link>
