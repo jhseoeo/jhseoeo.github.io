@@ -3,7 +3,7 @@
     title: 'r/place',
     date: '2025-02-03',
     categories: ["Backend"],
-    coverImage: '/images/r-place/e515275c7f3f9f8c.png',
+    coverImage: '/images/r-place/3fe8a863f7373501.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
@@ -28,7 +28,7 @@
 
 <h2>1. 개요</h2>
 
-<img src="/images/r-place/e515275c7f3f9f8c.png" alt="" class="responsive-image" />
+<img src="/images/r-place/3fe8a863f7373501.png" alt="" class="responsive-image" />
 
 <p>레딧에서 만우절에 이벤트성으로 진행한 온라인 픽셀 아트 이벤트입니다</p>
 
@@ -68,7 +68,7 @@
       <summary>4비트로 한다고....????</summary>
       <p>4비트로 어떻게 색상을 표현하는지에 대한 이미지가 안보임.. 아마 아래와 같은 느낌이 아닐까..</p>
 
-      <img src="/images/r-place/7266bd8060bde660.png" alt="" class="responsive-image" />
+      <img src="/images/r-place/8ae977f34f46ca7c.png" alt="" class="responsive-image" />
 
     </details>
 
@@ -112,7 +112,7 @@
   <summary>카산드라의 consistency level은 QUORUM이라고 함</summary>
   <p>사실 저도 이게 뭔지 잘 몰라서 GPT한테 물어봤습니다. 분산 DB이니 완전히 매칭시키긴 어렵지만, 얼추 READ COMMITTED 수준이라고 하네용</p>
 
-  <img src="/images/r-place/0099b1fab76e1d97.png" alt="" class="responsive-image" />
+  <img src="/images/r-place/05f04bed61062ed3.png" alt="" class="responsive-image" />
 
 </details>
 
@@ -151,7 +151,7 @@
   </ul>
   <details>
     <summary>캔버스를 실시간으로 png로 만들어 cdn에 올리고, 웹소켓은 png 경로만 알려주는 방식</summary>
-    <img src="/images/r-place/6822ac488780cd9d.png" alt="" class="responsive-image" />
+    <img src="/images/r-place/eae79064fe073857.png" alt="" class="responsive-image" />
 
   </details>
 
