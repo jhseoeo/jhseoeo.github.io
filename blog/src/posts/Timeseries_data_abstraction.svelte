@@ -3,7 +3,7 @@
     title: 'Timeseries data abstraction',
     date: '2025-03-15',
     categories: ["Backend"],
-    coverImage: '/images/Timeseries_data_abstraction/76050f427c382d25.png',
+    coverImage: '/images/Timeseries_data_abstraction/ea2411b1554a58d4.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
@@ -53,7 +53,7 @@
 
 <h2>Data Model</h2>
 
-<img src="/images/Timeseries_data_abstraction/76050f427c382d25.png" alt="" class="responsive-image" />
+<img src="/images/Timeseries_data_abstraction/ea2411b1554a58d4.png" alt="" class="responsive-image" />
 
 <p>적당한 캡슐화와 효율적인 쿼리가 가능한 모델</p>
 
@@ -236,11 +236,11 @@
     </ul>
     <details>
       <summary>카산드라의 wide partition 문제 해결</summary>
-      <img src="/images/Timeseries_data_abstraction/3aa4d764c09f718b.png" alt="" class="responsive-image" />
+      <img src="/images/Timeseries_data_abstraction/54c2777ccda758b7.png" alt="" class="responsive-image" />
 
       <details>
         <summary>기강잡기</summary>
-        <img src="/images/Timeseries_data_abstraction/4c9b658b13c495f8.png" alt="" class="responsive-image" />
+        <img src="/images/Timeseries_data_abstraction/684678df7d2baf85.png" alt="" class="responsive-image" />
 
       </details>
 
@@ -248,7 +248,7 @@
 
   </li>
   </ul>
-  <img src="/images/Timeseries_data_abstraction/194b1e4516f876e8.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/34b44ca30db51e7c.png" alt="" class="responsive-image" />
 
   <ul>
   <li>Time Slice
@@ -273,7 +273,7 @@
   </ul>
 </li>
 <li>Data Table
-  <img src="/images/Timeseries_data_abstraction/21a99ba6743d1260.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/212e9a0768213a91.png" alt="" class="responsive-image" />
 
   <ul>
   <li>time series id, time bucket, event bucket을 파티션 키로 설정하여 hot partition 예방</li>
@@ -283,7 +283,7 @@
   </ul>
 </li>
 <li>Metadata Table
-  <img src="/images/Timeseries_data_abstraction/8e3785b487f865df.png" alt="" class="responsive-image" />
+  <img src="/images/Timeseries_data_abstraction/9cc6ecb1e1c71f7d.png" alt="" class="responsive-image" />
 
   <ul>
   <li>namespace마다 존재하는, 각 time slice에 대한 설정 저장</li>
@@ -331,7 +331,7 @@
 <ul>
 <li>워크로드 관리용. 갑자기 너무 요청이 와바박 들어오면 파티션 키별로 인메모리 큐에 넣고 일정 시간에 걸쳐 분산해주자</li>
 </ul>
-<img src="/images/Timeseries_data_abstraction/32fbeca1056c148b.png" alt="" class="responsive-image" />
+<img src="/images/Timeseries_data_abstraction/d6832c2d39e29ebc.png" alt="" class="responsive-image" />
 
 <ul>
 <li>물론 인스턴스 죽으면 인메모리 큐도 싹 다 증발되니, data loss를 허용하는 유즈케이스에 대해서만 사용이 가능</li>
