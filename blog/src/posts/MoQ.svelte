@@ -3,7 +3,7 @@
     title: 'MoQ',
     date: '2026-02-03',
     categories: ["Backend","Media"],
-    coverImage: '/images/MoQ/7338e6edd746a54f.png',
+    coverImage: '/images/MoQ/994960dc1f56da84.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: 'Young하고 MZ한 미디어 프로토콜',
@@ -20,7 +20,7 @@
 
 <p><a href="https://blog.cloudflare.com/moq/">MoQ: Refactoring the Internet's real-time media stack</a></p>
 
-<img src="/images/MoQ/7338e6edd746a54f.png" alt="" class="responsive-image" />
+<img src="/images/MoQ/994960dc1f56da84.png" alt="" class="responsive-image" />
 
 <h2>미디어 프로토콜의 진화</h2>
 
@@ -75,7 +75,7 @@
 
 <h3>아키텍처</h3>
 
-<img src="/images/MoQ/c9d2bdecdcb3b4f1.png" alt="" class="responsive-image" />
+<img src="/images/MoQ/67ab9517a38d7e80.png" alt="" class="responsive-image" />
 
 <ol>
 <li>QUIC / Webtransport: 플레인 QUIC을 쓰거나, 브라우저 위에서는 <a href="https://www.ietf.org/archive/id/draft-ietf-webtrans-http3-02.html">WebTransport</a>를 사용할 수도 있음</li>
@@ -113,7 +113,7 @@
 
 <h3>시퀀스</h3>
 
-<img src="/images/MoQ/379e4f857258e1d4.png" alt="" class="responsive-image" />
+<img src="/images/MoQ/5d28de25d2f322dd.png" alt="" class="responsive-image" />
 
 <ul>
 <li>연결 수립 과정을 나타낸 시퀀스 다이어그램인데, 사실 특별할 건 없다</li>
@@ -126,7 +126,7 @@
 </ul>
 <details>
   <summary>subscriber 없이 일단 relay에 publish하는 방식도 있다는 듯 하다</summary>
-  <img src="/images/MoQ/8d6564fd097b42d6.png" alt="" class="responsive-image" />
+  <img src="/images/MoQ/45628ce426d7ac90.png" alt="" class="responsive-image" />
 
 </details>
 
