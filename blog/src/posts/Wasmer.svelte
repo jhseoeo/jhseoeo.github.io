@@ -3,7 +3,7 @@
     title: 'Wasmer',
     date: '2024-11-26',
     categories: ["Backend","DevOps"],
-    coverImage: '/images/Wasmer/90c3785248b8ca92.png',
+    coverImage: '/images/Wasmer/84bf0d27132590ea.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
@@ -16,7 +16,7 @@
   import CodeBlockWrapper from '$lib/components/CodeBlockWrapper.svelte';
 </script>
 
-<img src="/images/Wasmer/90c3785248b8ca92.png" alt="" class="responsive-image" />
+<img src="/images/Wasmer/84bf0d27132590ea.png" alt="" class="responsive-image" />
 
 <ul>
 <li>와! new container technology</li>
@@ -46,7 +46,7 @@
 
 <h2>출발</h2>
 
-<img src="/images/Wasmer/09fd6de05f2e5929.png" alt="" class="responsive-image" />
+<img src="/images/Wasmer/c2374194b74508b5.png" alt="" class="responsive-image" />
 
 <p>러스트는 처음 건드려봐서 뭐가 뭔지 모르지만 러스트로 간단한 sum 함수를 짜보았다</p>
 
@@ -129,7 +129,7 @@ func getSumRust(a, b int32) int32 &#123;
 <li>호출 횟수가 많아지면 스택오버플로우가 나는 것인지, sigsegv가 떠버린다..</li>
 <li>뭔가 싶어 깃헙 가봤더니</li>
 </ul>
-<img src="/images/Wasmer/4886122b39261172.png" alt="" class="responsive-image" />
+<img src="/images/Wasmer/ed05ac34830a1f47.png" alt="" class="responsive-image" />
 
 <ul>
 <li>그만 알아보자..</li>
