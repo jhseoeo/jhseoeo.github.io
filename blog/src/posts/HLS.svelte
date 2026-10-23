@@ -3,7 +3,7 @@
     title: 'HLS',
     date: '2024-09-30',
     categories: ["Backend"],
-    coverImage: '/images/HLS/a5ceec5e54c3b25a.png',
+    coverImage: '/images/HLS/3bbbea6a7a05b724.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
@@ -85,15 +85,15 @@ high_bandwidth.m3u8</code></pre>
 
 <p>귀여운 댕댕이 영상이 hls로 날아가는 걸 개발자 도구로 까보았다</p>
 
-<img src="/images/HLS/a5ceec5e54c3b25a.png" alt="" class="responsive-image" />
+<img src="/images/HLS/3bbbea6a7a05b724.png" alt="" class="responsive-image" />
 
-<img src="/images/HLS/4b594f47302bea03.png" alt="" class="responsive-image" />
+<img src="/images/HLS/0e5de1afab7c3280.png" alt="" class="responsive-image" />
 
 <p>Content-Type: application/vnd.apple.mpegurl</p>
 
 <p>request body에 m3u8이 왔다</p>
 
-<img src="/images/HLS/09b377930f381273.png" alt="" class="responsive-image" />
+<img src="/images/HLS/104d8fe4ed42a2c3.png" alt="" class="responsive-image" />
 
 <p>Content-Type: application/octet-stream</p>
 
@@ -103,7 +103,7 @@ high_bandwidth.m3u8</code></pre>
 
 <p>넷플릭스도 쓰는가보다 안 쓸 리가 없지</p>
 
-<img src="/images/HLS/3bd4f9e6d4b2ae25.png" alt="" class="responsive-image" />
+<img src="/images/HLS/3f7ee3e9a3d5f4f6.png" alt="" class="responsive-image" />
 
 <p>m3u8은 잘 숨겨놓은 것인지 못찾았다. 추측컨대 개발자도구에서 안보이게 어느정도 암호화? 걸 수도 있는 듯</p>
 
