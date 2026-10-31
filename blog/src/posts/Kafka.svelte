@@ -3,7 +3,7 @@
     title: 'Kafka',
     date: '2024-08-12',
     categories: ["Backend","논문"],
-    coverImage: '/images/Kafka/e79b7c22b015aca8.png',
+    coverImage: '/images/Kafka/6a37434ebc807ae5.png',
     coverWidth: 16,
     coverHeight: 9,
     excerpt: '',
@@ -79,7 +79,7 @@
 
 <h2>3. Architecture and Design Principle</h2>
 
-<img src="/images/Kafka/e79b7c22b015aca8.png" alt="" class="responsive-image" />
+<img src="/images/Kafka/6a37434ebc807ae5.png" alt="" class="responsive-image" />
 
 <p>topic: 특정 타입의 메세지 스트림</p>
 
